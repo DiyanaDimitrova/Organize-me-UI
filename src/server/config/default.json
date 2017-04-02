@@ -1,0 +1,11 @@
+{
+    "client": {
+        "axios": {
+            "timeout": 6000
+        }
+    },
+    "server": {
+        "env": "default",
+        "server_port": 3333
+    }
+}

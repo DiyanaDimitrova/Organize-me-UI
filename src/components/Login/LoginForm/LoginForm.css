@@ -1,0 +1,21 @@
+.mainDiv {
+  position: absolute;
+  text-align: center;
+  width: auto;
+  height: auto;
+  /*left: 100px;
+  top: 60px;*/
+}
+.titleText {
+  color: #00bcd4;
+}
+.loginPaper {
+  height: 300px;
+  width: 450px;
+  margin-left: 450px;
+  margin-right: 450px;
+  margin-top: 150px;
+  margin-bottom: 150px;
+  textAlign: center;
+  display: inline-block;
+}

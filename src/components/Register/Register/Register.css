@@ -1,0 +1,20 @@
+.registerDiv {
+  position: absolute;
+  text-align: center;
+  width: auto;
+  height: auto;
+  /*left: 100px;
+  top: 60px;*/
+}
+.titleText {
+  color: #00bcd4;
+}
+.registerPaper {
+  height: 550px;
+  width: 450px;
+  margin-top: 40px;
+  margin-left: 450px;
+  margin-right: 450px;
+  textAlign: center;
+  display: inline-block;
+}

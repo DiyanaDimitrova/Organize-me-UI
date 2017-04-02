@@ -1,0 +1,34 @@
+"use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var React = require("react");
+var react_router_1 = require("react-router");
+var react_redux_1 = require("react-redux");
+var Register_1 = require("../../components/Register/Register/Register");
+var LoginForm_1 = require("../../components/Login/LoginForm/LoginForm");
+var NewCategory_1 = require("../../components/NewCategory/NewCategory");
+var App_1 = require("../App/App");
+var rootRouter_1 = require("./rootRouter");
+var AppContainer = (function (_super) {
+    __extends(AppContainer, _super);
+    function AppContainer() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    AppContainer.prototype.render = function () {
+        console.log('RRRR' + JSON.stringify(rootRouter_1.default[0].getComponent));
+        return (React.createElement("div", null,
+            React.createElement(react_router_1.Router, { ref: 'routeRef', history: react_router_1.browserHistory },
+                React.createElement(react_router_1.Route, { path: '/', component: App_1.default }),
+                React.createElement(react_router_1.Route, { path: '/register', component: Register_1.default }),
+                React.createElement(react_router_1.Route, { path: '/login', component: LoginForm_1.default }),
+                React.createElement(react_router_1.Route, { path: '/newCategory', component: NewCategory_1.default }))));
+    };
+    return AppContainer;
+}(React.Component));
+exports.AppContainer = AppContainer;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = react_redux_1.connect()(AppContainer);
+//# sourceMappingURL=AppContainer.js.map
