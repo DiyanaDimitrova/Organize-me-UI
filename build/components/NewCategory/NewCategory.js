@@ -7,6 +7,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 var React = require("react");
 var react_redux_1 = require("react-redux");
 var material_ui_1 = require("material-ui");
+var actions = require("../../actions/categoryActions");
 var classes = require('./NewCategory.css');
 var NewCategory = (function (_super) {
     __extends(NewCategory, _super);
@@ -14,6 +15,10 @@ var NewCategory = (function (_super) {
         var _this = _super.call(this, props) || this;
         _this.saveCategory = function (event) {
             event.preventDefault();
+            console.log('LOG' + JSON.stringify(_this.state));
+            var createCategory = {};
+            createCategory.title = _this.state.title;
+            _this.props.performCreateCategoryAction(createCategory);
         };
         _this.cancelCategory = function (event) {
             event.preventDefault();
@@ -43,7 +48,11 @@ var NewCategory = (function (_super) {
 }(React.Component));
 var mapStateToProps = function (state) { return ({}); };
 var mapDispatchToProps = function (dispatch) {
-    return {};
+    return {
+        performCreateCategoryAction: function (createCategoryRequest) {
+            actions.performCreateCategoryAction(createCategoryRequest, dispatch);
+        }
+    };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = react_redux_1.connect(mapStateToProps, mapDispatchToProps)(NewCategory);

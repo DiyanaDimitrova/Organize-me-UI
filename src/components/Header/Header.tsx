@@ -5,6 +5,7 @@ import Drawer from 'material-ui/Drawer'
 import MenuItem from 'material-ui/MenuItem'
 import LoggedMenu from '../Login/LoggedMenu/LoggedMenu'
 import Login from '../Login/Login/Login'
+import { browserHistory } from 'react-router'
 import { AppState } from '../../store/AppStore'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
@@ -43,6 +44,9 @@ class Header extends React.Component<HeaderProps, HeaderState> {
   menuClick = () => {
       this.setState({openMenu: !this.state.openMenu})
   }
+  newCategoryClick = () => {
+    browserHistory.push('/newCategory')
+  }
   render() {
     return (
       <div>
@@ -59,7 +63,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
           iconElementRight={this.props.logged ? <LoggedMenu /> : <Login />}
         />
         <Drawer open={this.state.openMenu}>
-          <MenuItem>Create Category</MenuItem>
+          <MenuItem onTouchTap={this.newCategoryClick}>Create Category</MenuItem>
           <MenuItem>All Categories</MenuItem>
           <MenuItem>Create Event</MenuItem>
           <MenuItem>All Events</MenuItem>

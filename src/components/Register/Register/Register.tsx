@@ -132,6 +132,7 @@ class Register extends React.Component<RegisterProps, RegisterState> {
 }
 
 const mapStateToProps = (state: any) => ({
+
 })
 
 const mapDispatchToProps = (dispatch) => {

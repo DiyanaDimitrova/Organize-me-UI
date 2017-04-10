@@ -2,12 +2,17 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import { RaisedButton, TextField, Paper } from 'material-ui'
+import * as actions from '../../actions/categoryActions'
+import { CreateCategoryRequest } from '../../main/categoryMain'
+
+
 const classes = require('./NewCategory.css')
 
 interface StateProps {
 }
 
 interface DispatchProps {
+  performCreateCategoryAction: (createCategoryRequest: CreateCategoryRequest) => void
 }
 
 interface NewCategoryProps extends StateProps, DispatchProps{
@@ -39,15 +44,10 @@ class NewCategory extends React.Component<NewCategoryProps, NewCategoryState> {
     }
     saveCategory = (event)  => {
           event.preventDefault()
-          // console.log('LOG' + JSON.stringify(this.state))
-          // let signupRequest = {} as SignupRequest
-          // signupRequest.username = this.state.username
-          // signupRequest.password = this.state.password
-          // signupRequest.confirmPassword = this.state.confirmPassword
-          // signupRequest.firstName = this.state.firstName
-          // signupRequest.lastName = this.state.lastName
-          // signupRequest.email = this.state.email
-          // this.props.performSignupAction(signupRequest)
+          console.log('LOG' + JSON.stringify(this.state))
+          let createCategory = {} as CreateCategoryRequest
+          createCategory.title = this.state.title
+          this.props.performCreateCategoryAction(createCategory)
           // browserHistory.push('/')
     }
     cancelCategory = (event)  => {
@@ -86,6 +86,9 @@ const mapStateToProps = (state: any) => ({
 
 const mapDispatchToProps = (dispatch) => {
     return {
+      performCreateCategoryAction: (createCategoryRequest: CreateCategoryRequest): void => {
+          actions.performCreateCategoryAction(createCategoryRequest, dispatch)
+      }
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(NewCategory)

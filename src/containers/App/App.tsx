@@ -3,8 +3,6 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { AppState } from '../../store/AppStore'
 
-// import { RootState } from '../../reducers'
-// import * as TodoActions from '../../actions/todos'
 import Header from '../../components/Header/Header'
 import { withRouter } from 'react-router'
 import * as style from './style.css'
@@ -40,5 +38,4 @@ function mapDispatchToProps(dispatch) {
   return {
   }
 }
-// export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App))
 export default connect(mapStateToProps, mapDispatchToProps)(App)

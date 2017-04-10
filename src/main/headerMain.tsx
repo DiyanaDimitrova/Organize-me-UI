@@ -16,9 +16,7 @@ const reducers = {
 }
 
 export function headerReducer(state: HeaderState = initialState, action: Action): HeaderState {
-    // if (action.type === 'USER_LOGOUT' || action.type === LOGIN_SUCCESS) {
-        state = initialState
-    // }
+    state = initialState
     let reducer = reducers[action.type]
     if (reducer) {
         return reducer(state, action)

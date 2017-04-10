@@ -11,14 +11,12 @@ var Register_1 = require("../../components/Register/Register/Register");
 var LoginForm_1 = require("../../components/Login/LoginForm/LoginForm");
 var NewCategory_1 = require("../../components/NewCategory/NewCategory");
 var App_1 = require("../App/App");
-var rootRouter_1 = require("./rootRouter");
 var AppContainer = (function (_super) {
     __extends(AppContainer, _super);
     function AppContainer() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     AppContainer.prototype.render = function () {
-        console.log('RRRR' + JSON.stringify(rootRouter_1.default[0].getComponent));
         return (React.createElement("div", null,
             React.createElement(react_router_1.Router, { ref: 'routeRef', history: react_router_1.browserHistory },
                 React.createElement(react_router_1.Route, { path: '/', component: App_1.default }),

@@ -7,12 +7,10 @@ import LoginForm from '../../components/Login/LoginForm/LoginForm'
 import NewCategory from '../../components/NewCategory/NewCategory'
 
 import App from '../App/App'
-import rootRouter from './rootRouter'
 
 export class AppContainer extends React.Component<any, AppState> {
 
   render() {
-    console.log('RRRR' + JSON.stringify(rootRouter[0].getComponent))
     return (
       <div>
         <Router ref='routeRef' history={browserHistory} >
@@ -25,9 +23,5 @@ export class AppContainer extends React.Component<any, AppState> {
     )
   }
 }
-// {rootRouter.map((route) => {
-//   console.log('ROUTE' + JSON.stringify(route))
-//   return (<Route key={route.path} {...route} />)
-// })}
 
 export default connect()(AppContainer)

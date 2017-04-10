@@ -45,18 +45,6 @@ const reducers = {
     [a.END_LOADING_LOGIN]: r.endLoadingLoginReducer
 }
 
-// export const actions = {
-//     loginSuccess: a.loginSuccessAction,
-//     loginFail: a.loginFailAction,
-//     signupSuccess: a.signupSuccessAction,
-//     signupFail: a.signupFailAction,
-//     dismiss: a.dismissAction,
-//     performLoginAction: a.performLoginAction,
-//     performSignupAction: a.performSignupAction,
-//     loadingLogin: a.beginLoadingLogin,
-//     endLoadingLogin: a.endLoadingLogin
-// }
-
 export function loginReducer(state: LoginState = initialState, action: Action): LoginState {
     if ( action.type === LOGIN_SUCCESS) {
       state = initialState
