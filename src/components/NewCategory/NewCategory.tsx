@@ -44,24 +44,13 @@ class NewCategory extends React.Component<NewCategoryProps, NewCategoryState> {
     }
     saveCategory = (event)  => {
           event.preventDefault()
-          console.log('LOG' + JSON.stringify(this.state))
           let createCategory = {} as CreateCategoryRequest
           createCategory.title = this.state.title
           this.props.performCreateCategoryAction(createCategory)
-          // browserHistory.push('/')
     }
     cancelCategory = (event)  => {
           event.preventDefault()
-          // console.log('LOG' + JSON.stringify(this.state))
-          // let signupRequest = {} as SignupRequest
-          // signupRequest.username = this.state.username
-          // signupRequest.password = this.state.password
-          // signupRequest.confirmPassword = this.state.confirmPassword
-          // signupRequest.firstName = this.state.firstName
-          // signupRequest.lastName = this.state.lastName
-          // signupRequest.email = this.state.email
-          // this.props.performSignupAction(signupRequest)
-          // browserHistory.push('/')
+          this.setState({ title: '' })
     }
   render() {
     return (

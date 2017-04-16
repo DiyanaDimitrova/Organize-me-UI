@@ -1,15 +1,18 @@
 import { createStore, combineReducers, Reducer, Store, compose } from 'redux'
 import { LoginState, loginReducer } from '../main/loginMain'
+import { CategoryState, categoryReducer} from '../main/categoryMain'
 
 const persistStore = require('redux-persist').persistStore
 const autoRehydrate = require('redux-persist').autoRehydrate
 
 export interface AppState {
-    login: LoginState
+    login: LoginState,
+    category: CategoryState
 }
 
 const appReducer: Reducer<AppState> = combineReducers<AppState>({
-    login: loginReducer
+    login: loginReducer,
+    category: categoryReducer
 })
 
 const rootReducer = (state, action) => {

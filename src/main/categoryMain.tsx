@@ -6,20 +6,48 @@ import { LOGIN_SUCCESS } from '../actions/loginActions'
 export interface CreateCategoryRequest {
     title: string
 }
-
+export interface DeleteCategoryRequest {
+    id: string
+}
+export interface UpdateCategoryRequest {
+    id: string
+    title: string
+}
 export interface CategoryState {
-    newCategoryMessage: string
+    newCategoryMessage: string,
+    deleteCategoryMessage: string,
+    updateCategoryMessage: string,
+    categoriesListLoading: boolean,
+    success: boolean,
+    categoriesList: Array<any>,
+    currentItem: UpdateCategoryRequest,
+    itemToBeEdited: boolean
 }
 
 export const initialState: CategoryState = {
-    newCategoryMessage: null
+    newCategoryMessage: null,
+    deleteCategoryMessage: null,
+    updateCategoryMessage: null,
+    categoriesListLoading: false,
+    success: false,
+    categoriesList: [],
+    currentItem: null,
+    itemToBeEdited: false
 }
 
 const reducers = {
     [a.NEW_CATEGORY_SUCCESS]: r.newCategorySuccessReducer,
-    [a.NEW_CATEGORY_FAIL]: r.newCategoryFailReducer
+    [a.NEW_CATEGORY_FAIL]: r.newCategoryFailReducer,
+    [a.CATEGORIES_LIST_BEGIN_LOADING]: r.categoriesListBeginLoadingActionReducer,
+    [a.CATEGORIES_LIST_END_LOADING]: r.categoriesListEndLoadingActionReducer,
+    [a.GET_CATEGORIES_LIST_FAILURE]: r.setCategoriesListFailureActionReducer,
+    [a.GET_CATEGORIES_LIST]: r.setCategoriesListActionReducer,
+    [a.DELETE_CATEGORY_SUCCESS]: r.deleteCategorySuccessReducer,
+    [a.DELETE_CATEGORY_FAIL]: r.deleteCategoryFailReducer,
+    [a.UPDATE_CATEGORY_SUCCESS]: r.updateCategorySuccessReducer,
+    [a.UPDATE_CATEGORY_FAIL]: r.updateCategoryFailReducer,
+    [a.SET_CURRENT_ITEM]: r.setCurrentItemReducer
 }
-
 
 export function categoryReducer(state: CategoryState = initialState, action: Action): CategoryState {
     if ( action.type === LOGIN_SUCCESS) {
