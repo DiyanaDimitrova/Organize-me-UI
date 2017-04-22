@@ -49,10 +49,14 @@ var Event = (function (_super) {
         _this.cancelEvent = function (event) {
         };
         _this.handleChangeTimePicker = function (event, date) {
+            console.log(date);
             _this.setState({ hourValue: date });
         };
         _this.handleChangeDatePicker = function (event, date) {
             _this.setState({ dateValue: date });
+        };
+        _this.handleCategoryChange = function (event, index, value) {
+            _this.setState({ categoryValue: value });
         };
         _this.handleFile = function (event) {
             event.preventDefault();
@@ -77,7 +81,9 @@ var Event = (function (_super) {
             imagePreviewUrl: '',
             type: '',
             capacity: 0,
-            details: ''
+            details: '',
+            categoryValue: '',
+            categoriesList: null
         };
         _this.titleEntered = _this.titleEntered.bind(_this);
         _this.saveEvent = _this.saveEvent.bind(_this);
@@ -104,7 +110,7 @@ var Event = (function (_super) {
                 React.createElement("div", null,
                     React.createElement(material_ui_1.TextField, { hintText: "Title", floatingLabelText: "Title", floatingLabelFixed: true, type: "text", onChange: this.titleEntered, value: this.state.title })),
                 React.createElement("div", null,
-                    React.createElement(material_ui_1.DatePicker, { hintText: "Pick Date", floatingLabelText: "Pick Date", value: this.state.dateValue, onChange: this.handleChangeDatePicker })),
+                    React.createElement(material_ui_1.DatePicker, { format: "24hr", hintText: "Pick Date", floatingLabelText: "Pick Date", value: this.state.dateValue, onChange: this.handleChangeDatePicker })),
                 React.createElement("div", null,
                     React.createElement(material_ui_1.TimePicker, { format: "24hr", hintText: "Pick Time", floatingLabelText: "Pick Time", value: this.state.hourValue, onChange: this.handleChangeTimePicker })),
                 React.createElement("div", null,
@@ -113,6 +119,13 @@ var Event = (function (_super) {
                     React.createElement(material_ui_1.TextField, { hintText: "Capacity", floatingLabelText: "Capacity", floatingLabelFixed: true, type: "number", onChange: this.capacityEntered, value: this.state.capacity })),
                 React.createElement("div", null,
                     React.createElement(material_ui_1.TextField, { hintText: "Details", floatingLabelText: "Details", floatingLabelFixed: true, type: "text", onChange: this.detailsEntered, value: this.state.details })),
+                React.createElement("div", null,
+                    React.createElement(material_ui_1.DropDownMenu, { value: this.state.categoryValue, onChange: this.handleCategoryChange, autoWidth: false },
+                        React.createElement(material_ui_1.MenuItem, { value: 1, primaryText: "Custom width" }),
+                        React.createElement(material_ui_1.MenuItem, { value: 2, primaryText: "Every Night" }),
+                        React.createElement(material_ui_1.MenuItem, { value: 3, primaryText: "Weeknights" }),
+                        React.createElement(material_ui_1.MenuItem, { value: 4, primaryText: "Weekends" }),
+                        React.createElement(material_ui_1.MenuItem, { value: 5, primaryText: "Weekly" }))),
                 React.createElement("div", null,
                     React.createElement(material_ui_1.RaisedButton, { containerElement: "label", label: "Choose an Image", labelPosition: "before", secondary: true },
                         React.createElement("input", { type: "file", style: { display: 'none' }, onChange: this.handleFile }))),

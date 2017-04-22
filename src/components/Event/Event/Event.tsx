@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
-import { RaisedButton, TextField, Paper, DatePicker, TimePicker, FlatButton } from 'material-ui'
+import { RaisedButton, TextField, Paper, DatePicker, TimePicker, FlatButton, DropDownMenu, MenuItem } from 'material-ui'
 import * as actions from '../../../actions/eventActions'
 import { CreateEventRequest } from '../../../main/eventMain'
 const classes = require('./Event.css')
@@ -27,7 +27,9 @@ export interface EventState{
   imagePreviewUrl: any,
   type: any,
   capacity: Number,
-  details: String
+  details: String,
+  categoryValue: String,
+  categoriesList: [any]
 }
 
 export class Event extends React.Component<EventProps, EventState> {
@@ -42,7 +44,9 @@ export class Event extends React.Component<EventProps, EventState> {
       imagePreviewUrl: '',
       type: '',
       capacity: 0,
-      details: ''
+      details: '',
+      categoryValue: '',
+      categoriesList: null
     }
     this.titleEntered = this.titleEntered.bind(this)
     this.saveEvent = this.saveEvent.bind(this)
@@ -92,11 +96,16 @@ export class Event extends React.Component<EventProps, EventState> {
 
   }
   handleChangeTimePicker = (event, date) => {
+    console.log(date)
     this.setState({hourValue: date})
   }
   handleChangeDatePicker = (event, date) => {
     this.setState({dateValue: date})
   }
+  handleCategoryChange = (event, index, value) => {
+    this.setState({categoryValue : value})
+  }
+
   handleFile = (event) => {
     event.preventDefault();
     let reader = new FileReader();
@@ -133,7 +142,7 @@ export class Event extends React.Component<EventProps, EventState> {
                 <TextField hintText="Title" floatingLabelText="Title" floatingLabelFixed={true} type="text" onChange={this.titleEntered} value={this.state.title}/>
               </div>
               <div>
-                  <DatePicker hintText="Pick Date" floatingLabelText="Pick Date" value={this.state.dateValue}onChange={this.handleChangeDatePicker}/>
+                  <DatePicker format="24hr" hintText="Pick Date" floatingLabelText="Pick Date" value={this.state.dateValue} onChange={this.handleChangeDatePicker}/>
               </div>
               <div>
                   <TimePicker format="24hr" hintText="Pick Time" floatingLabelText="Pick Time" value={this.state.hourValue} onChange={this.handleChangeTimePicker}/>
@@ -146,6 +155,15 @@ export class Event extends React.Component<EventProps, EventState> {
               </div>
               <div>
                 <TextField hintText="Details" floatingLabelText="Details" floatingLabelFixed={true} type="text" onChange={this.detailsEntered} value={this.state.details}/>
+              </div>
+              <div>
+                <DropDownMenu value={this.state.categoryValue} onChange={this.handleCategoryChange} autoWidth={false}>
+                   <MenuItem value={1} primaryText="Custom width" />
+                   <MenuItem value={2} primaryText="Every Night" />
+                   <MenuItem value={3} primaryText="Weeknights" />
+                   <MenuItem value={4} primaryText="Weekends" />
+                   <MenuItem value={5} primaryText="Weekly" />
+                 </DropDownMenu>
               </div>
               <div>
                   <RaisedButton containerElement="label" label="Choose an Image" labelPosition="before" secondary={true}>

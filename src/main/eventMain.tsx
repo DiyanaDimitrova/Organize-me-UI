@@ -10,7 +10,9 @@ export interface CreateEventRequest {
     dateValue: Date,
     file: any,
     imagePreviewUrl: any,
-    type: any
+    type: any,
+    capacity: Number,
+    details: String
 }
 
 export interface EventState {
