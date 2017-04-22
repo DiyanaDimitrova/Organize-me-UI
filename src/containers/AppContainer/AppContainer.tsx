@@ -6,6 +6,7 @@ import Register from '../../components/Register/Register/Register'
 import LoginForm from '../../components/Login/LoginForm/LoginForm'
 import NewCategory from '../../components/Category/NewCategory/NewCategory'
 import CategoryList from '../../components/Category/CategoryList/CategoryList'
+import Event from '../../components/Event/Event/Event'
 
 import App from '../App/App'
 
@@ -20,6 +21,7 @@ export class AppContainer extends React.Component<any, AppState> {
           <Route path='/login' component={LoginForm}/>
           <Route path='/newCategory' component={NewCategory}/>
           <Route path='/allCategories' component={CategoryList}/>
+          <Route path='/newEvent' component={Event}/>
         </Router>
       </div>
     )

@@ -11,6 +11,7 @@ var Register_1 = require("../../components/Register/Register/Register");
 var LoginForm_1 = require("../../components/Login/LoginForm/LoginForm");
 var NewCategory_1 = require("../../components/Category/NewCategory/NewCategory");
 var CategoryList_1 = require("../../components/Category/CategoryList/CategoryList");
+var Event_1 = require("../../components/Event/Event/Event");
 var App_1 = require("../App/App");
 var AppContainer = (function (_super) {
     __extends(AppContainer, _super);
@@ -24,7 +25,8 @@ var AppContainer = (function (_super) {
                 React.createElement(react_router_1.Route, { path: '/register', component: Register_1.default }),
                 React.createElement(react_router_1.Route, { path: '/login', component: LoginForm_1.default }),
                 React.createElement(react_router_1.Route, { path: '/newCategory', component: NewCategory_1.default }),
-                React.createElement(react_router_1.Route, { path: '/allCategories', component: CategoryList_1.default }))));
+                React.createElement(react_router_1.Route, { path: '/allCategories', component: CategoryList_1.default }),
+                React.createElement(react_router_1.Route, { path: '/newEvent', component: Event_1.default }))));
     };
     return AppContainer;
 }(React.Component));

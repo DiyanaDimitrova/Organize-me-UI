@@ -26,6 +26,12 @@ var Header = (function (_super) {
         _this.newCategoryClick = function () {
             react_router_1.browserHistory.push('/newCategory');
         };
+        _this.allCategoryClick = function () {
+            react_router_1.browserHistory.push('/allCategories');
+        };
+        _this.newEventClick = function () {
+            react_router_1.browserHistory.push('/newEvent');
+        };
         _this.state = {
             openMenu: false
         };
@@ -37,8 +43,8 @@ var Header = (function (_super) {
             React.createElement(AppBar_1.default, { id: 'mainDiv', className: classes.mainDiv, title: "Title", onLeftIconButtonTouchTap: this.menuClick, iconElementRight: this.props.logged ? React.createElement(LoggedMenu_1.default, null) : React.createElement(Login_1.default, null) }),
             React.createElement(Drawer_1.default, { open: this.state.openMenu },
                 React.createElement(MenuItem_1.default, { onTouchTap: this.newCategoryClick }, "Create Category"),
-                React.createElement(MenuItem_1.default, null, "All Categories"),
-                React.createElement(MenuItem_1.default, null, "Create Event"),
+                React.createElement(MenuItem_1.default, { onTouchTap: this.allCategoryClick }, "All Categories"),
+                React.createElement(MenuItem_1.default, { onTouchTap: this.newEventClick }, "Create Event"),
                 React.createElement(MenuItem_1.default, null, "All Events"),
                 React.createElement(MenuItem_1.default, null, "Add Code"),
                 React.createElement(MenuItem_1.default, null, "Scan Code"))));

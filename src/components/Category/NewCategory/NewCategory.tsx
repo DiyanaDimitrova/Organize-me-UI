@@ -9,7 +9,7 @@ const classes = require('./NewCategory.css')
 
 interface StateProps {
   currentItem: UpdateCategoryRequest,
-  itemToBeEdited: boolean
+  itemToBeEdited: Boolean
 }
 
 interface DispatchProps {
@@ -22,7 +22,7 @@ export interface NewCategoryProps extends StateProps, DispatchProps{
 }
 
 export interface NewCategoryState{
-  title: string,
+  title: String,
   // item: string,
 }
 

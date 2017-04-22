@@ -20,8 +20,8 @@ export interface LoginFormProps extends StateProps, DispatchProps {
 
 
 interface LoginFormState{
-  username: string
-  password: string
+  username: String
+  password: String
 }
 
 /**

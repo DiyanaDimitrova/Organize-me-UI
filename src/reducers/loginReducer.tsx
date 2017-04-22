@@ -1,7 +1,6 @@
 import { LoginState } from '../main/loginMain'
 import { Action } from 'redux'
 import * as actions from '../actions/loginActions'
-// import { LoginAction, SignupAction, LOGIN_FAIL, LOGIN_SUCCESS, DISMISS, SIGNUP_FAIL, SIGNUP_SUCCESS, BEGIN_LOADING_LOGIN, END_LOADING_LOGIN } from '../actions/loginActions'
 
 export function loginSuccessReducer(state: LoginState, action: actions.LoginAction): LoginState {
     if (action.type === actions.LOGIN_SUCCESS) {

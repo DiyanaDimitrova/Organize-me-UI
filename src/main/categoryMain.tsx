@@ -4,24 +4,24 @@ import * as a from '../actions/categoryActions'
 import { LOGIN_SUCCESS } from '../actions/loginActions'
 
 export interface CreateCategoryRequest {
-    title: string
+    title: String
 }
 export interface DeleteCategoryRequest {
-    id: string
+    id: String
 }
 export interface UpdateCategoryRequest {
-    id: string
-    title: string
+    id: String
+    title: String
 }
 export interface CategoryState {
-    newCategoryMessage: string,
-    deleteCategoryMessage: string,
-    updateCategoryMessage: string,
-    categoriesListLoading: boolean,
-    success: boolean,
+    newCategoryMessage: String,
+    deleteCategoryMessage: String,
+    updateCategoryMessage: String,
+    categoriesListLoading: Boolean,
+    success: Boolean,
     categoriesList: Array<any>,
     currentItem: UpdateCategoryRequest,
-    itemToBeEdited: boolean
+    itemToBeEdited: Boolean
 }
 
 export const initialState: CategoryState = {

@@ -3,9 +3,9 @@ import * as a from '../actions/headerActions'
 import * as r from '../reducers/headerReducer'
 
 export interface HeaderState {
-  showRegisterForm: boolean,
-  openLoggedMenu: boolean,
-  logged: boolean
+  showRegisterForm: Boolean,
+  openLoggedMenu: Boolean,
+  logged: Boolean
 }
 export const initialState: HeaderState = {
   showRegisterForm: false,

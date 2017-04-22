@@ -26,42 +26,42 @@ export interface CurrentItemAction extends Action {
     currentItem: UpdateCategoryRequest
 }
 
-export function createCategorySuccessAction(message: string): CategoryAction {
+export function createCategorySuccessAction(message: String): CategoryAction {
     return {
         type: NEW_CATEGORY_SUCCESS,
         categoryMessage: message
     } as CategoryAction
 }
 
-export function createCategoryFailAction(message: string): CategoryAction {
+export function createCategoryFailAction(message: String): CategoryAction {
     return {
         type: NEW_CATEGORY_FAIL,
         categoryMessage: message
     } as CategoryAction
 }
 
-export function deleteCategorySuccessAction(message: string): CategoryAction {
+export function deleteCategorySuccessAction(message: String): CategoryAction {
     return {
         type: DELETE_CATEGORY_SUCCESS,
         categoryMessage: message
     } as CategoryAction
 }
 
-export function deleteCategoryFailAction(message: string): CategoryAction {
+export function deleteCategoryFailAction(message: String): CategoryAction {
     return {
         type: DELETE_CATEGORY_FAIL,
         categoryMessage: message
     } as CategoryAction
 }
 
-export function updateCategorySuccessAction(message: string): CategoryAction {
+export function updateCategorySuccessAction(message: String): CategoryAction {
     return {
         type: UPDATE_CATEGORY_SUCCESS,
         categoryMessage: message
     } as CategoryAction
 }
 
-export function updateCategoryFailAction(message: string): CategoryAction {
+export function updateCategoryFailAction(message: String): CategoryAction {
     return {
         type: UPDATE_CATEGORY_FAIL,
         categoryMessage: message

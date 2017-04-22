@@ -13,7 +13,7 @@ const classes = require('./Header.css')
 
 
 interface StateProps {
-  logged: boolean
+  logged: Boolean
 }
 
 interface DispatchProps {
@@ -23,7 +23,7 @@ export interface HeaderProps extends StateProps, DispatchProps {
 
 }
 interface HeaderState{
-  openMenu: boolean
+  openMenu: Boolean
 }
 /**
  * This example is taking advantage of the composability of the `AppBar`
@@ -47,6 +47,12 @@ class Header extends React.Component<HeaderProps, HeaderState> {
   newCategoryClick = () => {
     browserHistory.push('/newCategory')
   }
+  allCategoryClick = () => {
+    browserHistory.push('/allCategories')
+  }
+  newEventClick = () => {
+    browserHistory.push('/newEvent')
+  }
   render() {
     return (
       <div>
@@ -64,8 +70,8 @@ class Header extends React.Component<HeaderProps, HeaderState> {
         />
         <Drawer open={this.state.openMenu}>
           <MenuItem onTouchTap={this.newCategoryClick}>Create Category</MenuItem>
-          <MenuItem>All Categories</MenuItem>
-          <MenuItem>Create Event</MenuItem>
+          <MenuItem onTouchTap={this.allCategoryClick}>All Categories</MenuItem>
+          <MenuItem onTouchTap={this.newEventClick}>Create Event</MenuItem>
           <MenuItem>All Events</MenuItem>
           <MenuItem>Add Code</MenuItem>
           <MenuItem>Scan Code</MenuItem>

@@ -20,7 +20,7 @@ interface NewCategoryProps extends StateProps, DispatchProps{
 }
 
 interface NewCategoryState{
-  title: string
+  title: String
 }
 
 /**

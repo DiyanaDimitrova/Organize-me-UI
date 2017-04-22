@@ -18,12 +18,12 @@ interface RegisterProps extends StateProps, DispatchProps{
 }
 
 interface RegisterState{
-  username: string
-  password: string
-  confirmPassword: string
-  firstName: string
-  lastName: string
-  email: string
+  username: String
+  password: String
+  confirmPassword: String
+  firstName: String
+  lastName: String
+  email: Strings
 }
 
 /**

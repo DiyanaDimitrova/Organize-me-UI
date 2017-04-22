@@ -17,7 +17,7 @@ export interface LoggedMenuProps extends StateProps, DispatchProps {
 }
 
 interface LoggedMenuState{
-  opened: boolean
+  opened: Boolean
 }
 
 class LoggedMenu extends React.Component<LoggedMenuProps, LoggedMenuState> {

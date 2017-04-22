@@ -9,8 +9,8 @@ import { NewCategory } from '../../Category/NewCategory/NewCategory'
 const classes = require('./CategoryList.css')
 
 interface StateProps {
-  categoriesListLoading: boolean,
-  success: boolean,
+  categoriesListLoading: Boolean,
+  success: Boolean,
   categoriesList: Array<any>
 }
 

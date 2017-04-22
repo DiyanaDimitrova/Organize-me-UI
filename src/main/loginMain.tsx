@@ -4,24 +4,24 @@ import * as a from '../actions/loginActions'
 import { LOGIN_SUCCESS } from '../actions/loginActions'
 
 export interface LoginRequest {
-    username: string,
-    password: string
+    username: String,
+    password: String
 }
 
 export interface SignupRequest {
-    username: string,
-    password: string,
-    confirmPassword: string,
-    firstName: string,
-    lastName: string,
-    email: string
+    username: String,
+    password: String,
+    confirmPassword: String,
+    firstName: String,
+    lastName: String,
+    email: String
 }
 
 export interface LoginState {
-    login: boolean,
-    signup: boolean,
-    error: boolean,
-    loading: boolean,
+    login: Boolean,
+    signup: Boolean,
+    error: Boolean,
+    loading: Boolean,
     user: a.User
     messages: Array<any>
 }

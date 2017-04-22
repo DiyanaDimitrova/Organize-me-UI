@@ -12,8 +12,8 @@ export const BEGIN_LOADING_LOGIN = '@@Login/BEGIN_LOADING_LOGIN'
 export const END_LOADING_LOGIN = '@@Login/END_LOADING_LOGIN'
 
 export interface User {
-    firstName: string
-    lastName: string
+    firstName: String
+    lastName: String
 }
 
 export interface Payload {
