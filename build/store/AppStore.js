@@ -2,11 +2,13 @@
 var redux_1 = require("redux");
 var loginMain_1 = require("../main/loginMain");
 var categoryMain_1 = require("../main/categoryMain");
+var eventMain_1 = require("../main/eventMain");
 var persistStore = require('redux-persist').persistStore;
 var autoRehydrate = require('redux-persist').autoRehydrate;
 var appReducer = redux_1.combineReducers({
     login: loginMain_1.loginReducer,
-    category: categoryMain_1.categoryReducer
+    category: categoryMain_1.categoryReducer,
+    event: eventMain_1.eventReducer
 });
 var rootReducer = function (state, action) {
     return appReducer(state, action);

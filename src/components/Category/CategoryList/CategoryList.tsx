@@ -5,7 +5,7 @@ import * as actions from '../../../actions/categoryActions'
 import { List, ListItem, IconMenu, MenuItem, IconButton } from 'material-ui'
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
 import { DeleteCategoryRequest, UpdateCategoryRequest } from '../../../main/categoryMain'
-import { NewCategory } from '../../Category/NewCategory/NewCategory'
+import { Category } from '../../Category/Category/Category'
 const classes = require('./CategoryList.css')
 
 interface StateProps {
@@ -78,14 +78,6 @@ class CategoryList extends React.Component<CategoryListProps, CategoryListState>
     )
   }
   render() {
-    // const iconButtonElement = (
-    //
-    // )
-
-    // const rightIconMenu = (
-    //
-    // )
-
     let categoryArray
     if(this.props.categoriesList !== undefined && this.props.categoriesList !== null){
       categoryArray = Object.keys(this.props.categoriesList).map(key => this.props.categoriesList[key])

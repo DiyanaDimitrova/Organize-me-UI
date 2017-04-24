@@ -3,11 +3,27 @@ var r = require("../reducers/eventReducer");
 var a = require("../actions/eventActions");
 var loginActions_1 = require("../actions/loginActions");
 exports.initialState = {
-    newEventMessage: null
+    newEventMessage: null,
+    deleteEventMessage: null,
+    updateEventMessage: null,
+    eventListLoading: false,
+    success: false,
+    eventList: [],
+    currentItem: null,
+    itemToBeEdited: false
 };
 var reducers = (_a = {},
     _a[a.NEW_EVENT_SUCCESS] = r.newEventSuccessReducer,
     _a[a.NEW_EVENT_FAIL] = r.newEventFailReducer,
+    _a[a.EVENT_LIST_BEGIN_LOADING] = r.eventListBeginLoadingActionReducer,
+    _a[a.EVENT_LIST_END_LOADING] = r.eventListEndLoadingActionReducer,
+    _a[a.GET_EVENT_LIST_FAILURE] = r.setEventListFailureActionReducer,
+    _a[a.GET_EVENT_LIST] = r.setEventListActionReducer,
+    _a[a.DELETE_EVENT_SUCCESS] = r.deleteEventSuccessReducer,
+    _a[a.DELETE_EVENT_FAIL] = r.deleteEventFailReducer,
+    _a[a.UPDATE_EVENT_SUCCESS] = r.updateEventSuccessReducer,
+    _a[a.UPDATE_EVENT_FAIL] = r.updateEventFailReducer,
+    _a[a.SET_CURRENT_ITEM] = r.setCurrentItemReducer,
     _a);
 function eventReducer(state, action) {
     if (state === void 0) { state = exports.initialState; }

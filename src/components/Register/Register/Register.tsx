@@ -23,7 +23,7 @@ interface RegisterState{
   confirmPassword: String
   firstName: String
   lastName: String
-  email: Strings
+  email: String
 }
 
 /**
