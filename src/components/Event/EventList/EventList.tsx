@@ -70,6 +70,7 @@ class EventList extends React.Component<EventListProps, EventListState> {
     browserHistory.push('/newEvent')
   }
   viewItem = (e, itemId) => {
+    browserHistory.push('/eventDetails')
     console.log('VIEWWWWW')
   }
   iconButtonElement = () => {

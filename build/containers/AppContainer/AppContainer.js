@@ -13,6 +13,7 @@ var Category_1 = require("../../components/Category/Category/Category");
 var CategoryList_1 = require("../../components/Category/CategoryList/CategoryList");
 var Event_1 = require("../../components/Event/Event/Event");
 var EventList_1 = require("../../components/Event/EventList/EventList");
+var EventDetails_1 = require("../../components/Event/EventDetails/EventDetails");
 var App_1 = require("../App/App");
 var AppContainer = (function (_super) {
     __extends(AppContainer, _super);
@@ -28,7 +29,8 @@ var AppContainer = (function (_super) {
                 React.createElement(react_router_1.Route, { path: '/newCategory', component: Category_1.default }),
                 React.createElement(react_router_1.Route, { path: '/allCategories', component: CategoryList_1.default }),
                 React.createElement(react_router_1.Route, { path: '/newEvent', component: Event_1.default }),
-                React.createElement(react_router_1.Route, { path: '/allEvents', component: EventList_1.default }))));
+                React.createElement(react_router_1.Route, { path: '/allEvents', component: EventList_1.default }),
+                React.createElement(react_router_1.Route, { path: '/eventDetails', component: EventDetails_1.default }))));
     };
     return AppContainer;
 }(React.Component));

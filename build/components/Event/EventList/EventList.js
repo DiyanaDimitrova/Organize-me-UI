@@ -39,6 +39,7 @@ var EventList = (function (_super) {
             react_router_1.browserHistory.push('/newEvent');
         };
         _this.viewItem = function (e, itemId) {
+            react_router_1.browserHistory.push('/eventDetails');
             console.log('VIEWWWWW');
         };
         _this.iconButtonElement = function () {
