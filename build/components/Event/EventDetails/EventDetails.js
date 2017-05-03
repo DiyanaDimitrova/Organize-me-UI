@@ -10,6 +10,8 @@ var Card_1 = require("material-ui/Card");
 var RaisedButton_1 = require("material-ui/RaisedButton");
 var actions = require("../../../actions/eventActions");
 var dateFormat = require("dateformat");
+var place_1 = require("material-ui/svg-icons/maps/place");
+var Divider_1 = require("material-ui/Divider");
 var classes = require('./EventDetails.css');
 var EventDetails = (function (_super) {
     __extends(EventDetails, _super);
@@ -20,7 +22,7 @@ var EventDetails = (function (_super) {
             itemToView: props.itemToView
         };
         var eventDetails = {};
-        eventDetails.id = '5909807905bb9c21b40c9cdd';
+        eventDetails.id = _this.props.displayedItem;
         _this.props.loadEventImageAction(eventDetails);
         _this.props.loadEventDetailsAction(eventDetails);
         return _this;
@@ -34,9 +36,16 @@ var EventDetails = (function (_super) {
         console.log('Props' + JSON.stringify(this.props));
         return (React.createElement(Card_1.Card, null,
             React.createElement(Card_1.CardHeader, { title: this.props.itemToView.details.title, subtitle: dateFormat(this.props.itemToView.details.time, 'HH:MM') + ' ' + dateFormat(this.props.itemToView.details.time, 'dS mmmm, yyyy') }),
-            React.createElement(Card_1.CardMedia, { overlay: React.createElement(Card_1.CardTitle, { title: this.props.itemToView.details.title, subtitle: dateFormat(this.props.itemToView.details.time, 'HH:MM') + ' ' + dateFormat(this.props.itemToView.details.time, 'dS mmmm, yyyy') }) }, $imagePreview),
+            React.createElement(Card_1.CardMedia, { overlay: React.createElement(Card_1.CardTitle, { title: this.props.itemToView.details.title, subtitle: dateFormat(this.props.itemToView.details.time, 'HH:MM') + ' ' + dateFormat(this.props.itemToView.details.time, 'dS mmmm, yyyy') }) },
+                React.createElement("img", { src: "images/test.jpg" })),
             React.createElement(Card_1.CardTitle, { title: this.props.itemToView.details.title, subtitle: dateFormat(this.props.itemToView.details.time, 'HH:MM') + ' ' + dateFormat(this.props.itemToView.details.time, 'dS mmmm, yyyy') }),
-            React.createElement(Card_1.CardText, null, this.props.itemToView.details.details),
+            React.createElement(Card_1.CardText, null,
+                React.createElement("div", null,
+                    React.createElement(place_1.default, null),
+                    this.props.itemToView.details.place,
+                    " "),
+                React.createElement(Divider_1.default, null),
+                React.createElement("div", null, this.props.itemToView.details.details)),
             React.createElement(Card_1.CardActions, null,
                 React.createElement(RaisedButton_1.default, { label: "Going", secondary: true }),
                 React.createElement(RaisedButton_1.default, { label: "Interested", primary: true }),

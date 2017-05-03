@@ -6,6 +6,9 @@ import RaisedButton from 'material-ui/RaisedButton'
 import * as actions from '../../../actions/eventActions'
 import { EventDetailsRequest } from '../../../main/eventMain'
 import * as dateFormat from 'dateformat'
+import MapsPlace from 'material-ui/svg-icons/maps/place'
+import Divider from 'material-ui/Divider';
+
 const classes = require('./EventDetails.css')
 
 
@@ -36,8 +39,8 @@ export class EventDetails extends React.Component<EventDetailsProps, EventDetail
       itemToView: props.itemToView
     }
     let eventDetails = {} as EventDetailsRequest
-    // eventDetails.id = this.props.displayedItem
-    eventDetails.id = '5909807905bb9c21b40c9cdd'
+    eventDetails.id = this.props.displayedItem
+    // eventDetails.id = '5909807905bb9c21b40c9cdd'
     this.props.loadEventImageAction(eventDetails)
     this.props.loadEventDetailsAction(eventDetails)
 
@@ -59,11 +62,13 @@ export class EventDetails extends React.Component<EventDetailsProps, EventDetail
         <CardMedia
           overlay={<CardTitle title={this.props.itemToView.details.title} subtitle={dateFormat(this.props.itemToView.details.time, 'HH:MM')+ ' ' + dateFormat(this.props.itemToView.details.time, 'dS mmmm, yyyy')} />}
         >
-          {$imagePreview}
+              <img src="images/test.jpg" />
         </CardMedia>
         <CardTitle title={this.props.itemToView.details.title} subtitle={dateFormat(this.props.itemToView.details.time, 'HH:MM')+ ' ' + dateFormat(this.props.itemToView.details.time, 'dS mmmm, yyyy')} />
         <CardText>
-          {this.props.itemToView.details.details}
+          <div><MapsPlace />{this.props.itemToView.details.place} </div>
+          <Divider/>
+          <div>{this.props.itemToView.details.details}</div>
         </CardText>
         <CardActions>
             <RaisedButton label="Going" secondary={true}/>
