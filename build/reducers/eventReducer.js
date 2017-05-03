@@ -129,4 +129,63 @@ function setCurrentItemReducer(state, action) {
     }
 }
 exports.setCurrentItemReducer = setCurrentItemReducer;
+function getEventImageActionReducer(state, action) {
+    if (action.type === actions.GET_EVENT_IMAGE) {
+        var _action = action;
+        var newState = Object.assign({}, state);
+        newState.itemToView.image = Object.assign({}, _action.image);
+        return newState;
+    }
+    else {
+        return state;
+    }
+}
+exports.getEventImageActionReducer = getEventImageActionReducer;
+function getEventImageFailureActionReducer(state, action) {
+    if (action.type === actions.GET_EVENT_IMAGE_FAILURE) {
+        var newState = Object.assign({}, state);
+        newState.itemToView.image = null;
+        return newState;
+    }
+    else {
+        return state;
+    }
+}
+exports.getEventImageFailureActionReducer = getEventImageFailureActionReducer;
+function getEventDetailsActionReducer(state, action) {
+    if (action.type === actions.GET_EVENT_DETAILS) {
+        var _action = action;
+        var newState = Object.assign({}, state);
+        newState.itemToView.details = Object.assign({}, _action.details);
+        return newState;
+    }
+    else {
+        return state;
+    }
+}
+exports.getEventDetailsActionReducer = getEventDetailsActionReducer;
+function getEventDetailsFailureActionReducer(state, action) {
+    if (action.type === actions.GET_EVENT_DETAILS_FAILURE) {
+        var newState = Object.assign({}, state);
+        newState.itemToView.details = null;
+        return newState;
+    }
+    else {
+        return state;
+    }
+}
+exports.getEventDetailsFailureActionReducer = getEventDetailsFailureActionReducer;
+function setDisplayedItemActionReducer(state, action) {
+    if (action.type === actions.SET_DISPLAYED_ITEM) {
+        var _action = action;
+        var newState = Object.assign({}, state);
+        console.log('AAA' + JSON.stringify(_action));
+        newState.displayedItem = _action.displayedItem;
+        return newState;
+    }
+    else {
+        return state;
+    }
+}
+exports.setDisplayedItemActionReducer = setDisplayedItemActionReducer;
 //# sourceMappingURL=eventReducer.js.map

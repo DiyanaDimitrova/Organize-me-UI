@@ -19,6 +19,9 @@ export interface CreateEventRequest {
 export interface DeleteEventRequest {
     id: String
 }
+export interface EventDetailsRequest {
+    id: String
+}
 export interface UpdateEventRequest {
     id: String
     title: String,
@@ -41,7 +44,12 @@ export interface EventState {
     success: Boolean,
     eventList: Array<any>,
     currentItem: UpdateEventRequest,
-    itemToBeEdited: Boolean
+    itemToBeEdited: Boolean,
+    displayedItem: String
+    itemToView: {
+      image: any,
+      details: any
+    }
 }
 
 export const initialState: EventState = {
@@ -52,7 +60,12 @@ export const initialState: EventState = {
     success: false,
     eventList: [],
     currentItem: null,
-    itemToBeEdited: false
+    itemToBeEdited: false,
+    displayedItem: null,
+    itemToView: {
+      image: null,
+      details: null
+    }
 }
 
 const reducers = {
@@ -66,7 +79,12 @@ const reducers = {
     [a.DELETE_EVENT_FAIL]: r.deleteEventFailReducer,
     [a.UPDATE_EVENT_SUCCESS]: r.updateEventSuccessReducer,
     [a.UPDATE_EVENT_FAIL]: r.updateEventFailReducer,
-    [a.SET_CURRENT_ITEM]: r.setCurrentItemReducer
+    [a.SET_CURRENT_ITEM]: r.setCurrentItemReducer,
+    [a.GET_EVENT_IMAGE_FAILURE]: r.getEventImageFailureActionReducer,
+    [a.GET_EVENT_IMAGE]: r.getEventImageActionReducer,
+    [a.GET_EVENT_DETAILS_FAILURE]: r.getEventDetailsFailureActionReducer,
+    [a.GET_EVENT_DETAILS]: r.getEventDetailsActionReducer,
+    [a.SET_DISPLAYED_ITEM]: r.setDisplayedItemActionReducer
   }
 
 export function eventReducer(state: EventState = initialState, action: Action): EventState {

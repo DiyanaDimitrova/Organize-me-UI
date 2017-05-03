@@ -10,7 +10,12 @@ exports.initialState = {
     success: false,
     eventList: [],
     currentItem: null,
-    itemToBeEdited: false
+    itemToBeEdited: false,
+    displayedItem: null,
+    itemToView: {
+        image: null,
+        details: null
+    }
 };
 var reducers = (_a = {},
     _a[a.NEW_EVENT_SUCCESS] = r.newEventSuccessReducer,
@@ -24,6 +29,11 @@ var reducers = (_a = {},
     _a[a.UPDATE_EVENT_SUCCESS] = r.updateEventSuccessReducer,
     _a[a.UPDATE_EVENT_FAIL] = r.updateEventFailReducer,
     _a[a.SET_CURRENT_ITEM] = r.setCurrentItemReducer,
+    _a[a.GET_EVENT_IMAGE_FAILURE] = r.getEventImageFailureActionReducer,
+    _a[a.GET_EVENT_IMAGE] = r.getEventImageActionReducer,
+    _a[a.GET_EVENT_DETAILS_FAILURE] = r.getEventDetailsFailureActionReducer,
+    _a[a.GET_EVENT_DETAILS] = r.getEventDetailsActionReducer,
+    _a[a.SET_DISPLAYED_ITEM] = r.setDisplayedItemActionReducer,
     _a);
 function eventReducer(state, action) {
     if (state === void 0) { state = exports.initialState; }

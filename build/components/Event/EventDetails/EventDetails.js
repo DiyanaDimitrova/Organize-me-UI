@@ -8,19 +8,35 @@ var React = require("react");
 var react_redux_1 = require("react-redux");
 var Card_1 = require("material-ui/Card");
 var RaisedButton_1 = require("material-ui/RaisedButton");
+var actions = require("../../../actions/eventActions");
+var dateFormat = require("dateformat");
 var classes = require('./EventDetails.css');
 var EventDetails = (function (_super) {
     __extends(EventDetails, _super);
     function EventDetails(props) {
-        return _super.call(this, props) || this;
+        var _this = _super.call(this, props) || this;
+        _this.state = {
+            displayedItem: props.displayedItem,
+            itemToView: props.itemToView
+        };
+        var eventDetails = {};
+        eventDetails.id = '5909807905bb9c21b40c9cdd';
+        _this.props.loadEventImageAction(eventDetails);
+        _this.props.loadEventDetailsAction(eventDetails);
+        return _this;
     }
     EventDetails.prototype.render = function () {
+        var imagePreviewUrl = this.props.itemToView.image;
+        var $imagePreview = null;
+        if (imagePreviewUrl) {
+            $imagePreview = (React.createElement("img", { src: imagePreviewUrl }));
+        }
+        console.log('Props' + JSON.stringify(this.props));
         return (React.createElement(Card_1.Card, null,
-            React.createElement(Card_1.CardHeader, { title: "URL Avatar", subtitle: "Subtitle" }),
-            React.createElement(Card_1.CardMedia, { overlay: React.createElement(Card_1.CardTitle, { title: "Overlay title", subtitle: "Overlay subtitle" }) },
-                React.createElement("img", { src: "images/test.jpg" })),
-            React.createElement(Card_1.CardTitle, { title: "Card title", subtitle: "Card subtitle" }),
-            React.createElement(Card_1.CardText, null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit." + " " + "Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi." + " " + "Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque." + " " + "Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio."),
+            React.createElement(Card_1.CardHeader, { title: this.props.itemToView.details.title, subtitle: dateFormat(this.props.itemToView.details.time, 'HH:MM') + ' ' + dateFormat(this.props.itemToView.details.time, 'dS mmmm, yyyy') }),
+            React.createElement(Card_1.CardMedia, { overlay: React.createElement(Card_1.CardTitle, { title: this.props.itemToView.details.title, subtitle: dateFormat(this.props.itemToView.details.time, 'HH:MM') + ' ' + dateFormat(this.props.itemToView.details.time, 'dS mmmm, yyyy'), s: true }) }, $imagePreview),
+            React.createElement(Card_1.CardTitle, { title: this.props.itemToView.details.title, subtitle: dateFormat(this.props.itemToView.details.time, 'HH:MM') + ' ' + dateFormat(this.props.itemToView.details.time, 'dS mmmm, yyyy') }),
+            React.createElement(Card_1.CardText, null, this.props.itemToView.details.details),
             React.createElement(Card_1.CardActions, null,
                 React.createElement(RaisedButton_1.default, { label: "Going", secondary: true }),
                 React.createElement(RaisedButton_1.default, { label: "Interested", primary: true }),
@@ -29,9 +45,19 @@ var EventDetails = (function (_super) {
     return EventDetails;
 }(React.Component));
 exports.EventDetails = EventDetails;
-var mapStateToProps = function (state) { return ({}); };
+var mapStateToProps = function (state) { return ({
+    displayedItem: state.event.displayedItem,
+    itemToView: state.event.itemToView
+}); };
 var mapDispatchToProps = function (dispatch) {
-    return {};
+    return {
+        loadEventImageAction: function (request) {
+            actions.loadEventImageAction(request, dispatch);
+        },
+        loadEventDetailsAction: function (request) {
+            actions.loadEventDetailsAction(request, dispatch);
+        }
+    };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = react_redux_1.connect(mapStateToProps, mapDispatchToProps)(EventDetails);

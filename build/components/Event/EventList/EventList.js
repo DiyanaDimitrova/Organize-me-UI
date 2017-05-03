@@ -24,7 +24,6 @@ var EventList = (function (_super) {
         };
         _this.updateItem = function (e, item) {
             e.preventDefault();
-            console.log('ITEM' + JSON.stringify(item));
             var updateEvent = {};
             updateEvent.id = item._id;
             updateEvent.title = item.title;
@@ -34,13 +33,12 @@ var EventList = (function (_super) {
             updateEvent.capacity = item.capacity;
             updateEvent.details = item.details;
             updateEvent.categoryId = item.categoryId;
-            console.log('UPDATE' + JSON.stringify(updateEvent));
             _this.props.setCurrentItem(updateEvent);
             react_router_1.browserHistory.push('/newEvent');
         };
         _this.viewItem = function (e, itemId) {
+            _this.props.setDisplayedItem(itemId);
             react_router_1.browserHistory.push('/eventDetails');
-            console.log('VIEWWWWW');
         };
         _this.iconButtonElement = function () {
             return (React.createElement(material_ui_1.IconButton, { touch: true, tooltip: "actions", tooltipPosition: "bottom-left" },
@@ -74,7 +72,6 @@ var EventList = (function (_super) {
         }
         return (React.createElement("div", { id: 'eventDiv', className: classes.eventDiv },
             React.createElement(material_ui_1.List, null, eventArray.map(function (item, index) {
-                console.log('ITEMMMMMM' + JSON.stringify(item));
                 return (React.createElement("div", { key: index },
                     React.createElement(material_ui_1.ListItem, { rightIconButton: _this.rightIconMenu(item), primaryText: item.title })));
             }))));
@@ -101,6 +98,9 @@ var mapDispatchToProps = function (dispatch) {
         },
         setCurrentItem: function (currentItem) {
             actions.setCurrentItem(currentItem, dispatch);
+        },
+        setDisplayedItem: function (displayedItem) {
+            actions.setDisplayedItem(displayedItem, dispatch);
         }
     };
 };

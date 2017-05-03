@@ -1,6 +1,6 @@
 import axios from 'axios'
 // import { browserHistory } from 'react-router'
-import { CreateEventRequest, UpdateEventRequest, DeleteEventRequest } from '../main/eventMain'
+import { CreateEventRequest, UpdateEventRequest, DeleteEventRequest, EventDetailsRequest } from '../main/eventMain'
 import { Action } from 'redux'
 export const NEW_EVENT_SUCCESS = '@@Event/NEW_EVENT_SUCCESS'
 export const NEW_EVENT_FAIL = '@@Event/NEW_EVENT_FAIL'
@@ -13,6 +13,11 @@ export const DELETE_EVENT_FAIL = '@@Event/DELETE_EVENT_FAIL'
 export const UPDATE_EVENT_SUCCESS = '@@Event/UPDATE_EVENT_SUCCESS'
 export const UPDATE_EVENT_FAIL = '@@Event/UPDATE_EVENT_FAIL'
 export const SET_CURRENT_ITEM = '@@Event/SET_CURRENT_ITEM'
+export const SET_DISPLAYED_ITEM = '@@Event/SET_DISPLAYED_ITEM'
+export const GET_EVENT_IMAGE_FAILURE = '@@Event/GET_EVENT_IMAGE_FAILURE'
+export const GET_EVENT_IMAGE = '@@Event/GET_EVENT_IMAGE'
+export const GET_EVENT_DETAILS_FAILURE = '@@Event/GET_EVENT_DETAILS_FAILURE'
+export const GET_EVENT_DETAILS = '@@Event/GET_EVENT_DETAILS'
 
 export interface EventAction extends Action {
     eventMessage: string
@@ -46,11 +51,18 @@ export function performCreateEventAction(request: CreateEventRequest, dispatch: 
 export interface GetAllEventsAction extends Action {
     eventList: Array<any>
 }
-
+export interface GetEventImageAction extends Action {
+    image: any
+}
+export interface GetEventDetailsAction extends Action {
+    details: any
+}
 export interface CurrentItemAction extends Action {
     currentItem: UpdateEventRequest
 }
-
+export interface DisplayedItemAction extends Action {
+    displayedItem: String
+}
 export function deleteEventSuccessAction(message: String): EventAction {
     return {
         type: DELETE_EVENT_SUCCESS,
@@ -88,6 +100,18 @@ export function setCurrentItemAction(currentItem: UpdateEventRequest): CurrentIt
 export function setCurrentItem(currentItem: UpdateEventRequest, dispatch: any): void {
     dispatch(setCurrentItemAction(currentItem))
 }
+
+export function setDisplayedItemAction(displayedItem: String): DisplayedItemAction {
+  console.log('DDDD' + displayedItem)
+    return {
+        type: SET_DISPLAYED_ITEM,
+        displayedItem: displayedItem
+    } as DisplayedItemAction
+}
+export function setDisplayedItem(displayedItem: String, dispatch: any): void {
+    dispatch(setDisplayedItemAction(displayedItem))
+}
+
 export function eventListBeginLoading(): Action {
     return { type: EVENT_LIST_BEGIN_LOADING } as Action
 }
@@ -129,7 +153,6 @@ export function performUpdateEventAction(request: UpdateEventRequest, dispatch: 
       details: request.details,
       categoryId: request.categoryId
     }
-    console.log('UUUUU' + JSON.stringify(reqBody))
     axios.put('/event/update/' + request.id, reqBody)
       .then((response) => {
           dispatch(updateEventSuccessAction(response.data.response))
@@ -148,5 +171,45 @@ export function loadEventList(dispatch: any): void {
       .catch((err) => {
           dispatch(setEventListFailure())
           dispatch(eventListEndLoading())
+      })
+}
+
+export function setEventImageFailure(): Action {
+    return { type: GET_EVENT_IMAGE_FAILURE } as Action
+}
+export function setEventImage(image: any): GetEventImageAction {
+    return {
+        type: GET_EVENT_IMAGE,
+        image: Object.assign([], image),
+    } as GetEventImageAction
+}
+export function loadEventImageAction(request: EventDetailsRequest, dispatch: any): void {
+    axios.get('/event/image/' + request.id)
+      .then((response) => {
+        console.log('Resp IMAGE' + JSON.stringify(response))
+          dispatch(setEventImage(response.data))
+      })
+      .catch((err) => {
+          dispatch(setEventImageFailure())
+      })
+}
+
+export function setEventDetailsFailure(): Action {
+    return { type: GET_EVENT_DETAILS_FAILURE } as Action
+}
+export function setEventDetails(details: any): GetEventDetailsAction {
+    return {
+        type: GET_EVENT_DETAILS,
+        details: Object.assign([], details),
+    } as GetEventDetailsAction
+}
+export function loadEventDetailsAction(request: EventDetailsRequest, dispatch: any): void {
+    axios.get('/event/details/' + request.id)
+      .then((response) => {
+        console.log('Resp DETAILS' + JSON.stringify(response))
+          dispatch(setEventDetails(response.data.event))
+      })
+      .catch((err) => {
+          dispatch(setEventDetailsFailure())
       })
 }

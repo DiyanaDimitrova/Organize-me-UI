@@ -20,7 +20,8 @@ interface StateProps {
 interface DispatchProps {
   loadEventList: () => void,
   performDeleteEventAction: (deleteEventRequest: DeleteEventRequest) => void,
-  setCurrentItem: (currentItem: UpdateEventRequest) => void
+  setCurrentItem: (currentItem: UpdateEventRequest) => void,
+  setDisplayedItem: (displayedItem: String) => void
 }
 
 interface EventListProps extends StateProps, DispatchProps {
@@ -55,7 +56,6 @@ class EventList extends React.Component<EventListProps, EventListState> {
   }
   updateItem = (e, item) => {
     e.preventDefault()
-    console.log('ITEM' + JSON.stringify(item))
     let updateEvent = {} as UpdateEventRequest
     updateEvent.id = item._id
     updateEvent.title = item.title
@@ -65,13 +65,12 @@ class EventList extends React.Component<EventListProps, EventListState> {
     updateEvent.capacity = item.capacity
     updateEvent.details = item.details
     updateEvent.categoryId = item.categoryId
-    console.log('UPDATE' + JSON.stringify(updateEvent))
     this.props.setCurrentItem(updateEvent)
     browserHistory.push('/newEvent')
   }
   viewItem = (e, itemId) => {
+    this.props.setDisplayedItem(itemId)
     browserHistory.push('/eventDetails')
-    console.log('VIEWWWWW')
   }
   iconButtonElement = () => {
     return (
@@ -104,7 +103,6 @@ class EventList extends React.Component<EventListProps, EventListState> {
       <div id='eventDiv' className={classes.eventDiv}>
          <List>
            {eventArray.map((item, index) => {
-             console.log('ITEMMMMMM' + JSON.stringify(item))
              return (
                <div key={index} >
                  <ListItem
@@ -136,6 +134,9 @@ const mapDispatchToProps = (dispatch) => {
       },
       setCurrentItem: (currentItem: UpdateEventRequest): void => {
           actions.setCurrentItem(currentItem, dispatch)
+      },
+      setDisplayedItem: (displayedItem: String): void => {
+          actions.setDisplayedItem(displayedItem, dispatch)
       }
     }
 }

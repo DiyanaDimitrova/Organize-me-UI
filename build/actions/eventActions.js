@@ -11,6 +11,11 @@ exports.DELETE_EVENT_FAIL = '@@Event/DELETE_EVENT_FAIL';
 exports.UPDATE_EVENT_SUCCESS = '@@Event/UPDATE_EVENT_SUCCESS';
 exports.UPDATE_EVENT_FAIL = '@@Event/UPDATE_EVENT_FAIL';
 exports.SET_CURRENT_ITEM = '@@Event/SET_CURRENT_ITEM';
+exports.SET_DISPLAYED_ITEM = '@@Event/SET_DISPLAYED_ITEM';
+exports.GET_EVENT_IMAGE_FAILURE = '@@Event/GET_EVENT_IMAGE_FAILURE';
+exports.GET_EVENT_IMAGE = '@@Event/GET_EVENT_IMAGE';
+exports.GET_EVENT_DETAILS_FAILURE = '@@Event/GET_EVENT_DETAILS_FAILURE';
+exports.GET_EVENT_DETAILS = '@@Event/GET_EVENT_DETAILS';
 function createEventSuccessAction(message) {
     return {
         type: exports.NEW_EVENT_SUCCESS,
@@ -75,6 +80,18 @@ function setCurrentItem(currentItem, dispatch) {
     dispatch(setCurrentItemAction(currentItem));
 }
 exports.setCurrentItem = setCurrentItem;
+function setDisplayedItemAction(displayedItem) {
+    console.log('DDDD' + displayedItem);
+    return {
+        type: exports.SET_DISPLAYED_ITEM,
+        displayedItem: displayedItem
+    };
+}
+exports.setDisplayedItemAction = setDisplayedItemAction;
+function setDisplayedItem(displayedItem, dispatch) {
+    dispatch(setDisplayedItemAction(displayedItem));
+}
+exports.setDisplayedItem = setDisplayedItem;
 function eventListBeginLoading() {
     return { type: exports.EVENT_LIST_BEGIN_LOADING };
 }
@@ -119,7 +136,6 @@ function performUpdateEventAction(request, dispatch) {
         details: request.details,
         categoryId: request.categoryId
     };
-    console.log('UUUUU' + JSON.stringify(reqBody));
     axios_1.default.put('/event/update/' + request.id, reqBody)
         .then(function (response) {
         dispatch(updateEventSuccessAction(response.data.response));
@@ -142,4 +158,48 @@ function loadEventList(dispatch) {
     });
 }
 exports.loadEventList = loadEventList;
+function setEventImageFailure() {
+    return { type: exports.GET_EVENT_IMAGE_FAILURE };
+}
+exports.setEventImageFailure = setEventImageFailure;
+function setEventImage(image) {
+    return {
+        type: exports.GET_EVENT_IMAGE,
+        image: Object.assign([], image),
+    };
+}
+exports.setEventImage = setEventImage;
+function loadEventImageAction(request, dispatch) {
+    axios_1.default.get('/event/image/' + request.id)
+        .then(function (response) {
+        console.log('Resp IMAGE' + JSON.stringify(response));
+        dispatch(setEventImage(response.data));
+    })
+        .catch(function (err) {
+        dispatch(setEventImageFailure());
+    });
+}
+exports.loadEventImageAction = loadEventImageAction;
+function setEventDetailsFailure() {
+    return { type: exports.GET_EVENT_DETAILS_FAILURE };
+}
+exports.setEventDetailsFailure = setEventDetailsFailure;
+function setEventDetails(details) {
+    return {
+        type: exports.GET_EVENT_DETAILS,
+        details: Object.assign([], details),
+    };
+}
+exports.setEventDetails = setEventDetails;
+function loadEventDetailsAction(request, dispatch) {
+    axios_1.default.get('/event/details/' + request.id)
+        .then(function (response) {
+        console.log('Resp DETAILS' + JSON.stringify(response));
+        dispatch(setEventDetails(response.data.event));
+    })
+        .catch(function (err) {
+        dispatch(setEventDetailsFailure());
+    });
+}
+exports.loadEventDetailsAction = loadEventDetailsAction;
 //# sourceMappingURL=eventActions.js.map

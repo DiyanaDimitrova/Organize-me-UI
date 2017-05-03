@@ -117,3 +117,55 @@ export function setCurrentItemReducer(state: EventState, action: Action): EventS
         return state
     }
 }
+
+export function getEventImageActionReducer(state: EventState, action: Action): EventState {
+    if (action.type === actions.GET_EVENT_IMAGE) {
+        let _action = action as actions.GetEventImageAction
+        let newState = Object.assign({}, state)
+        newState.itemToView.image = Object.assign({}, _action.image)
+        return newState
+    } else {
+        return state
+    }
+}
+export function getEventImageFailureActionReducer(state: EventState, action: Action): EventState {
+    if (action.type === actions.GET_EVENT_IMAGE_FAILURE) {
+        let newState = Object.assign({}, state)
+        newState.itemToView.image = null
+        return newState
+    } else {
+        return state
+    }
+}
+
+export function getEventDetailsActionReducer(state: EventState, action: Action): EventState {
+    if (action.type === actions.GET_EVENT_DETAILS) {
+        let _action = action as actions.GetEventDetailsAction
+        let newState = Object.assign({}, state)
+        newState.itemToView.details = Object.assign({}, _action.details)
+        return newState
+    } else {
+        return state
+    }
+}
+export function getEventDetailsFailureActionReducer(state: EventState, action: Action): EventState {
+    if (action.type === actions.GET_EVENT_DETAILS_FAILURE) {
+        let newState = Object.assign({}, state)
+        newState.itemToView.details = null
+        return newState
+    } else {
+        return state
+    }
+}
+
+export function setDisplayedItemActionReducer(state: EventState, action: Action): EventState {
+    if (action.type === actions.SET_DISPLAYED_ITEM) {
+        let _action = action as actions.DisplayedItemAction
+        let newState = Object.assign({}, state)
+        console.log('AAA' + JSON.stringify(_action))
+        newState.displayedItem = _action.displayedItem
+        return newState
+    } else {
+        return state
+    }
+}
