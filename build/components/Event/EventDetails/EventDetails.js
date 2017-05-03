@@ -34,7 +34,7 @@ var EventDetails = (function (_super) {
         console.log('Props' + JSON.stringify(this.props));
         return (React.createElement(Card_1.Card, null,
             React.createElement(Card_1.CardHeader, { title: this.props.itemToView.details.title, subtitle: dateFormat(this.props.itemToView.details.time, 'HH:MM') + ' ' + dateFormat(this.props.itemToView.details.time, 'dS mmmm, yyyy') }),
-            React.createElement(Card_1.CardMedia, { overlay: React.createElement(Card_1.CardTitle, { title: this.props.itemToView.details.title, subtitle: dateFormat(this.props.itemToView.details.time, 'HH:MM') + ' ' + dateFormat(this.props.itemToView.details.time, 'dS mmmm, yyyy'), s: true }) }, $imagePreview),
+            React.createElement(Card_1.CardMedia, { overlay: React.createElement(Card_1.CardTitle, { title: this.props.itemToView.details.title, subtitle: dateFormat(this.props.itemToView.details.time, 'HH:MM') + ' ' + dateFormat(this.props.itemToView.details.time, 'dS mmmm, yyyy') }) }, $imagePreview),
             React.createElement(Card_1.CardTitle, { title: this.props.itemToView.details.title, subtitle: dateFormat(this.props.itemToView.details.time, 'HH:MM') + ' ' + dateFormat(this.props.itemToView.details.time, 'dS mmmm, yyyy') }),
             React.createElement(Card_1.CardText, null, this.props.itemToView.details.details),
             React.createElement(Card_1.CardActions, null,
