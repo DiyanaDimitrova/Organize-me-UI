@@ -55,6 +55,8 @@ class NewCategory extends React.Component<NewCategoryProps, NewCategoryState> {
   render() {
     return (
       <div id='registerDiv' className={classes.registerDiv}>
+          <div>
+          </div>
           <div id='titleText' className={classes.titleText}>
             <h2>Add new category</h2>
           </div>

@@ -92,6 +92,50 @@ function eventListEndLoadingActionReducer(state, action) {
     }
 }
 exports.eventListEndLoadingActionReducer = eventListEndLoadingActionReducer;
+function eventImageBeginLoadingActionReducer(state, action) {
+    if (action.type === actions.EVENT_IMAGE_BEGIN_LOADING) {
+        var newState = Object.assign({}, state);
+        newState.eventImageLoading = true;
+        return newState;
+    }
+    else {
+        return state;
+    }
+}
+exports.eventImageBeginLoadingActionReducer = eventImageBeginLoadingActionReducer;
+function eventImageEndLoadingActionReducer(state, action) {
+    if (action.type === actions.EVENT_IMAGE_END_LOADING) {
+        var newState = Object.assign({}, state);
+        newState.eventImageLoading = false;
+        return newState;
+    }
+    else {
+        return state;
+    }
+}
+exports.eventImageEndLoadingActionReducer = eventImageEndLoadingActionReducer;
+function eventDetailsBeginLoadingActionReducer(state, action) {
+    if (action.type === actions.EVENT_DETAILS_BEGIN_LOADING) {
+        var newState = Object.assign({}, state);
+        newState.eventDetailsLoading = true;
+        return newState;
+    }
+    else {
+        return state;
+    }
+}
+exports.eventDetailsBeginLoadingActionReducer = eventDetailsBeginLoadingActionReducer;
+function eventDetailsEndLoadingActionReducer(state, action) {
+    if (action.type === actions.EVENT_DETAILS_END_LOADING) {
+        var newState = Object.assign({}, state);
+        newState.eventDetailsLoading = false;
+        return newState;
+    }
+    else {
+        return state;
+    }
+}
+exports.eventDetailsEndLoadingActionReducer = eventDetailsEndLoadingActionReducer;
 function setEventListActionReducer(state, action) {
     if (action.type === actions.GET_EVENT_LIST) {
         var _action = action;
@@ -133,7 +177,7 @@ function getEventImageActionReducer(state, action) {
     if (action.type === actions.GET_EVENT_IMAGE) {
         var _action = action;
         var newState = Object.assign({}, state);
-        newState.itemToView.image = Object.assign({}, _action.image);
+        newState.itemToView.image = _action.image;
         return newState;
     }
     else {

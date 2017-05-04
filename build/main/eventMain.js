@@ -15,7 +15,9 @@ exports.initialState = {
     itemToView: {
         image: null,
         details: null
-    }
+    },
+    eventImageLoading: false,
+    eventDetailsLoading: false
 };
 var reducers = (_a = {},
     _a[a.NEW_EVENT_SUCCESS] = r.newEventSuccessReducer,
@@ -31,8 +33,12 @@ var reducers = (_a = {},
     _a[a.SET_CURRENT_ITEM] = r.setCurrentItemReducer,
     _a[a.GET_EVENT_IMAGE_FAILURE] = r.getEventImageFailureActionReducer,
     _a[a.GET_EVENT_IMAGE] = r.getEventImageActionReducer,
+    _a[a.EVENT_IMAGE_BEGIN_LOADING] = r.eventImageBeginLoadingActionReducer,
+    _a[a.EVENT_IMAGE_END_LOADING] = r.eventImageEndLoadingActionReducer,
     _a[a.GET_EVENT_DETAILS_FAILURE] = r.getEventDetailsFailureActionReducer,
     _a[a.GET_EVENT_DETAILS] = r.getEventDetailsActionReducer,
+    _a[a.EVENT_DETAILS_BEGIN_LOADING] = r.eventDetailsBeginLoadingActionReducer,
+    _a[a.EVENT_DETAILS_END_LOADING] = r.eventDetailsEndLoadingActionReducer,
     _a[a.SET_DISPLAYED_ITEM] = r.setDisplayedItemActionReducer,
     _a);
 function eventReducer(state, action) {

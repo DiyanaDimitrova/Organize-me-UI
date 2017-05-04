@@ -167,7 +167,7 @@ var Event = (function (_super) {
             name = 'Add new event';
         }
         console.log('STATE' + this.state.categoryValue);
-        return (React.createElement("div", { id: 'registerDiv', className: classes.registerDiv },
+        return (React.createElement("div", { id: 'registerDiv', className: classes.registerDiv, width: "100%" },
             React.createElement("div", { id: 'titleText', className: classes.titleText },
                 React.createElement("h2", null, name)),
             React.createElement("form", { encType: 'multipart/form-data' },

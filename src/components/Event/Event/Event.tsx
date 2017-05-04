@@ -193,7 +193,7 @@ export class Event extends React.Component<EventProps, EventState> {
     }
     console.log('STATE' + this.state.categoryValue)
     return (
-      <div id='registerDiv' className={classes.registerDiv}>
+      <div id='registerDiv' className={classes.registerDiv} width="100%">
           <div id='titleText' className={classes.titleText}>
             <h2>{name}</h2>
           </div>

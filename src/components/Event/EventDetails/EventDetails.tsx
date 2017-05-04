@@ -13,6 +13,8 @@ const classes = require('./EventDetails.css')
 
 
 interface StateProps {
+  eventImageLoading: Boolean,
+  eventDetailsLoading: Boolean,
   displayedItem: String,
   itemToView: any
 }
@@ -27,6 +29,8 @@ export interface EventDetailsProps extends StateProps, DispatchProps{
 }
 
 export interface EventDetailsState{
+  eventImageLoading: Boolean,
+  eventDetailsLoading: Boolean,
   displayedItem: String,
   itemToView: any
 }
@@ -34,15 +38,38 @@ export interface EventDetailsState{
 export class EventDetails extends React.Component<EventDetailsProps, EventDetailsState> {
   constructor(props) {
     super(props)
-    this.state = {
-      displayedItem: props.displayedItem,
-      itemToView: props.itemToView
-    }
+    console.log('Props' + JSON.stringify(this.props))
+  }
+  // public static defaultProps: StateProps = {
+  //   eventImageLoading: false,
+  //   eventDetailsLoading: false,
+  //   displayedItem: null,
+  //   itemToView: null
+  // }
+
+  getInitialData() {
     let eventDetails = {} as EventDetailsRequest
     eventDetails.id = this.props.displayedItem
     // eventDetails.id = '5909807905bb9c21b40c9cdd'
     this.props.loadEventImageAction(eventDetails)
     this.props.loadEventDetailsAction(eventDetails)
+  }
+
+  componentWillMount() {
+    let eventDetails = {} as EventDetailsRequest
+    eventDetails.id = this.props.displayedItem
+    // eventDetails.id = '5909807905bb9c21b40c9cdd'
+    this.props.loadEventImageAction(eventDetails)
+    this.props.loadEventDetailsAction(eventDetails)
+  }
+  goingToEvent = () => {
+
+  }
+
+  interestedInEvent = () => {
+
+  }
+  notInterestedInEvent = () => {
 
   }
 
@@ -52,7 +79,8 @@ export class EventDetails extends React.Component<EventDetailsProps, EventDetail
     if (imagePreviewUrl) {
         $imagePreview = (React.createElement("img", { src: imagePreviewUrl }));
   }
-  console.log('Props' + JSON.stringify(this.props))
+  console.log('Props111' + JSON.stringify(imagePreviewUrl))
+
     return (
       <Card>
         <CardHeader
@@ -62,7 +90,7 @@ export class EventDetails extends React.Component<EventDetailsProps, EventDetail
         <CardMedia
           overlay={<CardTitle title={this.props.itemToView.details.title} subtitle={dateFormat(this.props.itemToView.details.time, 'HH:MM')+ ' ' + dateFormat(this.props.itemToView.details.time, 'dS mmmm, yyyy')} />}
         >
-              <img src="images/test.jpg" />
+          <div><img src={imagePreviewUrl} height="100%" width="100%"/></div>
         </CardMedia>
         <CardTitle title={this.props.itemToView.details.title} subtitle={dateFormat(this.props.itemToView.details.time, 'HH:MM')+ ' ' + dateFormat(this.props.itemToView.details.time, 'dS mmmm, yyyy')} />
         <CardText>
@@ -71,9 +99,9 @@ export class EventDetails extends React.Component<EventDetailsProps, EventDetail
           <div>{this.props.itemToView.details.details}</div>
         </CardText>
         <CardActions>
-            <RaisedButton label="Going" secondary={true}/>
-            <RaisedButton label="Interested" primary={true}/>
-            <RaisedButton label="Not Interested" primary={false}/>
+            <RaisedButton label="Going" secondary={true} onClick={this.goingToEvent}/>
+            <RaisedButton label="Interested" primary={true} onClick={this.interestedInEvent}/>
+            <RaisedButton label="Not Interested" primary={false} onClick={this.notInterestedInEvent}/>
         </CardActions>
       </Card>
     )
@@ -81,6 +109,8 @@ export class EventDetails extends React.Component<EventDetailsProps, EventDetail
 }
 
 const mapStateToProps = (state: any) => ({
+  eventImageLoading: state.event.eventImageLoading,
+  eventDetailsLoading: state.event.eventDetailsLoading,
   displayedItem: state.event.displayedItem,
   itemToView: state.event.itemToView
 })

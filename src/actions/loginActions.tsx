@@ -14,6 +14,7 @@ export const END_LOADING_LOGIN = '@@Login/END_LOADING_LOGIN'
 export interface User {
     firstName: String
     lastName: String
+    username: String
 }
 
 export interface Payload {
@@ -70,8 +71,6 @@ export function dismissAction(): Action {
 }
 
 export function performLoginAction(request: LoginRequest, dispatch: any): void {
-    console.log('performLoginAction username:' +  request.username)
-    console.log('performLoginAction password:' +  request.password)
     dispatch(dismissAction())
     dispatch(beginLoadingLogin())
     axios.post('http://localhost:3001/users/authenticate', request) //{ username: 'sisi', password: 'sisi' })
@@ -79,7 +78,8 @@ export function performLoginAction(request: LoginRequest, dispatch: any): void {
         if (response.data) {
           let user = {
              firstName: response.data.user.firstName,
-             lastName: response.data.user.lastName
+             lastName: response.data.user.lastName,
+             username: response.data.user.username
            } as User
              dispatch(loginSuccessAction(response.data.messages, user))
              dispatch(endLoadingLogin())

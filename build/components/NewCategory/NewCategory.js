@@ -36,6 +36,7 @@ var NewCategory = (function (_super) {
     };
     NewCategory.prototype.render = function () {
         return (React.createElement("div", { id: 'registerDiv', className: classes.registerDiv },
+            React.createElement("div", null),
             React.createElement("div", { id: 'titleText', className: classes.titleText },
                 React.createElement("h2", null, "Add new category")),
             React.createElement("div", null,

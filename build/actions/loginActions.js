@@ -48,8 +48,6 @@ function dismissAction() {
 }
 exports.dismissAction = dismissAction;
 function performLoginAction(request, dispatch) {
-    console.log('performLoginAction username:' + request.username);
-    console.log('performLoginAction password:' + request.password);
     dispatch(dismissAction());
     dispatch(beginLoadingLogin());
     axios_1.default.post('http://localhost:3001/users/authenticate', request)
@@ -57,7 +55,8 @@ function performLoginAction(request, dispatch) {
         if (response.data) {
             var user = {
                 firstName: response.data.user.firstName,
-                lastName: response.data.user.lastName
+                lastName: response.data.user.lastName,
+                username: response.data.user.username
             };
             dispatch(loginSuccessAction(response.data.messages, user));
             dispatch(endLoadingLogin());

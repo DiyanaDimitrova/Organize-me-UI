@@ -18,6 +18,11 @@ export const GET_EVENT_IMAGE_FAILURE = '@@Event/GET_EVENT_IMAGE_FAILURE'
 export const GET_EVENT_IMAGE = '@@Event/GET_EVENT_IMAGE'
 export const GET_EVENT_DETAILS_FAILURE = '@@Event/GET_EVENT_DETAILS_FAILURE'
 export const GET_EVENT_DETAILS = '@@Event/GET_EVENT_DETAILS'
+export const EVENT_IMAGE_BEGIN_LOADING = '@@Event/EVENT_IMAGE_BEGIN_LOADING'
+export const EVENT_IMAGE_END_LOADING = '@@Event/EVENT_IMAGE_END_LOADING'
+export const EVENT_DETAILS_BEGIN_LOADING = '@@Event/EVENT_DETAILS_BEGIN_LOADING'
+export const EVENT_DETAILS_END_LOADING = '@@Event/EVENT_DETAILS_END_LOADING'
+
 
 export interface EventAction extends Action {
     eventMessage: string
@@ -38,7 +43,6 @@ export function createEventFailAction(message: String): EventAction {
 }
 
 export function performCreateEventAction(request: CreateEventRequest, dispatch: any): void {
-  console.log('AAAA' + JSON.stringify(request))
     axios.post('/event/add', request)
       .then((response) => {
           dispatch(createEventSuccessAction(response.data.response))
@@ -102,7 +106,6 @@ export function setCurrentItem(currentItem: UpdateEventRequest, dispatch: any): 
 }
 
 export function setDisplayedItemAction(displayedItem: String): DisplayedItemAction {
-  console.log('DDDD' + displayedItem)
     return {
         type: SET_DISPLAYED_ITEM,
         displayedItem: displayedItem
@@ -119,6 +122,19 @@ export function eventListEndLoading(): Action {
     return { type: EVENT_LIST_END_LOADING } as Action
 }
 
+export function eventImageBeginLoading(): Action {
+    return { type: EVENT_IMAGE_BEGIN_LOADING} as Action
+}
+export function eventImageEndLoading(): Action {
+    return { type: EVENT_IMAGE_END_LOADING} as Action
+}
+
+export function eventDetailsBeginLoading(): Action {
+    return { type: EVENT_IMAGE_BEGIN_LOADING} as Action
+}
+export function eventDetailsEndLoading(): Action {
+    return { type: EVENT_DETAILS_END_LOADING} as Action
+}
 export function setEventListFailure(): Action {
     return { type: GET_EVENT_LIST_FAILURE } as Action
 }
@@ -130,10 +146,8 @@ export function setEventList(eventList: any): GetAllEventsAction {
 }
 
 export function performDeleteEventAction(request: DeleteEventRequest, dispatch: any): void {
-  console.log('DIDID' + JSON.stringify(request))
     axios.delete('/event/delete/' + request.id)
       .then((response) => {
-        console.log('OK')
           dispatch(deleteEventSuccessAction(response.data.response))
       })
       .catch((err) => {
@@ -180,17 +194,19 @@ export function setEventImageFailure(): Action {
 export function setEventImage(image: any): GetEventImageAction {
     return {
         type: GET_EVENT_IMAGE,
-        image: Object.assign([], image),
+        image: image,
     } as GetEventImageAction
 }
 export function loadEventImageAction(request: EventDetailsRequest, dispatch: any): void {
+    dispatch(eventImageBeginLoading())
     axios.get('/event/image/' + request.id)
       .then((response) => {
-        console.log('Resp IMAGE' + JSON.stringify(response))
           dispatch(setEventImage(response.data))
+          dispatch(eventImageEndLoading())
       })
       .catch((err) => {
           dispatch(setEventImageFailure())
+          dispatch(eventImageEndLoading())
       })
 }
 
@@ -204,12 +220,14 @@ export function setEventDetails(details: any): GetEventDetailsAction {
     } as GetEventDetailsAction
 }
 export function loadEventDetailsAction(request: EventDetailsRequest, dispatch: any): void {
+    dispatch(eventDetailsBeginLoading())
     axios.get('/event/details/' + request.id)
       .then((response) => {
-        console.log('Resp DETAILS' + JSON.stringify(response))
           dispatch(setEventDetails(response.data.event))
+          dispatch(eventDetailsEndLoading())
       })
       .catch((err) => {
           dispatch(setEventDetailsFailure())
+          dispatch(eventDetailsEndLoading())
       })
 }

@@ -94,10 +94,8 @@ function performCreateCategoryAction(request, dispatch) {
 }
 exports.performCreateCategoryAction = performCreateCategoryAction;
 function performDeleteCategoryAction(request, dispatch) {
-    console.log('DIDID' + JSON.stringify(request));
     axios_1.default.delete('/category/delete/' + request.id)
         .then(function (response) {
-        console.log('OK');
         dispatch(deleteCategorySuccessAction(response.data.response));
     })
         .catch(function (err) {
@@ -109,7 +107,6 @@ function performUpdateCategoryAction(request, dispatch) {
     var reqBody = {
         title: request.title
     };
-    console.log('UUUUU' + JSON.stringify(reqBody));
     axios_1.default.put('/category/update/' + request.id, reqBody)
         .then(function (response) {
         dispatch(updateCategorySuccessAction(response.data.response));

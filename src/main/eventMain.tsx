@@ -49,7 +49,9 @@ export interface EventState {
     itemToView: {
       image: any,
       details: any
-    }
+    },
+    eventImageLoading: Boolean,
+    eventDetailsLoading: Boolean
 }
 
 export const initialState: EventState = {
@@ -65,7 +67,9 @@ export const initialState: EventState = {
     itemToView: {
       image: null,
       details: null
-    }
+    },
+    eventImageLoading: false,
+    eventDetailsLoading: false
 }
 
 const reducers = {
@@ -82,8 +86,12 @@ const reducers = {
     [a.SET_CURRENT_ITEM]: r.setCurrentItemReducer,
     [a.GET_EVENT_IMAGE_FAILURE]: r.getEventImageFailureActionReducer,
     [a.GET_EVENT_IMAGE]: r.getEventImageActionReducer,
+    [a.EVENT_IMAGE_BEGIN_LOADING]: r.eventImageBeginLoadingActionReducer,
+    [a.EVENT_IMAGE_END_LOADING]: r.eventImageEndLoadingActionReducer,
     [a.GET_EVENT_DETAILS_FAILURE]: r.getEventDetailsFailureActionReducer,
     [a.GET_EVENT_DETAILS]: r.getEventDetailsActionReducer,
+    [a.EVENT_DETAILS_BEGIN_LOADING]: r.eventDetailsBeginLoadingActionReducer,
+    [a.EVENT_DETAILS_END_LOADING]: r.eventDetailsEndLoadingActionReducer,
     [a.SET_DISPLAYED_ITEM]: r.setDisplayedItemActionReducer
   }
 

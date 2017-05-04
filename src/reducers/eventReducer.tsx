@@ -85,6 +85,46 @@ export function eventListEndLoadingActionReducer(state: EventState, action: Acti
         return state
     }
 }
+export function eventImageBeginLoadingActionReducer(state: EventState, action: Action): EventState {
+    if (action.type === actions.EVENT_IMAGE_BEGIN_LOADING) {
+        let newState = Object.assign({}, state)
+        newState.eventImageLoading = true
+        return newState
+    } else {
+        return state
+    }
+}
+
+export function eventImageEndLoadingActionReducer(state: EventState, action: Action): EventState {
+    if (action.type === actions.EVENT_IMAGE_END_LOADING) {
+        let newState = Object.assign({}, state)
+        newState.eventImageLoading = false
+        return newState
+    } else {
+        return state
+    }
+}
+
+export function eventDetailsBeginLoadingActionReducer(state: EventState, action: Action): EventState {
+    if (action.type === actions.EVENT_DETAILS_BEGIN_LOADING) {
+        let newState = Object.assign({}, state)
+        newState.eventDetailsLoading= true
+        return newState
+    } else {
+        return state
+    }
+}
+
+export function eventDetailsEndLoadingActionReducer(state: EventState, action: Action): EventState {
+    if (action.type === actions.EVENT_DETAILS_END_LOADING) {
+        let newState = Object.assign({}, state)
+        newState.eventDetailsLoading = false
+        return newState
+    } else {
+        return state
+    }
+}
+
 export function setEventListActionReducer(state: EventState, action: Action): EventState {
     if (action.type === actions.GET_EVENT_LIST) {
         let _action = action as actions.GetAllEventsAction
@@ -122,7 +162,7 @@ export function getEventImageActionReducer(state: EventState, action: Action): E
     if (action.type === actions.GET_EVENT_IMAGE) {
         let _action = action as actions.GetEventImageAction
         let newState = Object.assign({}, state)
-        newState.itemToView.image = Object.assign({}, _action.image)
+        newState.itemToView.image = _action.image
         return newState
     } else {
         return state

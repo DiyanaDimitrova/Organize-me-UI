@@ -104,10 +104,8 @@ export function performCreateCategoryAction(request: CreateCategoryRequest, disp
 }
 
 export function performDeleteCategoryAction(request: DeleteCategoryRequest, dispatch: any): void {
-  console.log('DIDID' + JSON.stringify(request))
     axios.delete('/category/delete/' + request.id)
       .then((response) => {
-        console.log('OK')
           dispatch(deleteCategorySuccessAction(response.data.response))
       })
       .catch((err) => {
@@ -118,7 +116,6 @@ export function performUpdateCategoryAction(request: UpdateCategoryRequest, disp
     let reqBody = {
       title : request.title
     }
-    console.log('UUUUU' + JSON.stringify(reqBody))
     axios.put('/category/update/' + request.id, reqBody)
       .then((response) => {
           dispatch(updateCategorySuccessAction(response.data.response))

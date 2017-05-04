@@ -16,6 +16,10 @@ exports.GET_EVENT_IMAGE_FAILURE = '@@Event/GET_EVENT_IMAGE_FAILURE';
 exports.GET_EVENT_IMAGE = '@@Event/GET_EVENT_IMAGE';
 exports.GET_EVENT_DETAILS_FAILURE = '@@Event/GET_EVENT_DETAILS_FAILURE';
 exports.GET_EVENT_DETAILS = '@@Event/GET_EVENT_DETAILS';
+exports.EVENT_IMAGE_BEGIN_LOADING = '@@Event/EVENT_IMAGE_BEGIN_LOADING';
+exports.EVENT_IMAGE_END_LOADING = '@@Event/EVENT_IMAGE_END_LOADING';
+exports.EVENT_DETAILS_BEGIN_LOADING = '@@Event/EVENT_DETAILS_BEGIN_LOADING';
+exports.EVENT_DETAILS_END_LOADING = '@@Event/EVENT_DETAILS_END_LOADING';
 function createEventSuccessAction(message) {
     return {
         type: exports.NEW_EVENT_SUCCESS,
@@ -31,7 +35,6 @@ function createEventFailAction(message) {
 }
 exports.createEventFailAction = createEventFailAction;
 function performCreateEventAction(request, dispatch) {
-    console.log('AAAA' + JSON.stringify(request));
     axios_1.default.post('/event/add', request)
         .then(function (response) {
         dispatch(createEventSuccessAction(response.data.response));
@@ -81,7 +84,6 @@ function setCurrentItem(currentItem, dispatch) {
 }
 exports.setCurrentItem = setCurrentItem;
 function setDisplayedItemAction(displayedItem) {
-    console.log('DDDD' + displayedItem);
     return {
         type: exports.SET_DISPLAYED_ITEM,
         displayedItem: displayedItem
@@ -100,6 +102,22 @@ function eventListEndLoading() {
     return { type: exports.EVENT_LIST_END_LOADING };
 }
 exports.eventListEndLoading = eventListEndLoading;
+function eventImageBeginLoading() {
+    return { type: exports.EVENT_IMAGE_BEGIN_LOADING };
+}
+exports.eventImageBeginLoading = eventImageBeginLoading;
+function eventImageEndLoading() {
+    return { type: exports.EVENT_IMAGE_END_LOADING };
+}
+exports.eventImageEndLoading = eventImageEndLoading;
+function eventDetailsBeginLoading() {
+    return { type: exports.EVENT_IMAGE_BEGIN_LOADING };
+}
+exports.eventDetailsBeginLoading = eventDetailsBeginLoading;
+function eventDetailsEndLoading() {
+    return { type: exports.EVENT_DETAILS_END_LOADING };
+}
+exports.eventDetailsEndLoading = eventDetailsEndLoading;
 function setEventListFailure() {
     return { type: exports.GET_EVENT_LIST_FAILURE };
 }
@@ -112,10 +130,8 @@ function setEventList(eventList) {
 }
 exports.setEventList = setEventList;
 function performDeleteEventAction(request, dispatch) {
-    console.log('DIDID' + JSON.stringify(request));
     axios_1.default.delete('/event/delete/' + request.id)
         .then(function (response) {
-        console.log('OK');
         dispatch(deleteEventSuccessAction(response.data.response));
     })
         .catch(function (err) {
@@ -165,18 +181,20 @@ exports.setEventImageFailure = setEventImageFailure;
 function setEventImage(image) {
     return {
         type: exports.GET_EVENT_IMAGE,
-        image: Object.assign([], image),
+        image: image,
     };
 }
 exports.setEventImage = setEventImage;
 function loadEventImageAction(request, dispatch) {
+    dispatch(eventImageBeginLoading());
     axios_1.default.get('/event/image/' + request.id)
         .then(function (response) {
-        console.log('Resp IMAGE' + JSON.stringify(response));
         dispatch(setEventImage(response.data));
+        dispatch(eventImageEndLoading());
     })
         .catch(function (err) {
         dispatch(setEventImageFailure());
+        dispatch(eventImageEndLoading());
     });
 }
 exports.loadEventImageAction = loadEventImageAction;
@@ -192,13 +210,15 @@ function setEventDetails(details) {
 }
 exports.setEventDetails = setEventDetails;
 function loadEventDetailsAction(request, dispatch) {
+    dispatch(eventDetailsBeginLoading());
     axios_1.default.get('/event/details/' + request.id)
         .then(function (response) {
-        console.log('Resp DETAILS' + JSON.stringify(response));
         dispatch(setEventDetails(response.data.event));
+        dispatch(eventDetailsEndLoading());
     })
         .catch(function (err) {
         dispatch(setEventDetailsFailure());
+        dispatch(eventDetailsEndLoading());
     });
 }
 exports.loadEventDetailsAction = loadEventDetailsAction;
