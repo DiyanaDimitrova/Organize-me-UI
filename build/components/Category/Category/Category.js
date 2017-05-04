@@ -6,6 +6,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var React = require("react");
 var react_redux_1 = require("react-redux");
+var react_router_1 = require("react-router");
 var material_ui_1 = require("material-ui");
 var actions = require("../../../actions/categoryActions");
 var classes = require('./Category.css');
@@ -32,6 +33,7 @@ var Category = (function (_super) {
                 createCategory.title = _this.state.title;
                 _this.props.performCreateCategoryAction(createCategory);
             }
+            react_router_1.browserHistory.push('/');
         };
         _this.cancelCategory = function (event) {
             event.preventDefault();

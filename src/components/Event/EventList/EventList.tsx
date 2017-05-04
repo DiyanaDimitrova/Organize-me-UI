@@ -70,7 +70,10 @@ class EventList extends React.Component<EventListProps, EventListState> {
   }
   viewItem = (e, itemId) => {
     this.props.setDisplayedItem(itemId)
-    browserHistory.push('/eventDetails')
+    browserHistory.push('/eventDetails/' + itemId)
+  }
+  sendCodeItem = (e, item) => {
+    browserHistory.push('/newCode/' + item._id)
   }
   iconButtonElement = () => {
     return (
@@ -91,6 +94,9 @@ class EventList extends React.Component<EventListProps, EventListState> {
         <MenuItem onTouchTap={(event) => {
           this.viewItem(event, item._id)
         }}>View</MenuItem>
+        <MenuItem onTouchTap={(event) => {
+          this.sendCodeItem(event, item)
+        }}>Send Code</MenuItem>
       </IconMenu>
     )
   }

@@ -9,8 +9,7 @@ import CategoryList from '../../components/Category/CategoryList/CategoryList'
 import Event from '../../components/Event/Event/Event'
 import EventList from '../../components/Event/EventList/EventList'
 import EventDetails from '../../components/Event/EventDetails/EventDetails'
-
-
+import Code from '../../components/Code/Code/Code'
 
 import App from '../App/App'
 
@@ -27,7 +26,8 @@ export class AppContainer extends React.Component<any, AppState> {
           <Route path='/allCategories' component={CategoryList}/>
           <Route path='/newEvent' component={Event}/>
           <Route path='/allEvents' component={EventList}/>
-          <Route path='/eventDetails' component={EventDetails}/>
+          <Route path='/eventDetails/:id' component={EventDetails}/>
+          <Route path='/newCode/:id' component={Code}/>
         </Router>
       </div>
     )

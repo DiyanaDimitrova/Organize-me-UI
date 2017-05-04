@@ -58,6 +58,7 @@ export class Category extends React.Component<CategoryProps, CategoryState> {
             createCategory.title = this.state.title
             this.props.performCreateCategoryAction(createCategory)
           }
+          browserHistory.push('/')
     }
   cancelCategory = (event)  => {
           event.preventDefault()

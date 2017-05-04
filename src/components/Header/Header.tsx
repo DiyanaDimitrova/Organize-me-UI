@@ -56,6 +56,9 @@ class Header extends React.Component<HeaderProps, HeaderState> {
   allEventClick = () => {
     browserHistory.push('/allEvents')
   }
+  newCodeClick = () => {
+    browserHistory.push('/newCode')
+  }
   render() {
     return (
       <div>
@@ -76,7 +79,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
           <MenuItem onTouchTap={this.allCategoryClick}>All Categories</MenuItem>
           <MenuItem onTouchTap={this.newEventClick}>Create Event</MenuItem>
           <MenuItem onTouchTap={this.allEventClick}>All Events</MenuItem>
-          <MenuItem>Add Code</MenuItem>
+          <MenuItem onTouchTap={this.newCodeClick}>Send Code</MenuItem>
           <MenuItem>Scan Code</MenuItem>
         </Drawer>
       </div>

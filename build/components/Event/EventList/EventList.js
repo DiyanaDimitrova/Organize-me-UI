@@ -38,7 +38,10 @@ var EventList = (function (_super) {
         };
         _this.viewItem = function (e, itemId) {
             _this.props.setDisplayedItem(itemId);
-            react_router_1.browserHistory.push('/eventDetails');
+            react_router_1.browserHistory.push('/eventDetails/' + itemId);
+        };
+        _this.sendCodeItem = function (e, item) {
+            react_router_1.browserHistory.push('/newCode/' + item._id);
         };
         _this.iconButtonElement = function () {
             return (React.createElement(material_ui_1.IconButton, { touch: true, tooltip: "actions", tooltipPosition: "bottom-left" },
@@ -54,7 +57,10 @@ var EventList = (function (_super) {
                     } }, "Delete"),
                 React.createElement(material_ui_1.MenuItem, { onTouchTap: function (event) {
                         _this.viewItem(event, item._id);
-                    } }, "View")));
+                    } }, "View"),
+                React.createElement(material_ui_1.MenuItem, { onTouchTap: function (event) {
+                        _this.sendCodeItem(event, item);
+                    } }, "Send Code")));
         };
         return _this;
     }
