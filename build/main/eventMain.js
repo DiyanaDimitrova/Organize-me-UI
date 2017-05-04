@@ -17,7 +17,8 @@ exports.initialState = {
         details: null
     },
     eventImageLoading: false,
-    eventDetailsLoading: false
+    eventDetailsLoading: false,
+    attendEventMessage: null
 };
 var reducers = (_a = {},
     _a[a.NEW_EVENT_SUCCESS] = r.newEventSuccessReducer,
@@ -40,6 +41,8 @@ var reducers = (_a = {},
     _a[a.EVENT_DETAILS_BEGIN_LOADING] = r.eventDetailsBeginLoadingActionReducer,
     _a[a.EVENT_DETAILS_END_LOADING] = r.eventDetailsEndLoadingActionReducer,
     _a[a.SET_DISPLAYED_ITEM] = r.setDisplayedItemActionReducer,
+    _a[a.ATTEND_EVENT_SUCCESS] = r.attendEventSuccessReducer,
+    _a[a.ATTEND_EVENT_FAIL] = r.attendEventFailReducer,
     _a);
 function eventReducer(state, action) {
     if (state === void 0) { state = exports.initialState; }

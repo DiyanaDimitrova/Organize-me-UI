@@ -20,6 +20,8 @@ exports.EVENT_IMAGE_BEGIN_LOADING = '@@Event/EVENT_IMAGE_BEGIN_LOADING';
 exports.EVENT_IMAGE_END_LOADING = '@@Event/EVENT_IMAGE_END_LOADING';
 exports.EVENT_DETAILS_BEGIN_LOADING = '@@Event/EVENT_DETAILS_BEGIN_LOADING';
 exports.EVENT_DETAILS_END_LOADING = '@@Event/EVENT_DETAILS_END_LOADING';
+exports.ATTEND_EVENT_SUCCESS = '@@Event/ATTEND_EVENT_SUCCESS';
+exports.ATTEND_EVENT_FAIL = '@@Event/ATTEND_EVENT_FAIL';
 function createEventSuccessAction(message) {
     return {
         type: exports.NEW_EVENT_SUCCESS,
@@ -222,4 +224,32 @@ function loadEventDetailsAction(request, dispatch) {
     });
 }
 exports.loadEventDetailsAction = loadEventDetailsAction;
+function attendEventSuccessAction(message) {
+    return {
+        type: exports.ATTEND_EVENT_SUCCESS,
+        eventMessage: message
+    };
+}
+exports.attendEventSuccessAction = attendEventSuccessAction;
+function attendEventFailAction(message) {
+    return {
+        type: exports.ATTEND_EVENT_FAIL,
+        eventMessage: message
+    };
+}
+exports.attendEventFailAction = attendEventFailAction;
+function performAttendEventAction(request, dispatch) {
+    var reqBody = {
+        username: request.username,
+        type: request.type
+    };
+    axios_1.default.put('/event/attend/' + request.id, reqBody)
+        .then(function (response) {
+        dispatch(attendEventSuccessAction(response.data.response));
+    })
+        .catch(function (err) {
+        dispatch(attendEventFailAction(err.response.data.response));
+    });
+}
+exports.performAttendEventAction = performAttendEventAction;
 //# sourceMappingURL=eventActions.js.map

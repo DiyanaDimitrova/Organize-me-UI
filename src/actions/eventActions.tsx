@@ -1,6 +1,6 @@
 import axios from 'axios'
 // import { browserHistory } from 'react-router'
-import { CreateEventRequest, UpdateEventRequest, DeleteEventRequest, EventDetailsRequest } from '../main/eventMain'
+import { CreateEventRequest, UpdateEventRequest, DeleteEventRequest, EventDetailsRequest, AttendEventRequest } from '../main/eventMain'
 import { Action } from 'redux'
 export const NEW_EVENT_SUCCESS = '@@Event/NEW_EVENT_SUCCESS'
 export const NEW_EVENT_FAIL = '@@Event/NEW_EVENT_FAIL'
@@ -22,7 +22,8 @@ export const EVENT_IMAGE_BEGIN_LOADING = '@@Event/EVENT_IMAGE_BEGIN_LOADING'
 export const EVENT_IMAGE_END_LOADING = '@@Event/EVENT_IMAGE_END_LOADING'
 export const EVENT_DETAILS_BEGIN_LOADING = '@@Event/EVENT_DETAILS_BEGIN_LOADING'
 export const EVENT_DETAILS_END_LOADING = '@@Event/EVENT_DETAILS_END_LOADING'
-
+export const ATTEND_EVENT_SUCCESS = '@@Event/ATTEND_EVENT_SUCCESS'
+export const ATTEND_EVENT_FAIL = '@@Event/ATTEND_EVENT_FAIL'
 
 export interface EventAction extends Action {
     eventMessage: string
@@ -229,5 +230,33 @@ export function loadEventDetailsAction(request: EventDetailsRequest, dispatch: a
       .catch((err) => {
           dispatch(setEventDetailsFailure())
           dispatch(eventDetailsEndLoading())
+      })
+}
+
+export function attendEventSuccessAction(message: String): EventAction {
+    return {
+        type: ATTEND_EVENT_SUCCESS,
+        eventMessage: message
+    } as EventAction
+}
+
+export function attendEventFailAction(message: String): EventAction {
+    return {
+        type: ATTEND_EVENT_FAIL,
+        eventMessage: message
+    } as EventAction
+}
+
+export function performAttendEventAction(request: AttendEventRequest, dispatch: any): void {
+    let reqBody = {
+      username: request.username,
+      type: request.type
+    }
+    axios.put('/event/attend/' + request.id, reqBody)
+      .then((response) => {
+          dispatch(attendEventSuccessAction(response.data.response))
+      })
+      .catch((err) => {
+          dispatch(attendEventFailAction(err.response.data.response))
       })
 }

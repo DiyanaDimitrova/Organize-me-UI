@@ -209,3 +209,23 @@ export function setDisplayedItemActionReducer(state: EventState, action: Action)
         return state
     }
 }
+
+export function attendEventSuccessReducer(state: EventState, action: actions.EventAction): EventState {
+    if (action.type === actions.ATTEND_EVENT_SUCCESS) {
+        let newState = Object.assign({}, state)
+        newState.attendEventMessage = action.eventMessage
+        return newState
+    } else {
+        return state
+    }
+}
+
+export function attendEventFailReducer(state: EventState, action: actions.EventAction): EventState {
+    if (action.type === actions.ATTEND_EVENT_FAIL) {
+        let newState = Object.assign({}, state)
+        newState.attendEventMessage = action.eventMessage
+        return newState
+      } else {
+        return state
+    }
+}

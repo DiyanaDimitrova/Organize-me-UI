@@ -36,6 +36,12 @@ export interface UpdateEventRequest {
     categoryId: String
 }
 
+export interface AttendEventRequest {
+    id: String,
+    username: String,
+    type: String
+}
+
 export interface EventState {
     newEventMessage: String,
     deleteEventMessage: String,
@@ -51,7 +57,8 @@ export interface EventState {
       details: any
     },
     eventImageLoading: Boolean,
-    eventDetailsLoading: Boolean
+    eventDetailsLoading: Boolean,
+    attendEventMessage: String
 }
 
 export const initialState: EventState = {
@@ -69,7 +76,8 @@ export const initialState: EventState = {
       details: null
     },
     eventImageLoading: false,
-    eventDetailsLoading: false
+    eventDetailsLoading: false,
+    attendEventMessage: null
 }
 
 const reducers = {
@@ -92,7 +100,9 @@ const reducers = {
     [a.GET_EVENT_DETAILS]: r.getEventDetailsActionReducer,
     [a.EVENT_DETAILS_BEGIN_LOADING]: r.eventDetailsBeginLoadingActionReducer,
     [a.EVENT_DETAILS_END_LOADING]: r.eventDetailsEndLoadingActionReducer,
-    [a.SET_DISPLAYED_ITEM]: r.setDisplayedItemActionReducer
+    [a.SET_DISPLAYED_ITEM]: r.setDisplayedItemActionReducer,
+    [a.ATTEND_EVENT_SUCCESS]: r.attendEventSuccessReducer,
+    [a.ATTEND_EVENT_FAIL]: r.attendEventFailReducer
   }
 
 export function eventReducer(state: EventState = initialState, action: Action): EventState {

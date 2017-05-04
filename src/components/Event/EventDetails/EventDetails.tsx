@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router'
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card'
 import RaisedButton from 'material-ui/RaisedButton'
 import * as actions from '../../../actions/eventActions'
-import { EventDetailsRequest } from '../../../main/eventMain'
+import { EventDetailsRequest, AttendEventRequest } from '../../../main/eventMain'
 import * as dateFormat from 'dateformat'
 import MapsPlace from 'material-ui/svg-icons/maps/place'
 import Divider from 'material-ui/Divider';
@@ -16,12 +16,14 @@ interface StateProps {
   eventImageLoading: Boolean,
   eventDetailsLoading: Boolean,
   displayedItem: String,
-  itemToView: any
+  itemToView: any,
+  username: String
 }
 
 interface DispatchProps {
   loadEventImageAction: (request: EventDetailsRequest) => void,
   loadEventDetailsAction: (request: EventDetailsRequest) => void,
+  performAttendEventAction: (request: AttendEventRequest) => void
 }
 
 export interface EventDetailsProps extends StateProps, DispatchProps{
@@ -63,14 +65,26 @@ export class EventDetails extends React.Component<EventDetailsProps, EventDetail
     this.props.loadEventDetailsAction(eventDetails)
   }
   goingToEvent = () => {
-
+    let attendEvent = {} as AttendEventRequest
+    attendEvent.id = this.props.displayedItem
+    attendEvent.username = this.props.username
+    attendEvent.type = 'going'
+    this.props.performAttendEventAction(attendEvent)
   }
 
   interestedInEvent = () => {
-
+    let attendEvent = {} as AttendEventRequest
+    attendEvent.id = this.props.displayedItem
+    attendEvent.username = this.props.username
+    attendEvent.type = 'interested'
+    this.props.performAttendEventAction(attendEvent)
   }
   notInterestedInEvent = () => {
-
+    let attendEvent = {} as AttendEventRequest
+    attendEvent.id = this.props.displayedItem
+    attendEvent.username = this.props.username
+    attendEvent.type = 'notGoing'
+    this.props.performAttendEventAction(attendEvent)
   }
 
   render() {
@@ -97,6 +111,10 @@ export class EventDetails extends React.Component<EventDetailsProps, EventDetail
           <div><MapsPlace />{this.props.itemToView.details.place} </div>
           <Divider/>
           <div>{this.props.itemToView.details.details}</div>
+          <Divider/>
+          <div>Going: {this.props.itemToView.details.goingPeople}</div>
+          <div>Interested: {this.props.itemToView.details.interestedPeople}</div>
+          <div>Not interested: {this.props.itemToView.details.notGoingPeople}</div>
         </CardText>
         <CardActions>
             <RaisedButton label="Going" secondary={true} onClick={this.goingToEvent}/>
@@ -112,7 +130,8 @@ const mapStateToProps = (state: any) => ({
   eventImageLoading: state.event.eventImageLoading,
   eventDetailsLoading: state.event.eventDetailsLoading,
   displayedItem: state.event.displayedItem,
-  itemToView: state.event.itemToView
+  itemToView: state.event.itemToView,
+  username: state.login.user.username
 })
 
 const mapDispatchToProps = (dispatch) => {
@@ -122,6 +141,9 @@ const mapDispatchToProps = (dispatch) => {
       },
       loadEventDetailsAction: (request: EventDetailsRequest): void => {
           actions.loadEventDetailsAction(request, dispatch)
+      },
+      performAttendEventAction: (request: AttendEventRequest): void => {
+        actions.performAttendEventAction(request, dispatch)
       }
     }
 }

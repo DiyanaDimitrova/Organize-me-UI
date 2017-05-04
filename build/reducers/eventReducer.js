@@ -232,4 +232,26 @@ function setDisplayedItemActionReducer(state, action) {
     }
 }
 exports.setDisplayedItemActionReducer = setDisplayedItemActionReducer;
+function attendEventSuccessReducer(state, action) {
+    if (action.type === actions.ATTEND_EVENT_SUCCESS) {
+        var newState = Object.assign({}, state);
+        newState.attendEventMessage = action.eventMessage;
+        return newState;
+    }
+    else {
+        return state;
+    }
+}
+exports.attendEventSuccessReducer = attendEventSuccessReducer;
+function attendEventFailReducer(state, action) {
+    if (action.type === actions.ATTEND_EVENT_FAIL) {
+        var newState = Object.assign({}, state);
+        newState.attendEventMessage = action.eventMessage;
+        return newState;
+    }
+    else {
+        return state;
+    }
+}
+exports.attendEventFailReducer = attendEventFailReducer;
 //# sourceMappingURL=eventReducer.js.map

@@ -18,10 +18,25 @@ var EventDetails = (function (_super) {
     function EventDetails(props) {
         var _this = _super.call(this, props) || this;
         _this.goingToEvent = function () {
+            var attendEvent = {};
+            attendEvent.id = _this.props.displayedItem;
+            attendEvent.username = _this.props.username;
+            attendEvent.type = 'going';
+            _this.props.performAttendEventAction(attendEvent);
         };
         _this.interestedInEvent = function () {
+            var attendEvent = {};
+            attendEvent.id = _this.props.displayedItem;
+            attendEvent.username = _this.props.username;
+            attendEvent.type = 'interested';
+            _this.props.performAttendEventAction(attendEvent);
         };
         _this.notInterestedInEvent = function () {
+            var attendEvent = {};
+            attendEvent.id = _this.props.displayedItem;
+            attendEvent.username = _this.props.username;
+            attendEvent.type = 'notGoing';
+            _this.props.performAttendEventAction(attendEvent);
         };
         console.log('Props' + JSON.stringify(_this.props));
         return _this;
@@ -57,7 +72,17 @@ var EventDetails = (function (_super) {
                     this.props.itemToView.details.place,
                     " "),
                 React.createElement(Divider_1.default, null),
-                React.createElement("div", null, this.props.itemToView.details.details)),
+                React.createElement("div", null, this.props.itemToView.details.details),
+                React.createElement(Divider_1.default, null),
+                React.createElement("div", null,
+                    "Going: ",
+                    this.props.itemToView.details.goingPeople),
+                React.createElement("div", null,
+                    "Interested: ",
+                    this.props.itemToView.details.interestedPeople),
+                React.createElement("div", null,
+                    "Not interested: ",
+                    this.props.itemToView.details.notGoingPeople)),
             React.createElement(Card_1.CardActions, null,
                 React.createElement(RaisedButton_1.default, { label: "Going", secondary: true, onClick: this.goingToEvent }),
                 React.createElement(RaisedButton_1.default, { label: "Interested", primary: true, onClick: this.interestedInEvent }),
@@ -70,7 +95,8 @@ var mapStateToProps = function (state) { return ({
     eventImageLoading: state.event.eventImageLoading,
     eventDetailsLoading: state.event.eventDetailsLoading,
     displayedItem: state.event.displayedItem,
-    itemToView: state.event.itemToView
+    itemToView: state.event.itemToView,
+    username: state.login.user.username
 }); };
 var mapDispatchToProps = function (dispatch) {
     return {
@@ -79,6 +105,9 @@ var mapDispatchToProps = function (dispatch) {
         },
         loadEventDetailsAction: function (request) {
             actions.loadEventDetailsAction(request, dispatch);
+        },
+        performAttendEventAction: function (request) {
+            actions.performAttendEventAction(request, dispatch);
         }
     };
 };
