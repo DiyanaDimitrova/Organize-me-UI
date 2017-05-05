@@ -23,8 +23,10 @@ export class AppContainer extends React.Component<any, AppState> {
           <Route path='/register' component={Register}/>
           <Route path='/login' component={LoginForm}/>
           <Route path='/newCategory' component={Category}/>
+          <Route path='/editCategory/:id' component={Category}/>
           <Route path='/allCategories' component={CategoryList}/>
           <Route path='/newEvent' component={Event}/>
+          <Route path='/editEvent/:id' component={Event}/>
           <Route path='/allEvents' component={EventList}/>
           <Route path='/eventDetails/:id' component={EventDetails}/>
           <Route path='/newCode/:id' component={Code}/>

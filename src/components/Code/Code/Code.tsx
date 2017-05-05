@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import { RaisedButton, TextField, FlatButton } from 'material-ui'
 import { Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
-// import * as actions from '../../../actions/codeActions'
+import * as actions from '../../../actions/codeActions'
 // import { } from '../../../main/codeMain'
 // const classes = require('./Event.css')
 const tableData = [
@@ -37,9 +37,13 @@ const tableData = [
   },
 ]
 interface StateProps {
+  listInvitedLoading: Boolean,
+  success: Boolean,
+  invitedPeopleList: Array<any>
 }
 
 interface DispatchProps {
+  loadListInvited: (id: String) => void,
 }
 
 export interface CodeProps extends StateProps, DispatchProps{
@@ -56,7 +60,9 @@ export interface CodeState{
   enableSelectAll: Boolean,
   deselectOnClickaway: Boolean,
   showCheckboxes: Boolean,
-  height: String
+  height: String,
+  selected: Array<any>,
+  mailList: Array<any>
 }
 
 export class Code extends React.Component<CodeProps, CodeState> {
@@ -72,24 +78,54 @@ export class Code extends React.Component<CodeProps, CodeState> {
        enableSelectAll: true,
        deselectOnClickaway: true,
        showCheckboxes: true,
-       height: '300px'
+       height: '300px',
+       selected: [],
+       mailList: []
      }
   }
 
-
-  handleChange = (event) => {
-     this.setState({height: event.target.value});
+  public static defaultProps: StateProps = {
+    listInvitedLoading: false,
+    success: true,
+    invitedPeopleList: null
   }
+  componentWillMount() {
+    this.props.loadListInvited(this.props.params.id)
+  }
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.props !== nextProps
+  }
+  sendCodeEvent = (event)  => {
+    event.preventDefault()
+  }
+  cancelEvent = (event)  => {
+    event.preventDefault()
+  }
+  // isSelected = (index, name) => {
+  //   return this.state.selected.indexOf(index) !== -1
+  // }
+  handleRowSelection = (selectedRows) => {
+    this.setState({
+      selected: selectedRows
+    })
+    console.log('SELECTED' + selectedRows)
+  }
+  // handleSelect = (row) => {
+  //   console.log('ROW' + row)
+  // }
+
   render() {
     console.log(JSON.stringify(this.props))
     return (
       <div id='registerDiv' width="100%">
+      {this.props.success === true && this.props.listInvitedLoading === false &&
         <Table
           height={this.state.height}
           fixedHeader={this.state.fixedHeader}
           fixedFooter={this.state.fixedFooter}
           selectable={this.state.selectable}
           multiSelectable={this.state.multiSelectable}
+          onRowSelection={this.handleRowSelection}
         >
           <TableHeader
             displaySelectAll={this.state.showCheckboxes}
@@ -97,14 +133,14 @@ export class Code extends React.Component<CodeProps, CodeState> {
             enableSelectAll={this.state.enableSelectAll}
           >
             <TableRow>
-              <TableHeaderColumn colSpan="3" tooltip="Super Header" style={{textAlign: 'center'}}>
-                Super Header
+              <TableHeaderColumn colSpan="3" tooltip="Invited to the event" style={{textAlign: 'center'}}>
+                Invited to the event
               </TableHeaderColumn>
             </TableRow>
             <TableRow>
-              <TableHeaderColumn tooltip="The ID">ID</TableHeaderColumn>
-              <TableHeaderColumn tooltip="The Name">Name</TableHeaderColumn>
-              <TableHeaderColumn tooltip="The Status">Status</TableHeaderColumn>
+              <TableHeaderColumn tooltip="ID">ID</TableHeaderColumn>
+              <TableHeaderColumn tooltip="Username">Username</TableHeaderColumn>
+              <TableHeaderColumn tooltip="Status">Status</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody
@@ -113,41 +149,50 @@ export class Code extends React.Component<CodeProps, CodeState> {
             showRowHover={this.state.showRowHover}
             stripedRows={this.state.stripedRows}
           >
-            {tableData.map( (row, index) => (
-              <TableRow key={index}>
-                <TableRowColumn>{index}</TableRowColumn>
-                <TableRowColumn>{row.name}</TableRowColumn>
-                <TableRowColumn>{row.status}</TableRowColumn>
-              </TableRow>
-              ))}
+          {this.props.invitedPeopleList !== null && this.props.invitedPeopleList.map( (row, index) => (
+            <TableRow key={index}>
+              <TableRowColumn>{index}</TableRowColumn>
+              <TableRowColumn>{row.username}</TableRowColumn>
+              <TableRowColumn>{row.type}</TableRowColumn>
+            </TableRow>
+            ))}
           </TableBody>
           <TableFooter
             adjustForCheckbox={this.state.showCheckboxes}
           >
             <TableRow>
               <TableRowColumn>ID</TableRowColumn>
-              <TableRowColumn>Name</TableRowColumn>
+              <TableRowColumn>Username</TableRowColumn>
               <TableRowColumn>Status</TableRowColumn>
             </TableRow>
             <TableRow>
               <TableRowColumn colSpan="3" style={{textAlign: 'center'}}>
-                Super Footer
+                Invited to the event
               </TableRowColumn>
             </TableRow>
           </TableFooter>
         </Table>
-
+      }
+        <div>
+          <RaisedButton label="Cancel" secondary={true} onClick={this.cancelEvent}/>
+          <RaisedButton label="Send Code" primary={true} onClick={this.sendCodeEvent}/>
+        </div>
       </div>
     )
   }
 }
 
 const mapStateToProps = (state: any) => ({
-  displayedItem: state.event.displayedItem
+  listInvitedLoading: state.code.listInvitedLoading,
+  success: state.code.success,
+  invitedPeopleList: state.code.invitedPeopleList
 })
 
 const mapDispatchToProps = (dispatch) => {
     return {
+      loadListInvited: (id: String): void => {
+          actions.loadListInvited(id, dispatch)
+      }
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Code)

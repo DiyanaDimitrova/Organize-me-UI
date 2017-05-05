@@ -28,8 +28,10 @@ var AppContainer = (function (_super) {
                 React.createElement(react_router_1.Route, { path: '/register', component: Register_1.default }),
                 React.createElement(react_router_1.Route, { path: '/login', component: LoginForm_1.default }),
                 React.createElement(react_router_1.Route, { path: '/newCategory', component: Category_1.default }),
+                React.createElement(react_router_1.Route, { path: '/editCategory/:id', component: Category_1.default }),
                 React.createElement(react_router_1.Route, { path: '/allCategories', component: CategoryList_1.default }),
                 React.createElement(react_router_1.Route, { path: '/newEvent', component: Event_1.default }),
+                React.createElement(react_router_1.Route, { path: '/editEvent/:id', component: Event_1.default }),
                 React.createElement(react_router_1.Route, { path: '/allEvents', component: EventList_1.default }),
                 React.createElement(react_router_1.Route, { path: '/eventDetails/:id', component: EventDetails_1.default }),
                 React.createElement(react_router_1.Route, { path: '/newCode/:id', component: Code_1.default }))));
