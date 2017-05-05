@@ -47,4 +47,26 @@ function listInvitedFailReducer(state, action) {
     }
 }
 exports.listInvitedFailReducer = listInvitedFailReducer;
+function sendCodeSuccessReducer(state, action) {
+    if (action.type === actions.SEND_CODE_SUCCESS) {
+        var newState = Object.assign({}, state);
+        newState.sendCodeToUsersMessage = action.sendCodeMessage;
+        return newState;
+    }
+    else {
+        return state;
+    }
+}
+exports.sendCodeSuccessReducer = sendCodeSuccessReducer;
+function sendCodeFailReducer(state, action) {
+    if (action.type === actions.SEND_CODE_FAIL) {
+        var newState = Object.assign({}, state);
+        newState.sendCodeToUsersMessage = action.sendCodeMessage;
+        return newState;
+    }
+    else {
+        return state;
+    }
+}
+exports.sendCodeFailReducer = sendCodeFailReducer;
 //# sourceMappingURL=codeReducer.js.map

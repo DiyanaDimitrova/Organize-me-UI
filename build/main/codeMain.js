@@ -5,13 +5,16 @@ var loginActions_1 = require("../actions/loginActions");
 exports.initialState = {
     listInvitedLoading: false,
     success: false,
-    invitedPeopleList: null
+    invitedPeopleList: null,
+    sendCodeToUsersMessage: null
 };
 var reducers = (_a = {},
     _a[a.LIST_INVITED_SUCCESS] = r.listInvitedSuccessReducer,
     _a[a.LIST_INVITED_FAIL] = r.listInvitedFailReducer,
     _a[a.LIST_INVITED_BEGIN_LOADING] = r.listInvitedBeginLoadingReducer,
     _a[a.LIST_INVITED_END_LOADING] = r.listInvitedEndLoadingReducer,
+    _a[a.SEND_CODE_SUCCESS] = r.sendCodeSuccessReducer,
+    _a[a.SEND_CODE_FAIL] = r.sendCodeFailReducer,
     _a);
 function codeReducer(state, action) {
     if (state === void 0) { state = exports.initialState; }

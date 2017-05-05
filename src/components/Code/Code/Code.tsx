@@ -4,38 +4,9 @@ import { browserHistory } from 'react-router'
 import { RaisedButton, TextField, FlatButton } from 'material-ui'
 import { Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
 import * as actions from '../../../actions/codeActions'
-// import { } from '../../../main/codeMain'
+import { SendCodeRequest } from '../../../main/codeMain'
 // const classes = require('./Event.css')
-const tableData = [
-  {
-    name: 'John Smith',
-    status: 'Employed',
-  },
-  {
-    name: 'Randal White',
-    status: 'Unemployed',
-  },
-  {
-    name: 'Stephanie Sanders',
-    status: 'Employed',
-  },
-  {
-    name: 'Steve Brown',
-    status: 'Employed',
-  },
-  {
-    name: 'Joyce Whitten',
-    status: 'Employed',
-  },
-  {
-    name: 'Samuel Roberts',
-    status: 'Employed',
-  },
-  {
-    name: 'Adam Moore',
-    status: 'Employed',
-  },
-]
+
 interface StateProps {
   listInvitedLoading: Boolean,
   success: Boolean,
@@ -44,6 +15,7 @@ interface StateProps {
 
 interface DispatchProps {
   loadListInvited: (id: String) => void,
+  performSendCodeAction: (sendCodeRequest: SendCodeRequest) => void
 }
 
 export interface CodeProps extends StateProps, DispatchProps{
@@ -61,7 +33,6 @@ export interface CodeState{
   deselectOnClickaway: Boolean,
   showCheckboxes: Boolean,
   height: String,
-  selected: Array<any>,
   mailList: Array<any>
 }
 
@@ -79,7 +50,6 @@ export class Code extends React.Component<CodeProps, CodeState> {
        deselectOnClickaway: true,
        showCheckboxes: true,
        height: '300px',
-       selected: [],
        mailList: []
      }
   }
@@ -97,25 +67,32 @@ export class Code extends React.Component<CodeProps, CodeState> {
   }
   sendCodeEvent = (event)  => {
     event.preventDefault()
+    let sendCodeRequest = {} as SendCodeRequest
+    sendCodeRequest.usersToSendCode = this.state.mailList
+    this.props.performSendCodeAction(sendCodeRequest)
   }
   cancelEvent = (event)  => {
     event.preventDefault()
+    this.setState({mailList: []})
   }
-  // isSelected = (index, name) => {
-  //   return this.state.selected.indexOf(index) !== -1
-  // }
   handleRowSelection = (selectedRows) => {
-    this.setState({
-      selected: selectedRows
-    })
-    console.log('SELECTED' + selectedRows)
+    let sendCodeList = []
+    if(selectedRows === 'all'){
+      console.log(selectedRows.length)
+      for (let i = 0; i < this.props.invitedPeopleList.length; i++) {
+        sendCodeList.push(this.props.invitedPeopleList[i].username)
+     }
+   } else if (selectedRows === 'none'){
+     sendCodeList = []
+   } else {
+      for (let i = 0; i < selectedRows.length; i++) {
+        sendCodeList.push(this.props.invitedPeopleList[selectedRows[i]].username)
+     }
+    }
+   this.setState({mailList: sendCodeList})
   }
-  // handleSelect = (row) => {
-  //   console.log('ROW' + row)
-  // }
 
   render() {
-    console.log(JSON.stringify(this.props))
     return (
       <div id='registerDiv' width="100%">
       {this.props.success === true && this.props.listInvitedLoading === false &&
@@ -192,6 +169,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
       loadListInvited: (id: String): void => {
           actions.loadListInvited(id, dispatch)
+      },
+      performSendCodeAction: (sendCodeRequest: SendCodeRequest): void => {
+          actions.performSendCodeAction(sendCodeRequest, dispatch)
       }
     }
 }

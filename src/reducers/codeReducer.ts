@@ -42,3 +42,23 @@ export function listInvitedFailReducer(state: CodeState, action: Action): CodeSt
         return state
     }
 }
+
+export function sendCodeSuccessReducer(state: CodeState, action: actions.CodeAction): CodeState {
+    if (action.type === actions.SEND_CODE_SUCCESS) {
+        let newState = Object.assign({}, state)
+        newState.sendCodeToUsersMessage = action.sendCodeMessage
+        return newState
+    } else {
+        return state
+    }
+}
+
+export function sendCodeFailReducer(state: CodeState, action: actions.CodeAction): CodeState {
+    if (action.type === actions.SEND_CODE_FAIL) {
+        let newState = Object.assign({}, state)
+        newState.sendCodeToUsersMessage = action.sendCodeMessage
+        return newState
+      } else {
+        return state
+    }
+}

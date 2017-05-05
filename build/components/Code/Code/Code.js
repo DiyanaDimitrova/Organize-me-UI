@@ -9,51 +9,37 @@ var react_redux_1 = require("react-redux");
 var material_ui_1 = require("material-ui");
 var Table_1 = require("material-ui/Table");
 var actions = require("../../../actions/codeActions");
-var tableData = [
-    {
-        name: 'John Smith',
-        status: 'Employed',
-    },
-    {
-        name: 'Randal White',
-        status: 'Unemployed',
-    },
-    {
-        name: 'Stephanie Sanders',
-        status: 'Employed',
-    },
-    {
-        name: 'Steve Brown',
-        status: 'Employed',
-    },
-    {
-        name: 'Joyce Whitten',
-        status: 'Employed',
-    },
-    {
-        name: 'Samuel Roberts',
-        status: 'Employed',
-    },
-    {
-        name: 'Adam Moore',
-        status: 'Employed',
-    },
-];
 var Code = (function (_super) {
     __extends(Code, _super);
     function Code(props) {
         var _this = _super.call(this, props) || this;
         _this.sendCodeEvent = function (event) {
             event.preventDefault();
+            var sendCodeRequest = {};
+            sendCodeRequest.usersToSendCode = _this.state.mailList;
+            _this.props.performSendCodeAction(sendCodeRequest);
         };
         _this.cancelEvent = function (event) {
             event.preventDefault();
+            _this.setState({ mailList: [] });
         };
         _this.handleRowSelection = function (selectedRows) {
-            _this.setState({
-                selected: selectedRows
-            });
-            console.log('SELECTED' + selectedRows);
+            var sendCodeList = [];
+            if (selectedRows === 'all') {
+                console.log(selectedRows.length);
+                for (var i = 0; i < _this.props.invitedPeopleList.length; i++) {
+                    sendCodeList.push(_this.props.invitedPeopleList[i].username);
+                }
+            }
+            else if (selectedRows === 'none') {
+                sendCodeList = [];
+            }
+            else {
+                for (var i = 0; i < selectedRows.length; i++) {
+                    sendCodeList.push(_this.props.invitedPeopleList[selectedRows[i]].username);
+                }
+            }
+            _this.setState({ mailList: sendCodeList });
         };
         _this.state = {
             fixedHeader: true,
@@ -66,7 +52,6 @@ var Code = (function (_super) {
             deselectOnClickaway: true,
             showCheckboxes: true,
             height: '300px',
-            selected: [],
             mailList: []
         };
         return _this;
@@ -78,7 +63,6 @@ var Code = (function (_super) {
         return this.props !== nextProps;
     };
     Code.prototype.render = function () {
-        console.log(JSON.stringify(this.props));
         return (React.createElement("div", { id: 'registerDiv', width: "100%" },
             this.props.success === true && this.props.listInvitedLoading === false &&
                 React.createElement(Table_1.Table, { height: this.state.height, fixedHeader: this.state.fixedHeader, fixedFooter: this.state.fixedFooter, selectable: this.state.selectable, multiSelectable: this.state.multiSelectable, onRowSelection: this.handleRowSelection },
@@ -121,6 +105,9 @@ var mapDispatchToProps = function (dispatch) {
     return {
         loadListInvited: function (id) {
             actions.loadListInvited(id, dispatch);
+        },
+        performSendCodeAction: function (sendCodeRequest) {
+            actions.performSendCodeAction(sendCodeRequest, dispatch);
         }
     };
 };
