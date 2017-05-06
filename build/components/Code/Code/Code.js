@@ -17,6 +17,7 @@ var Code = (function (_super) {
             event.preventDefault();
             var sendCodeRequest = {};
             sendCodeRequest.usersToSendCode = _this.state.mailList;
+            sendCodeRequest.eventId = _this.props.params.id;
             _this.props.performSendCodeAction(sendCodeRequest);
         };
         _this.cancelEvent = function (event) {

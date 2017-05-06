@@ -4,7 +4,8 @@ import * as a from '../actions/codeActions'
 import { LOGIN_SUCCESS } from '../actions/loginActions'
 
 export interface SendCodeRequest {
-    usersToSendCode: Array<any>
+    usersToSendCode: Array<any>,
+    eventId: String
 }
 
 export interface CodeState {

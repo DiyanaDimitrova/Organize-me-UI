@@ -69,6 +69,7 @@ export class Code extends React.Component<CodeProps, CodeState> {
     event.preventDefault()
     let sendCodeRequest = {} as SendCodeRequest
     sendCodeRequest.usersToSendCode = this.state.mailList
+    sendCodeRequest.eventId = this.props.params.id
     this.props.performSendCodeAction(sendCodeRequest)
   }
   cancelEvent = (event)  => {
