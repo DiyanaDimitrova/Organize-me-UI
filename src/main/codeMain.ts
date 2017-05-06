@@ -8,18 +8,24 @@ export interface SendCodeRequest {
     eventId: String
 }
 
+export interface ScanCodeRequest {
+    scanedCode: String
+}
+
 export interface CodeState {
   listInvitedLoading: Boolean,
   success: Boolean,
   invitedPeopleList: Array<any>,
-  sendCodeToUsersMessage: String
+  sendCodeToUsersMessage: String,
+  scanCodeMessage: String
 }
 
 export const initialState: CodeState = {
   listInvitedLoading: false,
   success: false,
   invitedPeopleList: null,
-  sendCodeToUsersMessage: null
+  sendCodeToUsersMessage: null,
+  scanCodeMessage: null
 }
 
 const reducers = {
@@ -29,6 +35,8 @@ const reducers = {
     [a.LIST_INVITED_END_LOADING]: r.listInvitedEndLoadingReducer,
     [a.SEND_CODE_SUCCESS]: r.sendCodeSuccessReducer,
     [a.SEND_CODE_FAIL]: r.sendCodeFailReducer,
+    [a.SCAN_CODE_SUCCESS]: r.scanCodeSuccessReducer,
+    [a.SCAN_CODE_FAIL]: r.scanCodeFailReducer,
   }
 
 export function codeReducer(state: CodeState = initialState, action: Action): CodeState {

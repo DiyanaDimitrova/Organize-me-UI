@@ -6,7 +6,8 @@ exports.initialState = {
     listInvitedLoading: false,
     success: false,
     invitedPeopleList: null,
-    sendCodeToUsersMessage: null
+    sendCodeToUsersMessage: null,
+    scanCodeMessage: null
 };
 var reducers = (_a = {},
     _a[a.LIST_INVITED_SUCCESS] = r.listInvitedSuccessReducer,
@@ -15,6 +16,8 @@ var reducers = (_a = {},
     _a[a.LIST_INVITED_END_LOADING] = r.listInvitedEndLoadingReducer,
     _a[a.SEND_CODE_SUCCESS] = r.sendCodeSuccessReducer,
     _a[a.SEND_CODE_FAIL] = r.sendCodeFailReducer,
+    _a[a.SCAN_CODE_SUCCESS] = r.scanCodeSuccessReducer,
+    _a[a.SCAN_CODE_FAIL] = r.scanCodeFailReducer,
     _a);
 function codeReducer(state, action) {
     if (state === void 0) { state = exports.initialState; }

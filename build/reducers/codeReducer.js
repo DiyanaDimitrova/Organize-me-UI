@@ -69,4 +69,26 @@ function sendCodeFailReducer(state, action) {
     }
 }
 exports.sendCodeFailReducer = sendCodeFailReducer;
+function scanCodeSuccessReducer(state, action) {
+    if (action.type === actions.SCAN_CODE_SUCCESS) {
+        var newState = Object.assign({}, state);
+        newState.scanCodeMessage = action.scanCodeMessage;
+        return newState;
+    }
+    else {
+        return state;
+    }
+}
+exports.scanCodeSuccessReducer = scanCodeSuccessReducer;
+function scanCodeFailReducer(state, action) {
+    if (action.type === actions.SCAN_CODE_FAIL) {
+        var newState = Object.assign({}, state);
+        newState.scanCodeMessage = action.scanCodeMessage;
+        return newState;
+    }
+    else {
+        return state;
+    }
+}
+exports.scanCodeFailReducer = scanCodeFailReducer;
 //# sourceMappingURL=codeReducer.js.map

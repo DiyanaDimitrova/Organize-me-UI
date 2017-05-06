@@ -38,6 +38,9 @@ var Header = (function (_super) {
         _this.newCodeClick = function () {
             react_router_1.browserHistory.push('/newCode');
         };
+        _this.scanCodeClick = function () {
+            react_router_1.browserHistory.push('/scanCode');
+        };
         _this.state = {
             openMenu: false
         };
@@ -53,7 +56,7 @@ var Header = (function (_super) {
                 React.createElement(MenuItem_1.default, { onTouchTap: this.newEventClick }, "Create Event"),
                 React.createElement(MenuItem_1.default, { onTouchTap: this.allEventClick }, "All Events"),
                 React.createElement(MenuItem_1.default, { onTouchTap: this.newCodeClick }, "Send Code"),
-                React.createElement(MenuItem_1.default, null, "Scan Code"))));
+                React.createElement(MenuItem_1.default, { onTouchTap: this.scanCodeClick }, "Scan Code"))));
     };
     return Header;
 }(React.Component));

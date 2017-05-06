@@ -43,7 +43,7 @@ export function listInvitedFailReducer(state: CodeState, action: Action): CodeSt
     }
 }
 
-export function sendCodeSuccessReducer(state: CodeState, action: actions.CodeAction): CodeState {
+export function sendCodeSuccessReducer(state: CodeState, action: actions.SendCodeAction): CodeState {
     if (action.type === actions.SEND_CODE_SUCCESS) {
         let newState = Object.assign({}, state)
         newState.sendCodeToUsersMessage = action.sendCodeMessage
@@ -53,10 +53,30 @@ export function sendCodeSuccessReducer(state: CodeState, action: actions.CodeAct
     }
 }
 
-export function sendCodeFailReducer(state: CodeState, action: actions.CodeAction): CodeState {
+export function sendCodeFailReducer(state: CodeState, action: actions.SendCodeAction): CodeState {
     if (action.type === actions.SEND_CODE_FAIL) {
         let newState = Object.assign({}, state)
         newState.sendCodeToUsersMessage = action.sendCodeMessage
+        return newState
+      } else {
+        return state
+    }
+}
+
+export function scanCodeSuccessReducer(state: CodeState, action: actions.ScanCodeAction): CodeState {
+    if (action.type === actions.SCAN_CODE_SUCCESS) {
+        let newState = Object.assign({}, state)
+        newState.scanCodeMessage = action.scanCodeMessage
+        return newState
+    } else {
+        return state
+    }
+}
+
+export function scanCodeFailReducer(state: CodeState, action: actions.ScanCodeAction): CodeState {
+    if (action.type === actions.SCAN_CODE_FAIL) {
+        let newState = Object.assign({}, state)
+        newState.scanCodeMessage = action.scanCodeMessage
         return newState
       } else {
         return state

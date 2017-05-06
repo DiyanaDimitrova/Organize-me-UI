@@ -6,6 +6,8 @@ exports.LIST_INVITED_SUCCESS = '@@Code/LIST_INVITED_SUCCESS';
 exports.LIST_INVITED_FAIL = '@@Code/LIST_INVITED_FAIL';
 exports.SEND_CODE_SUCCESS = '@@Code/SEND_CODE_SUCCESS';
 exports.SEND_CODE_FAIL = '@@Code/SEND_CODE_FAIL';
+exports.SCAN_CODE_SUCCESS = '@@Code/SCAN_CODE_SUCCESS';
+exports.SCAN_CODE_FAIL = '@@Code/SCAN_CODE_FAIL';
 function listInvitedBeginLoading() {
     return { type: exports.LIST_INVITED_BEGIN_LOADING };
 }
@@ -55,11 +57,36 @@ exports.sendCodeFailAction = sendCodeFailAction;
 function performSendCodeAction(request, dispatch) {
     axios_1.default.post('/code/send', request)
         .then(function (response) {
-        dispatch(sendCodeSuccessAction(response.data.response));
+        dispatch(sendCodeSuccessAction(response.data.message));
     })
         .catch(function (err) {
-        dispatch(sendCodeFailAction(err.response.data.response));
+        dispatch(sendCodeFailAction(err.response.data.message));
     });
 }
 exports.performSendCodeAction = performSendCodeAction;
+function scanCodeSuccessAction(message) {
+    return {
+        type: exports.SCAN_CODE_SUCCESS,
+        scanCodeMessage: message
+    };
+}
+exports.scanCodeSuccessAction = scanCodeSuccessAction;
+function scanCodeFailAction(message) {
+    return {
+        type: exports.SCAN_CODE_FAIL,
+        scanCodeMessage: message
+    };
+}
+exports.scanCodeFailAction = scanCodeFailAction;
+function performScanCodeAction(request, dispatch) {
+    axios_1.default.post('/code/scan', request)
+        .then(function (response) {
+        console.log(response.data);
+        dispatch(scanCodeSuccessAction(response.data.message));
+    })
+        .catch(function (err) {
+        dispatch(scanCodeFailAction(err.response.data.message));
+    });
+}
+exports.performScanCodeAction = performScanCodeAction;
 //# sourceMappingURL=codeActions.js.map
