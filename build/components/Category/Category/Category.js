@@ -24,7 +24,8 @@ var Category = (function (_super) {
             if (_this.props.itemToBeEdited === true) {
                 var updateCategory = {};
                 updateCategory.title = _this.state.title;
-                updateCategory.id = _this.props.currentItem.id;
+                updateCategory.id = _this.props.currentItem._id;
+                console.log('UPDATE' + JSON.stringify(updateCategory));
                 _this.props.performUpdateCategoryAction(updateCategory);
                 _this.setState({ title: '' });
             }
@@ -39,6 +40,7 @@ var Category = (function (_super) {
             event.preventDefault();
             _this.setState({ title: '' });
         };
+        console.log('PROPS' + JSON.stringify(props));
         _this.state = {
             title: props.itemToBeEdited === true ? props.currentItem.title : ''
         };
@@ -47,6 +49,12 @@ var Category = (function (_super) {
         _this.cancelCategory = _this.cancelCategory.bind(_this);
         return _this;
     }
+    Category.prototype.componentWillMount = function () {
+        if (this.props.params.id !== undefined && this.props.params.id !== null) {
+            console.log('CURRENT' + this.props.params.id);
+            this.props.setCurrentItem(this.props.params.id);
+        }
+    };
     Category.prototype.componentWillReceiveProps = function (nextProps) {
         if (this.props !== nextProps && nextProps.itemToBeEdited === true) {
             this.setState({ title: nextProps.currentItem.title });
@@ -84,6 +92,9 @@ var mapDispatchToProps = function (dispatch) {
         performUpdateCategoryAction: function (updateCategoryRequest) {
             actions.performUpdateCategoryAction(updateCategoryRequest, dispatch);
         },
+        setCurrentItem: function (currentItem) {
+            actions.setCurrentItem(currentItem, dispatch);
+        }
     };
 };
 Object.defineProperty(exports, "__esModule", { value: true });

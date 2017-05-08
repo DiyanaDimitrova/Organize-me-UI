@@ -24,6 +24,7 @@ var reducers = (_a = {},
     _a[a.UPDATE_CATEGORY_SUCCESS] = r.updateCategorySuccessReducer,
     _a[a.UPDATE_CATEGORY_FAIL] = r.updateCategoryFailReducer,
     _a[a.SET_CURRENT_ITEM] = r.setCurrentItemReducer,
+    _a[a.SET_CURRENT_ITEM_FAIL] = r.setCurrentItemFailReducer,
     _a);
 function categoryReducer(state, action) {
     if (state === void 0) { state = exports.initialState; }

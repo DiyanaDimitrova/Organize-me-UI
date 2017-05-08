@@ -117,3 +117,14 @@ export function setCurrentItemReducer(state: CategoryState, action: Action): Cat
         return state
     }
 }
+export function setCurrentItemFailReducer(state: CategoryState, action: Action): CategoryState {
+    if (action.type === actions.SET_CURRENT_ITEM_FAIL) {
+        let _action = action as actions.CurrentItemAction
+        let newState = Object.assign({}, state)
+        newState.currentItem = Object.assign({}, _action.currentItem)
+        newState.itemToBeEdited = false
+        return newState
+    } else {
+        return state
+    }
+}

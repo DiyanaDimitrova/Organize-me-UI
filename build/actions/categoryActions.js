@@ -11,6 +11,7 @@ exports.DELETE_CATEGORY_FAIL = '@@Category/DELETE_CATEGORY_FAIL';
 exports.UPDATE_CATEGORY_SUCCESS = '@@Category/UPDATE_CATEGORY_SUCCESS';
 exports.UPDATE_CATEGORY_FAIL = '@@Category/UPDATE_CATEGORY_FAIL';
 exports.SET_CURRENT_ITEM = '@@Category/SET_CURRENT_ITEM';
+exports.SET_CURRENT_ITEM_FAIL = '@@Category/SET_CURRENT_ITEM_FAIL';
 function createCategorySuccessAction(message) {
     return {
         type: exports.NEW_CATEGORY_SUCCESS,
@@ -60,8 +61,21 @@ function setCurrentItemAction(currentItem) {
     };
 }
 exports.setCurrentItemAction = setCurrentItemAction;
-function setCurrentItem(currentItem, dispatch) {
-    dispatch(setCurrentItemAction(currentItem));
+function setCurrentItemFailAction(currentItem) {
+    return {
+        type: exports.SET_CURRENT_ITEM_FAIL,
+        currentItem: currentItem
+    };
+}
+exports.setCurrentItemFailAction = setCurrentItemFailAction;
+function setCurrentItem(id, dispatch) {
+    axios_1.default.get('/category/' + id)
+        .then(function (response) {
+        dispatch(setCurrentItemAction(response.data.category));
+    })
+        .catch(function (err) {
+        dispatch(setCurrentItemFailAction(err.response.data.category));
+    });
 }
 exports.setCurrentItem = setCurrentItem;
 function categoriesListBeginLoading() {

@@ -20,7 +20,7 @@ export interface CategoryState {
     categoriesListLoading: Boolean,
     success: Boolean,
     categoriesList: Array<any>,
-    currentItem: UpdateCategoryRequest,
+    currentItem: Object,
     itemToBeEdited: Boolean
 }
 
@@ -46,7 +46,8 @@ const reducers = {
     [a.DELETE_CATEGORY_FAIL]: r.deleteCategoryFailReducer,
     [a.UPDATE_CATEGORY_SUCCESS]: r.updateCategorySuccessReducer,
     [a.UPDATE_CATEGORY_FAIL]: r.updateCategoryFailReducer,
-    [a.SET_CURRENT_ITEM]: r.setCurrentItemReducer
+    [a.SET_CURRENT_ITEM]: r.setCurrentItemReducer,
+    [a.SET_CURRENT_ITEM_FAIL]: r.setCurrentItemFailReducer
 }
 
 export function categoryReducer(state: CategoryState = initialState, action: Action): CategoryState {

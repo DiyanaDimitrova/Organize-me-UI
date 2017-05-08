@@ -23,11 +23,7 @@ var CategoryList = (function (_super) {
         };
         _this.updateItem = function (e, item) {
             e.preventDefault();
-            var updateCategory = {};
-            updateCategory.id = item._id;
-            updateCategory.title = item.title;
-            _this.props.setCurrentItem(updateCategory);
-            react_router_1.browserHistory.push('/newCategory');
+            react_router_1.browserHistory.push('/editCategory/' + item._id);
         };
         _this.iconButtonElement = function () {
             return (React.createElement(material_ui_1.IconButton, { touch: true, tooltip: "actions", tooltipPosition: "bottom-left" },
@@ -81,9 +77,6 @@ var mapDispatchToProps = function (dispatch) {
         },
         performDeleteCategoryAction: function (deleteCategoryRequest) {
             actions.performDeleteCategoryAction(deleteCategoryRequest, dispatch);
-        },
-        setCurrentItem: function (currentItem) {
-            actions.setCurrentItem(currentItem, dispatch);
         }
     };
 };

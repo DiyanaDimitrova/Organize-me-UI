@@ -12,8 +12,8 @@ export const DELETE_CATEGORY_SUCCESS = '@@Category/DELETE_CATEGORY_SUCCESS'
 export const DELETE_CATEGORY_FAIL = '@@Category/DELETE_CATEGORY_FAIL'
 export const UPDATE_CATEGORY_SUCCESS = '@@Category/UPDATE_CATEGORY_SUCCESS'
 export const UPDATE_CATEGORY_FAIL = '@@Category/UPDATE_CATEGORY_FAIL'
-export const SET_CURRENT_ITEM= '@@Category/SET_CURRENT_ITEM'
-
+export const SET_CURRENT_ITEM = '@@Category/SET_CURRENT_ITEM'
+export const SET_CURRENT_ITEM_FAIL = '@@Category/SET_CURRENT_ITEM_FAIL'
 export interface CategoryAction extends Action {
     categoryMessage: string
 }
@@ -68,14 +68,27 @@ export function updateCategoryFailAction(message: String): CategoryAction {
     } as CategoryAction
 }
 
-export function setCurrentItemAction(currentItem: UpdateCategoryRequest): CurrentItemAction {
+export function setCurrentItemAction(currentItem: Object): CurrentItemAction {
     return {
         type: SET_CURRENT_ITEM,
         currentItem: currentItem
     } as CurrentItemAction
 }
-export function setCurrentItem(currentItem: UpdateCategoryRequest, dispatch: any): void {
-    dispatch(setCurrentItemAction(currentItem))
+
+export function setCurrentItemFailAction(currentItem: Object): CurrentItemAction {
+    return {
+        type: SET_CURRENT_ITEM_FAIL,
+        currentItem: currentItem
+    } as CurrentItemAction
+}
+export function setCurrentItem(id: String, dispatch: any): void {
+    axios.get('/category/' + id)
+      .then((response) => {
+          dispatch(setCurrentItemAction(response.data.category))
+      })
+      .catch((err) => {
+          dispatch(setCurrentItemFailAction(err.response.data.category))
+      })
 }
 export function categoriesListBeginLoading(): Action {
     return { type: CATEGORIES_LIST_BEGIN_LOADING } as Action

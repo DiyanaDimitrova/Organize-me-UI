@@ -52,11 +52,11 @@ class CategoryList extends React.Component<CategoryListProps, CategoryListState>
   }
   updateItem = (e, item) => {
     e.preventDefault()
-    let updateCategory = {} as UpdateCategoryRequest
-    updateCategory.id = item._id
-    updateCategory.title = item.title
-    this.props.setCurrentItem(updateCategory)
-    browserHistory.push('/newCategory')
+    // let updateCategory = {} as UpdateCategoryRequest
+    // updateCategory.id = item._id
+    // updateCategory.title = item.title
+    // this.props.setCurrentItem(updateCategory)
+    browserHistory.push('/editCategory/' + item._id)
   }
   iconButtonElement = () => {
     return (
@@ -115,9 +115,6 @@ const mapDispatchToProps = (dispatch) => {
       },
       performDeleteCategoryAction: (deleteCategoryRequest: DeleteCategoryRequest): void => {
           actions.performDeleteCategoryAction(deleteCategoryRequest, dispatch)
-      },
-      setCurrentItem: (currentItem: UpdateCategoryRequest): void => {
-          actions.setCurrentItem(currentItem, dispatch)
       }
     }
 }

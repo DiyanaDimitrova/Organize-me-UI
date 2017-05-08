@@ -14,7 +14,9 @@ interface StateProps {
 
 interface DispatchProps {
   performCreateCategoryAction: (createCategoryRequest: CreateCategoryRequest) => void,
-  performUpdateCategoryAction: (updateCategoryRequest: UpdateCategoryRequest) => void
+  performUpdateCategoryAction: (updateCategoryRequest: UpdateCategoryRequest) => void,
+  setCurrentItem: (currentItem: String) => void
+
 }
 
 export interface CategoryProps extends StateProps, DispatchProps{
@@ -28,12 +30,19 @@ export interface CategoryState{
 export class Category extends React.Component<CategoryProps, CategoryState> {
   constructor(props) {
     super(props)
+    console.log('PROPS' + JSON.stringify(props))
     this.state = {
       title: props.itemToBeEdited === true ? props.currentItem.title : ''
     }
     this.titleEntered = this.titleEntered.bind(this)
     this.saveCategory = this.saveCategory.bind(this)
     this.cancelCategory = this.cancelCategory.bind(this)
+  }
+  componentWillMount(){
+    if(this.props.params.id !== undefined && this.props.params.id !== null){
+      console.log('CURRENT' + this.props.params.id)
+      this.props.setCurrentItem(this.props.params.id)
+    }
   }
   componentWillReceiveProps(nextProps) {
     if(this.props !== nextProps && nextProps.itemToBeEdited === true){
@@ -50,7 +59,8 @@ export class Category extends React.Component<CategoryProps, CategoryState> {
           if(this.props.itemToBeEdited === true ){
             let updateCategory = {} as UpdateCategoryRequest
             updateCategory.title = this.state.title
-            updateCategory.id = this.props.currentItem.id
+            updateCategory.id = this.props.currentItem._id
+            console.log('UPDATE' + JSON.stringify(updateCategory))
             this.props.performUpdateCategoryAction(updateCategory)
             this.setState({title : ''})
           } else {
@@ -102,6 +112,9 @@ const mapDispatchToProps = (dispatch) => {
       performUpdateCategoryAction: (updateCategoryRequest: UpdateCategoryRequest): void => {
           actions.performUpdateCategoryAction(updateCategoryRequest, dispatch)
       },
+      setCurrentItem: (currentItem: String): void => {
+          actions.setCurrentItem(currentItem, dispatch)
+      }
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Category)
