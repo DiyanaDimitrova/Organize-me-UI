@@ -22,6 +22,7 @@ export interface DeleteEventRequest {
 export interface EventDetailsRequest {
     id: String
 }
+
 export interface UpdateEventRequest {
     id: String
     title: String,
@@ -58,7 +59,8 @@ export interface EventState {
     },
     eventImageLoading: Boolean,
     eventDetailsLoading: Boolean,
-    attendEventMessage: String
+    attendEventMessage: String,
+    images: Array<any>
 }
 
 export const initialState: EventState = {
@@ -77,7 +79,8 @@ export const initialState: EventState = {
     },
     eventImageLoading: false,
     eventDetailsLoading: false,
-    attendEventMessage: null
+    attendEventMessage: null,
+    images: []
 }
 
 const reducers = {
@@ -102,7 +105,9 @@ const reducers = {
     [a.EVENT_DETAILS_END_LOADING]: r.eventDetailsEndLoadingActionReducer,
     [a.SET_DISPLAYED_ITEM]: r.setDisplayedItemActionReducer,
     [a.ATTEND_EVENT_SUCCESS]: r.attendEventSuccessReducer,
-    [a.ATTEND_EVENT_FAIL]: r.attendEventFailReducer
+    [a.ATTEND_EVENT_FAIL]: r.attendEventFailReducer,
+    [a.GET_EVENT_IMAGE_ARRAY]: r.getEventImageArrayActionReducer,
+    [a.GET_EVENT_IMAGE_ARRAY_FAILURE]: r.getEventImageArrayFailureActionReducer
   }
 
 export function eventReducer(state: EventState = initialState, action: Action): EventState {

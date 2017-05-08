@@ -8,6 +8,7 @@ import Category from '../../components/Category/Category/Category'
 import CategoryList from '../../components/Category/CategoryList/CategoryList'
 import Event from '../../components/Event/Event/Event'
 import EventList from '../../components/Event/EventList/EventList'
+import EventGrid from '../../components/Event/EventGrid/EventGrid'
 import EventDetails from '../../components/Event/EventDetails/EventDetails'
 import Code from '../../components/Code/Code/Code'
 import ScanCode from '../../components/Code/ScanCode/ScanCode'
@@ -29,6 +30,7 @@ export class AppContainer extends React.Component<any, AppState> {
           <Route path='/newEvent' component={Event}/>
           <Route path='/editEvent/:id' component={Event}/>
           <Route path='/allEvents' component={EventList}/>
+          <Route path='/event/all' component={EventGrid}/>
           <Route path='/eventDetails/:id' component={EventDetails}/>
           <Route path='/newCode/:id' component={Code}/>
           <Route path='/scanCode' component={ScanCode}/>

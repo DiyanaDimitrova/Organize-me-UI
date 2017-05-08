@@ -108,7 +108,7 @@ export function eventImageEndLoadingActionReducer(state: EventState, action: Act
 export function eventDetailsBeginLoadingActionReducer(state: EventState, action: Action): EventState {
     if (action.type === actions.EVENT_DETAILS_BEGIN_LOADING) {
         let newState = Object.assign({}, state)
-        newState.eventDetailsLoading= true
+        newState.eventDetailsLoading = true
         return newState
     } else {
         return state
@@ -129,7 +129,7 @@ export function setEventListActionReducer(state: EventState, action: Action): Ev
     if (action.type === actions.GET_EVENT_LIST) {
         let _action = action as actions.GetAllEventsAction
         let newState = Object.assign({}, state)
-        newState.eventList = Object.assign({}, _action.eventList)
+        newState.eventList = Object.assign([], _action.eventList)
         newState.success = true
         return newState
     } else {
@@ -139,6 +139,7 @@ export function setEventListActionReducer(state: EventState, action: Action): Ev
 export function setEventListFailureActionReducer(state: EventState, action: Action): EventState {
     if (action.type === actions.GET_EVENT_LIST_FAILURE) {
         let newState = Object.assign({}, state)
+        newState.eventList = []
         newState.success = false
         return newState
     } else {
@@ -178,6 +179,36 @@ export function getEventImageFailureActionReducer(state: EventState, action: Act
     }
 }
 
+
+export function getEventImageArrayActionReducer(state: EventState, action: Action): EventState {
+    if (action.type === actions.GET_EVENT_IMAGE_ARRAY) {
+        let _action = action as actions.GetEventImageListAction
+        let newState = Object.assign({}, state)
+        let image = {
+          image:  _action.image,
+          id: _action.id
+        }
+        let didi = Object.assign([state.images], image)
+        // console.log('ACTION' + JSON.stringify(image))
+        // newState.images = Object.assign([state.images], image)
+        newState.images = [...state.images || [], image]
+        // console.log('STATE' + JSON.stringify(newState.images.length))
+
+        return newState
+    } else {
+        return state
+    }
+}
+export function getEventImageArrayFailureActionReducer(state: EventState, action: Action): EventState {
+    if (action.type === actions.GET_EVENT_IMAGE_ARRAY_FAILURE) {
+        let newState = Object.assign({}, state)
+        newState.images = null
+        return newState
+    } else {
+        return state
+    }
+}
+
 export function getEventDetailsActionReducer(state: EventState, action: Action): EventState {
     if (action.type === actions.GET_EVENT_DETAILS) {
         let _action = action as actions.GetEventDetailsAction
@@ -202,7 +233,6 @@ export function setDisplayedItemActionReducer(state: EventState, action: Action)
     if (action.type === actions.SET_DISPLAYED_ITEM) {
         let _action = action as actions.DisplayedItemAction
         let newState = Object.assign({}, state)
-        console.log('AAA' + JSON.stringify(_action))
         newState.displayedItem = _action.displayedItem
         return newState
     } else {

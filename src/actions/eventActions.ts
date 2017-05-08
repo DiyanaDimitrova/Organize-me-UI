@@ -24,6 +24,8 @@ export const EVENT_DETAILS_BEGIN_LOADING = '@@Event/EVENT_DETAILS_BEGIN_LOADING'
 export const EVENT_DETAILS_END_LOADING = '@@Event/EVENT_DETAILS_END_LOADING'
 export const ATTEND_EVENT_SUCCESS = '@@Event/ATTEND_EVENT_SUCCESS'
 export const ATTEND_EVENT_FAIL = '@@Event/ATTEND_EVENT_FAIL'
+export const GET_EVENT_IMAGE_ARRAY_FAILURE = '@@Event/GET_EVENT_IMAGE_ARRAY_FAILURE'
+export const GET_EVENT_IMAGE_ARRAY = '@@Event/GET_EVENT_IMAGE_ARRAY'
 
 export interface EventAction extends Action {
     eventMessage: string
@@ -58,6 +60,10 @@ export interface GetAllEventsAction extends Action {
 }
 export interface GetEventImageAction extends Action {
     image: any
+}
+export interface GetEventImageListAction extends Action {
+    image: any,
+    id: String
 }
 export interface GetEventDetailsAction extends Action {
     details: any
@@ -195,7 +201,7 @@ export function setEventImageFailure(): Action {
 export function setEventImage(image: any): GetEventImageAction {
     return {
         type: GET_EVENT_IMAGE,
-        image: image,
+        image: image
     } as GetEventImageAction
 }
 export function loadEventImageAction(request: EventDetailsRequest, dispatch: any): void {
@@ -211,13 +217,34 @@ export function loadEventImageAction(request: EventDetailsRequest, dispatch: any
       })
 }
 
+export function setEventImageArrayFailure(): Action {
+    return { type: GET_EVENT_IMAGE_ARRAY_FAILURE } as Action
+}
+export function setEventImageArray(image: any, id: String): GetEventImageListAction {
+    return {
+        type: GET_EVENT_IMAGE_ARRAY,
+        image: image,
+        id: id
+    } as GetEventImageListAction
+}
+export function loadEventImageListAction(request: EventDetailsRequest, dispatch: any): void {
+    axios.get('/event/image/' + request.id)
+      .then((response) => {
+          dispatch(setEventImageArray(response.data, request.id))
+      })
+      .catch((err) => {
+          dispatch(setEventImageArrayFailure())
+      })
+}
+
+
 export function setEventDetailsFailure(): Action {
     return { type: GET_EVENT_DETAILS_FAILURE } as Action
 }
 export function setEventDetails(details: any): GetEventDetailsAction {
     return {
         type: GET_EVENT_DETAILS,
-        details: Object.assign([], details),
+        details: Object.assign([], details)
     } as GetEventDetailsAction
 }
 export function loadEventDetailsAction(request: EventDetailsRequest, dispatch: any): void {

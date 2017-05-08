@@ -140,7 +140,7 @@ function setEventListActionReducer(state, action) {
     if (action.type === actions.GET_EVENT_LIST) {
         var _action = action;
         var newState = Object.assign({}, state);
-        newState.eventList = Object.assign({}, _action.eventList);
+        newState.eventList = Object.assign([], _action.eventList);
         newState.success = true;
         return newState;
     }
@@ -152,6 +152,7 @@ exports.setEventListActionReducer = setEventListActionReducer;
 function setEventListFailureActionReducer(state, action) {
     if (action.type === actions.GET_EVENT_LIST_FAILURE) {
         var newState = Object.assign({}, state);
+        newState.eventList = [];
         newState.success = false;
         return newState;
     }
@@ -196,6 +197,34 @@ function getEventImageFailureActionReducer(state, action) {
     }
 }
 exports.getEventImageFailureActionReducer = getEventImageFailureActionReducer;
+function getEventImageArrayActionReducer(state, action) {
+    if (action.type === actions.GET_EVENT_IMAGE_ARRAY) {
+        var _action = action;
+        var newState = Object.assign({}, state);
+        var image = {
+            image: _action.image,
+            id: _action.id
+        };
+        var didi = Object.assign([state.images], image);
+        newState.images = (state.images || []).concat([image]);
+        return newState;
+    }
+    else {
+        return state;
+    }
+}
+exports.getEventImageArrayActionReducer = getEventImageArrayActionReducer;
+function getEventImageArrayFailureActionReducer(state, action) {
+    if (action.type === actions.GET_EVENT_IMAGE_ARRAY_FAILURE) {
+        var newState = Object.assign({}, state);
+        newState.images = null;
+        return newState;
+    }
+    else {
+        return state;
+    }
+}
+exports.getEventImageArrayFailureActionReducer = getEventImageArrayFailureActionReducer;
 function getEventDetailsActionReducer(state, action) {
     if (action.type === actions.GET_EVENT_DETAILS) {
         var _action = action;
@@ -223,7 +252,6 @@ function setDisplayedItemActionReducer(state, action) {
     if (action.type === actions.SET_DISPLAYED_ITEM) {
         var _action = action;
         var newState = Object.assign({}, state);
-        console.log('AAA' + JSON.stringify(_action));
         newState.displayedItem = _action.displayedItem;
         return newState;
     }

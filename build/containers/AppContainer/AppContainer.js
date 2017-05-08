@@ -13,6 +13,7 @@ var Category_1 = require("../../components/Category/Category/Category");
 var CategoryList_1 = require("../../components/Category/CategoryList/CategoryList");
 var Event_1 = require("../../components/Event/Event/Event");
 var EventList_1 = require("../../components/Event/EventList/EventList");
+var EventGrid_1 = require("../../components/Event/EventGrid/EventGrid");
 var EventDetails_1 = require("../../components/Event/EventDetails/EventDetails");
 var Code_1 = require("../../components/Code/Code/Code");
 var ScanCode_1 = require("../../components/Code/ScanCode/ScanCode");
@@ -34,6 +35,7 @@ var AppContainer = (function (_super) {
                 React.createElement(react_router_1.Route, { path: '/newEvent', component: Event_1.default }),
                 React.createElement(react_router_1.Route, { path: '/editEvent/:id', component: Event_1.default }),
                 React.createElement(react_router_1.Route, { path: '/allEvents', component: EventList_1.default }),
+                React.createElement(react_router_1.Route, { path: '/event/all', component: EventGrid_1.default }),
                 React.createElement(react_router_1.Route, { path: '/eventDetails/:id', component: EventDetails_1.default }),
                 React.createElement(react_router_1.Route, { path: '/newCode/:id', component: Code_1.default }),
                 React.createElement(react_router_1.Route, { path: '/scanCode', component: ScanCode_1.default }))));

@@ -22,6 +22,8 @@ exports.EVENT_DETAILS_BEGIN_LOADING = '@@Event/EVENT_DETAILS_BEGIN_LOADING';
 exports.EVENT_DETAILS_END_LOADING = '@@Event/EVENT_DETAILS_END_LOADING';
 exports.ATTEND_EVENT_SUCCESS = '@@Event/ATTEND_EVENT_SUCCESS';
 exports.ATTEND_EVENT_FAIL = '@@Event/ATTEND_EVENT_FAIL';
+exports.GET_EVENT_IMAGE_ARRAY_FAILURE = '@@Event/GET_EVENT_IMAGE_ARRAY_FAILURE';
+exports.GET_EVENT_IMAGE_ARRAY = '@@Event/GET_EVENT_IMAGE_ARRAY';
 function createEventSuccessAction(message) {
     return {
         type: exports.NEW_EVENT_SUCCESS,
@@ -183,7 +185,7 @@ exports.setEventImageFailure = setEventImageFailure;
 function setEventImage(image) {
     return {
         type: exports.GET_EVENT_IMAGE,
-        image: image,
+        image: image
     };
 }
 exports.setEventImage = setEventImage;
@@ -200,6 +202,28 @@ function loadEventImageAction(request, dispatch) {
     });
 }
 exports.loadEventImageAction = loadEventImageAction;
+function setEventImageArrayFailure() {
+    return { type: exports.GET_EVENT_IMAGE_ARRAY_FAILURE };
+}
+exports.setEventImageArrayFailure = setEventImageArrayFailure;
+function setEventImageArray(image, id) {
+    return {
+        type: exports.GET_EVENT_IMAGE_ARRAY,
+        image: image,
+        id: id
+    };
+}
+exports.setEventImageArray = setEventImageArray;
+function loadEventImageListAction(request, dispatch) {
+    axios_1.default.get('/event/image/' + request.id)
+        .then(function (response) {
+        dispatch(setEventImageArray(response.data, request.id));
+    })
+        .catch(function (err) {
+        dispatch(setEventImageArrayFailure());
+    });
+}
+exports.loadEventImageListAction = loadEventImageListAction;
 function setEventDetailsFailure() {
     return { type: exports.GET_EVENT_DETAILS_FAILURE };
 }
@@ -207,7 +231,7 @@ exports.setEventDetailsFailure = setEventDetailsFailure;
 function setEventDetails(details) {
     return {
         type: exports.GET_EVENT_DETAILS,
-        details: Object.assign([], details),
+        details: Object.assign([], details)
     };
 }
 exports.setEventDetails = setEventDetails;
