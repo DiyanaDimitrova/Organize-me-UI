@@ -20,7 +20,6 @@ interface StateProps {
 interface DispatchProps {
   loadEventList: () => void,
   performDeleteEventAction: (deleteEventRequest: DeleteEventRequest) => void,
-  setCurrentItem: (currentItem: UpdateEventRequest) => void,
   setDisplayedItem: (displayedItem: String) => void
 }
 
@@ -56,17 +55,17 @@ class EventList extends React.Component<EventListProps, EventListState> {
   }
   updateItem = (e, item) => {
     e.preventDefault()
-    let updateEvent = {} as UpdateEventRequest
-    updateEvent.id = item._id
-    updateEvent.title = item.title
-    updateEvent.place = item.place
-    updateEvent.hourValue = dateFormat(item.time)
-    updateEvent.dateValue = dateFormat(item.date)
-    updateEvent.capacity = item.capacity
-    updateEvent.details = item.details
-    updateEvent.categoryId = item.categoryId
-    this.props.setCurrentItem(updateEvent)
-    browserHistory.push('/newEvent')
+    // let updateEvent = {} as UpdateEventRequest
+    // updateEvent.id = item._id
+    // updateEvent.title = item.title
+    // updateEvent.place = item.place
+    // updateEvent.hourValue = dateFormat(item.time)
+    // updateEvent.dateValue = dateFormat(item.date)
+    // updateEvent.capacity = item.capacity
+    // updateEvent.details = item.details
+    // updateEvent.categoryId = item.categoryId
+    // this.props.setCurrentItem(updateEvent)
+    browserHistory.push('/editEvent/' + item._id)
   }
   viewItem = (e, itemId) => {
     this.props.setDisplayedItem(itemId)
@@ -137,9 +136,6 @@ const mapDispatchToProps = (dispatch) => {
       },
       performDeleteEventAction: (deleteEventRequest: DeleteEventRequest): void => {
           actions.performDeleteEventAction(deleteEventRequest, dispatch)
-      },
-      setCurrentItem: (currentItem: UpdateEventRequest): void => {
-          actions.setCurrentItem(currentItem, dispatch)
       },
       setDisplayedItem: (displayedItem: String): void => {
           actions.setDisplayedItem(displayedItem, dispatch)

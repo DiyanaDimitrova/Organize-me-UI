@@ -10,7 +10,6 @@ var react_router_1 = require("react-router");
 var actions = require("../../../actions/eventActions");
 var material_ui_1 = require("material-ui");
 var more_vert_1 = require("material-ui/svg-icons/navigation/more-vert");
-var dateFormat = require("dateformat");
 var classes = require('./EventList.css');
 var EventList = (function (_super) {
     __extends(EventList, _super);
@@ -24,17 +23,7 @@ var EventList = (function (_super) {
         };
         _this.updateItem = function (e, item) {
             e.preventDefault();
-            var updateEvent = {};
-            updateEvent.id = item._id;
-            updateEvent.title = item.title;
-            updateEvent.place = item.place;
-            updateEvent.hourValue = dateFormat(item.time);
-            updateEvent.dateValue = dateFormat(item.date);
-            updateEvent.capacity = item.capacity;
-            updateEvent.details = item.details;
-            updateEvent.categoryId = item.categoryId;
-            _this.props.setCurrentItem(updateEvent);
-            react_router_1.browserHistory.push('/newEvent');
+            react_router_1.browserHistory.push('/editEvent/' + item._id);
         };
         _this.viewItem = function (e, itemId) {
             _this.props.setDisplayedItem(itemId);
@@ -101,9 +90,6 @@ var mapDispatchToProps = function (dispatch) {
         },
         performDeleteEventAction: function (deleteEventRequest) {
             actions.performDeleteEventAction(deleteEventRequest, dispatch);
-        },
-        setCurrentItem: function (currentItem) {
-            actions.setCurrentItem(currentItem, dispatch);
         },
         setDisplayedItem: function (displayedItem) {
             actions.setDisplayedItem(displayedItem, dispatch);

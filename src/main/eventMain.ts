@@ -50,7 +50,7 @@ export interface EventState {
     eventListLoading: Boolean,
     success: Boolean,
     eventList: Array<any>,
-    currentItem: UpdateEventRequest,
+    currentItem: Object,
     itemToBeEdited: Boolean,
     displayedItem: String
     itemToView: {
@@ -95,6 +95,7 @@ const reducers = {
     [a.UPDATE_EVENT_SUCCESS]: r.updateEventSuccessReducer,
     [a.UPDATE_EVENT_FAIL]: r.updateEventFailReducer,
     [a.SET_CURRENT_ITEM]: r.setCurrentItemReducer,
+    [a.SET_CURRENT_ITEM_FAIL]: r.setCurrentItemFailReducer,
     [a.GET_EVENT_IMAGE_FAILURE]: r.getEventImageFailureActionReducer,
     [a.GET_EVENT_IMAGE]: r.getEventImageActionReducer,
     [a.EVENT_IMAGE_BEGIN_LOADING]: r.eventImageBeginLoadingActionReducer,

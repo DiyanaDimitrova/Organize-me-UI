@@ -174,6 +174,19 @@ function setCurrentItemReducer(state, action) {
     }
 }
 exports.setCurrentItemReducer = setCurrentItemReducer;
+function setCurrentItemFailReducer(state, action) {
+    if (action.type === actions.SET_CURRENT_ITEM_FAIL) {
+        var _action = action;
+        var newState = Object.assign({}, state);
+        newState.currentItem = Object.assign({}, _action.currentItem);
+        newState.itemToBeEdited = false;
+        return newState;
+    }
+    else {
+        return state;
+    }
+}
+exports.setCurrentItemFailReducer = setCurrentItemFailReducer;
 function getEventImageActionReducer(state, action) {
     if (action.type === actions.GET_EVENT_IMAGE) {
         var _action = action;

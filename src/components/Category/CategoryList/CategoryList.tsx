@@ -17,7 +17,6 @@ interface StateProps {
 interface DispatchProps {
   loadCategoriesList: () => void,
   performDeleteCategoryAction: (deleteCategoryRequest: DeleteCategoryRequest) => void,
-  setCurrentItem: (currentItem: UpdateCategoryRequest) => void
 }
 
 interface CategoryListProps extends StateProps, DispatchProps{

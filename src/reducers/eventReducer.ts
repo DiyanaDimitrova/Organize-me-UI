@@ -158,6 +158,17 @@ export function setCurrentItemReducer(state: EventState, action: Action): EventS
         return state
     }
 }
+export function setCurrentItemFailReducer(state: EventState, action: Action): EventState {
+    if (action.type === actions.SET_CURRENT_ITEM_FAIL) {
+        let _action = action as actions.CurrentItemAction
+        let newState = Object.assign({}, state)
+        newState.currentItem = Object.assign({}, _action.currentItem)
+        newState.itemToBeEdited = false
+        return newState
+    } else {
+        return state
+    }
+}
 
 export function getEventImageActionReducer(state: EventState, action: Action): EventState {
     if (action.type === actions.GET_EVENT_IMAGE) {

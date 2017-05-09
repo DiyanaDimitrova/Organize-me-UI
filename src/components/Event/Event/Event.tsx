@@ -5,6 +5,7 @@ import { RaisedButton, TextField, Paper, DatePicker, TimePicker, FlatButton, Dro
 import * as actions from '../../../actions/eventActions'
 import * as categoryActions from '../../../actions/categoryActions'
 import { CreateEventRequest, UpdateEventRequest } from '../../../main/eventMain'
+import * as dateFormat from 'dateformat'
 const classes = require('./Event.css')
 
 interface StateProps {
@@ -18,7 +19,9 @@ interface StateProps {
 interface DispatchProps {
   performCreateEventAction: (createEventRequest: CreateEventRequest) => void,
   performUpdateEventAction: (updateEventRequest: UpdateEventRequest) => void,
-  loadCategoriesList: () => void
+  loadCategoriesList: () => void,
+  setCurrentItem: (currentItem: String) => void
+
 }
 
 export interface EventProps extends StateProps, DispatchProps{
@@ -45,8 +48,8 @@ export class Event extends React.Component<EventProps, EventState> {
     this.state = {
       title: props.itemToBeEdited === true ? props.currentItem.title : '',
       place: props.itemToBeEdited === true ? props.currentItem.place : '',
-      hourValue: props.itemToBeEdited === true ? props.currentItem.hourValue : null,
-      dateValue: props.itemToBeEdited === true ? props.currentItem.dateValue : null,
+      hourValue: props.itemToBeEdited === true ? dateFormat(props.currentItem.hourValue) : null,
+      dateValue: props.itemToBeEdited === true ? dateFormat(props.currentItem.dateValue) : null,
       file: props.itemToBeEdited === true ? props.currentItem.file : '',
       imagePreviewUrl: props.itemToBeEdited === true ? props.currentItem.imagePreviewUrl : '',
       type: props.itemToBeEdited === true ? props.currentItem.type : '',
@@ -67,6 +70,10 @@ export class Event extends React.Component<EventProps, EventState> {
   }
   componentWillMount(){
     this.props.loadCategoriesList()
+    if(this.props.params.id !== undefined && this.props.params.id !== null){
+      console.log('CURRENT' + this.props.params.id)
+      this.props.setCurrentItem(this.props.params.id)
+    }
   }
   componentWillReceiveProps(nextProps) {
     if(this.props !== nextProps && nextProps.itemToBeEdited === true){
@@ -97,7 +104,7 @@ export class Event extends React.Component<EventProps, EventState> {
     event.preventDefault()
     if(this.props.itemToBeEdited === true){
         let updateEvent = {} as UpdateEventRequest
-        updateEvent.id = this.props.currentItem.id
+        updateEvent.id = this.props.currentItem._id
         updateEvent.title = this.state.title
         updateEvent.hourValue = this.state.hourValue
         updateEvent.dateValue = this.state.dateValue
@@ -258,6 +265,9 @@ const mapDispatchToProps = (dispatch) => {
       },
       loadCategoriesList: (): void => {
           categoryActions.loadCategoriesList(dispatch)
+      },
+      setCurrentItem: (currentItem: String): void => {
+          actions.setCurrentItem(currentItem, dispatch)
       }
     }
 }

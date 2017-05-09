@@ -9,6 +9,7 @@ var react_redux_1 = require("react-redux");
 var material_ui_1 = require("material-ui");
 var actions = require("../../../actions/eventActions");
 var categoryActions = require("../../../actions/categoryActions");
+var dateFormat = require("dateformat");
 var classes = require('./Event.css');
 var Event = (function (_super) {
     __extends(Event, _super);
@@ -38,7 +39,7 @@ var Event = (function (_super) {
             event.preventDefault();
             if (_this.props.itemToBeEdited === true) {
                 var updateEvent = {};
-                updateEvent.id = _this.props.currentItem.id;
+                updateEvent.id = _this.props.currentItem._id;
                 updateEvent.title = _this.state.title;
                 updateEvent.hourValue = _this.state.hourValue;
                 updateEvent.dateValue = _this.state.dateValue;
@@ -119,8 +120,8 @@ var Event = (function (_super) {
         _this.state = {
             title: props.itemToBeEdited === true ? props.currentItem.title : '',
             place: props.itemToBeEdited === true ? props.currentItem.place : '',
-            hourValue: props.itemToBeEdited === true ? props.currentItem.hourValue : null,
-            dateValue: props.itemToBeEdited === true ? props.currentItem.dateValue : null,
+            hourValue: props.itemToBeEdited === true ? dateFormat(props.currentItem.hourValue) : null,
+            dateValue: props.itemToBeEdited === true ? dateFormat(props.currentItem.dateValue) : null,
             file: props.itemToBeEdited === true ? props.currentItem.file : '',
             imagePreviewUrl: props.itemToBeEdited === true ? props.currentItem.imagePreviewUrl : '',
             type: props.itemToBeEdited === true ? props.currentItem.type : '',
@@ -142,6 +143,10 @@ var Event = (function (_super) {
     }
     Event.prototype.componentWillMount = function () {
         this.props.loadCategoriesList();
+        if (this.props.params.id !== undefined && this.props.params.id !== null) {
+            console.log('CURRENT' + this.props.params.id);
+            this.props.setCurrentItem(this.props.params.id);
+        }
     };
     Event.prototype.componentWillReceiveProps = function (nextProps) {
         if (this.props !== nextProps && nextProps.itemToBeEdited === true) {
@@ -214,6 +219,9 @@ var mapDispatchToProps = function (dispatch) {
         },
         loadCategoriesList: function () {
             categoryActions.loadCategoriesList(dispatch);
+        },
+        setCurrentItem: function (currentItem) {
+            actions.setCurrentItem(currentItem, dispatch);
         }
     };
 };

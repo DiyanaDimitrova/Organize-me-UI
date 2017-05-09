@@ -11,6 +11,7 @@ exports.DELETE_EVENT_FAIL = '@@Event/DELETE_EVENT_FAIL';
 exports.UPDATE_EVENT_SUCCESS = '@@Event/UPDATE_EVENT_SUCCESS';
 exports.UPDATE_EVENT_FAIL = '@@Event/UPDATE_EVENT_FAIL';
 exports.SET_CURRENT_ITEM = '@@Event/SET_CURRENT_ITEM';
+exports.SET_CURRENT_ITEM_FAIL = '@@Event/SET_CURRENT_ITEM_FAIL';
 exports.SET_DISPLAYED_ITEM = '@@Event/SET_DISPLAYED_ITEM';
 exports.GET_EVENT_IMAGE_FAILURE = '@@Event/GET_EVENT_IMAGE_FAILURE';
 exports.GET_EVENT_IMAGE = '@@Event/GET_EVENT_IMAGE';
@@ -83,8 +84,21 @@ function setCurrentItemAction(currentItem) {
     };
 }
 exports.setCurrentItemAction = setCurrentItemAction;
-function setCurrentItem(currentItem, dispatch) {
-    dispatch(setCurrentItemAction(currentItem));
+function setCurrentItemFailAction(currentItem) {
+    return {
+        type: exports.SET_CURRENT_ITEM_FAIL,
+        currentItem: currentItem
+    };
+}
+exports.setCurrentItemFailAction = setCurrentItemFailAction;
+function setCurrentItem(id, dispatch) {
+    axios_1.default.get('/event/' + id)
+        .then(function (response) {
+        dispatch(setCurrentItemAction(response.data.event));
+    })
+        .catch(function (err) {
+        dispatch(setCurrentItemFailAction(err.response.data.event));
+    });
 }
 exports.setCurrentItem = setCurrentItem;
 function setDisplayedItemAction(displayedItem) {

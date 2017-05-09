@@ -13,6 +13,7 @@ export const DELETE_EVENT_FAIL = '@@Event/DELETE_EVENT_FAIL'
 export const UPDATE_EVENT_SUCCESS = '@@Event/UPDATE_EVENT_SUCCESS'
 export const UPDATE_EVENT_FAIL = '@@Event/UPDATE_EVENT_FAIL'
 export const SET_CURRENT_ITEM = '@@Event/SET_CURRENT_ITEM'
+export const SET_CURRENT_ITEM_FAIL = '@@Event/SET_CURRENT_ITEM_FAIL'
 export const SET_DISPLAYED_ITEM = '@@Event/SET_DISPLAYED_ITEM'
 export const GET_EVENT_IMAGE_FAILURE = '@@Event/GET_EVENT_IMAGE_FAILURE'
 export const GET_EVENT_IMAGE = '@@Event/GET_EVENT_IMAGE'
@@ -102,14 +103,28 @@ export function updateEventFailAction(message: String): EventAction {
     } as EventAction
 }
 
-export function setCurrentItemAction(currentItem: UpdateEventRequest): CurrentItemAction {
+export function setCurrentItemAction(currentItem: Object): CurrentItemAction {
     return {
         type: SET_CURRENT_ITEM,
         currentItem: currentItem
     } as CurrentItemAction
 }
-export function setCurrentItem(currentItem: UpdateEventRequest, dispatch: any): void {
-    dispatch(setCurrentItemAction(currentItem))
+
+export function setCurrentItemFailAction(currentItem: Object): CurrentItemAction {
+    return {
+        type: SET_CURRENT_ITEM_FAIL,
+        currentItem: currentItem
+    } as CurrentItemAction
+}
+
+export function setCurrentItem(id: String, dispatch: any): void {
+    axios.get('/event/' + id)
+      .then((response) => {
+          dispatch(setCurrentItemAction(response.data.event))
+      })
+      .catch((err) => {
+          dispatch(setCurrentItemFailAction(err.response.data.event))
+      })
 }
 
 export function setDisplayedItemAction(displayedItem: String): DisplayedItemAction {
