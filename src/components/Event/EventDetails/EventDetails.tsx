@@ -40,7 +40,6 @@ export interface EventDetailsState{
 export class EventDetails extends React.Component<EventDetailsProps, EventDetailsState> {
   constructor(props) {
     super(props)
-    console.log('Props' + JSON.stringify(this.props))
   }
   // public static defaultProps: StateProps = {
   //   eventImageLoading: false,
@@ -86,15 +85,21 @@ export class EventDetails extends React.Component<EventDetailsProps, EventDetail
     attendEvent.type = 'notGoing'
     this.props.performAttendEventAction(attendEvent)
   }
-
+  handleInvitedPeople = (actionType: String) => {
+    let group = this.props.itemToView.details.invitedPeople.map(item => {
+      if(item.type === actionType){
+        return item.username
+      }
+    })
+    console.log(group)
+    return group
+  }
   render() {
     let imagePreviewUrl = this.props.itemToView.image
     let $imagePreview = null;
     if (imagePreviewUrl) {
         $imagePreview = (React.createElement("img", { src: imagePreviewUrl }));
   }
-  console.log('Props111' + JSON.stringify(imagePreviewUrl))
-
     return (
       <Card>
         <CardHeader
@@ -112,9 +117,9 @@ export class EventDetails extends React.Component<EventDetailsProps, EventDetail
           <Divider/>
           <div>{this.props.itemToView.details.details}</div>
           <Divider/>
-          <div>Going: {this.props.itemToView.details.goingPeople}</div>
-          <div>Interested: {this.props.itemToView.details.interestedPeople}</div>
-          <div>Not interested: {this.props.itemToView.details.notGoingPeople}</div>
+          <div>Going: {this.handleInvitedPeople('going')}</div>
+          <div>Interested: {this.handleInvitedPeople('interested')}</div>
+          <div>Not interested: {this.handleInvitedPeople('notGoing')}</div>
         </CardText>
         <CardActions>
             <RaisedButton label="Going" secondary={true} onClick={this.goingToEvent}/>

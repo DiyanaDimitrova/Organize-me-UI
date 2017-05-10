@@ -38,7 +38,15 @@ var EventDetails = (function (_super) {
             attendEvent.type = 'notGoing';
             _this.props.performAttendEventAction(attendEvent);
         };
-        console.log('Props' + JSON.stringify(_this.props));
+        _this.handleInvitedPeople = function (actionType) {
+            var group = _this.props.itemToView.details.invitedPeople.map(function (item) {
+                if (item.type === actionType) {
+                    return item.username;
+                }
+            });
+            console.log(group);
+            return group;
+        };
         return _this;
     }
     EventDetails.prototype.getInitialData = function () {
@@ -59,7 +67,6 @@ var EventDetails = (function (_super) {
         if (imagePreviewUrl) {
             $imagePreview = (React.createElement("img", { src: imagePreviewUrl }));
         }
-        console.log('Props111' + JSON.stringify(imagePreviewUrl));
         return (React.createElement(Card_1.Card, null,
             React.createElement(Card_1.CardHeader, { title: this.props.itemToView.details.title, subtitle: dateFormat(this.props.itemToView.details.time, 'HH:MM') + ' ' + dateFormat(this.props.itemToView.details.time, 'dS mmmm, yyyy') }),
             React.createElement(Card_1.CardMedia, { overlay: React.createElement(Card_1.CardTitle, { title: this.props.itemToView.details.title, subtitle: dateFormat(this.props.itemToView.details.time, 'HH:MM') + ' ' + dateFormat(this.props.itemToView.details.time, 'dS mmmm, yyyy') }) },
@@ -76,13 +83,13 @@ var EventDetails = (function (_super) {
                 React.createElement(Divider_1.default, null),
                 React.createElement("div", null,
                     "Going: ",
-                    this.props.itemToView.details.goingPeople),
+                    this.handleInvitedPeople('going')),
                 React.createElement("div", null,
                     "Interested: ",
-                    this.props.itemToView.details.interestedPeople),
+                    this.handleInvitedPeople('interested')),
                 React.createElement("div", null,
                     "Not interested: ",
-                    this.props.itemToView.details.notGoingPeople)),
+                    this.handleInvitedPeople('notGoing'))),
             React.createElement(Card_1.CardActions, null,
                 React.createElement(RaisedButton_1.default, { label: "Going", secondary: true, onClick: this.goingToEvent }),
                 React.createElement(RaisedButton_1.default, { label: "Interested", primary: true, onClick: this.interestedInEvent }),
