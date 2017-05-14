@@ -8,6 +8,11 @@ import { } from '../../../main/eventMain'
 import { Event } from '../../Event/Event/Event'
 import { UpdateEventRequest, DeleteEventRequest } from '../../../main/eventMain'
 import Header from '../../../components/Header/Header'
+import Edit from 'material-ui/svg-icons/editor/mode-edit'
+import Delete from 'material-ui/svg-icons/action/delete'
+import Send from 'material-ui/svg-icons/communication/contact-mail'
+import View from 'material-ui/svg-icons/social/pages'
+
 import * as dateFormat from 'dateformat'
 
 const classes = require('./EventList.css')
@@ -88,16 +93,16 @@ class EventList extends React.Component<EventListProps, EventListState> {
       <IconMenu iconButtonElement={this.iconButtonElement()}>
         <MenuItem onTouchTap={(event) => {
           this.updateItem(event, item)
-        }}>Edit</MenuItem>
+        }} leftIcon={<Edit />}>Edit</MenuItem>
         <MenuItem onTouchTap={(event) => {
           this.deleteItem(event, item._id)
-        }}>Delete</MenuItem>
+        }} leftIcon={<Delete />}>Delete</MenuItem>
         <MenuItem onTouchTap={(event) => {
           this.viewItem(event, item._id)
-        }}>View</MenuItem>
+        }} leftIcon={<View />}>View</MenuItem>
         <MenuItem onTouchTap={(event) => {
           this.sendCodeItem(event, item)
-        }}>Send Code</MenuItem>
+        }} leftIcon={<Send />}>Send Code</MenuItem>
       </IconMenu>
     )
   }

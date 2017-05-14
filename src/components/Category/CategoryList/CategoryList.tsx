@@ -7,6 +7,8 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
 import { DeleteCategoryRequest, UpdateCategoryRequest } from '../../../main/categoryMain'
 import { Category } from '../../Category/Category/Category'
 import Header from '../../../components/Header/Header'
+import Edit from 'material-ui/svg-icons/editor/mode-edit'
+import Delete from 'material-ui/svg-icons/action/delete'
 const classes = require('./CategoryList.css')
 
 interface StateProps {
@@ -71,10 +73,10 @@ class CategoryList extends React.Component<CategoryListProps, CategoryListState>
       <IconMenu iconButtonElement={this.iconButtonElement()}>
         <MenuItem onTouchTap={(event) => {
           this.updateItem(event, item)
-        }}>Edit</MenuItem>
+        }} leftIcon={<Edit />}>Edit</MenuItem>
         <MenuItem onTouchTap={(event) => {
           this.deleteItem(event, item._id)
-        }}>Delete</MenuItem>
+        }} leftIcon={<Delete />}>Delete</MenuItem>
       </IconMenu>
     )
   }

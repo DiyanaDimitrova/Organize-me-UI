@@ -8,6 +8,15 @@ import { browserHistory } from 'react-router'
 import { AppState } from '../../store/AppStore'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
+import Event from 'material-ui/svg-icons/action/event'
+import Note from 'material-ui/svg-icons/action/note-add'
+import Toc from 'material-ui/svg-icons/action/toc'
+import EventNote from 'material-ui/svg-icons/notification/event-note'
+import Nfc from 'material-ui/svg-icons/device/nfc'
+import Photo from 'material-ui/svg-icons/image/photo-library'
+
+
+
 const classes = require('./Header.css')
 
 
@@ -70,12 +79,12 @@ class Header extends React.Component<HeaderProps, HeaderState> {
           iconElementRight={this.props.logged ? <LoggedMenu /> : <Login />}
         />
         <Drawer open={this.state.openMenu}>
-          <MenuItem onTouchTap={this.newCategoryClick}>Create Category</MenuItem>
-          <MenuItem onTouchTap={this.allCategoryClick}>All Categories</MenuItem>
-          <MenuItem onTouchTap={this.newEventClick}>Create Event</MenuItem>
-          <MenuItem onTouchTap={this.allEventClick}>All Events</MenuItem>
-          <MenuItem onTouchTap={this.eventGridClick}>Events Grid</MenuItem>
-          <MenuItem onTouchTap={this.scanCodeClick}>Scan Code</MenuItem>
+          <MenuItem onTouchTap={this.newCategoryClick} leftIcon={<Note />}>Create Category</MenuItem>
+          <MenuItem onTouchTap={this.allCategoryClick} leftIcon={<Toc />}>All Categories</MenuItem>
+          <MenuItem onTouchTap={this.newEventClick} leftIcon={<Event />}>Create Event</MenuItem>
+          <MenuItem onTouchTap={this.allEventClick} leftIcon={<EventNote />}>All Events</MenuItem>
+          <MenuItem onTouchTap={this.eventGridClick} leftIcon={<Photo />}>Events Grid</MenuItem>
+          <MenuItem onTouchTap={this.scanCodeClick} leftIcon={<Nfc />}>Scan Code</MenuItem>
         </Drawer>
       </div>
     )
