@@ -1,0 +1,61 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+
+    // Whether git is enabled
+    "git.enabled": true,
+
+    // Path to the git executable
+    "git.path": null,
+
+    // Whether auto refreshing is enabled
+    "git.autorefresh": true,
+
+    // Whether auto fetching is enabled
+    "git.autofetch": true,
+
+    // Confirm before synchronizing git repositories
+    "git.confirmSync": true,
+
+    // Controls the git badge counter. `all` counts all changes. `tracked` counts only the tracked changes. `off` turns it off.
+    "git.countBadge": "all",
+
+    // Controls what type of branches are listed when running `Checkout to...`. `all` shows all refs, `local` shows only the local branchs, `tags` shows only tags and `remote` shows only remote branches.
+    "git.checkoutType": "all",
+
+    // Ignores the legacy Git warning
+    "git.ignoreLegacyWarning": false,
+
+    // Ignores the warning when there are too many changes in a repository
+    "git.ignoreLimitWarning": false,
+
+
+    // Controls whether eslint is enabled for JavaScript files or not.
+    "eslint.enable": true,
+
+    // A path added to NODE_PATH when resolving the eslint module.
+    "eslint.nodePath": null,
+
+    // Uses the legacy module resolving.
+    "eslint._legacyModuleResolve": false,
+
+    // The eslint options object to provide args normally passed to eslint when executed from a command line (see http://eslint.org/docs/developer-guide/nodejs-api#cliengine).
+    "eslint.options": {},
+
+    // Traces the communication between VSCode and the eslint linter service.
+    "eslint.trace.server": "off",
+
+    // Run the linter on save (onSave) or on type (onType)
+    "eslint.run": "onType",
+
+    // Turns auto fix on save on or off.
+    "eslint.autoFixOnSave": false,
+
+    // 
+    "eslint.workingDirectories": [],
+
+    // An array of language ids which should be validated by ESLint
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact"
+    ]
+}

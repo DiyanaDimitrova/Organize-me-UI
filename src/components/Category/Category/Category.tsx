@@ -11,7 +11,8 @@ const classes = require('./Category.css')
 interface StateProps {
   currentItem: UpdateCategoryRequest,
   itemToBeEdited: Boolean,
-  params: any
+  params: any,
+  location: any
 }
 
 interface DispatchProps {
@@ -32,9 +33,9 @@ export interface CategoryState{
 export class Category extends React.Component<CategoryProps, CategoryState> {
   constructor(props) {
     super(props)
-    console.log('PROPS' + JSON.stringify(props))
+    debugger
     this.state = {
-      title: props.itemToBeEdited === true ? props.currentItem.title : ''
+      title: props.itemToBeEdited === true && this.props.params.id !== undefined ? props.currentItem.title : ''
     }
     this.titleEntered = this.titleEntered.bind(this)
     this.saveCategory = this.saveCategory.bind(this)
@@ -46,7 +47,7 @@ export class Category extends React.Component<CategoryProps, CategoryState> {
     }
   }
   componentWillReceiveProps(nextProps) {
-    if(this.props !== nextProps && nextProps.itemToBeEdited === true){
+    if(this.props !== nextProps){
         this.setState({ title: nextProps.currentItem.title })
     }
   }
@@ -57,7 +58,7 @@ export class Category extends React.Component<CategoryProps, CategoryState> {
     }
   saveCategory = (event)  => {
           event.preventDefault()
-          if(this.props.itemToBeEdited === true ){
+          if(this.props.itemToBeEdited === true && this.props.params.id !== undefined){
             let updateCategory = {} as UpdateCategoryRequest
             updateCategory.title = this.state.title
             updateCategory.id = this.props.currentItem._id
@@ -77,7 +78,8 @@ export class Category extends React.Component<CategoryProps, CategoryState> {
     }
   render() {
     let title
-    if(this.props.itemToBeEdited === true){
+    debugger
+    if (this.props.itemToBeEdited === true && this.props.params.id !== undefined) {
       title = 'Edit category'
     } else {
       title = 'Add new category'
