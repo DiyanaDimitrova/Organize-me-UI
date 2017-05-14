@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card'
 import RaisedButton from 'material-ui/RaisedButton'
+import Chip from 'material-ui/Chip';
 import * as actions from '../../../actions/eventActions'
 import { EventDetailsRequest, AttendEventRequest } from '../../../main/eventMain'
 import * as dateFormat from 'dateformat'
@@ -34,13 +35,17 @@ export interface EventDetailsState{
   eventImageLoading: Boolean,
   eventDetailsLoading: Boolean,
   displayedItem: String,
-  itemToView: any
+  itemToView: any,
+  goingUsers: any,
+  interestedUsers: any,
+  notGoingUsers: any
 }
 
 export class EventDetails extends React.Component<EventDetailsProps, EventDetailsState> {
   constructor(props) {
     super(props)
   }
+
   // public static defaultProps: StateProps = {
   //   eventImageLoading: false,
   //   eventDetailsLoading: false,
@@ -54,6 +59,7 @@ export class EventDetails extends React.Component<EventDetailsProps, EventDetail
     // eventDetails.id = '5909807905bb9c21b40c9cdd'
     this.props.loadEventImageAction(eventDetails)
     this.props.loadEventDetailsAction(eventDetails)
+
   }
 
   componentWillMount() {
@@ -85,18 +91,24 @@ export class EventDetails extends React.Component<EventDetailsProps, EventDetail
     attendEvent.type = 'notGoing'
     this.props.performAttendEventAction(attendEvent)
   }
-  handleInvitedPeople = (actionType: String) => {
-    let group = this.props.itemToView.details.invitedPeople.map(item => {
-      if(item.type === actionType){
-        return item.username
-      }
-    })
-    console.log(group)
-    return group
-  }
+  // handleInvitedPeople = (actionType: String) => {
+  //   let group = this.props.itemToView.details.invitedPeople.filter(item => {
+  //     if(item.type === actionType){
+  //       return item
+  //     }
+  //   })
+  //   if(actionType === 'going'){
+  //     this.setState({goingUsers: group})
+  //   } else if(actionType === 'interested') {
+  //     this.setState({interestedUsers: group})
+  //   } else if(actionType === 'notGoing'){
+  //     this.setState({notGoingUsers: group})
+  //   }
+  // }
+
   render() {
     let imagePreviewUrl = this.props.itemToView.image
-    let $imagePreview = null;
+    let $imagePreview = null
     if (imagePreviewUrl) {
         $imagePreview = (React.createElement("img", { src: imagePreviewUrl }));
   }
@@ -117,9 +129,27 @@ export class EventDetails extends React.Component<EventDetailsProps, EventDetail
           <Divider/>
           <div>{this.props.itemToView.details.details}</div>
           <Divider/>
-          <div>Going: {this.handleInvitedPeople('going')}</div>
-          <div>Interested: {this.handleInvitedPeople('interested')}</div>
-          <div>Not interested: {this.handleInvitedPeople('notGoing')}</div>
+          <div>Going: {this.props.itemToView.details.invitedPeople.map((item, index) => {
+            if(item.type === 'going'){
+              return <Chip key={index}>
+                 {item.username}
+               </Chip>
+            }
+           })}</div>
+          <div>Interested: {this.props.itemToView.details.invitedPeople.map((item, index) => {
+            if(item.type === 'interested'){
+              return <Chip key={index}>
+                 {item.username}
+               </Chip>
+            }
+           })}</div>
+          <div>Not interested: {this.props.itemToView.details.invitedPeople.map((item, index) => {
+            if(item.type === 'notGoing'){
+              return <Chip key={index}>
+                 {item.username}
+               </Chip>
+            }
+           })}</div>
         </CardText>
         <CardActions>
             <RaisedButton label="Going" secondary={true} onClick={this.goingToEvent}/>
@@ -136,7 +166,7 @@ const mapStateToProps = (state: any) => ({
   eventDetailsLoading: state.event.eventDetailsLoading,
   displayedItem: state.event.displayedItem,
   itemToView: state.event.itemToView,
-  username: state.login.user.username
+  username: state.login.user ? state.login.user.username : ''
 })
 
 const mapDispatchToProps = (dispatch) => {

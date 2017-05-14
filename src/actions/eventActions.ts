@@ -70,7 +70,7 @@ export interface GetEventDetailsAction extends Action {
     details: any
 }
 export interface CurrentItemAction extends Action {
-    currentItem: UpdateEventRequest
+    currentItem: Object
 }
 export interface DisplayedItemAction extends Action {
     displayedItem: String

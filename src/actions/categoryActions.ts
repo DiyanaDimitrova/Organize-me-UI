@@ -23,7 +23,7 @@ export interface GetAllCategoriesAction extends Action {
 }
 
 export interface CurrentItemAction extends Action {
-    currentItem: UpdateCategoryRequest
+    currentItem: Object
 }
 
 export function createCategorySuccessAction(message: String): CategoryAction {

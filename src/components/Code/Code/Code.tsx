@@ -10,7 +10,8 @@ import { SendCodeRequest } from '../../../main/codeMain'
 interface StateProps {
   listInvitedLoading: Boolean,
   success: Boolean,
-  invitedPeopleList: Array<any>
+  invitedPeopleList: Array<any>,
+  params: any
 }
 
 interface DispatchProps {
@@ -57,7 +58,8 @@ export class Code extends React.Component<CodeProps, CodeState> {
   public static defaultProps: StateProps = {
     listInvitedLoading: false,
     success: true,
-    invitedPeopleList: null
+    invitedPeopleList: null,
+    params: null
   }
   componentWillMount() {
     this.props.loadListInvited(this.props.params.id)

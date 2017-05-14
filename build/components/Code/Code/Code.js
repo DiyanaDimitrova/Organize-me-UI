@@ -94,7 +94,8 @@ var Code = (function (_super) {
 Code.defaultProps = {
     listInvitedLoading: false,
     success: true,
-    invitedPeopleList: null
+    invitedPeopleList: null,
+    params: null
 };
 exports.Code = Code;
 var mapStateToProps = function (state) { return ({

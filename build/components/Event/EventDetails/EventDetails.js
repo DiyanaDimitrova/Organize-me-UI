@@ -8,6 +8,7 @@ var React = require("react");
 var react_redux_1 = require("react-redux");
 var Card_1 = require("material-ui/Card");
 var RaisedButton_1 = require("material-ui/RaisedButton");
+var Chip_1 = require("material-ui/Chip");
 var actions = require("../../../actions/eventActions");
 var dateFormat = require("dateformat");
 var place_1 = require("material-ui/svg-icons/maps/place");
@@ -37,15 +38,6 @@ var EventDetails = (function (_super) {
             attendEvent.username = _this.props.username;
             attendEvent.type = 'notGoing';
             _this.props.performAttendEventAction(attendEvent);
-        };
-        _this.handleInvitedPeople = function (actionType) {
-            var group = _this.props.itemToView.details.invitedPeople.map(function (item) {
-                if (item.type === actionType) {
-                    return item.username;
-                }
-            });
-            console.log(group);
-            return group;
         };
         return _this;
     }
@@ -83,13 +75,25 @@ var EventDetails = (function (_super) {
                 React.createElement(Divider_1.default, null),
                 React.createElement("div", null,
                     "Going: ",
-                    this.handleInvitedPeople('going')),
+                    this.props.itemToView.details.invitedPeople.map(function (item, index) {
+                        if (item.type === 'going') {
+                            return React.createElement(Chip_1.default, { key: index }, item.username);
+                        }
+                    })),
                 React.createElement("div", null,
                     "Interested: ",
-                    this.handleInvitedPeople('interested')),
+                    this.props.itemToView.details.invitedPeople.map(function (item, index) {
+                        if (item.type === 'interested') {
+                            return React.createElement(Chip_1.default, { key: index }, item.username);
+                        }
+                    })),
                 React.createElement("div", null,
                     "Not interested: ",
-                    this.handleInvitedPeople('notGoing'))),
+                    this.props.itemToView.details.invitedPeople.map(function (item, index) {
+                        if (item.type === 'notGoing') {
+                            return React.createElement(Chip_1.default, { key: index }, item.username);
+                        }
+                    }))),
             React.createElement(Card_1.CardActions, null,
                 React.createElement(RaisedButton_1.default, { label: "Going", secondary: true, onClick: this.goingToEvent }),
                 React.createElement(RaisedButton_1.default, { label: "Interested", primary: true, onClick: this.interestedInEvent }),
@@ -103,7 +107,7 @@ var mapStateToProps = function (state) { return ({
     eventDetailsLoading: state.event.eventDetailsLoading,
     displayedItem: state.event.displayedItem,
     itemToView: state.event.itemToView,
-    username: state.login.user.username
+    username: state.login.user ? state.login.user.username : ''
 }); };
 var mapDispatchToProps = function (dispatch) {
     return {

@@ -9,7 +9,8 @@ const classes = require('./Category.css')
 
 interface StateProps {
   currentItem: UpdateCategoryRequest,
-  itemToBeEdited: Boolean
+  itemToBeEdited: Boolean,
+  params: any
 }
 
 interface DispatchProps {

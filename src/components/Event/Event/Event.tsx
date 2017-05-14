@@ -13,7 +13,8 @@ interface StateProps {
   success: Boolean,
   categoriesList: Array<any>,
   currentItem: UpdateEventRequest,
-  itemToBeEdited: Boolean
+  itemToBeEdited: Boolean,
+  params: any
 }
 
 interface DispatchProps {
@@ -31,8 +32,8 @@ export interface EventProps extends StateProps, DispatchProps{
 export interface EventState{
   title: String,
   place: String,
-  hourValue: Object,
-  dateValue: Object,
+  hourValue: any,
+  dateValue: any,
   file: any,
   imagePreviewUrl: any,
   type: any,
