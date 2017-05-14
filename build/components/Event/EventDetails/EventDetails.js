@@ -9,6 +9,7 @@ var react_redux_1 = require("react-redux");
 var Card_1 = require("material-ui/Card");
 var RaisedButton_1 = require("material-ui/RaisedButton");
 var Chip_1 = require("material-ui/Chip");
+var Avatar_1 = require("material-ui/Avatar");
 var actions = require("../../../actions/eventActions");
 var dateFormat = require("dateformat");
 var place_1 = require("material-ui/svg-icons/maps/place");
@@ -73,25 +74,31 @@ var EventDetails = (function (_super) {
                 React.createElement(Divider_1.default, null),
                 React.createElement("div", null, this.props.itemToView.details.details),
                 React.createElement(Divider_1.default, null),
-                React.createElement("div", null,
+                React.createElement("div", { id: 'wrapper', className: classes.wrapper },
                     "Going: ",
                     this.props.itemToView.details.invitedPeople.map(function (item, index) {
                         if (item.type === 'going') {
-                            return React.createElement(Chip_1.default, { key: index }, item.username);
+                            return React.createElement(Chip_1.default, { id: 'chip', className: classes.chip, key: index },
+                                React.createElement(Avatar_1.default, { size: 32 }, item.username.charAt(0)),
+                                item.username);
                         }
                     })),
                 React.createElement("div", null,
                     "Interested: ",
                     this.props.itemToView.details.invitedPeople.map(function (item, index) {
                         if (item.type === 'interested') {
-                            return React.createElement(Chip_1.default, { key: index }, item.username);
+                            return React.createElement(Chip_1.default, { key: index },
+                                React.createElement(Avatar_1.default, { size: 32 }, item.username.charAt(0)),
+                                item.username);
                         }
                     })),
                 React.createElement("div", null,
                     "Not interested: ",
                     this.props.itemToView.details.invitedPeople.map(function (item, index) {
                         if (item.type === 'notGoing') {
-                            return React.createElement(Chip_1.default, { key: index }, item.username);
+                            return React.createElement(Chip_1.default, { key: index },
+                                React.createElement(Avatar_1.default, { size: 32 }, item.username.charAt(0)),
+                                item.username);
                         }
                     }))),
             React.createElement(Card_1.CardActions, null,

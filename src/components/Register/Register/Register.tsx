@@ -4,6 +4,8 @@ import { browserHistory } from 'react-router'
 import { RaisedButton, TextField, Paper } from 'material-ui'
 import * as actions from '../../../actions/loginActions'
 import { SignupRequest } from '../../../main/loginMain'
+import Header from '../../../components/Header/Header'
+
 const classes = require('./Register.css')
 
 interface StateProps {
@@ -99,33 +101,38 @@ class Register extends React.Component<RegisterProps, RegisterState> {
   }
   render() {
     return (
-      <div id='registerDiv' className={classes.registerDiv}>
-        <Paper id='registerPaper' className={classes.registerPaper} style={classes.registerPaper} zDepth={4}>
-          <div id='titleText' className={classes.titleText}>
-            <h2>Don't you have account? Register</h2>
-          </div>
+      <div>
           <div>
-            <TextField hintText="Username" floatingLabelText="Username" floatingLabelFixed={true} type="text" onChange={this.usernameEntered} value={this.state.username}/>
+            <Header />
           </div>
-          <div>
-            <TextField hintText="Password" floatingLabelText="Password" floatingLabelFixed={true} type="password" onChange={this.passwordEntered} value={this.state.password}/>
+          <div id='registerDiv' className={classes.registerDiv}>
+            <Paper id='registerPaper' className={classes.registerPaper} style={classes.registerPaper} zDepth={4}>
+              <div id='titleText' className={classes.titleText}>
+                <h2>Don't you have account? Register</h2>
+              </div>
+              <div>
+                <TextField hintText="Username" floatingLabelText="Username" floatingLabelFixed={true} type="text" onChange={this.usernameEntered} value={this.state.username}/>
+              </div>
+              <div>
+                <TextField hintText="Password" floatingLabelText="Password" floatingLabelFixed={true} type="password" onChange={this.passwordEntered} value={this.state.password}/>
+              </div>
+              <div>
+                <TextField hintText="Confirm Password" floatingLabelText="Confirm Password" floatingLabelFixed={true} type="password" onChange={this.confirmPasswordEntered} value={this.state.confirmPassword}/>
+              </div>
+              <div>
+                <TextField hintText="First Name" floatingLabelText="First Name" floatingLabelFixed={true} type="text" onChange={this.firstNameEntered} value={this.state.firstName}/>
+              </div>
+              <div>
+                <TextField hintText="Last Name" floatingLabelText="Last Name" floatingLabelFixed={true} type="text" onChange={this.lastNameEntered} value={this.state.lastName}/>
+              </div>
+              <div>
+                <TextField hintText="Email" floatingLabelText="Email" floatingLabelFixed={true} type="text" onChange={this.emailEntered} value={this.state.email}/>
+              </div>
+              <div>
+                <RaisedButton label="Register" primary={true} onClick={this.registerUser}/>
+              </div>
+            </Paper>
           </div>
-          <div>
-            <TextField hintText="Confirm Password" floatingLabelText="Confirm Password" floatingLabelFixed={true} type="password" onChange={this.confirmPasswordEntered} value={this.state.confirmPassword}/>
-          </div>
-          <div>
-            <TextField hintText="First Name" floatingLabelText="First Name" floatingLabelFixed={true} type="text" onChange={this.firstNameEntered} value={this.state.firstName}/>
-          </div>
-          <div>
-            <TextField hintText="Last Name" floatingLabelText="Last Name" floatingLabelFixed={true} type="text" onChange={this.lastNameEntered} value={this.state.lastName}/>
-          </div>
-          <div>
-            <TextField hintText="Email" floatingLabelText="Email" floatingLabelFixed={true} type="text" onChange={this.emailEntered} value={this.state.email}/>
-          </div>
-          <div>
-            <RaisedButton label="Register" primary={true} onClick={this.registerUser}/>
-          </div>
-        </Paper>
       </div>
     )
   }

@@ -1,6 +1,5 @@
 import * as React from 'react'
 import AppBar from 'material-ui/AppBar'
-import Toggle from 'material-ui/Toggle'
 import Drawer from 'material-ui/Drawer'
 import MenuItem from 'material-ui/MenuItem'
 import LoggedMenu from '../Login/LoggedMenu/LoggedMenu'
@@ -65,13 +64,6 @@ class Header extends React.Component<HeaderProps, HeaderState> {
   render() {
     return (
       <div>
-        <Toggle
-          label="Logged"
-          defaultToggled={this.props.logged}
-          onToggle={this.handleChange}
-          labelPosition="right"
-          style={{margin: 20}}
-        />
         <AppBar id='mainDiv' className={classes.mainDiv}
           title="Title"
           onLeftIconButtonTouchTap={this.menuClick}

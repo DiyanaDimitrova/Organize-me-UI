@@ -5,7 +5,8 @@ import { RaisedButton, TextField, FlatButton } from 'material-ui'
 import { Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
 import * as actions from '../../../actions/codeActions'
 import { SendCodeRequest } from '../../../main/codeMain'
-// const classes = require('./Event.css')
+import Header from '../../../components/Header/Header'
+const classes = require('./Code.css')
 
 interface StateProps {
   listInvitedLoading: Boolean,
@@ -98,6 +99,9 @@ export class Code extends React.Component<CodeProps, CodeState> {
   render() {
     return (
       <div id='registerDiv' width="100%">
+        <div>
+            <Header />
+          </div>
       {this.props.success === true && this.props.listInvitedLoading === false &&
         <Table
           height={this.state.height}

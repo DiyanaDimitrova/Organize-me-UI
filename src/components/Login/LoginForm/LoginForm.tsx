@@ -4,6 +4,8 @@ import { browserHistory } from 'react-router'
 import { RaisedButton, TextField, Paper } from 'material-ui'
 import * as actions from '../../../actions/loginActions'
 import { LoginRequest } from '../../../main/loginMain'
+import Header from '../../../components/Header/Header'
+
 
 const classes = require('./LoginForm.css')
 
@@ -61,22 +63,27 @@ class LoginForm extends React.Component<LoginFormProps, LoginFormState> {
   }
   render() {
     return (
-      <div id='mainDiv' className={classes.mainDiv} >
-      <Paper id='loginPaper' className={classes.loginPaper} style={classes.loginPaper} zDepth={4}>
-          <div id='titleText' className={classes.titleText}>
-          <h2>Do you have account? Log in</h2>
-          </div>
+      <div>
           <div>
-            <TextField hintText="Username" floatingLabelText="Username" floatingLabelFixed={true} type="text" onChange={this.usernameEntered} value={this.state.username}/>
+                <Header />
+              </div>
+          <div id='mainDiv' className={classes.mainDiv} >
+          <Paper id='loginPaper' className={classes.loginPaper} style={classes.loginPaper} zDepth={4}>
+              <div id='titleText' className={classes.titleText}>
+              <h2>Do you have account? Log in</h2>
+              </div>
+              <div>
+                <TextField hintText="Username" floatingLabelText="Username" floatingLabelFixed={true} type="text" onChange={this.usernameEntered} value={this.state.username}/>
+              </div>
+              <div>
+                <TextField hintText="Password" floatingLabelText="Password" floatingLabelFixed={true} type="password" onChange={this.passwordEntered} value={this.state.password}/>
+              </div>
+              <div>
+                <RaisedButton label="Login" primary={true} onClick={this.loginUser}/>
+              </div>
+            </Paper>
           </div>
-          <div>
-            <TextField hintText="Password" floatingLabelText="Password" floatingLabelFixed={true} type="password" onChange={this.passwordEntered} value={this.state.password}/>
-          </div>
-          <div>
-            <RaisedButton label="Login" primary={true} onClick={this.loginUser}/>
-          </div>
-        </Paper>
-      </div>
+       </div>
     )
   }
 }

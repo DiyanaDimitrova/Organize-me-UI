@@ -7,6 +7,7 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
 import { } from '../../../main/eventMain'
 import { Event } from '../../Event/Event/Event'
 import { UpdateEventRequest, DeleteEventRequest } from '../../../main/eventMain'
+import Header from '../../../components/Header/Header'
 import * as dateFormat from 'dateformat'
 
 const classes = require('./EventList.css')
@@ -106,6 +107,9 @@ class EventList extends React.Component<EventListProps, EventListState> {
     }
     return (
       <div id='eventDiv' className={classes.eventDiv}>
+         <div>
+            <Header />
+          </div>
          <List>
            {eventArray.map((item, index) => {
              return (

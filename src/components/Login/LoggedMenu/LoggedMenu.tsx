@@ -35,9 +35,7 @@ class LoggedMenu extends React.Component<LoggedMenuProps, LoggedMenuState> {
           iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
           anchorOrigin={{horizontal: 'left', vertical: 'top'}}
           targetOrigin={{horizontal: 'left', vertical: 'top'}}>
-          <MenuItem primaryText="Refresh" />
-          <MenuItem primaryText="Send feedback" />
-          <MenuItem primaryText="Settings" />
+          <MenuItem primaryText="About" />
           <MenuItem primaryText="Help" />
           <MenuItem primaryText="Sign out" />
         </IconMenu>

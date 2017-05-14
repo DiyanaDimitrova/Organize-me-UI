@@ -4,6 +4,8 @@ import * as QrReader from 'react-qr-reader'
 import { Paper } from 'material-ui'
 import * as actions from '../../../actions/codeActions'
 import { ScanCodeRequest } from '../../../main/codeMain'
+import Header from '../../../components/Header/Header'
+const classes = require('./ScanCode.css')
 
 interface StateProps {
 }
@@ -55,6 +57,9 @@ export class ScanCode extends React.Component<ScanCodeProps, ScanCodeState> {
     }
     return (
         <div>
+          <div>
+            <Header />
+          </div>
           <Paper style={style} zDepth={5}>
             <QrReader
               delay={this.state.delay}

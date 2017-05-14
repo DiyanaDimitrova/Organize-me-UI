@@ -12,6 +12,7 @@ import {GridList, GridTile} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
 import Info from 'material-ui/svg-icons/action/info-outline';
+import Header from '../../../components/Header/Header'
 
 interface StateProps {
   eventListLoading: Boolean,
@@ -105,6 +106,9 @@ class EventGrid extends React.Component<EventGridProps, EventGridState> {
     }
     return (
       <div>
+        <div>
+            <Header />
+        </div>
         <GridList
           cellHeight={300}
           style={styles.gridList}

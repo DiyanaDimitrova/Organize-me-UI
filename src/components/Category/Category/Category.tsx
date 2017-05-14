@@ -5,6 +5,7 @@ import { RaisedButton, TextField, Paper } from 'material-ui'
 import * as actions from '../../../actions/categoryActions'
 import { CreateCategoryRequest } from '../../../main/categoryMain'
 import { UpdateCategoryRequest } from '../../../main/categoryMain'
+import Header from '../../../components/Header/Header'
 const classes = require('./Category.css')
 
 interface StateProps {
@@ -85,6 +86,9 @@ export class Category extends React.Component<CategoryProps, CategoryState> {
 
     return (
       <div id='registerDiv' className={classes.registerDiv}>
+           <div>
+            <Header />
+          </div>
           <div id='titleText' className={classes.titleText}>
             <h2>{title}</h2>
           </div>

@@ -6,6 +6,7 @@ import { List, ListItem, IconMenu, MenuItem, IconButton } from 'material-ui'
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
 import { DeleteCategoryRequest, UpdateCategoryRequest } from '../../../main/categoryMain'
 import { Category } from '../../Category/Category/Category'
+import Header from '../../../components/Header/Header'
 const classes = require('./CategoryList.css')
 
 interface StateProps {
@@ -84,6 +85,9 @@ class CategoryList extends React.Component<CategoryListProps, CategoryListState>
 
     return (
       <div id='categoryDiv' className={classes.categoryDiv}>
+          <div>
+            <Header />
+          </div>
          <List>
           {categoryArray.map((item, index) => {
             return (

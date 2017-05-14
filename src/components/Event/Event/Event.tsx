@@ -5,6 +5,7 @@ import { RaisedButton, TextField, Paper, DatePicker, TimePicker, FlatButton, Dro
 import * as actions from '../../../actions/eventActions'
 import * as categoryActions from '../../../actions/categoryActions'
 import { CreateEventRequest, UpdateEventRequest } from '../../../main/eventMain'
+import Header from '../../../components/Header/Header'
 import * as dateFormat from 'dateformat'
 const classes = require('./Event.css')
 
@@ -202,6 +203,9 @@ export class Event extends React.Component<EventProps, EventState> {
     console.log('STATE' + this.state.categoryValue)
     return (
       <div id='registerDiv' className={classes.registerDiv} width="100%">
+          <div>
+            <Header />
+          </div>
           <div id='titleText' className={classes.titleText}>
             <h2>{name}</h2>
           </div>
