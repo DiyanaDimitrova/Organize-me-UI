@@ -55,8 +55,8 @@ class Header extends React.Component<HeaderProps, HeaderState> {
   allEventClick = () => {
     browserHistory.push('/allEvents')
   }
-  newCodeClick = () => {
-    browserHistory.push('/newCode')
+  eventGridClick = () => {
+    browserHistory.push('/event/all')
   }
   scanCodeClick = () => {
     browserHistory.push('/scanCode')
@@ -65,7 +65,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
     return (
       <div>
         <AppBar id='mainDiv' className={classes.mainDiv}
-          title="Title"
+          title="Organize Me"
           onLeftIconButtonTouchTap={this.menuClick}
           iconElementRight={this.props.logged ? <LoggedMenu /> : <Login />}
         />
@@ -74,7 +74,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
           <MenuItem onTouchTap={this.allCategoryClick}>All Categories</MenuItem>
           <MenuItem onTouchTap={this.newEventClick}>Create Event</MenuItem>
           <MenuItem onTouchTap={this.allEventClick}>All Events</MenuItem>
-          <MenuItem onTouchTap={this.newCodeClick}>Send Code</MenuItem>
+          <MenuItem onTouchTap={this.eventGridClick}>Events Grid</MenuItem>
           <MenuItem onTouchTap={this.scanCodeClick}>Scan Code</MenuItem>
         </Drawer>
       </div>

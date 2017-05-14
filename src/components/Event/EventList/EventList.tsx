@@ -53,6 +53,7 @@ class EventList extends React.Component<EventListProps, EventListState> {
     let deleteEvent = {} as DeleteEventRequest
     deleteEvent.id = itemId
     this.props.performDeleteEventAction(deleteEvent)
+    browserHistory.push('/')
   }
   updateItem = (e, item) => {
     e.preventDefault()

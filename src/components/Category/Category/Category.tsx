@@ -42,7 +42,6 @@ export class Category extends React.Component<CategoryProps, CategoryState> {
   }
   componentWillMount(){
     if(this.props.params.id !== undefined && this.props.params.id !== null){
-      console.log('CURRENT' + this.props.params.id)
       this.props.setCurrentItem(this.props.params.id)
     }
   }
@@ -62,7 +61,6 @@ export class Category extends React.Component<CategoryProps, CategoryState> {
             let updateCategory = {} as UpdateCategoryRequest
             updateCategory.title = this.state.title
             updateCategory.id = this.props.currentItem._id
-            console.log('UPDATE' + JSON.stringify(updateCategory))
             this.props.performUpdateCategoryAction(updateCategory)
             this.setState({title : ''})
           } else {
@@ -75,6 +73,7 @@ export class Category extends React.Component<CategoryProps, CategoryState> {
   cancelCategory = (event)  => {
           event.preventDefault()
           this.setState({ title: '' })
+          browserHistory.push('/')
     }
   render() {
     let title

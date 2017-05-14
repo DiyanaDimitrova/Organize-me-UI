@@ -73,7 +73,6 @@ export class Event extends React.Component<EventProps, EventState> {
   componentWillMount(){
     this.props.loadCategoriesList()
     if(this.props.params.id !== undefined && this.props.params.id !== null){
-      console.log('CURRENT' + this.props.params.id)
       this.props.setCurrentItem(this.props.params.id)
     }
   }
@@ -142,6 +141,7 @@ export class Event extends React.Component<EventProps, EventState> {
       createEvent.categoryId = this.state.categoryValue
       this.props.performCreateEventAction(createEvent)
     }
+    browserHistory.push('/')
   }
   cancelEvent = (event)  => {
     event.preventDefault()
@@ -155,24 +155,21 @@ export class Event extends React.Component<EventProps, EventState> {
     this.setState({details : ''})
     this.setState({capacity : 0})
     this.setState({categoryValue : ''})
+    browserHistory.push('/')
   }
   handleChangeTimePicker = (event, date) => {
-    console.log('HOUR' + date)
     this.setState({hourValue: date})
   }
   handleChangeDatePicker = (event, date) => {
-    console.log('DATE' + date)
     this.setState({dateValue: date})
   }
   handleCategoryChange = (event, index, value) => {
-    console.log('index' + index + ' ' + value)
     this.setState({categoryValue : value})
   }
 
   handleFile = (event) => {
     event.preventDefault();
     let reader = new FileReader();
-    console.log( 'File' + JSON.stringify(event.target.files[0].path) )
     let file = event.target.files[0]
     reader.onloadend = () => {
       this.setState({
