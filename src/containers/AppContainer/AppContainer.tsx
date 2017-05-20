@@ -12,6 +12,7 @@ import EventGrid from '../../components/Event/EventGrid/EventGrid'
 import EventDetails from '../../components/Event/EventDetails/EventDetails'
 import Code from '../../components/Code/Code/Code'
 import ScanCode from '../../components/Code/ScanCode/ScanCode'
+import AdminManagement from '../../components/User/AdminManagement/AdminManagement'
 
 import App from '../App/App'
 
@@ -34,6 +35,7 @@ export class AppContainer extends React.Component<any, AppState> {
           <Route path='/eventDetails/:id' component={EventDetails}/>
           <Route path='/newCode/:id' component={Code}/>
           <Route path='/scanCode' component={ScanCode}/>
+          <Route path='/allUsers' component={AdminManagement}/>
         </Router>
       </div>
     )

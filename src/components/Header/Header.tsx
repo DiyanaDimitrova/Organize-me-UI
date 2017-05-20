@@ -14,6 +14,7 @@ import Toc from 'material-ui/svg-icons/action/toc'
 import EventNote from 'material-ui/svg-icons/notification/event-note'
 import Nfc from 'material-ui/svg-icons/device/nfc'
 import Photo from 'material-ui/svg-icons/image/photo-library'
+import Group from 'material-ui/svg-icons/social/group'
 
 
 
@@ -70,6 +71,9 @@ class Header extends React.Component<HeaderProps, HeaderState> {
   scanCodeClick = () => {
     browserHistory.push('/scanCode')
   }
+  viewUsersClick = () => {
+    browserHistory.push('/allUsers')
+  }
   render() {
     return (
       <div>
@@ -85,6 +89,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
           <MenuItem onTouchTap={this.allEventClick} leftIcon={<EventNote />}>All Events</MenuItem>
           <MenuItem onTouchTap={this.eventGridClick} leftIcon={<Photo />}>Events Grid</MenuItem>
           <MenuItem onTouchTap={this.scanCodeClick} leftIcon={<Nfc />}>Scan Code</MenuItem>
+          <MenuItem onTouchTap={this.viewUsersClick} leftIcon={<Group />}>View Users</MenuItem>
         </Drawer>
       </div>
     )

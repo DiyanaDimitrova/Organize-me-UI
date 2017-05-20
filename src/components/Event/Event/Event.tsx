@@ -46,18 +46,17 @@ export interface EventState{
 export class Event extends React.Component<EventProps, EventState> {
   constructor(props) {
     super(props)
-    console.log('CURRENT' + JSON.stringify(props.currentItem))
     this.state = {
-      title: props.itemToBeEdited === true ? props.currentItem.title : '',
-      place: props.itemToBeEdited === true ? props.currentItem.place : '',
-      hourValue: props.itemToBeEdited === true ? dateFormat(props.currentItem.hourValue) : null,
-      dateValue: props.itemToBeEdited === true ? dateFormat(props.currentItem.dateValue) : null,
-      file: props.itemToBeEdited === true ? props.currentItem.file : '',
-      imagePreviewUrl: props.itemToBeEdited === true ? props.currentItem.imagePreviewUrl : '',
-      type: props.itemToBeEdited === true ? props.currentItem.type : '',
-      capacity: props.itemToBeEdited === true ? props.currentItem.capacity : 0,
-      details: props.itemToBeEdited === true ? props.currentItem.details : '',
-      categoryValue: props.itemToBeEdited === true ? props.currentItem.categoryId : '',
+      title: props.itemToBeEdited === true && this.props.params.id !== undefined ? props.currentItem.title : '',
+      place: props.itemToBeEdited === true && this.props.params.id !== undefined ? props.currentItem.place : '',
+      hourValue: props.itemToBeEdited === true && this.props.params.id !== undefined ? dateFormat(props.currentItem.hourValue) : null,
+      dateValue: props.itemToBeEdited === true && this.props.params.id !== undefined ? dateFormat(props.currentItem.dateValue) : null,
+      file: props.itemToBeEdited === true && this.props.params.id !== undefined ? props.currentItem.file : '',
+      imagePreviewUrl: props.itemToBeEdited === true && this.props.params.id !== undefined ? props.currentItem.imagePreviewUrl : '',
+      type: props.itemToBeEdited === true && this.props.params.id !== undefined ? props.currentItem.type : '',
+      capacity: props.itemToBeEdited === true && this.props.params.id !== undefined ? props.currentItem.capacity : 0,
+      details: props.itemToBeEdited === true && this.props.params.id !== undefined ? props.currentItem.details : '',
+      categoryValue: props.itemToBeEdited === true && this.props.params.id !== undefined? props.currentItem.categoryId : '',
     }
     this.titleEntered = this.titleEntered.bind(this)
     this.saveEvent = this.saveEvent.bind(this)
@@ -77,8 +76,12 @@ export class Event extends React.Component<EventProps, EventState> {
     }
   }
   componentWillReceiveProps(nextProps) {
-    if(this.props !== nextProps && nextProps.itemToBeEdited === true){
-        this.setState({ title: nextProps.currentItem.title })
+    if(this.props !== nextProps){
+      this.setState({title : nextProps.currentItem.title, hourValue : nextProps.currentItem.hourValue,
+        dateValue : nextProps.currentItem.dateValue, place : nextProps.currentItem.place, file : nextProps.currentItem.file,
+        imagePreviewUrl : nextProps.currentItem.imagePreviewUrl, type : nextProps.currentItem.type,
+        details : nextProps.currentItem.details, capacity : nextProps.currentItem.capacity, categoryValue : nextProps.currentItem.categoryValue
+      })
     }
   }
   titleEntered = (event) => {
@@ -103,7 +106,7 @@ export class Event extends React.Component<EventProps, EventState> {
   }
   saveEvent = (event)  => {
     event.preventDefault()
-    if(this.props.itemToBeEdited === true){
+    if(this.props.itemToBeEdited === true && this.props.params.id !== undefined){
         let updateEvent = {} as UpdateEventRequest
         updateEvent.id = this.props.currentItem._id
         updateEvent.title = this.state.title
@@ -192,7 +195,7 @@ export class Event extends React.Component<EventProps, EventState> {
       categoryArray = Object.keys(this.props.categoriesList).map(key => this.props.categoriesList[key])
     }
     let name
-    if(this.props.itemToBeEdited === true){
+    if(this.props.itemToBeEdited === true && this.props.params.id !== undefined){
       name = 'Edit event'
     } else {
       name = 'Add new event'
