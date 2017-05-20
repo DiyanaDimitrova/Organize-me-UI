@@ -5,6 +5,8 @@ import { SignupRequest } from '../main/loginMain'
 import { Action } from 'redux'
 export const LOGIN_SUCCESS = '@@Login/LOGIN_SUCCESS'
 export const LOGIN_FAIL = '@@Login/LOGIN_FAIL'
+export const SIGNOUT_SUCCESS = '@@Login/SIGNOUT_SUCCESS'
+export const SIGNOUT_FAIL = '@@Login/SIGNOUT_FAIL'
 export const DISMISS = '@@Login/DISMISS'
 export const SIGNUP_SUCCESS = '@@Login/SIGNUP_SUCCESS'
 export const SIGNUP_FAIL = '@@Login/SIGNUP_FAIL'
@@ -27,6 +29,10 @@ export interface LoginAction extends Action {
 }
 
 export interface SignupAction extends Action {
+    payload: Payload
+}
+
+export interface SignoutAction extends Action {
     payload: Payload
 }
 
@@ -66,6 +72,20 @@ export function signupFailAction(messages: Array<any>): SignupAction {
     } as SignupAction
 }
 
+export function signoutSuccessAction(messages: Array<any>): SignoutAction {
+    return {
+        type: SIGNOUT_SUCCESS,
+        payload: { messages: messages }
+    } as SignoutAction
+}
+
+export function signoutFailAction(messages: Array<any>): SignoutAction {
+    return {
+        type: SIGNOUT_FAIL,
+        payload: { messages: messages }
+    } as SignoutAction
+}
+
 export function dismissAction(): Action {
   return { type: DISMISS } as Action
 }
@@ -73,7 +93,7 @@ export function dismissAction(): Action {
 export function performLoginAction(request: LoginRequest, dispatch: any): void {
     dispatch(dismissAction())
     dispatch(beginLoadingLogin())
-    axios.post('http://localhost:3001/users/authenticate', request) //{ username: 'sisi', password: 'sisi' })
+    axios.post('/users/authenticate', request) //{ username: 'sisi', password: 'sisi' })
     .then((response) => {
         if (response.data) {
           let user = {
@@ -109,6 +129,24 @@ export function performSignupAction(request: SignupRequest, dispatch: any): void
                 dispatch(signupSuccessAction(response.data.messages))
             } else {
                 dispatch(signupFailAction(response.data.messages))
+            }
+        })
+        .catch((err) => {
+            let messages = [{
+                'message': 'Please try again later...'
+            }]
+            dispatch(signupFailAction(messages))
+        })
+}
+export function performSignoutAction(dispatch: any): void {
+    dispatch(dismissAction())
+    axios.post('/users/logout')
+        .then((response) => {
+            console.log(response.data)
+            if (response.data.success) {
+                dispatch(signoutSuccessAction(response.data.messages))
+            } else {
+                dispatch(signoutFailAction(response.data.messages))
             }
         })
         .catch((err) => {

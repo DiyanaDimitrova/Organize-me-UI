@@ -31,6 +31,36 @@ export function loginFailReducer(state: LoginState, action: actions.LoginAction)
     }
 }
 
+export function signoutSuccessReducer(state: LoginState, action: actions.LoginAction): LoginState {
+    if (action.type === actions.SIGNOUT_SUCCESS) {
+      console.log('SUCCESS' + JSON.stringify(action))
+      // let _action = actions.LoginAction
+      let newState = Object.assign({}, state)
+      newState.login = false
+      newState.error =  false
+      newState.messages = action.payload.messages
+      newState.user =  null
+      return newState
+    } else {
+        return state
+    }
+}
+
+export function signoutFailReducer(state: LoginState, action: actions.LoginAction): LoginState {
+    if (action.type === actions.SIGNOUT_FAIL) {
+        console.log('FAIL' + JSON.stringify(action))
+        // let _action = actions as actions.LoginAction
+        let newState = Object.assign({}, state)
+        newState.login = false
+        newState.error =  true
+        newState.messages = action.payload.messages
+        return newState
+    } else {
+        return state
+    }
+}
+
+
 export function dismissReducer(state: LoginState, action: Action): LoginState {
     if (action.type === actions.DISMISS) {
       let newState = Object.assign({}, state)

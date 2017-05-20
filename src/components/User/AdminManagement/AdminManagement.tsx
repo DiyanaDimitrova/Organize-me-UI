@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router'
 import { RaisedButton, TextField, FlatButton } from 'material-ui'
 import { Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
 import * as actions from '../../../actions/userActions'
-import {  } from '../../../main/userMain'
+// import {  } from '../../../main/userMain'
 import Header from '../../../components/Header/Header'
 const classes = require('./AdminManagement.css')
 
@@ -129,7 +129,7 @@ export class AdminManagement extends React.Component<AdminManagementProps, Admin
             </TableRow>
             <TableRow>
               <TableRowColumn colSpan="5" style={{textAlign: 'center'}}>
-                Invited to the event
+                All Users
               </TableRowColumn>
             </TableRow>
           </TableFooter>
@@ -147,7 +147,7 @@ export class AdminManagement extends React.Component<AdminManagementProps, Admin
 const mapStateToProps = (state: any) => ({
   userListLoading: state.user.userListLoading,
   success: state.user.success,
-  userList: state.user.userList,
+  userList: state.user.userList
 })
 
 const mapDispatchToProps = (dispatch) => {

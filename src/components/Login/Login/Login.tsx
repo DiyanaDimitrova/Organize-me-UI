@@ -26,7 +26,6 @@ class Login extends React.Component<LoginProps, LoginState> {
        }
      }
   showRegisterForm = () => {
-    console.log('6548')
     this.setState({ showResults: true });
   }
   render() {

@@ -1,15 +1,21 @@
 import * as React from 'react'
+import { AppState } from '../../../store/AppStore'
+import { Dispatch } from 'redux'
+import { connect } from 'react-redux'
+import { browserHistory } from 'react-router'
+import * as actions from '../../../actions/loginActions'
 import IconButton from 'material-ui/IconButton'
 import IconMenu from 'material-ui/IconMenu'
 import MenuItem from 'material-ui/MenuItem'
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
-import { AppState } from '../../../store/AppStore'
-import { Dispatch } from 'redux'
-import { connect } from 'react-redux'
+import SignOutIcon from 'material-ui/svg-icons/action/highlight-off'
+
 interface StateProps {
+
 }
 
 interface DispatchProps {
+  performSignoutAction: () => void
 }
 
 export interface LoggedMenuProps extends StateProps, DispatchProps {
@@ -27,7 +33,10 @@ class LoggedMenu extends React.Component<LoggedMenuProps, LoggedMenuState> {
       opened: true
     }
   }
-
+  signoutClick = () => {
+    this.props.performSignoutAction()
+    browserHistory.push('/')
+  }
   render() {
     console.log(this.props)
     return (
@@ -37,19 +46,20 @@ class LoggedMenu extends React.Component<LoggedMenuProps, LoggedMenuState> {
           targetOrigin={{horizontal: 'left', vertical: 'top'}}>
           <MenuItem primaryText="About" />
           <MenuItem primaryText="Help" />
-          <MenuItem primaryText="Sign out" />
+          <MenuItem onTouchTap={this.signoutClick} leftIcon={<SignOutIcon />}>Sign out</MenuItem>
         </IconMenu>
       )
     }
 }
-const mapStateToProps: (state: AppState) => StateProps = (state) => ({
+const mapStateToProps = (state: any) => ({
 
 })
 
-const mapDispatchToProps: (dispatch: Dispatch<any>) => DispatchProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
     return {
-
+      performSignoutAction: (): void => {
+          actions.performSignoutAction(dispatch)
+      }
     }
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(LoggedMenu)

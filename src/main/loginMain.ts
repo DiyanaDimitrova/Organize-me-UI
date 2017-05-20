@@ -41,6 +41,8 @@ const reducers = {
     [a.DISMISS]: r.dismissReducer,
     [a.SIGNUP_SUCCESS]: r.signupSuccessReducer,
     [a.SIGNUP_FAIL]: r.signupFailReducer,
+    [a.SIGNOUT_SUCCESS]: r.signoutSuccessReducer,
+    [a.SIGNOUT_FAIL]: r.signoutFailReducer,
     [a.BEGIN_LOADING_LOGIN]: r.beginLoadingLoginReducer,
     [a.END_LOADING_LOGIN]: r.endLoadingLoginReducer
 }
