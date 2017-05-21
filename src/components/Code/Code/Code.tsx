@@ -49,7 +49,7 @@ export class Code extends React.Component<CodeProps, CodeState> {
        selectable: true,
        multiSelectable: true,
        enableSelectAll: true,
-       deselectOnClickaway: true,
+       deselectOnClickaway: false,
        showCheckboxes: true,
        height: '300px',
        mailList: []

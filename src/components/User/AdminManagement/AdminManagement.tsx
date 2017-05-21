@@ -4,18 +4,20 @@ import { browserHistory } from 'react-router'
 import { RaisedButton, TextField, FlatButton } from 'material-ui'
 import { Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
 import * as actions from '../../../actions/userActions'
-// import {  } from '../../../main/userMain'
+import { MakeAdminRequest } from '../../../main/userMain'
 import Header from '../../../components/Header/Header'
 const classes = require('./AdminManagement.css')
 
 interface StateProps {
-  userListLoading: Boolean,
-  success: Boolean,
+  userListLoading: Boolean
+  success: Boolean
   userList: Array<any>
 }
 
 interface DispatchProps {
   loadUserList: () => void
+  performMakeAdminAction: (makeAdminRequest: MakeAdminRequest) => void
+}
 
 export interface AdminManagementProps extends StateProps, DispatchProps {
 }
@@ -30,7 +32,8 @@ export interface AdminManagementState{
   enableSelectAll: Boolean,
   deselectOnClickaway: Boolean,
   showCheckboxes: Boolean,
-  height: String
+  height: String,
+  adminList: Array<any>
 }
 
 export class AdminManagement extends React.Component<AdminManagementProps, AdminManagementState> {
@@ -44,26 +47,48 @@ export class AdminManagement extends React.Component<AdminManagementProps, Admin
        selectable: true,
        multiSelectable: true,
        enableSelectAll: true,
-       deselectOnClickaway: true,
+       deselectOnClickaway: false,
        showCheckboxes: true,
-       height: '300px'
+       height: '300px',
+       adminList: []
      }
   }
 
   componentWillMount() {
     this.props.loadUserList()
   }
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.props !== nextProps
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return this.props !== nextProps
+  // }
   makeAdminEvent = (event)  => {
-
+    event.preventDefault()
+    let makeAdminRequest = {} as MakeAdminRequest
+    console.log('ADMIN' + JSON.stringify(this.state.adminList))
+    makeAdminRequest.usersToMakeAdmin = this.state.adminList
+    this.props.performMakeAdminAction(makeAdminRequest)
   }
   cancelEvent = (event)  => {
-
+    event.preventDefault()
+    this.setState({adminList: []})
   }
   handleRowSelection = (selectedRows) => {
-
+    let makeAdminList = []
+    console.log('SELETED ROW' + selectedRows)
+    if(selectedRows === 'all'){
+      console.log(selectedRows.length)
+      for (let i = 0; i < this.props.userList.length; i++) {
+        makeAdminList.push(this.props.userList[i].username)
+     }
+   } else if (selectedRows === 'none'){
+     makeAdminList = []
+   } else {
+      for (let i = 0; i < selectedRows.length; i++) {
+        console.log('SELECTED USER' + JSON.stringify(this.props.userList[selectedRows[i]].username))
+        makeAdminList.push(this.props.userList[selectedRows[i]].username)
+     }
+    }
+    console.log('LIST' + makeAdminList)
+    this.setState({adminList: makeAdminList})
   }
 
   render() {
@@ -97,8 +122,6 @@ export class AdminManagement extends React.Component<AdminManagementProps, Admin
               <TableHeaderColumn tooltip="Last Name">Last Name</TableHeaderColumn>
               <TableHeaderColumn tooltip="E-mail">E-mail</TableHeaderColumn>
               <TableHeaderColumn tooltip="Roles">Roles</TableHeaderColumn>
-
-
             </TableRow>
           </TableHeader>
           <TableBody
@@ -154,6 +177,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
       loadUserList: (): void => {
           actions.loadUserList(dispatch)
+      },
+      performMakeAdminAction: (makeAdminRequest: MakeAdminRequest): void => {
+          actions.performMakeAdminAction(makeAdminRequest, dispatch)
       }
     }
 }

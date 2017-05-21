@@ -42,3 +42,22 @@ export function userListFailReducer(state: UserState, action: Action): UserState
         return state
     }
 }
+export function makeAdminSuccessReducer(state: UserState, action: actions.MakeAdminAction): UserState {
+    if (action.type === actions.MAKE_ADMIN_SUCCESS) {
+        let newState = Object.assign({}, state)
+        newState.makeAdminMessage = action.makeAdminMessage
+        return newState
+    } else {
+        return state
+    }
+}
+
+export function makeAdminFailReducer(state: UserState, action: actions.MakeAdminAction): UserState {
+    if (action.type === actions.MAKE_ADMIN_FAIL) {
+        let newState = Object.assign({}, state)
+        newState.makeAdminMessage = action.makeAdminMessage
+        return newState
+      } else {
+        return state
+    }
+}
