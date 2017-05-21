@@ -5,13 +5,16 @@ import { LOGIN_SUCCESS } from '../actions/loginActions'
 
 export interface CreateCategoryRequest {
     title: String
+    user: String
 }
 export interface DeleteCategoryRequest {
     id: String
+    user: String
 }
 export interface UpdateCategoryRequest {
     id: String
     title: String
+    user: String
 }
 export interface CategoryState {
     newCategoryMessage: String,

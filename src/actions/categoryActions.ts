@@ -117,7 +117,10 @@ export function performCreateCategoryAction(request: CreateCategoryRequest, disp
 }
 
 export function performDeleteCategoryAction(request: DeleteCategoryRequest, dispatch: any): void {
-    axios.delete('/category/delete/' + request.id)
+    let reqBody = {
+      user: request.user
+    }
+    axios.delete('/category/delete/' + request.id, reqBody)
       .then((response) => {
           dispatch(deleteCategorySuccessAction(response.data.response))
       })
@@ -127,7 +130,8 @@ export function performDeleteCategoryAction(request: DeleteCategoryRequest, disp
 }
 export function performUpdateCategoryAction(request: UpdateCategoryRequest, dispatch: any): void {
     let reqBody = {
-      title : request.title
+      title: request.title,
+      user: request.user
     }
     axios.put('/category/update/' + request.id, reqBody)
       .then((response) => {

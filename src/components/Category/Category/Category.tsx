@@ -11,6 +11,7 @@ const classes = require('./Category.css')
 interface StateProps {
   currentItem: UpdateCategoryRequest,
   itemToBeEdited: Boolean,
+  user: String,
   params: any
 }
 
@@ -32,7 +33,6 @@ export interface CategoryState{
 export class Category extends React.Component<CategoryProps, CategoryState> {
   constructor(props) {
     super(props)
-    debugger
     this.state = {
       title: props.itemToBeEdited === true && this.props.params.id !== undefined ? props.currentItem.title : ''
     }
@@ -61,11 +61,13 @@ export class Category extends React.Component<CategoryProps, CategoryState> {
             let updateCategory = {} as UpdateCategoryRequest
             updateCategory.title = this.state.title
             updateCategory.id = this.props.currentItem._id
+            updateCategory.user = this.props.user
             this.props.performUpdateCategoryAction(updateCategory)
             this.setState({title : ''})
           } else {
             let createCategory = {} as CreateCategoryRequest
             createCategory.title = this.state.title
+            createCategory.user = this.props.user
             this.props.performCreateCategoryAction(createCategory)
           }
           browserHistory.push('/')
@@ -77,7 +79,6 @@ export class Category extends React.Component<CategoryProps, CategoryState> {
     }
   render() {
     let title
-    debugger
     if (this.props.itemToBeEdited === true && this.props.params.id !== undefined) {
       title = 'Edit category'
     } else {
@@ -106,7 +107,8 @@ export class Category extends React.Component<CategoryProps, CategoryState> {
 
 const mapStateToProps = (state: any) => ({
   currentItem: state.category.currentItem,
-  itemToBeEdited: state.category.itemToBeEdited
+  itemToBeEdited: state.category.itemToBeEdited,
+  user: state.login.user.username
 })
 
 const mapDispatchToProps = (dispatch) => {

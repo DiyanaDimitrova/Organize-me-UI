@@ -63,13 +63,22 @@ export class AdminManagement extends React.Component<AdminManagementProps, Admin
   makeAdminEvent = (event)  => {
     event.preventDefault()
     let makeAdminRequest = {} as MakeAdminRequest
-    console.log('ADMIN' + JSON.stringify(this.state.adminList))
     makeAdminRequest.usersToMakeAdmin = this.state.adminList
+    makeAdminRequest.type = 'Admin'
     this.props.performMakeAdminAction(makeAdminRequest)
+    browserHistory.push('/')
+  }
+  makeNormalEvent = (event) => {
+    event.preventDefault()
+    let makeAdminRequest = {} as MakeAdminRequest
+    makeAdminRequest.usersToMakeAdmin = this.state.adminList
+    makeAdminRequest.type = 'Normal'
+    this.props.performMakeAdminAction(makeAdminRequest)
+    browserHistory.push('/')
   }
   cancelEvent = (event)  => {
     event.preventDefault()
-    this.setState({adminList: []})
+    this.setState({adminList: null})
   }
   handleRowSelection = (selectedRows) => {
     let makeAdminList = []
@@ -161,6 +170,7 @@ export class AdminManagement extends React.Component<AdminManagementProps, Admin
         <div>
           <RaisedButton label="Cancel" secondary={true} onClick={this.cancelEvent}/>
           <RaisedButton label="Make Admin" primary={true} onClick={this.makeAdminEvent}/>
+          <RaisedButton label="Make Normal" primary={true} onClick={this.makeNormalEvent}/>
         </div>
       </div>
     )

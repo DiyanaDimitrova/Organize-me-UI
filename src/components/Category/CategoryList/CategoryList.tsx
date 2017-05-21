@@ -14,7 +14,8 @@ const classes = require('./CategoryList.css')
 interface StateProps {
   categoriesListLoading: Boolean,
   success: Boolean,
-  categoriesList: Array<any>
+  categoriesList: Array<any>,
+  user: String
 }
 
 interface DispatchProps {
@@ -38,7 +39,8 @@ class CategoryList extends React.Component<CategoryListProps, CategoryListState>
   public static defaultProps: StateProps = {
       categoriesListLoading: false,
       success: true,
-      categoriesList: []
+      categoriesList: [],
+      user: null
   }
   componentWillMount() {
     this.props.loadCategoriesList()
@@ -50,6 +52,7 @@ class CategoryList extends React.Component<CategoryListProps, CategoryListState>
     e.preventDefault()
     let deleteCategory = {} as DeleteCategoryRequest
     deleteCategory.id = itemId
+    deleteCategory.user = this.props.user
     this.props.performDeleteCategoryAction(deleteCategory)
     browserHistory.push('/')
   }
@@ -111,7 +114,8 @@ class CategoryList extends React.Component<CategoryListProps, CategoryListState>
 const mapStateToProps = (state: any) => ({
   categoriesListLoading: state.category.categoriesListLoading,
   success: state.category.success,
-  categoriesList: state.category.categoriesList
+  categoriesList: state.category.categoriesList,
+  user: state.login.user.username
 })
 
 const mapDispatchToProps = (dispatch) => {

@@ -5,6 +5,7 @@ import { LOGIN_SUCCESS } from '../actions/loginActions'
 
 export interface MakeAdminRequest {
     usersToMakeAdmin: Array<any>,
+    type: String
 }
 export interface UserState {
   userListLoading: Boolean,
