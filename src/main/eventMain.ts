@@ -13,18 +13,20 @@ export interface CreateEventRequest {
     type: any,
     capacity: Number,
     details: String,
-    categoryId: String
+    categoryId: String,
+    user: String
 }
 
 export interface DeleteEventRequest {
-    id: String
+    id: String,
+    user: String
 }
 export interface EventDetailsRequest {
     id: String
 }
 
 export interface UpdateEventRequest {
-    id: String
+    _id: String
     title: String,
     place: String
     hourValue: Object,
@@ -34,7 +36,8 @@ export interface UpdateEventRequest {
     type: any,
     capacity: Number,
     details: String,
-    categoryId: String
+    categoryId: String,
+    user: String
 }
 
 export interface AttendEventRequest {

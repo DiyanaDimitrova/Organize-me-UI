@@ -120,10 +120,11 @@ export function setCurrentItemFailAction(currentItem: Object): CurrentItemAction
 export function setCurrentItem(id: String, dispatch: any): void {
     axios.get('/event/' + id)
       .then((response) => {
+          console.log('ACT' + JSON.stringify(response.data.event))
           dispatch(setCurrentItemAction(response.data.event))
       })
       .catch((err) => {
-          dispatch(setCurrentItemFailAction(err.response.data.event))
+          dispatch(setCurrentItemFailAction(err.response))
       })
 }
 
@@ -168,7 +169,10 @@ export function setEventList(eventList: any): GetAllEventsAction {
 }
 
 export function performDeleteEventAction(request: DeleteEventRequest, dispatch: any): void {
-    axios.delete('/event/delete/' + request.id)
+    let reqBody = {
+      user: request.user
+    }
+    axios.delete('/event/delete/' + request.id, reqBody)
       .then((response) => {
           dispatch(deleteEventSuccessAction(response.data.response))
       })
@@ -187,9 +191,10 @@ export function performUpdateEventAction(request: UpdateEventRequest, dispatch: 
       type: request.type,
       capacity: request.capacity,
       details: request.details,
-      categoryId: request.categoryId
+      categoryId: request.categoryId,
+      user: request.user
     }
-    axios.put('/event/update/' + request.id, reqBody)
+    axios.put('/event/update/' + request._id, reqBody)
       .then((response) => {
           dispatch(updateEventSuccessAction(response.data.response))
       })

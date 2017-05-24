@@ -12,7 +12,7 @@ export interface DeleteCategoryRequest {
     user: String
 }
 export interface UpdateCategoryRequest {
-    id: String
+    _id: String
     title: String
     user: String
 }

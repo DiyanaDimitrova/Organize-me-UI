@@ -60,7 +60,7 @@ export class Category extends React.Component<CategoryProps, CategoryState> {
           if(this.props.itemToBeEdited === true && this.props.params.id !== undefined){
             let updateCategory = {} as UpdateCategoryRequest
             updateCategory.title = this.state.title
-            updateCategory.id = this.props.currentItem._id
+            updateCategory._id = this.props.currentItem._id
             updateCategory.user = this.props.user
             this.props.performUpdateCategoryAction(updateCategory)
             this.setState({title : ''})

@@ -20,7 +20,8 @@ const classes = require('./EventList.css')
 interface StateProps {
   eventListLoading: Boolean,
   success: Boolean,
-  eventList: Array<any>
+  eventList: Array<any>,
+  user: String
 }
 
 interface DispatchProps {
@@ -45,7 +46,8 @@ class EventList extends React.Component<EventListProps, EventListState> {
   public static defaultProps: StateProps = {
     eventListLoading: false,
     success: true,
-    eventList: []
+    eventList: [],
+    user: null
   }
   componentWillMount() {
     this.props.loadEventList()
@@ -57,6 +59,7 @@ class EventList extends React.Component<EventListProps, EventListState> {
     e.preventDefault()
     let deleteEvent = {} as DeleteEventRequest
     deleteEvent.id = itemId
+    deleteEvent.user = this.props.user
     this.props.performDeleteEventAction(deleteEvent)
     browserHistory.push('/')
   }
@@ -136,7 +139,8 @@ class EventList extends React.Component<EventListProps, EventListState> {
 const mapStateToProps = (state: any) => ({
     eventListLoading: state.event.eventListLoading,
     success: state.event.success,
-    eventList: state.event.eventList
+    eventList: state.event.eventList,
+    user: state.login.user.username
 })
 
 const mapDispatchToProps = (dispatch) => {

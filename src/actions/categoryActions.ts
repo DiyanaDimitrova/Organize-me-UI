@@ -133,7 +133,7 @@ export function performUpdateCategoryAction(request: UpdateCategoryRequest, disp
       title: request.title,
       user: request.user
     }
-    axios.put('/category/update/' + request.id, reqBody)
+    axios.put('/category/update/' + request._id, reqBody)
       .then((response) => {
           dispatch(updateCategorySuccessAction(response.data.response))
       })
