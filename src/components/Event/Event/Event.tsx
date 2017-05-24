@@ -51,8 +51,8 @@ export class Event extends React.Component<EventProps, EventState> {
     this.state = {
       title: this.props.params.id !== undefined ? props.currentItem.title : '',
       place: this.props.params.id !== undefined ? props.currentItem.place : '',
-      hourValue: this.props.params.id !== undefined ? props.currentItem.hourValue : Moment().toDate(),
-      dateValue: this.props.params.id !== undefined ? props.currentItem.dateValue : Moment().toDate(),
+      hourValue: this.props.params.id !== undefined ? Moment(props.currentItem.hourValue).toDate() : Moment().toDate(),
+      dateValue: this.props.params.id !== undefined ? Moment(props.currentItem.dateValue).toDate() : Moment().toDate(),
       file: this.props.params.id !== undefined ? props.currentItem.file : '',
       imagePreviewUrl: this.props.params.id !== undefined ? props.currentItem.imagePreviewUrl : '',
       type: this.props.params.id !== undefined ? props.currentItem.type : '',
@@ -218,10 +218,10 @@ export class Event extends React.Component<EventProps, EventState> {
                 <TextField hintText="Title" floatingLabelText="Title" floatingLabelFixed={true} type="text" value={this.state.title} onChange={this.titleEntered}/>
               </div>
               <div>
-                  <DatePicker hintText="Pick Date" floatingLabelText="Pick Date" value={Moment(this.state.dateValue)} onChange={this.handleChangeDatePicker}/>
+                  <DatePicker hintText="Pick Date" floatingLabelText="Pick Date" value={Moment(this.state.dateValue).toDate()} onChange={this.handleChangeDatePicker}/>
               </div>
               <div>
-                  <TimePicker format="24hr" hintText="Pick Time" floatingLabelText="Pick Time" value={Moment(this.state.hourValue)} onChange={this.handleChangeTimePicker}/>
+                  <TimePicker format="24hr" hintText="Pick Time" floatingLabelText="Pick Time" value={Moment(this.state.hourValue).toDate()} onChange={this.handleChangeTimePicker}/>
               </div>
               <div>
                 <TextField hintText="Place" floatingLabelText="Place" floatingLabelFixed={true} type="text" value={this.state.place} onChange={this.placeEntered}/>
