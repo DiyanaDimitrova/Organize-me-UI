@@ -120,7 +120,6 @@ export function setCurrentItemFailAction(currentItem: Object): CurrentItemAction
 export function setCurrentItem(id: String, dispatch: any): void {
     axios.get('/event/' + id)
       .then((response) => {
-          console.log('ACT' + JSON.stringify(response.data.event))
           dispatch(setCurrentItemAction(response.data.event))
       })
       .catch((err) => {

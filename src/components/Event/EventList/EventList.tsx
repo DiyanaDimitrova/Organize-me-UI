@@ -47,7 +47,7 @@ class EventList extends React.Component<EventListProps, EventListState> {
     eventListLoading: false,
     success: true,
     eventList: [],
-    user: null
+    user: ''
   }
   componentWillMount() {
     this.props.loadEventList()
@@ -75,6 +75,7 @@ class EventList extends React.Component<EventListProps, EventListState> {
     // updateEvent.details = item.details
     // updateEvent.categoryId = item.categoryId
     // this.props.setCurrentItem(updateEvent)
+    console.log('UPDATE' + JSON.stringify(item))
     browserHistory.push('/editEvent/' + item._id)
   }
   viewItem = (e, itemId) => {
@@ -140,7 +141,7 @@ const mapStateToProps = (state: any) => ({
     eventListLoading: state.event.eventListLoading,
     success: state.event.success,
     eventList: state.event.eventList,
-    user: state.login.user.username
+    user: state.login.user ? state.login.user.username: ''
 })
 
 const mapDispatchToProps = (dispatch) => {

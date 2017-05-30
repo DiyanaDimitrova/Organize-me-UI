@@ -16,7 +16,7 @@ interface StateProps {
   categoriesList: Array<any>,
   currentItem: UpdateEventRequest,
   itemToBeEdited: Boolean,
-  user: String,
+  // user: String,
   params: any
 }
 
@@ -25,7 +25,6 @@ interface DispatchProps {
   performUpdateEventAction: (updateEventRequest: UpdateEventRequest) => void,
   loadCategoriesList: () => void,
   setCurrentItem: (currentItem: String) => void
-
 }
 
 export interface EventProps extends StateProps, DispatchProps{
@@ -48,19 +47,19 @@ export interface EventState{
 export class Event extends React.Component<EventProps, EventState> {
   constructor(props) {
     super(props)
+    console.log('PROPS ' + JSON.stringify(props))
     this.state = {
-      title: this.props.params.id !== undefined ? props.currentItem.title : '',
-      place: this.props.params.id !== undefined ? props.currentItem.place : '',
-      hourValue: this.props.params.id !== undefined ? Moment(props.currentItem.hourValue).toDate() : Moment().toDate(),
-      dateValue: this.props.params.id !== undefined ? Moment(props.currentItem.dateValue).toDate() : Moment().toDate(),
-      file: this.props.params.id !== undefined ? props.currentItem.file : '',
-      imagePreviewUrl: this.props.params.id !== undefined ? props.currentItem.imagePreviewUrl : '',
-      type: this.props.params.id !== undefined ? props.currentItem.type : '',
-      capacity: this.props.params.id !== undefined ? props.currentItem.capacity : 0,
-      details: this.props.params.id !== undefined ? props.currentItem.details : '',
-      categoryValue: this.props.params.id !== undefined ? props.currentItem.categoryId : '',
+      title: this.props.params.id !== undefined && props.currentItem !== null ? props.currentItem.title : '',
+      place: this.props.params.id !== undefined && props.currentItem !== null ? props.currentItem.place : '',
+      hourValue: this.props.params.id !== undefined && props.currentItem !== null ? Moment(props.currentItem.hourValue).toDate() : Moment().toDate(),
+      dateValue: this.props.params.id !== undefined && props.currentItem !== null ? Moment(props.currentItem.dateValue).toDate() : Moment().toDate(),
+      file: this.props.params.id !== undefined && props.currentItem !== null ? props.currentItem.file : '',
+      imagePreviewUrl: this.props.params.id !== undefined && props.currentItem !== null ? props.currentItem.imagePreviewUrl : '',
+      type: this.props.params.id !== undefined && props.currentItem !== null ? props.currentItem.type : '',
+      capacity: this.props.params.id !== undefined && props.currentItem !== null ? props.currentItem.capacity : 0,
+      details: this.props.params.id !== undefined && props.currentItem !== null ? props.currentItem.details : '',
+      categoryValue: this.props.params.id !== undefined && props.currentItem !== null ? props.currentItem.categoryId : '',
     }
-    console.log('ID' + this.state.hourValue)
     this.titleEntered = this.titleEntered.bind(this)
     this.saveEvent = this.saveEvent.bind(this)
     this.cancelEvent = this.cancelEvent.bind(this)
@@ -73,18 +72,21 @@ export class Event extends React.Component<EventProps, EventState> {
     this.handleCategoryChange = this.handleCategoryChange.bind(this)
   }
   componentWillMount(){
+    console.log('PARAMS222222' + this.props.params.id)
     this.props.loadCategoriesList()
+    console.log('PARAMS000' + this.props.params.id)
     if(this.props.params.id !== undefined && this.props.params.id !== null){
+      console.log('PARAMS' + this.props.params.id)
       this.props.setCurrentItem(this.props.params.id)
     }
   }
   componentWillReceiveProps(nextProps) {
     if(this.props !== nextProps){
-      // this.setState({title : nextProps.currentItem.title, hourValue : nextProps.currentItem.hourValue,
-      //   dateValue : nextProps.currentItem.dateValue, place : nextProps.currentItem.place, file : nextProps.currentItem.file,
-      //   imagePreviewUrl : nextProps.currentItem.imagePreviewUrl, type : nextProps.currentItem.type,
-      //   details : nextProps.currentItem.details, capacity : nextProps.currentItem.capacity, categoryValue : nextProps.currentItem.categoryValue
-      // })
+      this.setState({title : nextProps.currentItem.title, hourValue : nextProps.currentItem.hourValue,
+        dateValue : nextProps.currentItem.dateValue, place : nextProps.currentItem.place, file : nextProps.currentItem.file,
+        imagePreviewUrl : nextProps.currentItem.imagePreviewUrl, type : nextProps.currentItem.type,
+        details : nextProps.currentItem.details, capacity : nextProps.currentItem.capacity, categoryValue : nextProps.currentItem.categoryValue
+      })
     }
   }
   titleEntered = (event) => {
@@ -122,7 +124,7 @@ export class Event extends React.Component<EventProps, EventState> {
         updateEvent.capacity = this.state.capacity
         updateEvent.details = this.state.details
         updateEvent.categoryId = this.state.categoryValue
-        updateEvent.user = this.props.user
+        // updateEvent.user = this.props.user
         this.props.performUpdateEventAction(updateEvent)
         this.setState({title : ''})
         this.setState({hourValue : Moment().toDate()})
@@ -146,7 +148,7 @@ export class Event extends React.Component<EventProps, EventState> {
       createEvent.capacity = this.state.capacity
       createEvent.details = this.state.details
       createEvent.categoryId = this.state.categoryValue
-      createEvent.user = this.props.user
+      // createEvent.user = this.props.user
       this.props.performCreateEventAction(createEvent)
     }
     browserHistory.push('/')
@@ -262,7 +264,7 @@ const mapStateToProps = (state: any) => ({
   categoriesList: state.category.categoriesList,
   currentItem: state.event.currentItem,
   itemToBeEdited: state.event.itemToBeEdited,
-  user: state.login.user ? state.login.user.username : ''
+  // user: state.login.user.username
 })
 
 const mapDispatchToProps = (dispatch) => {
