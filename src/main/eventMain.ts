@@ -5,7 +5,8 @@ import { LOGIN_SUCCESS } from '../actions/loginActions'
 
 export interface CreateEventRequest {
     title: String,
-    place: String
+    place: String,
+    city: String,
     hourValue: Object,
     dateValue: Object,
     file: any,
@@ -28,7 +29,8 @@ export interface EventDetailsRequest {
 export interface UpdateEventRequest {
     _id: String
     title: String,
-    place: String
+    place: String,
+    city: String,
     hourValue: Object,
     dateValue: Object,
     file: any,

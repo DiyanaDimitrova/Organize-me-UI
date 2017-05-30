@@ -16,7 +16,7 @@ interface StateProps {
   categoriesList: Array<any>,
   currentItem: UpdateEventRequest,
   itemToBeEdited: Boolean,
-  // user: String,
+  user: String,
   params: any
 }
 
@@ -34,6 +34,7 @@ export interface EventProps extends StateProps, DispatchProps{
 export interface EventState{
   title: String,
   place: String,
+  city: String,
   hourValue: Date,
   dateValue: Date,
   file: any,
@@ -51,6 +52,7 @@ export class Event extends React.Component<EventProps, EventState> {
     this.state = {
       title: this.props.params.id !== undefined && props.currentItem !== null ? props.currentItem.title : '',
       place: this.props.params.id !== undefined && props.currentItem !== null ? props.currentItem.place : '',
+      city: this.props.params.id !== undefined && props.currentItem !== null ? props.currentItem.city : '',
       hourValue: this.props.params.id !== undefined && props.currentItem !== null ? Moment(props.currentItem.hourValue).toDate() : Moment().toDate(),
       dateValue: this.props.params.id !== undefined && props.currentItem !== null ? Moment(props.currentItem.dateValue).toDate() : Moment().toDate(),
       file: this.props.params.id !== undefined && props.currentItem !== null ? props.currentItem.file : '',
@@ -67,10 +69,22 @@ export class Event extends React.Component<EventProps, EventState> {
     this.handleChangeDatePicker = this.handleChangeDatePicker.bind(this)
     this.handleFile = this.handleFile.bind(this)
     this.placeEntered = this.placeEntered.bind(this)
+    this.cityEntered = this.cityEntered.bind(this)
     this.detailsEntered = this.detailsEntered.bind(this)
     this.capacityEntered = this.capacityEntered.bind(this)
     this.handleCategoryChange = this.handleCategoryChange.bind(this)
   }
+
+  public static defaultProps: StateProps = {
+    categoriesListLoading: false,
+    success: false,
+    categoriesList: [],
+    currentItem: null,
+    itemToBeEdited: false,
+    user: '',
+    params: null
+  }
+
   componentWillMount(){
     console.log('PARAMS222222' + this.props.params.id)
     this.props.loadCategoriesList()
@@ -82,11 +96,11 @@ export class Event extends React.Component<EventProps, EventState> {
   }
   componentWillReceiveProps(nextProps) {
     if(this.props !== nextProps){
-      this.setState({title : nextProps.currentItem.title, hourValue : nextProps.currentItem.hourValue,
-        dateValue : nextProps.currentItem.dateValue, place : nextProps.currentItem.place, file : nextProps.currentItem.file,
-        imagePreviewUrl : nextProps.currentItem.imagePreviewUrl, type : nextProps.currentItem.type,
-        details : nextProps.currentItem.details, capacity : nextProps.currentItem.capacity, categoryValue : nextProps.currentItem.categoryValue
-      })
+      // this.setState({title : nextProps.currentItem.title, hourValue : nextProps.currentItem.hourValue,
+      //   dateValue : nextProps.currentItem.dateValue, place : nextProps.currentItem.place, city: nextProps.currentItem.city, file : nextProps.currentItem.file,
+      //   imagePreviewUrl : nextProps.currentItem.imagePreviewUrl, type : nextProps.currentItem.type,
+      //   details : nextProps.currentItem.details, capacity : nextProps.currentItem.capacity, categoryValue : nextProps.currentItem.categoryValue
+      // })
     }
   }
   titleEntered = (event) => {
@@ -97,6 +111,11 @@ export class Event extends React.Component<EventProps, EventState> {
   placeEntered = (event) => {
     if (event.target.value) {
       this.setState({ place: event.target.value })
+    }
+  }
+  cityEntered = (event) => {
+    if (event.target.value) {
+      this.setState({ city: event.target.value })
     }
   }
   detailsEntered = (event) => {
@@ -118,18 +137,20 @@ export class Event extends React.Component<EventProps, EventState> {
         updateEvent.hourValue = this.state.hourValue
         updateEvent.dateValue = this.state.dateValue
         updateEvent.place = this.state.place
+        updateEvent.city = this.state.city
         updateEvent.file = this.state.file
         updateEvent.imagePreviewUrl = this.state.imagePreviewUrl
         updateEvent.type = this.state.type
         updateEvent.capacity = this.state.capacity
         updateEvent.details = this.state.details
         updateEvent.categoryId = this.state.categoryValue
-        // updateEvent.user = this.props.user
+        updateEvent.user = this.props.user
         this.props.performUpdateEventAction(updateEvent)
         this.setState({title : ''})
         this.setState({hourValue : Moment().toDate()})
         this.setState({dateValue : Moment().toDate()})
         this.setState({place : ''})
+        this.setState({city : ''})
         this.setState({file : ''})
         this.setState({imagePreviewUrl : ''})
         this.setState({type : ''})
@@ -142,13 +163,14 @@ export class Event extends React.Component<EventProps, EventState> {
       createEvent.hourValue = this.state.hourValue
       createEvent.dateValue = this.state.dateValue
       createEvent.place = this.state.place
+      createEvent.city = this.state.city
       createEvent.file = this.state.file
       createEvent.imagePreviewUrl = this.state.imagePreviewUrl
       createEvent.type = this.state.type
       createEvent.capacity = this.state.capacity
       createEvent.details = this.state.details
       createEvent.categoryId = this.state.categoryValue
-      // createEvent.user = this.props.user
+      createEvent.user = this.props.user
       this.props.performCreateEventAction(createEvent)
     }
     browserHistory.push('/')
@@ -159,6 +181,7 @@ export class Event extends React.Component<EventProps, EventState> {
     this.setState({hourValue : Moment().toDate()})
     this.setState({dateValue : Moment().toDate()})
     this.setState({place : ''})
+    this.setState({city : ''})
     this.setState({file : ''})
     this.setState({imagePreviewUrl : ''})
     this.setState({type : ''})
@@ -229,6 +252,9 @@ export class Event extends React.Component<EventProps, EventState> {
                 <TextField hintText="Place" floatingLabelText="Place" floatingLabelFixed={true} type="text" value={this.state.place} onChange={this.placeEntered}/>
               </div>
               <div>
+                <TextField hintText="City" floatingLabelText="City" floatingLabelFixed={true} type="text" value={this.state.city} onChange={this.cityEntered}/>
+              </div>
+              <div>
                 <TextField hintText="Capacity" floatingLabelText="Capacity" floatingLabelFixed={true} type="number"  value={this.state.capacity} onChange={this.capacityEntered}/>
               </div>
               <div>
@@ -264,7 +290,7 @@ const mapStateToProps = (state: any) => ({
   categoriesList: state.category.categoriesList,
   currentItem: state.event.currentItem,
   itemToBeEdited: state.event.itemToBeEdited,
-  // user: state.login.user.username
+  user: state.login.user.username
 })
 
 const mapDispatchToProps = (dispatch) => {

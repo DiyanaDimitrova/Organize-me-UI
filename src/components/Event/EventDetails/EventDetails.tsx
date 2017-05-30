@@ -48,7 +48,7 @@ export interface EventDetailsState{
 export class EventDetails extends React.Component<EventDetailsProps, EventDetailsState> {
   constructor(props) {
     super(props)
-    this.state = {    
+    this.state = {
       eventImageLoading: props.eventImageLoading,
       eventDetailsLoading: props.eventDetailsLoading,
       displayedItem: props.displayedItem,
@@ -126,7 +126,7 @@ render() {
         $imagePreview = (React.createElement("img", { src: imagePreviewUrl }));
   }
     return (
-      <div> 
+      <div>
         <div>
             <Header />
         </div>
