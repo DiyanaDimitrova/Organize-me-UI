@@ -75,7 +75,6 @@ class EventList extends React.Component<EventListProps, EventListState> {
     // updateEvent.details = item.details
     // updateEvent.categoryId = item.categoryId
     // this.props.setCurrentItem(updateEvent)
-    console.log('UPDATE' + JSON.stringify(item))
     browserHistory.push('/editEvent/' + item._id)
   }
   viewItem = (e, itemId) => {

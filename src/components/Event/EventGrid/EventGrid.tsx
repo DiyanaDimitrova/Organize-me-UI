@@ -77,12 +77,12 @@ class EventGrid extends React.Component<EventGridProps, EventGridState> {
 
       src = this.props.images.find(image => {
         if(image.id === itemId){
-          console.log(image.id)
+          // console.log(image.id)
           return image
         }
       })
     }
-    console.log('PROPS' + JSON.stringify(src ? src.id : null))
+    // console.log('PROPS' + JSON.stringify(src ? src.id : null))
 
     return src ? src.image : null
   }

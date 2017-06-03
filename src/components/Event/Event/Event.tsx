@@ -48,7 +48,6 @@ export interface EventState{
 export class Event extends React.Component<EventProps, EventState> {
   constructor(props) {
     super(props)
-    console.log('PROPS ' + JSON.stringify(props))
     this.state = {
       title: this.props.params.id !== undefined && props.currentItem !== null ? props.currentItem.title : '',
       place: this.props.params.id !== undefined && props.currentItem !== null ? props.currentItem.place : '',
@@ -86,11 +85,8 @@ export class Event extends React.Component<EventProps, EventState> {
   }
 
   componentWillMount(){
-    console.log('PARAMS222222' + this.props.params.id)
     this.props.loadCategoriesList()
-    console.log('PARAMS000' + this.props.params.id)
     if(this.props.params.id !== undefined && this.props.params.id !== null){
-      console.log('PARAMS' + this.props.params.id)
       this.props.setCurrentItem(this.props.params.id)
     }
   }
@@ -229,7 +225,6 @@ export class Event extends React.Component<EventProps, EventState> {
     } else {
       name = 'Add new event'
     }
-    console.log('STATE' + this.state.dateValue)
     return (
       <div id='registerDiv' className={classes.registerDiv} width="100%">
           <div>
