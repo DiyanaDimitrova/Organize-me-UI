@@ -42,7 +42,8 @@ export interface EventDetailsState{
   itemToView: any,
   goingUsers: any,
   interestedUsers: any,
-  notGoingUsers: any
+  notGoingUsers: any,
+  isClickedButton: Boolean
 }
 
 export class EventDetails extends React.Component<EventDetailsProps, EventDetailsState> {
@@ -55,7 +56,8 @@ export class EventDetails extends React.Component<EventDetailsProps, EventDetail
       itemToView: props.itemToView,
       goingUsers: null,
       interestedUsers: null,
-      notGoingUsers: null
+      notGoingUsers: null,
+      isClickedButton: false
     }
   }
 
@@ -87,6 +89,7 @@ export class EventDetails extends React.Component<EventDetailsProps, EventDetail
     attendEvent.id = this.props.displayedItem
     attendEvent.username = this.props.username
     attendEvent.type = 'going'
+    this.setState({isClickedButton: true})
     this.props.performAttendEventAction(attendEvent)
   }
 
@@ -95,6 +98,7 @@ export class EventDetails extends React.Component<EventDetailsProps, EventDetail
     attendEvent.id = this.props.displayedItem
     attendEvent.username = this.props.username
     attendEvent.type = 'interested'
+    this.setState({isClickedButton: true})
     this.props.performAttendEventAction(attendEvent)
   }
   notInterestedInEvent = () => {
@@ -102,6 +106,7 @@ export class EventDetails extends React.Component<EventDetailsProps, EventDetail
     attendEvent.id = this.props.displayedItem
     attendEvent.username = this.props.username
     attendEvent.type = 'notGoing'
+    this.setState({isClickedButton: true})
     this.props.performAttendEventAction(attendEvent)
   }
   // handleInvitedPeople = (actionType: String) => {
@@ -172,9 +177,9 @@ render() {
               })}</div>
             </CardText>
             <CardActions>
-                <RaisedButton label="Going" secondary={true} onClick={this.goingToEvent}/>
-                <RaisedButton label="Interested" primary={true} onClick={this.interestedInEvent}/>
-                <RaisedButton label="Not Interested" primary={false} onClick={this.notInterestedInEvent}/>
+                <RaisedButton label="Going" secondary={true} disabled={this.state.isClickedButton} onClick={this.goingToEvent}/>
+                <RaisedButton label="Interested" primary={true} disabled={this.state.isClickedButton} onClick={this.interestedInEvent}/>
+                <RaisedButton label="Not Interested" primary={false} disabled={this.state.isClickedButton} onClick={this.notInterestedInEvent}/>
             </CardActions>
           </Card>
       </div>

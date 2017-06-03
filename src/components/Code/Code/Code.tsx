@@ -82,7 +82,6 @@ export class Code extends React.Component<CodeProps, CodeState> {
   handleRowSelection = (selectedRows) => {
     let sendCodeList = []
     if(selectedRows === 'all'){
-      console.log(selectedRows.length)
       for (let i = 0; i < this.props.invitedPeopleList.length; i++) {
         sendCodeList.push(this.props.invitedPeopleList[i].username)
      }
