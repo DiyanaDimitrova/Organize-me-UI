@@ -89,7 +89,6 @@ export class EventDetails extends React.Component<EventDetailsProps, EventDetail
     attendEvent.id = this.props.displayedItem
     attendEvent.username = this.props.username
     attendEvent.type = 'going'
-    this.setState({isClickedButton: true})
     this.props.performAttendEventAction(attendEvent)
   }
 
@@ -98,7 +97,6 @@ export class EventDetails extends React.Component<EventDetailsProps, EventDetail
     attendEvent.id = this.props.displayedItem
     attendEvent.username = this.props.username
     attendEvent.type = 'interested'
-    this.setState({isClickedButton: true})
     this.props.performAttendEventAction(attendEvent)
   }
   notInterestedInEvent = () => {
@@ -106,9 +104,9 @@ export class EventDetails extends React.Component<EventDetailsProps, EventDetail
     attendEvent.id = this.props.displayedItem
     attendEvent.username = this.props.username
     attendEvent.type = 'notGoing'
-    this.setState({isClickedButton: true})
     this.props.performAttendEventAction(attendEvent)
   }
+
   // handleInvitedPeople = (actionType: String) => {
   //   let group = this.props.itemToView.details.invitedPeople.filter(item => {
   //     if(item.type === actionType){
@@ -130,6 +128,11 @@ render() {
     if (imagePreviewUrl) {
         $imagePreview = (React.createElement("img", { src: imagePreviewUrl }));
   }
+    let disableButtons = this.props.itemToView.details.invitedPeople.some((element, index, array) => {
+        console.log(element.username === this.props.username)
+        return element.username === this.props.username
+      })
+    console.log('Disabled' + disableButtons)
     return (
       <div>
         <div>
@@ -177,9 +180,18 @@ render() {
               })}</div>
             </CardText>
             <CardActions>
-                <RaisedButton label="Going" secondary={true} disabled={this.state.isClickedButton} onClick={this.goingToEvent}/>
-                <RaisedButton label="Interested" primary={true} disabled={this.state.isClickedButton} onClick={this.interestedInEvent}/>
-                <RaisedButton label="Not Interested" primary={false} disabled={this.state.isClickedButton} onClick={this.notInterestedInEvent}/>
+                <RaisedButton label="Going" secondary={true} disabled={this.props.itemToView.details.invitedPeople.some((element, index, array) => {
+                    console.log(element.username === this.props.username)
+                    return element.username === this.props.username && element.type === 'going'
+                  })} onClick={this.goingToEvent}/>
+                <RaisedButton label="Interested" primary={true} disabled={this.props.itemToView.details.invitedPeople.some((element, index, array) => {
+                    console.log(element.username === this.props.username)
+                    return element.username === this.props.username && element.type === 'interested'
+                  })} onClick={this.interestedInEvent}/>
+                <RaisedButton label="Not Interested" primary={false} disabled={this.props.itemToView.details.invitedPeople.some((element, index, array) => {
+                    console.log(element.username === this.props.username)
+                    return element.username === this.props.username && element.type === 'notGoing'
+                  })} onClick={this.notInterestedInEvent}/>
             </CardActions>
           </Card>
       </div>
