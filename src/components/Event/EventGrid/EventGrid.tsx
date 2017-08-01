@@ -18,7 +18,7 @@ interface StateProps {
   eventListLoading: Boolean,
   success: Boolean,
   eventList: Array<any>,
-  imageToView: any,
+  // imageToView: any,
   images: Array<any>
 }
 
@@ -33,6 +33,7 @@ interface EventGridProps extends StateProps, DispatchProps {
 }
 
 interface EventGridState{
+  images: Array<any>
 }
 
 class EventGrid extends React.Component<EventGridProps, EventGridState> {
@@ -44,23 +45,14 @@ class EventGrid extends React.Component<EventGridProps, EventGridState> {
     eventListLoading: false,
     success: true,
     eventList: [],
-    imageToView: null,
+    // imageToView: null,
     images: []
   }
   componentWillMount() {
     this.props.loadEventList()
   }
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.props.images !== nextProps.images
-  }
-  // componentWillUpdate(nextProps, nextState) {
-  //   if(this.props.eventList !== nextProps.eventList){
-  //     this.props.eventList.forEach(event => {
-  //       let eventDetails = {} as EventDetailsRequest
-  //       eventDetails.id = event._id
-  //       this.props.loadEventImageListAction(eventDetails)
-  //     })
-  //   }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return this.props.images !== nextProps.images
   // }
   viewItem = (e, itemId) => {
     // console.log('ITEM' + itemId)
@@ -74,7 +66,6 @@ class EventGrid extends React.Component<EventGridProps, EventGridState> {
 
     let src
     if(this.props.images !== null && this.props.images.length > 0){
-
       src = this.props.images.find(image => {
         if(image.id === itemId){
           // console.log(image.id)
@@ -88,10 +79,6 @@ class EventGrid extends React.Component<EventGridProps, EventGridState> {
   }
 
   render() {
-    let eventArray
-    if(this.props.eventList !== undefined && this.props.eventList !== null){
-      eventArray = Object.keys(this.props.eventList).map(key => this.props.eventList[key])
-    }
     const styles = {
       root: {
         display: 'flex',
@@ -109,22 +96,24 @@ class EventGrid extends React.Component<EventGridProps, EventGridState> {
         <div>
             <Header />
         </div>
-        <GridList
-          cellHeight={300}
-          style={styles.gridList}
-        >
-          <Subheader>All events</Subheader>
-          {eventArray.map((tile) => (
-            <GridTile
-              key={tile._id}
-              title={tile.title}
-              subtitle={<span>at <b>{tile.place}</b></span>}
-              actionIcon={<IconButton onTouchTap={(event) => {this.viewItem(event, tile._id)}}>
-              <Info color="white" /></IconButton>}>
-              <img src={this.getImage(tile._id)} />
-            </GridTile>
-          ))}
-        </GridList>
+        {this.props.eventListLoading === false && this.props.success === true &&
+          <GridList
+            cellHeight={300}
+            style={styles.gridList}
+          >
+            <Subheader>All events</Subheader>
+            {this.props.eventList !== undefined && this.props.eventList !== null && this.props.eventList.map((tile) => (
+              <GridTile
+                key={tile._id}
+                title={tile.title}
+                subtitle={<span>at <b>{tile.place}</b></span>}
+                actionIcon={<IconButton onTouchTap={(event) => {this.viewItem(event, tile._id)}}>
+                <Info color="white" /></IconButton>}>
+                <img src={this.getImage(tile._id)} />
+              </GridTile>
+            ))}
+          </GridList>
+        }
       </div>
     )
   }
@@ -134,7 +123,7 @@ const mapStateToProps = (state: any) => ({
     eventListLoading: state.event.eventListLoading,
     success: state.event.success,
     eventList: state.event.eventList,
-    imageToView: state.event.itemToView.image,
+    // imageToView: state.event.itemToView.image,
     images: state.event.images
 })
 

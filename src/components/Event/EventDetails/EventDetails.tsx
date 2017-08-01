@@ -20,7 +20,9 @@ interface StateProps {
   eventImageLoading: Boolean,
   eventDetailsLoading: Boolean,
   displayedItem: String,
-  itemToView: any,
+  // itemToView: any,
+  image: any,
+  details: any,
   username: String,
   params: any
 }
@@ -39,7 +41,9 @@ export interface EventDetailsState{
   eventImageLoading: Boolean,
   eventDetailsLoading: Boolean,
   displayedItem: String,
-  itemToView: any,
+  // itemToView: any,
+  image: any,
+  details: any,
   goingUsers: any,
   interestedUsers: any,
   notGoingUsers: any,
@@ -53,7 +57,9 @@ export class EventDetails extends React.Component<EventDetailsProps, EventDetail
       eventImageLoading: props.eventImageLoading,
       eventDetailsLoading: props.eventDetailsLoading,
       displayedItem: props.displayedItem,
-      itemToView: props.itemToView,
+      // itemToView: props.itemToView,
+      image: props.image,
+      details: props.details,
       goingUsers: null,
       interestedUsers: null,
       notGoingUsers: null,
@@ -123,12 +129,12 @@ export class EventDetails extends React.Component<EventDetailsProps, EventDetail
   // }
 
 render() {
-    let imagePreviewUrl = this.props.itemToView.image
+    let imagePreviewUrl = this.props.image
     let $imagePreview = null
     if (imagePreviewUrl) {
         $imagePreview = (React.createElement("img", { src: imagePreviewUrl }));
   }
-    let disableButtons = this.props.itemToView.details.invitedPeople.some((element, index, array) => {
+    let disableButtons = this.props.details.invitedPeople.some((element, index, array) => {
         console.log(element.username === this.props.username)
         return element.username === this.props.username
       })
@@ -140,21 +146,21 @@ render() {
         </div>
           <Card>
             <CardHeader
-              title={this.props.itemToView.details.title}
-              subtitle={dateFormat(this.props.itemToView.details.time, 'HH:MM')+ ' ' + dateFormat(this.props.itemToView.details.time, 'dS mmmm, yyyy')}
+              title={this.props.details.title}
+              subtitle={dateFormat(this.props.details.time, 'HH:MM')+ ' ' + dateFormat(this.props.details.time, 'dS mmmm, yyyy')}
             />
             <CardMedia
-              overlay={<CardTitle title={this.props.itemToView.details.title} subtitle={dateFormat(this.props.itemToView.details.time, 'HH:MM')+ ' ' + dateFormat(this.props.itemToView.details.time, 'dS mmmm, yyyy')} />}
+              overlay={<CardTitle title={this.props.details.title} subtitle={dateFormat(this.props.details.time, 'HH:MM')+ ' ' + dateFormat(this.props.details.time, 'dS mmmm, yyyy')} />}
             >
               <div><img src={imagePreviewUrl} height="100%" width="100%"/></div>
             </CardMedia>
-            <CardTitle title={this.props.itemToView.details.title} subtitle={dateFormat(this.props.itemToView.details.time, 'HH:MM')+ ' ' + dateFormat(this.props.itemToView.details.time, 'dS mmmm, yyyy')} />
+            <CardTitle title={this.props.details.title} subtitle={dateFormat(this.props.details.time, 'HH:MM')+ ' ' + dateFormat(this.props.details.time, 'dS mmmm, yyyy')} />
             <CardText>
-              <div><MapsPlace />{this.props.itemToView.details.place} </div>
+              <div><MapsPlace />{this.props.details.place} </div>
               <Divider/>
-              <div>{this.props.itemToView.details.details}</div>
+              <div>{this.props.details.details}</div>
               <Divider/>
-              <div id='wrapper' className={classes.wrapper}>Going: {this.props.itemToView.details.invitedPeople.map((item, index) => {
+              <div id='wrapper' className={classes.wrapper}>Going: {this.props.details.invitedPeople.map((item, index) => {
                 if(item.type === 'going'){
                   return <Chip id='chip' className={classes.chip} key={index}>
                   <Avatar size={32} color={indigo900} backgroundColor={blue300}>{item.username.charAt(0)}</Avatar>
@@ -162,7 +168,7 @@ render() {
                   </Chip>
                 }
               })}</div>
-              <div id='wrapper' className={classes.wrapper}>Interested: {this.props.itemToView.details.invitedPeople.map((item, index) => {
+              <div id='wrapper' className={classes.wrapper}>Interested: {this.props.details.invitedPeople.map((item, index) => {
                 if(item.type === 'interested'){
                   return <Chip id='chip' className={classes.chip} key={index}>
                   <Avatar size={32} color={indigo900} backgroundColor={blue300}>{item.username.charAt(0)}</Avatar>
@@ -170,7 +176,7 @@ render() {
                   </Chip>
                 }
               })}</div>
-              <div id='wrapper' className={classes.wrapper}>Not interested: {this.props.itemToView.details.invitedPeople.map((item, index) => {
+              <div id='wrapper' className={classes.wrapper}>Not interested: {this.props.details.invitedPeople.map((item, index) => {
                 if(item.type === 'notGoing'){
                   return <Chip id='chip' className={classes.chip} key={index}>
                   <Avatar size={32} color={indigo900} backgroundColor={blue300}>{item.username.charAt(0)}</Avatar>
@@ -180,15 +186,15 @@ render() {
               })}</div>
             </CardText>
             <CardActions>
-                <RaisedButton label="Going" secondary={true} disabled={this.props.itemToView.details.invitedPeople.some((element, index, array) => {
+                <RaisedButton label="Going" secondary={true} disabled={this.props.details.invitedPeople.some((element, index, array) => {
                     console.log(element.username === this.props.username)
                     return element.username === this.props.username && element.type === 'going'
                   })} onClick={this.goingToEvent}/>
-                <RaisedButton label="Interested" primary={true} disabled={this.props.itemToView.details.invitedPeople.some((element, index, array) => {
+                <RaisedButton label="Interested" primary={true} disabled={this.props.details.invitedPeople.some((element, index, array) => {
                     console.log(element.username === this.props.username)
                     return element.username === this.props.username && element.type === 'interested'
                   })} onClick={this.interestedInEvent}/>
-                <RaisedButton label="Not Interested" primary={false} disabled={this.props.itemToView.details.invitedPeople.some((element, index, array) => {
+                <RaisedButton label="Not Interested" primary={false} disabled={this.props.details.invitedPeople.some((element, index, array) => {
                     console.log(element.username === this.props.username)
                     return element.username === this.props.username && element.type === 'notGoing'
                   })} onClick={this.notInterestedInEvent}/>
@@ -203,7 +209,9 @@ const mapStateToProps = (state: any) => ({
   eventImageLoading: state.event.eventImageLoading,
   eventDetailsLoading: state.event.eventDetailsLoading,
   displayedItem: state.event.displayedItem,
-  itemToView: state.event.itemToView,
+  image: state.event.itemToView ? state.event.itemToView.image : null,
+  details: state.event.itemToView ? state.event.itemToView.details : null,
+  // itemToView: state.event.itemToView ? state.event.itemToView : null,
   username: state.login.user ? state.login.user.username : ''
 })
 

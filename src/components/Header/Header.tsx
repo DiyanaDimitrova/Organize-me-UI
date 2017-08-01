@@ -1,6 +1,7 @@
 import * as React from 'react'
-import AppBar from 'material-ui/AppBar'
-import Drawer from 'material-ui/Drawer'
+import {AppBar, Drawer, Paper} from 'material-ui'
+// import Drawer from 'material-ui/Drawer'
+// import Paper from 'material-ui/Paper'
 import MenuItem from 'material-ui/MenuItem'
 import LoggedMenu from '../Login/LoggedMenu/LoggedMenu'
 import Login from '../Login/Login/Login'
@@ -50,9 +51,9 @@ class Header extends React.Component<HeaderProps, HeaderState> {
     // this.setState({logged: logged});
   }
 
-  menuClick = () => {
-      this.setState({openMenu: !this.state.openMenu})
-  }
+  // menuClick = () => {
+  //     this.setState({openMenu: !this.state.openMenu})
+  // }
   newCategoryClick = () => {
     browserHistory.push('/newCategory')
   }
@@ -76,21 +77,26 @@ class Header extends React.Component<HeaderProps, HeaderState> {
   }
   render() {
     return (
-      <div>
-        <AppBar id='mainDiv' className={classes.mainDiv}
-          title="Organize Me"
-          onLeftIconButtonTouchTap={this.menuClick}
-          iconElementRight={this.props.logged ? <LoggedMenu /> : <Login />}
-        />
-        <Drawer open={this.state.openMenu}>
-          <MenuItem onTouchTap={this.newCategoryClick} leftIcon={<Note />}>Create Category</MenuItem>
-          <MenuItem onTouchTap={this.allCategoryClick} leftIcon={<Toc />}>All Categories</MenuItem>
-          <MenuItem onTouchTap={this.newEventClick} leftIcon={<Event />}>Create Event</MenuItem>
-          <MenuItem onTouchTap={this.allEventClick} leftIcon={<EventNote />}>All Events</MenuItem>
-          <MenuItem onTouchTap={this.eventGridClick} leftIcon={<Photo />}>Events Grid</MenuItem>
-          <MenuItem onTouchTap={this.scanCodeClick} leftIcon={<Nfc />}>Scan Code</MenuItem>
-          <MenuItem onTouchTap={this.viewUsersClick} leftIcon={<Group />}>View Users</MenuItem>
-        </Drawer>
+      <div id='mainDiv' className={classes.mainDiv}>
+        <div id='navigationDiv' className={classes.navigationDiv}>
+          <Drawer open={true}>
+            <MenuItem onTouchTap={this.newCategoryClick} leftIcon={<Note />}>Create Category</MenuItem>
+            <MenuItem onTouchTap={this.allCategoryClick} leftIcon={<Toc />}>All Categories</MenuItem>
+            <MenuItem onTouchTap={this.newEventClick} leftIcon={<Event />}>Create Event</MenuItem>
+            <MenuItem onTouchTap={this.allEventClick} leftIcon={<EventNote />}>All Events</MenuItem>
+            <MenuItem onTouchTap={this.eventGridClick} leftIcon={<Photo />}>Events Grid</MenuItem>
+            <MenuItem onTouchTap={this.scanCodeClick} leftIcon={<Nfc />}>Scan Code</MenuItem>
+            <MenuItem onTouchTap={this.viewUsersClick} leftIcon={<Group />}>View Users</MenuItem>
+          </Drawer>
+        </div>
+        <div id='contentDiv' className={classes.contentDiv}>
+          <AppBar
+            title="Organize Me"
+            // onLeftIconButtonTouchTap={this.menuClick}
+            showMenuIconButton={false}
+            iconElementRight={this.props.logged ? <LoggedMenu /> : <Login />}
+          />
+        </div>
       </div>
     )
   }

@@ -90,22 +90,24 @@ class CategoryList extends React.Component<CategoryListProps, CategoryListState>
     }
 
     return (
-      <div id='categoryDiv' className={classes.categoryDiv}>
+      <div>
           <div>
             <Header />
           </div>
-         <List>
-          {categoryArray.map((item, index) => {
-            return (
-              <div key={index} >
-                <ListItem
-                  rightIconButton={this.rightIconMenu(item)}
-                  primaryText={item.title}
-                />
-              </div>
-            )
-          })}
-          </List>
+          <div id='categoryListDiv' className={classes.categoryListDiv}>
+           <List>
+            {categoryArray.map((item, index) => {
+              return (
+                <div key={index} >
+                  <ListItem
+                    rightIconButton={this.rightIconMenu(item)}
+                    primaryText={item.title}
+                  />
+                </div>
+              )
+            })}
+            </List>
+          </div>
       </div>
     )
   }

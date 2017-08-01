@@ -79,6 +79,7 @@ export class AdminManagement extends React.Component<AdminManagementProps, Admin
   cancelEvent = (event)  => {
     event.preventDefault()
     this.setState({adminList: null})
+    browserHistory.push('/')
   }
   handleRowSelection = (selectedRows) => {
     let makeAdminList = []

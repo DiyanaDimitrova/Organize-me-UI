@@ -86,19 +86,21 @@ export class Category extends React.Component<CategoryProps, CategoryState> {
     }
 
     return (
-      <div id='registerDiv' className={classes.registerDiv}>
-           <div>
+      <div>
+          <div>
             <Header />
           </div>
-          <div id='titleText' className={classes.titleText}>
-            <h2>{title}</h2>
-          </div>
-          <div>
-            <TextField hintText="Title" floatingLabelText="Title" floatingLabelFixed={true} type="text"  value={this.state.title} onChange={this.titleEntered}/>
-          </div>
-          <div>
-            <RaisedButton label="Cancel" secondary={true} onClick={this.cancelCategory}/>
-            <RaisedButton label="Submit" primary={true} onClick={this.saveCategory}/>
+          <div id='categoryDiv' className={classes.categoryDiv}>
+            <div id='titleText' className={classes.titleText}>
+              <h2>{title}</h2>
+            </div>
+            <div>
+              <TextField fullWidth={true} hintText="Title" floatingLabelText="Title" floatingLabelFixed={true} type="text"  value={this.state.title} onChange={this.titleEntered}/>
+            </div>
+            <div>
+              <RaisedButton label="Cancel" secondary={true} onClick={this.cancelCategory}/>
+              <RaisedButton label="Submit" primary={true} onClick={this.saveCategory}/>
+            </div>
           </div>
       </div>
     )
