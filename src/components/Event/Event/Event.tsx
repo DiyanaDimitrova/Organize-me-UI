@@ -230,50 +230,52 @@ export class Event extends React.Component<EventProps, EventState> {
           <div>
             <Header />
           </div>
-          <div id='titleText' className={classes.titleText}>
-            <h2>{name}</h2>
+          <div id='eventDiv' className={classes.eventDiv}>
+            <div id='titleText' className={classes.titleText}>
+              <h2>{name}</h2>
+            </div>
+            <form encType='multipart/form-data'>
+                <div>
+                  <TextField hintText="Title" floatingLabelText="Title" floatingLabelFixed={true} type="text" value={this.state.title} onChange={this.titleEntered}/>
+                </div>
+                <div>
+                    <DatePicker hintText="Pick Date" floatingLabelText="Pick Date" value={Moment(this.state.dateValue).toDate()} onChange={this.handleChangeDatePicker}/>
+                </div>
+                <div>
+                    <TimePicker format="24hr" hintText="Pick Time" floatingLabelText="Pick Time" value={Moment(this.state.hourValue).toDate()} onChange={this.handleChangeTimePicker}/>
+                </div>
+                <div>
+                  <TextField hintText="Place" floatingLabelText="Place" floatingLabelFixed={true} type="text" value={this.state.place} onChange={this.placeEntered}/>
+                </div>
+                <div>
+                  <TextField hintText="City" floatingLabelText="City" floatingLabelFixed={true} type="text" value={this.state.city} onChange={this.cityEntered}/>
+                </div>
+                <div>
+                  <TextField hintText="Capacity" floatingLabelText="Capacity" floatingLabelFixed={true} type="number"  value={this.state.capacity} onChange={this.capacityEntered}/>
+                </div>
+                <div>
+                  <TextField hintText="Details" floatingLabelText="Details" floatingLabelFixed={true} type="text"  value={this.state.details} onChange={this.detailsEntered}/>
+                </div>
+                <div>
+                  <DropDownMenu value={this.state.categoryValue} onChange={this.handleCategoryChange} autoWidth={true}>
+                    {categoryArray.map((item, index) => {
+                      return (
+                          <MenuItem value={item._id} key={index} primaryText={item.title}/>
+                      )
+                    })}
+                   </DropDownMenu>
+                </div>
+                <div>
+                    <RaisedButton containerElement="label" label="Choose an Image" labelPosition="before" secondary={true}>
+                        <input type="file" style={{ display: 'none' }} onChange={this.handleFile} />
+                    </RaisedButton>
+                </div>
+                <div>
+                  <RaisedButton label="Cancel" secondary={true} onClick={this.cancelEvent}/>
+                  <RaisedButton label="Submit" primary={true} onClick={this.saveEvent}/>
+                </div>
+            </form>
           </div>
-          <form encType='multipart/form-data'>
-              <div>
-                <TextField hintText="Title" floatingLabelText="Title" floatingLabelFixed={true} type="text" value={this.state.title} onChange={this.titleEntered}/>
-              </div>
-              <div>
-                  <DatePicker hintText="Pick Date" floatingLabelText="Pick Date" value={Moment(this.state.dateValue).toDate()} onChange={this.handleChangeDatePicker}/>
-              </div>
-              <div>
-                  <TimePicker format="24hr" hintText="Pick Time" floatingLabelText="Pick Time" value={Moment(this.state.hourValue).toDate()} onChange={this.handleChangeTimePicker}/>
-              </div>
-              <div>
-                <TextField hintText="Place" floatingLabelText="Place" floatingLabelFixed={true} type="text" value={this.state.place} onChange={this.placeEntered}/>
-              </div>
-              <div>
-                <TextField hintText="City" floatingLabelText="City" floatingLabelFixed={true} type="text" value={this.state.city} onChange={this.cityEntered}/>
-              </div>
-              <div>
-                <TextField hintText="Capacity" floatingLabelText="Capacity" floatingLabelFixed={true} type="number"  value={this.state.capacity} onChange={this.capacityEntered}/>
-              </div>
-              <div>
-                <TextField hintText="Details" floatingLabelText="Details" floatingLabelFixed={true} type="text"  value={this.state.details} onChange={this.detailsEntered}/>
-              </div>
-              <div>
-                <DropDownMenu value={this.state.categoryValue} onChange={this.handleCategoryChange} autoWidth={true}>
-                  {categoryArray.map((item, index) => {
-                    return (
-                        <MenuItem value={item._id} key={index} primaryText={item.title}/>
-                    )
-                  })}
-                 </DropDownMenu>
-              </div>
-              <div>
-                  <RaisedButton containerElement="label" label="Choose an Image" labelPosition="before" secondary={true}>
-                      <input type="file" style={{ display: 'none' }} onChange={this.handleFile} />
-                  </RaisedButton>
-              </div>
-              <div>
-                <RaisedButton label="Cancel" secondary={true} onClick={this.cancelEvent}/>
-                <RaisedButton label="Submit" primary={true} onClick={this.saveEvent}/>
-              </div>
-          </form>
       </div>
     )
   }

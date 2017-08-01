@@ -13,6 +13,7 @@ import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
 import Info from 'material-ui/svg-icons/action/info-outline';
 import Header from '../../../components/Header/Header'
+const classes = require('./EventGrid.css')
 
 interface StateProps {
   eventListLoading: Boolean,
@@ -97,6 +98,7 @@ class EventGrid extends React.Component<EventGridProps, EventGridState> {
             <Header />
         </div>
         {this.props.eventListLoading === false && this.props.success === true &&
+          <div id='eventGridDiv' className={classes.eventGridDiv}>
           <GridList
             cellHeight={300}
             style={styles.gridList}
@@ -113,6 +115,8 @@ class EventGrid extends React.Component<EventGridProps, EventGridState> {
               </GridTile>
             ))}
           </GridList>
+          </div>
+
         }
       </div>
     )

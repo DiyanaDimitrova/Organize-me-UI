@@ -144,6 +144,7 @@ render() {
         <div>
             <Header />
         </div>
+        <div id='eventDetailsDiv' className={classes.eventDetailsDiv}>
           <Card>
             <CardHeader
               title={this.props.details.title}
@@ -200,6 +201,7 @@ render() {
                   })} onClick={this.notInterestedInEvent}/>
             </CardActions>
           </Card>
+          </div>
       </div>
     )
   }

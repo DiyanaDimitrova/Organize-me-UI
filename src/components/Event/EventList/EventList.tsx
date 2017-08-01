@@ -119,6 +119,7 @@ class EventList extends React.Component<EventListProps, EventListState> {
          <div>
             <Header />
           </div>
+        <div id='eventListDiv' className={classes.eventListDiv}>
          <List>
            {eventArray.map((item, index) => {
              return (
@@ -131,6 +132,7 @@ class EventList extends React.Component<EventListProps, EventListState> {
              )
            })}
           </List>
+        </div>
       </div>
     )
   }
