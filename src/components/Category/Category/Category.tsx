@@ -6,8 +6,22 @@ import * as actions from '../../../actions/categoryActions'
 import { CreateCategoryRequest } from '../../../main/categoryMain'
 import { UpdateCategoryRequest } from '../../../main/categoryMain'
 import Header from '../../../components/Header/Header'
+import * as Colors from 'material-ui/styles/colors'
 const classes = require('./Category.css')
-
+const styles = {
+  errorStyle: {
+    color: Colors.purple900,
+  },
+  underlineStyle: {
+    borderColor: Colors.purple900,
+  },
+  floatingLabelStyle: {
+    color: Colors.purple900,
+  },
+  floatingLabelFocusStyle: {
+    color: Colors.purple900,
+  },
+};
 interface StateProps {
   currentItem: UpdateCategoryRequest,
   itemToBeEdited: Boolean,
@@ -95,11 +109,14 @@ export class Category extends React.Component<CategoryProps, CategoryState> {
               <h2>{title}</h2>
             </div>
             <div>
-              <TextField fullWidth={true} hintText="Title" floatingLabelText="Title" floatingLabelFixed={true} type="text"  value={this.state.title} onChange={this.titleEntered}/>
+              <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
+              floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
+              fullWidth={true} hintText="Title" floatingLabelText="Title" floatingLabelFixed={true} type="text"
+              value={this.state.title} onChange={this.titleEntered}/>
             </div>
             <div>
-              <RaisedButton label="Cancel" secondary={true} onClick={this.cancelCategory}/>
-              <RaisedButton label="Submit" primary={true} onClick={this.saveCategory}/>
+              <RaisedButton label="Cancel" backgroundColor="#EC407A" labelColor="#FCE4EC"	onClick={this.cancelCategory}/>
+              <RaisedButton label="Submit" backgroundColor="#AB47BC" labelColor="#F3E5F5" onClick={this.saveCategory}/>
             </div>
           </div>
       </div>

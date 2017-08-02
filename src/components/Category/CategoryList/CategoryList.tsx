@@ -9,6 +9,7 @@ import { Category } from '../../Category/Category/Category'
 import Header from '../../../components/Header/Header'
 import Edit from 'material-ui/svg-icons/editor/mode-edit'
 import Delete from 'material-ui/svg-icons/action/delete'
+import * as Colors from 'material-ui/styles/colors'
 const classes = require('./CategoryList.css')
 
 interface StateProps {
@@ -73,7 +74,7 @@ class CategoryList extends React.Component<CategoryListProps, CategoryListState>
   }
   rightIconMenu = (item) => {
     return (
-      <IconMenu iconButtonElement={this.iconButtonElement()}>
+      <IconMenu iconButtonElement={this.iconButtonElement()} menuStyle={{backgroundColor: Colors.purple200}}>
         <MenuItem onTouchTap={(event) => {
           this.updateItem(event, item)
         }} leftIcon={<Edit />}>Edit</MenuItem>
@@ -99,7 +100,7 @@ class CategoryList extends React.Component<CategoryListProps, CategoryListState>
             {categoryArray.map((item, index) => {
               return (
                 <div key={index} >
-                  <ListItem
+                  <ListItem hoverColor="#CE93D8"
                     rightIconButton={this.rightIconMenu(item)}
                     primaryText={item.title}
                   />

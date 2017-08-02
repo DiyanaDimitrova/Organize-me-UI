@@ -16,8 +16,8 @@ import EventNote from 'material-ui/svg-icons/notification/event-note'
 import Nfc from 'material-ui/svg-icons/device/nfc'
 import Photo from 'material-ui/svg-icons/image/photo-library'
 import Group from 'material-ui/svg-icons/social/group'
-
-
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import theme from '../../containers/App/material_ui_raw_theme_file'
 
 const classes = require('./Header.css')
 
@@ -77,27 +77,29 @@ class Header extends React.Component<HeaderProps, HeaderState> {
   }
   render() {
     return (
-      <div id='mainDiv' className={classes.mainDiv}>
-        <div id='navigationDiv' className={classes.navigationDiv}>
-          <Drawer open={true}>
-            <MenuItem onTouchTap={this.newCategoryClick} leftIcon={<Note />}>Create Category</MenuItem>
-            <MenuItem onTouchTap={this.allCategoryClick} leftIcon={<Toc />}>All Categories</MenuItem>
-            <MenuItem onTouchTap={this.newEventClick} leftIcon={<Event />}>Create Event</MenuItem>
-            <MenuItem onTouchTap={this.allEventClick} leftIcon={<EventNote />}>All Events</MenuItem>
-            <MenuItem onTouchTap={this.eventGridClick} leftIcon={<Photo />}>Events Grid</MenuItem>
-            <MenuItem onTouchTap={this.scanCodeClick} leftIcon={<Nfc />}>Scan Code</MenuItem>
-            <MenuItem onTouchTap={this.viewUsersClick} leftIcon={<Group />}>View Users</MenuItem>
-          </Drawer>
+      <MuiThemeProvider muiTheme={theme}>
+        <div id='mainDiv' className={classes.mainDiv}>
+            <div id='navigationDiv' className={classes.navigationDiv}>
+              <Drawer open={true}>
+                <MenuItem onTouchTap={this.newCategoryClick} leftIcon={<Note />}>Create Category</MenuItem>
+                <MenuItem onTouchTap={this.allCategoryClick} leftIcon={<Toc />}>All Categories</MenuItem>
+                <MenuItem onTouchTap={this.newEventClick} leftIcon={<Event />}>Create Event</MenuItem>
+                <MenuItem onTouchTap={this.allEventClick} leftIcon={<EventNote />}>All Events</MenuItem>
+                <MenuItem onTouchTap={this.eventGridClick} leftIcon={<Photo />}>Events Grid</MenuItem>
+                <MenuItem onTouchTap={this.scanCodeClick} leftIcon={<Nfc />}>Scan Code</MenuItem>
+                <MenuItem onTouchTap={this.viewUsersClick} leftIcon={<Group />}>View Users</MenuItem>
+              </Drawer>
+            </div>
+            <div id='contentDiv' className={classes.contentDiv}>
+              <AppBar
+                title="Organize Me"
+                // onLeftIconButtonTouchTap={this.menuClick}
+                showMenuIconButton={false}
+                iconElementRight={this.props.logged ? <LoggedMenu /> : <Login />}
+              />
+            </div>
         </div>
-        <div id='contentDiv' className={classes.contentDiv}>
-          <AppBar
-            title="Organize Me"
-            // onLeftIconButtonTouchTap={this.menuClick}
-            showMenuIconButton={false}
-            iconElementRight={this.props.logged ? <LoggedMenu /> : <Login />}
-          />
-        </div>
-      </div>
+      </MuiThemeProvider>
     )
   }
 }

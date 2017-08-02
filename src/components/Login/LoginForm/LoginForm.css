@@ -1,15 +1,10 @@
-.mainDiv {
-  position: absolute;
-  text-align: center;
-  width: auto;
-  height: auto;
-  /*left: 100px;
-  top: 60px;*/
+.loginDiv {
+  padding-left: 256px;
 }
 .titleText {
   color: #00bcd4;
 }
-.loginPaper {
+/*.loginPaper {
   height: 300px;
   width: 450px;
   margin-left: 450px;
@@ -18,4 +13,4 @@
   margin-bottom: 150px;
   textAlign: center;
   display: inline-block;
-}
+}*/

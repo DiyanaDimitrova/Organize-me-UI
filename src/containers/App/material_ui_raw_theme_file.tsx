@@ -6,17 +6,17 @@ const rawBaseTheme = {
   ...spacing,
   fontFamily: 'Roboto, sans-serif',
   palette: {
-    primary1Color: Colors.orange500,
-    primary2Color: Colors.yellow500,
-    primary3Color: Colors.lightGreen500,
-    accent1Color: Colors.indigo500,
-    accent2Color: Colors.purple500,
-    accent3Color: Colors.pink500,
-    textColor: Colors.darkBlack,
-    alternateTextColor: Colors.white,
-    canvasColor: Colors.white,
-    borderColor: Colors.grey300,
-    disabledColor: fade(Colors.darkBlack, 0.3)
+    primary1Color: Colors.purple500,
+    primary2Color: Colors.green500,
+    primary3Color: Colors.green300,
+    accent1Color: Colors.purple900,
+    accent2Color: Colors.purple900,
+    accent3Color: Colors.purple900,
+    textColor: Colors.purple900,
+    alternateTextColor: Colors.purple50,
+    canvasColor: Colors.purple200,
+    borderColor: Colors.purple900,
+    disabledColor: fade(Colors.purple900, 0.3)
   }
 }
 
