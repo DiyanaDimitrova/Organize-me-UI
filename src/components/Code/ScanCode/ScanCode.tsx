@@ -60,15 +60,17 @@ export class ScanCode extends React.Component<ScanCodeProps, ScanCodeState> {
           <div>
             <Header />
           </div>
-          <Paper style={style} zDepth={5}>
-            <QrReader
-              delay={this.state.delay}
-              style={previewStyle}
-              onError={this.handleError}
-              onScan={this.handleScan}
-              ></QrReader>
-            <p>{this.state.result}</p>
-          </Paper>
+          <div id='scanCodeDiv' className={classes.scanCodeDiv}>
+            <Paper style={style} zDepth={5}>
+              <QrReader
+                delay={this.state.delay}
+                style={previewStyle}
+                onError={this.handleError}
+                onScan={this.handleScan}
+                ></QrReader>
+              <p>{this.state.result}</p>
+            </Paper>
+          </div>
         </div>
     )
   }
