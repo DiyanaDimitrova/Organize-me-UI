@@ -18,6 +18,7 @@ import Photo from 'material-ui/svg-icons/image/photo-library'
 import Group from 'material-ui/svg-icons/social/group'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import theme from '../../containers/App/material_ui_raw_theme_file'
+import * as Colors from 'material-ui/styles/colors'
 
 const classes = require('./Header.css')
 
@@ -81,13 +82,13 @@ class Header extends React.Component<HeaderProps, HeaderState> {
         <div id='mainDiv' className={classes.mainDiv}>
             <div id='navigationDiv' className={classes.navigationDiv}>
               <Drawer open={true}>
-                <MenuItem onTouchTap={this.newCategoryClick} leftIcon={<Note />}>Create Category</MenuItem>
-                <MenuItem onTouchTap={this.allCategoryClick} leftIcon={<Toc />}>All Categories</MenuItem>
-                <MenuItem onTouchTap={this.newEventClick} leftIcon={<Event />}>Create Event</MenuItem>
-                <MenuItem onTouchTap={this.allEventClick} leftIcon={<EventNote />}>All Events</MenuItem>
-                <MenuItem onTouchTap={this.eventGridClick} leftIcon={<Photo />}>Events Grid</MenuItem>
-                <MenuItem onTouchTap={this.scanCodeClick} leftIcon={<Nfc />}>Scan Code</MenuItem>
-                <MenuItem onTouchTap={this.viewUsersClick} leftIcon={<Group />}>View Users</MenuItem>
+                <MenuItem onTouchTap={this.newCategoryClick} leftIcon={<Note color={Colors.deepPurple700}/>}>Create Category</MenuItem>
+                <MenuItem onTouchTap={this.allCategoryClick} leftIcon={<Toc color={Colors.deepPurple700}/>}>All Categories</MenuItem>
+                <MenuItem onTouchTap={this.newEventClick} leftIcon={<Event color={Colors.deepPurple700}/>}>Create Event</MenuItem>
+                <MenuItem onTouchTap={this.allEventClick} leftIcon={<EventNote color={Colors.deepPurple700}/>}>All Events</MenuItem>
+                <MenuItem onTouchTap={this.eventGridClick} leftIcon={<Photo color={Colors.deepPurple700}/>}>Events Grid</MenuItem>
+                <MenuItem onTouchTap={this.scanCodeClick} leftIcon={<Nfc color={Colors.deepPurple700}/>}>Scan Code</MenuItem>
+                <MenuItem onTouchTap={this.viewUsersClick} leftIcon={<Group color={Colors.deepPurple700}/>}>View Users</MenuItem>
               </Drawer>
             </div>
             <div id='contentDiv' className={classes.contentDiv}>

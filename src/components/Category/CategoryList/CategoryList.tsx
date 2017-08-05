@@ -77,10 +77,10 @@ class CategoryList extends React.Component<CategoryListProps, CategoryListState>
       <IconMenu iconButtonElement={this.iconButtonElement()} menuStyle={{backgroundColor: Colors.deepPurple50}}>
         <MenuItem onTouchTap={(event) => {
           this.updateItem(event, item)
-        }} leftIcon={<Edit />} style={{color: Colors.deepPurple700}}>Edit</MenuItem>
+        }} leftIcon={<Edit color={Colors.deepPurple700}/>} style={{color: Colors.deepPurple700}}>Edit</MenuItem>
         <MenuItem onTouchTap={(event) => {
           this.deleteItem(event, item._id)
-        }} leftIcon={<Delete />} style={{color: Colors.deepPurple700}}>Delete</MenuItem>
+        }} leftIcon={<Delete color={Colors.deepPurple700}/>} style={{color: Colors.deepPurple700}}>Delete</MenuItem>
       </IconMenu>
     )
   }

@@ -255,7 +255,7 @@ export class Event extends React.Component<EventProps, EventState> {
                   hintText="Title" floatingLabelText="Title" floatingLabelFixed={true} type="text" value={this.state.title} onChange={this.titleEntered}/>
                 </div>
                 <div>
-                    <DatePicker hintText="Pick Date" floatingLabelText="Pick Date" value={Moment(this.state.dateValue).toDate()} onChange={this.handleChangeDatePicker}/>
+                    <DatePicker dialogContainerStyle={{color: '#512DA8'}} hintText="Pick Date" floatingLabelText="Pick Date" value={Moment(this.state.dateValue).toDate()} onChange={this.handleChangeDatePicker}/>
                 </div>
                 <div>
                     <TimePicker format="24hr" hintText="Pick Time" floatingLabelText="Pick Time" value={Moment(this.state.hourValue).toDate()} onChange={this.handleChangeTimePicker}/>
