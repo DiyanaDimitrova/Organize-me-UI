@@ -6,7 +6,7 @@ import { Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow
 import * as actions from '../../../actions/codeActions'
 import { SendCodeRequest } from '../../../main/codeMain'
 import Header from '../../../components/Header/Header'
-import * as Colors from 'material-ui/styles/colors
+import * as Colors from 'material-ui/styles/colors'
 const classes = require('./Code.css')
 
 interface StateProps {

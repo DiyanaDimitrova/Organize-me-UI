@@ -74,24 +74,10 @@ class EventGrid extends React.Component<EventGridProps, EventGridState> {
         }
       })
     }
-    // console.log('PROPS' + JSON.stringify(src ? src.id : null))
-
     return src ? src.image : null
   }
 
   render() {
-    const styles = {
-      root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-      },
-      gridList: {
-        width: 1000,
-        height: 600,
-        overflowY: 'auto',
-      },
-    }
     return (
       <div>
         <div>
@@ -100,18 +86,19 @@ class EventGrid extends React.Component<EventGridProps, EventGridState> {
         {this.props.eventListLoading === false && this.props.success === true &&
           <div id='eventGridDiv' className={classes.eventGridDiv}>
           <GridList
-            cellHeight={300}
-            style={styles.gridList}
+            cellHeight={250}
           >
             <Subheader>All events</Subheader>
             {this.props.eventList !== undefined && this.props.eventList !== null && this.props.eventList.map((tile) => (
               <GridTile
                 key={tile._id}
+                titleStyle={{color: '#512DA8'}}
+                // subtitleStyle={{color: '#512DA8'}}
                 title={tile.title}
-                subtitle={<span>at <b>{tile.place}</b></span>}
+                subtitle={tile.place}
                 actionIcon={<IconButton onTouchTap={(event) => {this.viewItem(event, tile._id)}}>
-                <Info color="white" /></IconButton>}>
-                <img src={this.getImage(tile._id)} />
+                <Info color="#D1C4E9"/></IconButton>}>
+                {tile._id !== undefined && <img src={this.getImage(tile._id)} />}
               </GridTile>
             ))}
           </GridList>
