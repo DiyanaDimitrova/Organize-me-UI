@@ -96,16 +96,16 @@ class EventList extends React.Component<EventListProps, EventListState> {
       <IconMenu iconButtonElement={this.iconButtonElement()} menuStyle={{backgroundColor: Colors.deepPurple50}}>
         <MenuItem onTouchTap={(event) => {
           this.updateItem(event, item)
-        }} leftIcon={<Edit />}>Edit</MenuItem>
+        }} leftIcon={<Edit />} style={{color: Colors.deepPurple700}}>Edit</MenuItem>
         <MenuItem onTouchTap={(event) => {
           this.deleteItem(event, item._id)
-        }} leftIcon={<Delete />}>Delete</MenuItem>
+        }} leftIcon={<Delete />} style={{color: Colors.deepPurple700}}>Delete</MenuItem>
         <MenuItem onTouchTap={(event) => {
           this.viewItem(event, item._id)
-        }} leftIcon={<View />}>View</MenuItem>
+        }} leftIcon={<View />} style={{color: Colors.deepPurple700}}>View</MenuItem>
         <MenuItem onTouchTap={(event) => {
           this.sendCodeItem(event, item)
-        }} leftIcon={<Send />}>Send Code</MenuItem>
+        }} leftIcon={<Send />} style={{color: Colors.deepPurple700}}>Send Code</MenuItem>
       </IconMenu>
     )
   }
