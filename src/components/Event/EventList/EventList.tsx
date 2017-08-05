@@ -12,7 +12,7 @@ import Edit from 'material-ui/svg-icons/editor/mode-edit'
 import Delete from 'material-ui/svg-icons/action/delete'
 import Send from 'material-ui/svg-icons/communication/contact-mail'
 import View from 'material-ui/svg-icons/social/pages'
-
+import * as Colors from 'material-ui/styles/colors'
 import * as dateFormat from 'dateformat'
 
 const classes = require('./EventList.css')
@@ -93,7 +93,7 @@ class EventList extends React.Component<EventListProps, EventListState> {
   }
   rightIconMenu = (item) => {
     return (
-      <IconMenu iconButtonElement={this.iconButtonElement()}>
+      <IconMenu iconButtonElement={this.iconButtonElement()} menuStyle={{backgroundColor: Colors.deepPurple50}}>
         <MenuItem onTouchTap={(event) => {
           this.updateItem(event, item)
         }} leftIcon={<Edit />}>Edit</MenuItem>
@@ -124,7 +124,7 @@ class EventList extends React.Component<EventListProps, EventListState> {
            {eventArray.map((item, index) => {
              return (
                <div key={index} >
-                 <ListItem
+                 <ListItem hoverColor="#D1C4E9"
                    rightIconButton={this.rightIconMenu(item)}
                    primaryText={item.title}
                  />

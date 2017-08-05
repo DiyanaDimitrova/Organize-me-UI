@@ -74,7 +74,7 @@ class CategoryList extends React.Component<CategoryListProps, CategoryListState>
   }
   rightIconMenu = (item) => {
     return (
-      <IconMenu iconButtonElement={this.iconButtonElement()} menuStyle={{backgroundColor: Colors.purple200}}>
+      <IconMenu iconButtonElement={this.iconButtonElement()} menuStyle={{backgroundColor: Colors.deepPurple50}}>
         <MenuItem onTouchTap={(event) => {
           this.updateItem(event, item)
         }} leftIcon={<Edit />}>Edit</MenuItem>
@@ -100,7 +100,7 @@ class CategoryList extends React.Component<CategoryListProps, CategoryListState>
             {categoryArray.map((item, index) => {
               return (
                 <div key={index} >
-                  <ListItem hoverColor="#CE93D8"
+                  <ListItem hoverColor="#D1C4E9"
                     rightIconButton={this.rightIconMenu(item)}
                     primaryText={item.title}
                   />

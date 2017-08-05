@@ -8,8 +8,22 @@ import { CreateEventRequest, UpdateEventRequest } from '../../../main/eventMain'
 import Header from '../../../components/Header/Header'
 import * as dateFormat from 'dateformat'
 import * as Moment from 'moment'
+import * as Colors from 'material-ui/styles/colors'
 const classes = require('./Event.css')
-
+const styles = {
+  errorStyle: {
+    color: Colors.deepPurple700,
+  },
+  underlineStyle: {
+    borderColor: Colors.deepPurple700,
+  },
+  floatingLabelStyle: {
+    color: Colors.deepPurple700,
+  },
+  floatingLabelFocusStyle: {
+    color: Colors.deepPurple700,
+  },
+};
 interface StateProps {
   categoriesListLoading: Boolean,
   success: Boolean,
@@ -236,7 +250,9 @@ export class Event extends React.Component<EventProps, EventState> {
             </div>
             <form encType='multipart/form-data'>
                 <div>
-                  <TextField hintText="Title" floatingLabelText="Title" floatingLabelFixed={true} type="text" value={this.state.title} onChange={this.titleEntered}/>
+                  <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
+                  floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
+                  hintText="Title" floatingLabelText="Title" floatingLabelFixed={true} type="text" value={this.state.title} onChange={this.titleEntered}/>
                 </div>
                 <div>
                     <DatePicker hintText="Pick Date" floatingLabelText="Pick Date" value={Moment(this.state.dateValue).toDate()} onChange={this.handleChangeDatePicker}/>
@@ -245,16 +261,24 @@ export class Event extends React.Component<EventProps, EventState> {
                     <TimePicker format="24hr" hintText="Pick Time" floatingLabelText="Pick Time" value={Moment(this.state.hourValue).toDate()} onChange={this.handleChangeTimePicker}/>
                 </div>
                 <div>
-                  <TextField hintText="Place" floatingLabelText="Place" floatingLabelFixed={true} type="text" value={this.state.place} onChange={this.placeEntered}/>
+                  <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
+                  floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
+                  hintText="Place" floatingLabelText="Place" floatingLabelFixed={true} type="text" value={this.state.place} onChange={this.placeEntered}/>
                 </div>
                 <div>
-                  <TextField hintText="City" floatingLabelText="City" floatingLabelFixed={true} type="text" value={this.state.city} onChange={this.cityEntered}/>
+                  <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
+                  floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
+                  hintText="City" floatingLabelText="City" floatingLabelFixed={true} type="text" value={this.state.city} onChange={this.cityEntered}/>
                 </div>
                 <div>
-                  <TextField hintText="Capacity" floatingLabelText="Capacity" floatingLabelFixed={true} type="number"  value={this.state.capacity} onChange={this.capacityEntered}/>
+                  <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
+                  floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
+                  hintText="Capacity" floatingLabelText="Capacity" floatingLabelFixed={true} type="number"  value={this.state.capacity} onChange={this.capacityEntered}/>
                 </div>
                 <div>
-                  <TextField hintText="Details" floatingLabelText="Details" floatingLabelFixed={true} type="text"  value={this.state.details} onChange={this.detailsEntered}/>
+                  <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
+                  floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
+                  hintText="Details" floatingLabelText="Details" floatingLabelFixed={true} type="text"  value={this.state.details} onChange={this.detailsEntered}/>
                 </div>
                 <div>
                   <DropDownMenu value={this.state.categoryValue} onChange={this.handleCategoryChange} autoWidth={true}>
@@ -266,13 +290,13 @@ export class Event extends React.Component<EventProps, EventState> {
                    </DropDownMenu>
                 </div>
                 <div>
-                    <RaisedButton containerElement="label" label="Choose an Image" labelPosition="before" secondary={true}>
+                    <RaisedButton containerElement="label" label="Choose an Image" labelPosition="before" backgroundColor="#512DA8" labelColor="#EDE7F6">
                         <input type="file" style={{ display: 'none' }} onChange={this.handleFile} />
                     </RaisedButton>
                 </div>
                 <div>
-                  <RaisedButton label="Cancel" secondary={true} onClick={this.cancelEvent}/>
-                  <RaisedButton label="Submit" primary={true} onClick={this.saveEvent}/>
+                  <RaisedButton label="Cancel" backgroundColor="#D1C4E9" labelColor="#512DA8" onClick={this.cancelEvent}/>
+                  <RaisedButton label="Submit" backgroundColor="#512DA8" labelColor="#EDE7F6" onClick={this.saveEvent}/>
                 </div>
             </form>
           </div>

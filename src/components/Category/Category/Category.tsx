@@ -10,16 +10,16 @@ import * as Colors from 'material-ui/styles/colors'
 const classes = require('./Category.css')
 const styles = {
   errorStyle: {
-    color: Colors.purple900,
+    color: Colors.deepPurple700,
   },
   underlineStyle: {
-    borderColor: Colors.purple900,
+    borderColor: Colors.deepPurple700,
   },
   floatingLabelStyle: {
-    color: Colors.purple900,
+    color: Colors.deepPurple700,
   },
   floatingLabelFocusStyle: {
-    color: Colors.purple900,
+    color: Colors.deepPurple700,
   },
 };
 interface StateProps {
@@ -115,8 +115,8 @@ export class Category extends React.Component<CategoryProps, CategoryState> {
               value={this.state.title} onChange={this.titleEntered}/>
             </div>
             <div>
-              <RaisedButton label="Cancel" backgroundColor="#EC407A" labelColor="#FCE4EC"	onClick={this.cancelCategory}/>
-              <RaisedButton label="Submit" backgroundColor="#AB47BC" labelColor="#F3E5F5" onClick={this.saveCategory}/>
+              <RaisedButton label="Cancel" backgroundColor="#D1C4E9" labelColor="#512DA8"	onClick={this.cancelCategory}/>
+              <RaisedButton label="Submit" backgroundColor="#512DA8" labelColor="#EDE7F6" onClick={this.saveCategory}/>
             </div>
           </div>
       </div>
