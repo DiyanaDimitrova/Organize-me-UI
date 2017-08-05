@@ -170,9 +170,9 @@ export class AdminManagement extends React.Component<AdminManagementProps, Admin
           </Table>
         }
           <div>
-            <RaisedButton label="Cancel" secondary={true} onClick={this.cancelEvent}/>
-            <RaisedButton label="Make Admin" primary={true} onClick={this.makeAdminEvent}/>
-            <RaisedButton label="Make Normal" primary={true} onClick={this.makeNormalEvent}/>
+            <RaisedButton label="Cancel" backgroundColor="#D1C4E9" labelColor="#512DA8" onClick={this.cancelEvent}/>
+            <RaisedButton label="Make Normal" backgroundColor="#673AB7" labelColor="#EDE7F6" onClick={this.makeNormalEvent}/>
+            <RaisedButton label="Make Admin" backgroundColor="#512DA8" labelColor="#EDE7F6" onClick={this.makeAdminEvent}/>
           </div>
         </div>
       </div>

@@ -6,6 +6,7 @@ import { Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow
 import * as actions from '../../../actions/codeActions'
 import { SendCodeRequest } from '../../../main/codeMain'
 import Header from '../../../components/Header/Header'
+import * as Colors from 'material-ui/styles/colors
 const classes = require('./Code.css')
 
 interface StateProps {
@@ -110,6 +111,7 @@ export class Code extends React.Component<CodeProps, CodeState> {
             selectable={this.state.selectable}
             multiSelectable={this.state.multiSelectable}
             onRowSelection={this.handleRowSelection}
+            bodyStyle={{border: 5, borderColor: Colors.deepPurple900}}
           >
             <TableHeader
               displaySelectAll={this.state.showCheckboxes}
@@ -121,7 +123,7 @@ export class Code extends React.Component<CodeProps, CodeState> {
                   Invited to the event
                 </TableHeaderColumn>
               </TableRow>
-              <TableRow>
+              <TableRow id='row' className={classes.row}>
                 <TableHeaderColumn tooltip="ID">ID</TableHeaderColumn>
                 <TableHeaderColumn tooltip="Username">Username</TableHeaderColumn>
                 <TableHeaderColumn tooltip="Status">Status</TableHeaderColumn>
@@ -132,9 +134,10 @@ export class Code extends React.Component<CodeProps, CodeState> {
               deselectOnClickaway={this.state.deselectOnClickaway}
               showRowHover={this.state.showRowHover}
               stripedRows={this.state.stripedRows}
+              style={{}}
             >
             {this.props.invitedPeopleList !== null && this.props.invitedPeopleList.map( (row, index) => (
-              <TableRow key={index}>
+              <TableRow style={{td: {backgroundColor: Colors.deepPurple900}}} key={index}>
                 <TableRowColumn>{index}</TableRowColumn>
                 <TableRowColumn>{row.username}</TableRowColumn>
                 <TableRowColumn>{row.type}</TableRowColumn>
@@ -158,8 +161,8 @@ export class Code extends React.Component<CodeProps, CodeState> {
           </Table>
         }
           <div>
-            <RaisedButton label="Cancel" secondary={true} onClick={this.cancelEvent}/>
-            <RaisedButton label="Send Code" primary={true} onClick={this.sendCodeEvent}/>
+            <RaisedButton label="Cancel" backgroundColor="#D1C4E9" labelColor="#512DA8" onClick={this.cancelEvent}/>
+            <RaisedButton label="Send Code" backgroundColor="#512DA8" labelColor="#EDE7F6" onClick={this.sendCodeEvent}/>
           </div>
         </div>
       </div>
