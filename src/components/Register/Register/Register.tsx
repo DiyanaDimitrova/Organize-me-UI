@@ -120,42 +120,42 @@ class Register extends React.Component<RegisterProps, RegisterState> {
             <Header />
           </div>
           <div id='registerDiv' className={classes.registerDiv}>
-            <Paper id='registerPaper' className={classes.registerPaper} style={classes.registerPaper} zDepth={4}>
+            <Paper id='registerPaper' className={classes.registerPaper} style={classes.registerPaper} zDepth={2}>
               <div id='titleText' className={classes.titleText}>
                 <h2>Don't you have account? Register</h2>
               </div>
               <div>
                 <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
                 floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
-                hintText="Username" floatingLabelText="Username" floatingLabelFixed={true} type="text" onChange={this.usernameEntered} value={this.state.username}/>
+                fullWidth={true} hintText="Username" floatingLabelText="Username" floatingLabelFixed={true} type="text" onChange={this.usernameEntered} value={this.state.username}/>
               </div>
               <div>
                 <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
                 floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
-                hintText="Password" floatingLabelText="Password" floatingLabelFixed={true} type="password" onChange={this.passwordEntered} value={this.state.password}/>
+                fullWidth={true} hintText="Password" floatingLabelText="Password" floatingLabelFixed={true} type="password" onChange={this.passwordEntered} value={this.state.password}/>
               </div>
               <div>
                 <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
                 floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
-                hintText="Confirm Password" floatingLabelText="Confirm Password" floatingLabelFixed={true} type="password" onChange={this.confirmPasswordEntered} value={this.state.confirmPassword}/>
+                fullWidth={true} hintText="Confirm Password" floatingLabelText="Confirm Password" floatingLabelFixed={true} type="password" onChange={this.confirmPasswordEntered} value={this.state.confirmPassword}/>
               </div>
               <div>
                 <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
                 floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
-                hintText="First Name" floatingLabelText="First Name" floatingLabelFixed={true} type="text" onChange={this.firstNameEntered} value={this.state.firstName}/>
+                fullWidth={true} hintText="First Name" floatingLabelText="First Name" floatingLabelFixed={true} type="text" onChange={this.firstNameEntered} value={this.state.firstName}/>
               </div>
               <div>
                 <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
                 floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
-                hintText="Last Name" floatingLabelText="Last Name" floatingLabelFixed={true} type="text" onChange={this.lastNameEntered} value={this.state.lastName}/>
+                fullWidth={true} hintText="Last Name" floatingLabelText="Last Name" floatingLabelFixed={true} type="text" onChange={this.lastNameEntered} value={this.state.lastName}/>
               </div>
               <div>
                 <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
                 floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
-                hintText="Email" floatingLabelText="Email" floatingLabelFixed={true} type="text" onChange={this.emailEntered} value={this.state.email}/>
+                fullWidth={true} hintText="Email" floatingLabelText="Email" floatingLabelFixed={true} type="text" onChange={this.emailEntered} value={this.state.email}/>
               </div>
-              <div>
-                <RaisedButton label="Register" backgroundColor="#512DA8" labelColor="#EDE7F6" onClick={this.registerUser}/>
+              <div id='registerBtn' className={classes.registerBtn}>
+                <RaisedButton label="Register" fullWidth={true} backgroundColor="#512DA8" labelColor="#EDE7F6" onClick={this.registerUser}/>
               </div>
             </Paper>
           </div>

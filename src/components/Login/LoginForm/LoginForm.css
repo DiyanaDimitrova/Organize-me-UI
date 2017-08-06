@@ -4,13 +4,15 @@
 .titleText{
   color: #512DA8;
 }
-/*.loginPaper {
-  height: 300px;
-  width: 450px;
-  margin-left: 450px;
-  margin-right: 450px;
-  margin-top: 150px;
-  margin-bottom: 150px;
-  textAlign: center;
+.loginPaper {
+  height: 45%;
+  width: 50%;
+  margin: 100px 200px 100px 200px;
+  padding: 10px 10px 10px 10px;
+  text-align: center;
   display: inline-block;
-}*/
+  position: absolute;
+}
+.loginBtn{
+  margin: 10px 0px 10px 0px;
+}

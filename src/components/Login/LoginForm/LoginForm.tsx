@@ -80,26 +80,26 @@ class LoginForm extends React.Component<LoginFormProps, LoginFormState> {
       <div>
           <div>
                 <Header />
-              </div>
+          </div>
           <div id='loginDiv' className={classes.loginDiv} >
-          <Paper id='loginPaper' className={classes.loginPaper} style={classes.loginPaper} zDepth={2}>
-              <div id='titleText' className={classes.titleText}>
-              <h2>Do you have account? Log in</h2>
-              </div>
-              <div>
-                <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
-                floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
-                 hintText="Username" floatingLabelText="Username" floatingLabelFixed={true} type="text" onChange={this.usernameEntered} value={this.state.username}/>
-              </div>
-              <div>
-                <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
-                floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
-                hintText="Password" floatingLabelText="Password" floatingLabelFixed={true} type="password" onChange={this.passwordEntered} value={this.state.password}/>
-              </div>
-              <div>
-                <RaisedButton label="Login" backgroundColor="#512DA8" labelColor="#EDE7F6" onClick={this.loginUser}/>
-              </div>
-            </Paper>
+            <Paper id='loginPaper' className={classes.loginPaper} style={classes.loginPaper} zDepth={2}>
+                <div id='titleText' className={classes.titleText}>
+                <h2>Do you have account? Log in</h2>
+                </div>
+                <div>
+                  <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
+                  floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
+                  fullWidth={true} hintText="Username" floatingLabelText="Username" floatingLabelFixed={true} type="text" onChange={this.usernameEntered} value={this.state.username}/>
+                </div>
+                <div>
+                  <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
+                  floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
+                  fullWidth={true} hintText="Password" floatingLabelText="Password" floatingLabelFixed={true} type="password" onChange={this.passwordEntered} value={this.state.password}/>
+                </div>
+                <div id='loginBtn' className={classes.loginBtn}>
+                  <RaisedButton label="Login" fullWidth={true} backgroundColor="#512DA8" labelColor="#EDE7F6" onClick={this.loginUser}/>
+                </div>
+              </Paper>
           </div>
        </div>
     )
