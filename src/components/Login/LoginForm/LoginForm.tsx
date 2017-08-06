@@ -5,7 +5,21 @@ import { RaisedButton, TextField, Paper } from 'material-ui'
 import * as actions from '../../../actions/loginActions'
 import { LoginRequest } from '../../../main/loginMain'
 import Header from '../../../components/Header/Header'
-
+import * as Colors from 'material-ui/styles/colors'
+const styles = {
+  errorStyle: {
+    color: Colors.deepPurple700,
+  },
+  underlineStyle: {
+    borderColor: Colors.deepPurple700,
+  },
+  floatingLabelStyle: {
+    color: Colors.deepPurple700,
+  },
+  floatingLabelFocusStyle: {
+    color: Colors.deepPurple700,
+  },
+};
 
 const classes = require('./LoginForm.css')
 
@@ -73,13 +87,17 @@ class LoginForm extends React.Component<LoginFormProps, LoginFormState> {
               <h2>Do you have account? Log in</h2>
               </div>
               <div>
-                <TextField hintText="Username" floatingLabelText="Username" floatingLabelFixed={true} type="text" onChange={this.usernameEntered} value={this.state.username}/>
+                <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
+                floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
+                 hintText="Username" floatingLabelText="Username" floatingLabelFixed={true} type="text" onChange={this.usernameEntered} value={this.state.username}/>
               </div>
               <div>
-                <TextField hintText="Password" floatingLabelText="Password" floatingLabelFixed={true} type="password" onChange={this.passwordEntered} value={this.state.password}/>
+                <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
+                floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
+                hintText="Password" floatingLabelText="Password" floatingLabelFixed={true} type="password" onChange={this.passwordEntered} value={this.state.password}/>
               </div>
               <div>
-                <RaisedButton label="Login" primary={true} onClick={this.loginUser}/>
+                <RaisedButton label="Login" backgroundColor="#512DA8" labelColor="#EDE7F6" onClick={this.loginUser}/>
               </div>
             </Paper>
           </div>

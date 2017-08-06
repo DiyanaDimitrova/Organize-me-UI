@@ -5,7 +5,21 @@ import { RaisedButton, TextField, Paper } from 'material-ui'
 import * as actions from '../../../actions/loginActions'
 import { SignupRequest } from '../../../main/loginMain'
 import Header from '../../../components/Header/Header'
-
+import * as Colors from 'material-ui/styles/colors'
+const styles = {
+  errorStyle: {
+    color: Colors.deepPurple700,
+  },
+  underlineStyle: {
+    borderColor: Colors.deepPurple700,
+  },
+  floatingLabelStyle: {
+    color: Colors.deepPurple700,
+  },
+  floatingLabelFocusStyle: {
+    color: Colors.deepPurple700,
+  },
+}
 const classes = require('./Register.css')
 
 interface StateProps {
@@ -111,25 +125,37 @@ class Register extends React.Component<RegisterProps, RegisterState> {
                 <h2>Don't you have account? Register</h2>
               </div>
               <div>
-                <TextField hintText="Username" floatingLabelText="Username" floatingLabelFixed={true} type="text" onChange={this.usernameEntered} value={this.state.username}/>
+                <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
+                floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
+                hintText="Username" floatingLabelText="Username" floatingLabelFixed={true} type="text" onChange={this.usernameEntered} value={this.state.username}/>
               </div>
               <div>
-                <TextField hintText="Password" floatingLabelText="Password" floatingLabelFixed={true} type="password" onChange={this.passwordEntered} value={this.state.password}/>
+                <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
+                floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
+                hintText="Password" floatingLabelText="Password" floatingLabelFixed={true} type="password" onChange={this.passwordEntered} value={this.state.password}/>
               </div>
               <div>
-                <TextField hintText="Confirm Password" floatingLabelText="Confirm Password" floatingLabelFixed={true} type="password" onChange={this.confirmPasswordEntered} value={this.state.confirmPassword}/>
+                <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
+                floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
+                hintText="Confirm Password" floatingLabelText="Confirm Password" floatingLabelFixed={true} type="password" onChange={this.confirmPasswordEntered} value={this.state.confirmPassword}/>
               </div>
               <div>
-                <TextField hintText="First Name" floatingLabelText="First Name" floatingLabelFixed={true} type="text" onChange={this.firstNameEntered} value={this.state.firstName}/>
+                <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
+                floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
+                hintText="First Name" floatingLabelText="First Name" floatingLabelFixed={true} type="text" onChange={this.firstNameEntered} value={this.state.firstName}/>
               </div>
               <div>
-                <TextField hintText="Last Name" floatingLabelText="Last Name" floatingLabelFixed={true} type="text" onChange={this.lastNameEntered} value={this.state.lastName}/>
+                <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
+                floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
+                hintText="Last Name" floatingLabelText="Last Name" floatingLabelFixed={true} type="text" onChange={this.lastNameEntered} value={this.state.lastName}/>
               </div>
               <div>
-                <TextField hintText="Email" floatingLabelText="Email" floatingLabelFixed={true} type="text" onChange={this.emailEntered} value={this.state.email}/>
+                <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
+                floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
+                hintText="Email" floatingLabelText="Email" floatingLabelFixed={true} type="text" onChange={this.emailEntered} value={this.state.email}/>
               </div>
               <div>
-                <RaisedButton label="Register" primary={true} onClick={this.registerUser}/>
+                <RaisedButton label="Register" backgroundColor="#512DA8" labelColor="#EDE7F6" onClick={this.registerUser}/>
               </div>
             </Paper>
           </div>

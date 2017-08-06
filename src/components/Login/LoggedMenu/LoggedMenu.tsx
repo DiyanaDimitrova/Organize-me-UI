@@ -12,6 +12,7 @@ import SignOutIcon from 'material-ui/svg-icons/action/highlight-off'
 import Help from 'material-ui/svg-icons/action/help'
 import About from 'material-ui/svg-icons/content/font-download'
 import * as Colors from 'material-ui/styles/colors'
+
 interface StateProps {
 
 }
@@ -46,7 +47,7 @@ class LoggedMenu extends React.Component<LoggedMenuProps, LoggedMenuState> {
           iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
           anchorOrigin={{horizontal: 'left', vertical: 'top'}}
           targetOrigin={{horizontal: 'left', vertical: 'top'}}>
-          <MenuItem leftIcon={<About color={Colors.deepPurple700}/>primaryText="About" />
+          <MenuItem leftIcon={<About color={Colors.deepPurple700}/>} primaryText="About" />
           <MenuItem leftIcon={<Help color={Colors.deepPurple700}/>} primaryText="Help" />
           <MenuItem onTouchTap={this.signoutClick} leftIcon={<SignOutIcon color={Colors.deepPurple700}/>}>Sign out</MenuItem>
         </IconMenu>
