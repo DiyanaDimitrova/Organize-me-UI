@@ -126,7 +126,7 @@ class EventList extends React.Component<EventListProps, EventListState> {
                <div key={index} >
                  <ListItem hoverColor="#D1C4E9"
                    rightIconButton={this.rightIconMenu(item)}
-                   primaryText={item.title}
+                   primaryText={item.title} style={{color: Colors.deepPurple700}}
                  />
                </div>
              )

@@ -88,7 +88,7 @@ class EventGrid extends React.Component<EventGridProps, EventGridState> {
           <GridList
             cellHeight={250}
           >
-            <Subheader>All events</Subheader>
+            <Subheader style={{color: '#512DA8'}}>All events</Subheader>
             {this.props.eventList !== undefined && this.props.eventList !== null && this.props.eventList.map((tile) => (
               <GridTile
                 key={tile._id}
