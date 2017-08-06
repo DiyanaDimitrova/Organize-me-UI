@@ -44,16 +44,8 @@ export class ScanCode extends React.Component<ScanCodeProps, ScanCodeState> {
   }
   render() {
     const previewStyle = {
-      height: 240,
-      width: 320,
-    }
-    const style = {
-      height: 250,
-      width: 330,
-      margin: 10,
-      padding: 5,
-      textAlign: 'center',
-      display: 'inline-block',
+      height: 300,
+      width: 650
     }
     return (
         <div>
@@ -61,8 +53,9 @@ export class ScanCode extends React.Component<ScanCodeProps, ScanCodeState> {
             <Header />
           </div>
           <div id='scanCodeDiv' className={classes.scanCodeDiv}>
-            <Paper style={style} zDepth={5}>
+            <Paper id='scanCodePaper' className={classes.scanCodePaper} zDepth={2}>
               <QrReader
+                id='scanCodeReader'
                 delay={this.state.delay}
                 style={previewStyle}
                 onError={this.handleError}

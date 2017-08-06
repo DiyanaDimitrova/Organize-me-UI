@@ -2,11 +2,11 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import { RaisedButton, TextField, Paper } from 'material-ui'
+import * as Colors from 'material-ui/styles/colors'
 import * as actions from '../../../actions/categoryActions'
 import { CreateCategoryRequest } from '../../../main/categoryMain'
 import { UpdateCategoryRequest } from '../../../main/categoryMain'
 import Header from '../../../components/Header/Header'
-import * as Colors from 'material-ui/styles/colors'
 const classes = require('./Category.css')
 const styles = {
   errorStyle: {
@@ -105,19 +105,21 @@ export class Category extends React.Component<CategoryProps, CategoryState> {
             <Header />
           </div>
           <div id='categoryDiv' className={classes.categoryDiv}>
-            <div id='titleText' className={classes.titleText}>
-              <h2>{title}</h2>
-            </div>
-            <div>
-              <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
-              floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
-              fullWidth={true} hintText="Title" floatingLabelText="Title" floatingLabelFixed={true} type="text"
-              value={this.state.title} onChange={this.titleEntered}/>
-            </div>
-            <div>
-              <RaisedButton label="Cancel" backgroundColor="#D1C4E9" labelColor="#512DA8"	onClick={this.cancelCategory}/>
-              <RaisedButton label="Submit" backgroundColor="#512DA8" labelColor="#EDE7F6" onClick={this.saveCategory}/>
-            </div>
+            <Paper id='categoryPaper' className={classes.categoryPaper} zDepth={2}>
+              <div id='titleText' className={classes.titleText}>
+                <h2>{title}</h2>
+              </div>
+              <div>
+                <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
+                floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
+                fullWidth={true} hintText="Title" floatingLabelText="Title" floatingLabelFixed={true} type="text"
+                value={this.state.title} onChange={this.titleEntered}/>
+              </div>
+              <div>
+                <RaisedButton label="Cancel" fullWidth={true} backgroundColor="#D1C4E9" labelColor="#512DA8"	onClick={this.cancelCategory}/>
+                <RaisedButton label="Submit" fullWidth={true} backgroundColor="#512DA8" labelColor="#EDE7F6" onClick={this.saveCategory}/>
+              </div>
+            </Paper>
           </div>
       </div>
     )

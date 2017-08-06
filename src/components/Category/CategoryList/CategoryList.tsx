@@ -2,14 +2,14 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import * as actions from '../../../actions/categoryActions'
-import { List, ListItem, IconMenu, MenuItem, IconButton } from 'material-ui'
+import { List, ListItem, IconMenu, MenuItem, IconButton, Paper } from 'material-ui'
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
-import { DeleteCategoryRequest, UpdateCategoryRequest } from '../../../main/categoryMain'
-import { Category } from '../../Category/Category/Category'
-import Header from '../../../components/Header/Header'
 import Edit from 'material-ui/svg-icons/editor/mode-edit'
 import Delete from 'material-ui/svg-icons/action/delete'
 import * as Colors from 'material-ui/styles/colors'
+import { DeleteCategoryRequest, UpdateCategoryRequest } from '../../../main/categoryMain'
+import { Category } from '../../Category/Category/Category'
+import Header from '../../../components/Header/Header'
 const classes = require('./CategoryList.css')
 
 interface StateProps {
@@ -96,18 +96,20 @@ class CategoryList extends React.Component<CategoryListProps, CategoryListState>
             <Header />
           </div>
           <div id='categoryListDiv' className={classes.categoryListDiv}>
-           <List>
-            {categoryArray.map((item, index) => {
-              return (
-                <div key={index} >
-                  <ListItem hoverColor="#D1C4E9"
-                    rightIconButton={this.rightIconMenu(item)}
-                    primaryText={item.title} style={{color: Colors.deepPurple700}}
-                  />
-                </div>
-              )
-            })}
-            </List>
+          <Paper id='categoryListPaper' className={classes.categoryListPaper} zDepth={2}>
+             <List>
+              {categoryArray.map((item, index) => {
+                return (
+                  <div key={index} >
+                    <ListItem hoverColor="#D1C4E9"
+                      rightIconButton={this.rightIconMenu(item)}
+                      primaryText={item.title} style={{color: Colors.deepPurple700}}
+                    />
+                  </div>
+                )
+              })}
+              </List>
+            </Paper>
           </div>
       </div>
     )

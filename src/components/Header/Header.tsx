@@ -1,14 +1,9 @@
 import * as React from 'react'
-import {AppBar, Drawer, Paper} from 'material-ui'
-// import Drawer from 'material-ui/Drawer'
-// import Paper from 'material-ui/Paper'
-import MenuItem from 'material-ui/MenuItem'
-import LoggedMenu from '../Login/LoggedMenu/LoggedMenu'
-import Login from '../Login/Login/Login'
 import { browserHistory } from 'react-router'
 import { AppState } from '../../store/AppStore'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
+import {AppBar, Drawer, Paper, MenuItem} from 'material-ui'
 import Event from 'material-ui/svg-icons/action/event'
 import Note from 'material-ui/svg-icons/action/note-add'
 import Toc from 'material-ui/svg-icons/action/toc'
@@ -16,10 +11,11 @@ import EventNote from 'material-ui/svg-icons/notification/event-note'
 import Nfc from 'material-ui/svg-icons/device/nfc'
 import Photo from 'material-ui/svg-icons/image/photo-library'
 import Group from 'material-ui/svg-icons/social/group'
+import * as Colors from 'material-ui/styles/colors'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import theme from '../../containers/App/material_ui_raw_theme_file'
-import * as Colors from 'material-ui/styles/colors'
-
+import LoggedMenu from '../Login/LoggedMenu/LoggedMenu'
+import Login from '../Login/Login/Login'
 const classes = require('./Header.css')
 
 
@@ -96,6 +92,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
                 title="Organize Me"
                 // onLeftIconButtonTouchTap={this.menuClick}
                 showMenuIconButton={false}
+                zDepth={2}
                 iconElementRight={this.props.logged ? <LoggedMenu /> : <Login />}
               />
             </div>

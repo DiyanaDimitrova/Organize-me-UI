@@ -2,10 +2,10 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import { RaisedButton, TextField, Paper } from 'material-ui'
+import * as Colors from 'material-ui/styles/colors'
 import * as actions from '../../../actions/loginActions'
 import { SignupRequest } from '../../../main/loginMain'
 import Header from '../../../components/Header/Header'
-import * as Colors from 'material-ui/styles/colors'
 const styles = {
   errorStyle: {
     color: Colors.deepPurple700,

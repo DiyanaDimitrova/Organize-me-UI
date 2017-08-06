@@ -5,9 +5,9 @@
   color: #512DA8;
 }
 .registerPaper {
-  height: 85%;
+  height: auto;
   width: 50%;
-  margin: 13px 200px 13px 200px;
+  margin: 10px 200px 10px 200px;
   padding: 10px 10px 10px 10px;
   text-align: center;
   display: inline-block;

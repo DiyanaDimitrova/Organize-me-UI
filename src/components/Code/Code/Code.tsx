@@ -1,12 +1,12 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
-import { RaisedButton, TextField, FlatButton } from 'material-ui'
+import { RaisedButton, TextField, FlatButton, Paper } from 'material-ui'
 import { Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
+import * as Colors from 'material-ui/styles/colors'
 import * as actions from '../../../actions/codeActions'
 import { SendCodeRequest } from '../../../main/codeMain'
 import Header from '../../../components/Header/Header'
-import * as Colors from 'material-ui/styles/colors'
 const classes = require('./Code.css')
 
 interface StateProps {
@@ -103,67 +103,69 @@ export class Code extends React.Component<CodeProps, CodeState> {
             <Header />
           </div>
         <div id='codeDiv' className={classes.codeDiv}>
-        {this.props.success === true && this.props.listInvitedLoading === false &&
-          <Table
-            height={this.state.height}
-            fixedHeader={this.state.fixedHeader}
-            fixedFooter={this.state.fixedFooter}
-            selectable={this.state.selectable}
-            multiSelectable={this.state.multiSelectable}
-            onRowSelection={this.handleRowSelection}
-            bodyStyle={{border: 5, borderColor: Colors.deepPurple900}}
-          >
-            <TableHeader
-              displaySelectAll={this.state.showCheckboxes}
-              adjustForCheckbox={this.state.showCheckboxes}
-              enableSelectAll={this.state.enableSelectAll}
-            >
-              <TableRow>
-                <TableHeaderColumn colSpan="3" tooltip="Invited to the event" style={{textAlign: 'center'}}>
-                  Invited to the event
-                </TableHeaderColumn>
-              </TableRow>
-              <TableRow id='row' className={classes.row}>
-                <TableHeaderColumn tooltip="ID">ID</TableHeaderColumn>
-                <TableHeaderColumn tooltip="Username">Username</TableHeaderColumn>
-                <TableHeaderColumn tooltip="Status">Status</TableHeaderColumn>
-              </TableRow>
-            </TableHeader>
-            <TableBody
-              displayRowCheckbox={this.state.showCheckboxes}
-              deselectOnClickaway={this.state.deselectOnClickaway}
-              showRowHover={this.state.showRowHover}
-              stripedRows={this.state.stripedRows}
-              style={{}}
-            >
-            {this.props.invitedPeopleList !== null && this.props.invitedPeopleList.map( (row, index) => (
-              <TableRow style={{td: {backgroundColor: Colors.deepPurple900}}} key={index}>
-                <TableRowColumn>{index}</TableRowColumn>
-                <TableRowColumn>{row.username}</TableRowColumn>
-                <TableRowColumn>{row.type}</TableRowColumn>
-              </TableRow>
-              ))}
-            </TableBody>
-            <TableFooter
-              adjustForCheckbox={this.state.showCheckboxes}
-            >
-              <TableRow>
-                <TableRowColumn>ID</TableRowColumn>
-                <TableRowColumn>Username</TableRowColumn>
-                <TableRowColumn>Status</TableRowColumn>
-              </TableRow>
-              <TableRow>
-                <TableRowColumn colSpan="3" style={{textAlign: 'center'}}>
-                  Invited to the event
-                </TableRowColumn>
-              </TableRow>
-            </TableFooter>
-          </Table>
-        }
-          <div>
-            <RaisedButton label="Cancel" backgroundColor="#D1C4E9" labelColor="#512DA8" onClick={this.cancelEvent}/>
-            <RaisedButton label="Send Code" backgroundColor="#512DA8" labelColor="#EDE7F6" onClick={this.sendCodeEvent}/>
-          </div>
+          <Paper id='codePaper' className={classes.codePaper} zDepth={2}>
+            {this.props.success === true && this.props.listInvitedLoading === false &&
+              <Table
+                height={this.state.height}
+                fixedHeader={this.state.fixedHeader}
+                fixedFooter={this.state.fixedFooter}
+                selectable={this.state.selectable}
+                multiSelectable={this.state.multiSelectable}
+                onRowSelection={this.handleRowSelection}
+                bodyStyle={{border: 5, borderColor: Colors.deepPurple900}}
+              >
+                <TableHeader
+                  displaySelectAll={this.state.showCheckboxes}
+                  adjustForCheckbox={this.state.showCheckboxes}
+                  enableSelectAll={this.state.enableSelectAll}
+                >
+                  <TableRow>
+                    <TableHeaderColumn colSpan="3" tooltip="Invited to the event" style={{textAlign: 'center'}}>
+                      Invited to the event
+                    </TableHeaderColumn>
+                  </TableRow>
+                  <TableRow id='row' className={classes.row}>
+                    <TableHeaderColumn tooltip="ID">ID</TableHeaderColumn>
+                    <TableHeaderColumn tooltip="Username">Username</TableHeaderColumn>
+                    <TableHeaderColumn tooltip="Status">Status</TableHeaderColumn>
+                  </TableRow>
+                </TableHeader>
+                <TableBody
+                  displayRowCheckbox={this.state.showCheckboxes}
+                  deselectOnClickaway={this.state.deselectOnClickaway}
+                  showRowHover={this.state.showRowHover}
+                  stripedRows={this.state.stripedRows}
+                  style={{}}
+                >
+                {this.props.invitedPeopleList !== null && this.props.invitedPeopleList.map( (row, index) => (
+                  <TableRow style={{td: {backgroundColor: Colors.deepPurple900}}} key={index}>
+                    <TableRowColumn>{index}</TableRowColumn>
+                    <TableRowColumn>{row.username}</TableRowColumn>
+                    <TableRowColumn>{row.type}</TableRowColumn>
+                  </TableRow>
+                  ))}
+                </TableBody>
+                <TableFooter
+                  adjustForCheckbox={this.state.showCheckboxes}
+                >
+                  <TableRow>
+                    <TableRowColumn>ID</TableRowColumn>
+                    <TableRowColumn>Username</TableRowColumn>
+                    <TableRowColumn>Status</TableRowColumn>
+                  </TableRow>
+                  <TableRow>
+                    <TableRowColumn colSpan="3" style={{textAlign: 'center'}}>
+                      Invited to the event
+                    </TableRowColumn>
+                  </TableRow>
+                </TableFooter>
+              </Table>
+            }
+              <div>
+                <RaisedButton label="Cancel" fullWidth={true} backgroundColor="#D1C4E9" labelColor="#512DA8" onClick={this.cancelEvent}/>
+                <RaisedButton label="Send Code" fullWidth={true} backgroundColor="#512DA8" labelColor="#EDE7F6" onClick={this.sendCodeEvent}/>
+              </div>
+          </Paper>
         </div>
       </div>
     )
