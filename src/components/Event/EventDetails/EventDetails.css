@@ -9,3 +9,12 @@
 .eventDetailsDiv {
   padding-left: 256px;
 }
+.eventDetailsPaper {
+  height: auto;
+  width: 50%;
+  margin: 10px 200px 10px 200px;
+  padding: 10px 10px 10px 10px;
+  text-align: left;
+  display: inline-block;
+  position: absolute;
+}

@@ -4,3 +4,12 @@
 .titleText{
   color: #512DA8;
 }
+.eventPaper{
+  height: auto;
+  width: 50%;
+  margin: 10px 200px 10px 200px;
+  padding: 10px 10px 10px 10px;
+  text-align: center;
+  display: inline-block;
+  position: absolute;
+}

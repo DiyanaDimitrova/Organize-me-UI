@@ -1,14 +1,14 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
-import { RaisedButton, TextField, Paper, DatePicker, TimePicker, FlatButton, DropDownMenu, MenuItem } from 'material-ui'
+import { RaisedButton, TextField, Paper, DatePicker, TimePicker, FlatButton, DropDownMenu, MenuItem, Paper } from 'material-ui'
+import * as Colors from 'material-ui/styles/colors'
+import * as dateFormat from 'dateformat'
+import * as Moment from 'moment'
 import * as actions from '../../../actions/eventActions'
 import * as categoryActions from '../../../actions/categoryActions'
 import { CreateEventRequest, UpdateEventRequest } from '../../../main/eventMain'
 import Header from '../../../components/Header/Header'
-import * as dateFormat from 'dateformat'
-import * as Moment from 'moment'
-import * as Colors from 'material-ui/styles/colors'
 const classes = require('./Event.css')
 const styles = {
   errorStyle: {
@@ -245,60 +245,68 @@ export class Event extends React.Component<EventProps, EventState> {
             <Header />
           </div>
           <div id='eventDiv' className={classes.eventDiv}>
-            <div id='titleText' className={classes.titleText}>
-              <h2>{name}</h2>
-            </div>
-            <form encType='multipart/form-data'>
-                <div>
-                  <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
-                  floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
-                  hintText="Title" floatingLabelText="Title" floatingLabelFixed={true} type="text" value={this.state.title} onChange={this.titleEntered}/>
-                </div>
-                <div>
-                    <DatePicker dialogContainerStyle={{color: '#512DA8'}} hintText="Pick Date" floatingLabelText="Pick Date" value={Moment(this.state.dateValue).toDate()} onChange={this.handleChangeDatePicker}/>
-                </div>
-                <div>
-                    <TimePicker format="24hr" hintText="Pick Time" floatingLabelText="Pick Time" value={Moment(this.state.hourValue).toDate()} onChange={this.handleChangeTimePicker}/>
-                </div>
-                <div>
-                  <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
-                  floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
-                  hintText="Place" floatingLabelText="Place" floatingLabelFixed={true} type="text" value={this.state.place} onChange={this.placeEntered}/>
-                </div>
-                <div>
-                  <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
-                  floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
-                  hintText="City" floatingLabelText="City" floatingLabelFixed={true} type="text" value={this.state.city} onChange={this.cityEntered}/>
-                </div>
-                <div>
-                  <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
-                  floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
-                  hintText="Capacity" floatingLabelText="Capacity" floatingLabelFixed={true} type="number"  value={this.state.capacity} onChange={this.capacityEntered}/>
-                </div>
-                <div>
-                  <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
-                  floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
-                  hintText="Details" floatingLabelText="Details" floatingLabelFixed={true} type="text"  value={this.state.details} onChange={this.detailsEntered}/>
-                </div>
-                <div>
-                  <DropDownMenu value={this.state.categoryValue} onChange={this.handleCategoryChange} autoWidth={true}>
-                    {categoryArray.map((item, index) => {
-                      return (
-                          <MenuItem value={item._id} key={index} primaryText={item.title}/>
-                      )
-                    })}
-                   </DropDownMenu>
-                </div>
-                <div>
-                    <RaisedButton containerElement="label" label="Choose an Image" labelPosition="before" backgroundColor="#512DA8" labelColor="#EDE7F6">
-                        <input type="file" style={{ display: 'none' }} onChange={this.handleFile} />
-                    </RaisedButton>
-                </div>
-                <div>
-                  <RaisedButton label="Cancel" backgroundColor="#D1C4E9" labelColor="#512DA8" onClick={this.cancelEvent}/>
-                  <RaisedButton label="Submit" backgroundColor="#512DA8" labelColor="#EDE7F6" onClick={this.saveEvent}/>
-                </div>
-            </form>
+            <Paper id='eventPaper' className={classes.eventPaper} zDepth={2}>
+              <div id='titleText' className={classes.titleText}>
+                <h2>{name}</h2>
+              </div>
+              <form encType='multipart/form-data'>
+                  <div>
+                    <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
+                    floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
+                    fullWidth={true} hintText="Title" floatingLabelText="Title" floatingLabelFixed={true} type="text" value={this.state.title} onChange={this.titleEntered}/>
+                  </div>
+                  <div>
+                      <DatePicker errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
+                      floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
+                      fullWidth={true} dialogContainerStyle={{color: '#512DA8'}} hintText="Pick Date" floatingLabelText="Pick Date" value={Moment(this.state.dateValue).toDate()} onChange={this.handleChangeDatePicker}/>
+                  </div>
+                  <div>
+                      <TimePicker errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
+                      floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
+                      fullWidth={true} format="24hr" hintText="Pick Time" floatingLabelText="Pick Time" value={Moment(this.state.hourValue).toDate()} onChange={this.handleChangeTimePicker}/>
+                  </div>
+                  <div>
+                    <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
+                    floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
+                    fullWidth={true} hintText="Place" floatingLabelText="Place" floatingLabelFixed={true} type="text" value={this.state.place} onChange={this.placeEntered}/>
+                  </div>
+                  <div>
+                    <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
+                    floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
+                    fullWidth={true} hintText="City" floatingLabelText="City" floatingLabelFixed={true} type="text" value={this.state.city} onChange={this.cityEntered}/>
+                  </div>
+                  <div>
+                    <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
+                    floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
+                    fullWidth={true} hintText="Capacity" floatingLabelText="Capacity" floatingLabelFixed={true} type="number"  value={this.state.capacity} onChange={this.capacityEntered}/>
+                  </div>
+                  <div>
+                    <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
+                    floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
+                    fullWidth={true} hintText="Details" floatingLabelText="Details" floatingLabelFixed={true} type="text"  value={this.state.details} onChange={this.detailsEntered}/>
+                  </div>
+                  <div>
+                    <DropDownMenu errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
+                    floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
+                    fullWidth={true} value={this.state.categoryValue} onChange={this.handleCategoryChange}>
+                      {categoryArray.map((item, index) => {
+                        return (
+                            <MenuItem fullWidth={true} value={item._id} key={index} primaryText={item.title}/>
+                        )
+                      })}
+                     </DropDownMenu>
+                  </div>
+                  <div>
+                      <RaisedButton fullWidth={true} containerElement="label" label="Choose an Image" labelPosition="before" backgroundColor="#512DA8" labelColor="#EDE7F6">
+                          <input type="file" style={{ display: 'none' }} onChange={this.handleFile} />
+                      </RaisedButton>
+                  </div>
+                  <div>
+                    <RaisedButton label="Cancel" fullWidth={true} backgroundColor="#D1C4E9" labelColor="#512DA8" onClick={this.cancelEvent}/>
+                    <RaisedButton label="Submit" fullWidth={true} backgroundColor="#512DA8" labelColor="#EDE7F6" onClick={this.saveEvent}/>
+                  </div>
+              </form>
+            </Paper>
           </div>
       </div>
     )

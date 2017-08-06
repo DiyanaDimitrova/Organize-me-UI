@@ -2,19 +2,18 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import * as actions from '../../../actions/eventActions'
-import { List, ListItem, IconMenu, MenuItem, IconButton } from 'material-ui'
+import { List, ListItem, IconMenu, MenuItem, IconButton,Paper } from 'material-ui'
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
-import { } from '../../../main/eventMain'
-import { Event } from '../../Event/Event/Event'
-import { UpdateEventRequest, DeleteEventRequest } from '../../../main/eventMain'
-import Header from '../../../components/Header/Header'
 import Edit from 'material-ui/svg-icons/editor/mode-edit'
 import Delete from 'material-ui/svg-icons/action/delete'
 import Send from 'material-ui/svg-icons/communication/contact-mail'
 import View from 'material-ui/svg-icons/social/pages'
 import * as Colors from 'material-ui/styles/colors'
 import * as dateFormat from 'dateformat'
-
+import { } from '../../../main/eventMain'
+import { Event } from '../../Event/Event/Event'
+import { UpdateEventRequest, DeleteEventRequest } from '../../../main/eventMain'
+import Header from '../../../components/Header/Header'
 const classes = require('./EventList.css')
 
 interface StateProps {
@@ -120,18 +119,20 @@ class EventList extends React.Component<EventListProps, EventListState> {
             <Header />
           </div>
         <div id='eventListDiv' className={classes.eventListDiv}>
-         <List>
-           {eventArray.map((item, index) => {
-             return (
-               <div key={index} >
-                 <ListItem hoverColor="#D1C4E9"
-                   rightIconButton={this.rightIconMenu(item)}
-                   primaryText={item.title} style={{color: Colors.deepPurple700}}
-                 />
-               </div>
-             )
-           })}
-          </List>
+          <Paper id='eventListPaper' className={classes.eventListPaper} zDepth={2}>
+             <List>
+               {eventArray.map((item, index) => {
+                 return (
+                   <div key={index} >
+                     <ListItem hoverColor="#D1C4E9"
+                       rightIconButton={this.rightIconMenu(item)}
+                       primaryText={item.title} style={{color: Colors.deepPurple700}}
+                     />
+                   </div>
+                 )
+               })}
+              </List>
+          </Paper>
         </div>
       </div>
     )
