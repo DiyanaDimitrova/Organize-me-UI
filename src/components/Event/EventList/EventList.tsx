@@ -143,7 +143,7 @@ const mapStateToProps = (state: any) => ({
     eventListLoading: state.event.eventListLoading,
     success: state.event.success,
     eventList: state.event.eventList,
-    user: state.login.user ? state.login.user.username: ''
+    user: state.login.user ? state.login.user.username: null
 })
 
 const mapDispatchToProps = (dispatch) => {

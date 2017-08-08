@@ -120,7 +120,7 @@ const mapStateToProps = (state: any) => ({
   categoriesListLoading: state.category.categoriesListLoading,
   success: state.category.success,
   categoriesList: state.category.categoriesList,
-  user: state.login.user.username
+  user: state.login.user ? state.login.user.username : null
 })
 
 const mapDispatchToProps = (dispatch) => {

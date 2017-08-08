@@ -129,7 +129,7 @@ export class Category extends React.Component<CategoryProps, CategoryState> {
 const mapStateToProps = (state: any) => ({
   currentItem: state.category.currentItem,
   itemToBeEdited: state.category.itemToBeEdited,
-  user: state.login.user.username
+  user: state.login.user ? state.login.user.username : null
 })
 
 const mapDispatchToProps = (dispatch) => {

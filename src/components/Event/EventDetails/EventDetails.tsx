@@ -128,12 +128,13 @@ render() {
     let $imagePreview = null
     if (imagePreviewUrl) {
         $imagePreview = (React.createElement("img", { src: imagePreviewUrl }));
-  }
-    let disableButtons = this.props.details.invitedPeople.some((element, index, array) => {
-        console.log(element.username === this.props.username)
-        return element.username === this.props.username
-      })
-    console.log('Disabled' + disableButtons)
+    }
+    // let disableButtons = this.props.details !== undefined ? this.props.details.invitedPeople.some((element, index, array) => {
+    //     console.log('ELEMENT' + element.username)
+    //     console.log('PROPS' + this.props.username)
+    //     return element.username === this.props.username
+    //   }) : false
+    // console.log('Disabled' + disableButtons)
     return (
       <div>
         <div>
@@ -141,7 +142,7 @@ render() {
         </div>
         <div id='eventDetailsDiv' className={classes.eventDetailsDiv}>
           <Paper id='eventDetailsPaper' className={classes.eventDetailsPaper} zDepth={2}>
-            <Card>
+            {this.props.details !== undefined && this.props.details !== null ? <Card>
                 <CardHeader titleColor="#512DA8" subtitleColor="#D1C4E9"
                   title={this.props.details.title}
                   subtitle={dateFormat(this.props.details.time, 'HH:MM')+ ' ' + dateFormat(this.props.details.time, 'dS mmmm, yyyy')}
@@ -196,7 +197,7 @@ render() {
                         return element.username === this.props.username && element.type === 'notGoing'
                       })} onClick={this.notInterestedInEvent}/>
                 </CardActions>
-              </Card>
+              </Card> : null}
             </Paper>
           </div>
       </div>
@@ -211,7 +212,7 @@ const mapStateToProps = (state: any) => ({
   image: state.event.itemToView ? state.event.itemToView.image : null,
   details: state.event.itemToView ? state.event.itemToView.details : null,
   // itemToView: state.event.itemToView ? state.event.itemToView : null,
-  username: state.login.user ? state.login.user.username : ''
+  username: state.login.user ? state.login.user.username : null
 })
 
 const mapDispatchToProps = (dispatch) => {

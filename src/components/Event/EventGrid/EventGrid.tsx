@@ -17,14 +17,12 @@ interface StateProps {
   eventListLoading: Boolean,
   success: Boolean,
   eventList: Array<any>,
-  // imageToView: any,
   images: Array<any>
 }
 
 interface DispatchProps {
   loadEventList: () => void,
-  setDisplayedItem: (displayedItem: String) => void,
-  // loadEventImageListAction: (request: EventDetailsRequest) => void
+  setDisplayedItem: (displayedItem: String) => void
 }
 
 interface EventGridProps extends StateProps, DispatchProps {
@@ -44,20 +42,17 @@ class EventGrid extends React.Component<EventGridProps, EventGridState> {
     eventListLoading: false,
     success: true,
     eventList: [],
-    // imageToView: null,
     images: []
   }
   componentWillMount() {
     this.props.loadEventList()
   }
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   return this.props.images !== nextProps.images
-  // }
+
   viewItem = (e, itemId) => {
-    // console.log('ITEM' + itemId)
     this.props.setDisplayedItem(itemId)
     browserHistory.push('/eventDetails/' + itemId)
   }
+  
   getImage = (itemId) => {
     let src
     if(this.props.images !== null && this.props.images.length > 0){
@@ -108,7 +103,6 @@ const mapStateToProps = (state: any) => ({
     eventListLoading: state.event.eventListLoading,
     success: state.event.success,
     eventList: state.event.eventList,
-    // imageToView: state.event.itemToView.image,
     images: state.event.images
 })
 
@@ -119,13 +113,7 @@ const mapDispatchToProps = (dispatch) => {
       },
       setDisplayedItem: (displayedItem: String): void => {
           actions.setDisplayedItem(displayedItem, dispatch)
-      },
-      // loadEventImageAction: (request: EventDetailsRequest): void => {
-      //     actions.loadEventImageAction(request, dispatch)
-      // },
-      // loadEventImageListAction: (request: EventDetailsRequest): void => {
-      //   actions.loadEventImageListAction(request, dispatch)
-      // }
+      }
     }
 }
 

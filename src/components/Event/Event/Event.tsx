@@ -317,7 +317,7 @@ const mapStateToProps = (state: any) => ({
   categoriesList: state.category.categoriesList,
   currentItem: state.event.currentItem,
   itemToBeEdited: state.event.itemToBeEdited,
-  user: state.login.user.username
+  user: state.login.user ? state.login.user.username : null
 })
 
 const mapDispatchToProps = (dispatch) => {
