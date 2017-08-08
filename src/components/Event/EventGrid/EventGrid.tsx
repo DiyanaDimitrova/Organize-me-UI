@@ -67,9 +67,9 @@ class EventGrid extends React.Component<EventGridProps, EventGridState> {
         }
       })
     }
-    console.log('IMAGEEEE' + src.id)
     return src ? src.image : null
   }
+  // <Subheader style={{color: '#512DA8', textAlign: 'center', fontSize: '12'}}>All events</Subheader>
 
   render() {
     return (
@@ -83,7 +83,6 @@ class EventGrid extends React.Component<EventGridProps, EventGridState> {
               <GridList
                 cellHeight={250}
               >
-                <Subheader style={{color: '#512DA8'}}>All events</Subheader>
                 {this.props.eventList !== undefined && this.props.eventList !== null && this.props.eventList.map((tile) => (
                   <GridTile
                     key={tile._id}

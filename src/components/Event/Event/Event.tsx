@@ -286,12 +286,10 @@ export class Event extends React.Component<EventProps, EventState> {
                     fullWidth={true} hintText="Details" floatingLabelText="Details" floatingLabelFixed={true} type="text"  value={this.state.details} onChange={this.detailsEntered}/>
                   </div>
                   <div>
-                    <DropDownMenu errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
-                    floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
-                    fullWidth={true} value={this.state.categoryValue} onChange={this.handleCategoryChange}>
+                    <DropDownMenu value={this.state.categoryValue} onChange={this.handleCategoryChange} selectedMenuItemStyle={{color: '#512DA8'}} style={{width: 650}} listStyle={{width: 600}}>
                       {categoryArray.map((item, index) => {
                         return (
-                            <MenuItem fullWidth={true} value={item._id} key={index} primaryText={item.title}/>
+                            <MenuItem value={item._id} key={index} primaryText={item.title}/>
                         )
                       })}
                      </DropDownMenu>
