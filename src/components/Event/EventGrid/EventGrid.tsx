@@ -24,7 +24,7 @@ interface StateProps {
 interface DispatchProps {
   loadEventList: () => void,
   setDisplayedItem: (displayedItem: String) => void,
-  loadEventImageListAction: (request: EventDetailsRequest) => void
+  // loadEventImageListAction: (request: EventDetailsRequest) => void
 }
 
 interface EventGridProps extends StateProps, DispatchProps {
@@ -59,19 +59,15 @@ class EventGrid extends React.Component<EventGridProps, EventGridState> {
     browserHistory.push('/eventDetails/' + itemId)
   }
   getImage = (itemId) => {
-    let eventDetails = {} as EventDetailsRequest
-    eventDetails.id = itemId
-    this.props.loadEventImageListAction(eventDetails)
-
     let src
     if(this.props.images !== null && this.props.images.length > 0){
       src = this.props.images.find(image => {
         if(image.id === itemId){
-          // console.log(image.id)
           return image
         }
       })
     }
+    console.log('IMAGEEEE' + src.id)
     return src ? src.image : null
   }
 
@@ -128,9 +124,9 @@ const mapDispatchToProps = (dispatch) => {
       // loadEventImageAction: (request: EventDetailsRequest): void => {
       //     actions.loadEventImageAction(request, dispatch)
       // },
-      loadEventImageListAction: (request: EventDetailsRequest): void => {
-        actions.loadEventImageListAction(request, dispatch)
-      }
+      // loadEventImageListAction: (request: EventDetailsRequest): void => {
+      //   actions.loadEventImageListAction(request, dispatch)
+      // }
     }
 }
 

@@ -207,6 +207,19 @@ export function loadEventList(dispatch: any): void {
       .then((response) => {
           dispatch(setEventList(response.data.events))
           dispatch(eventListEndLoading())
+          response.data.events.map(item => {
+            if (item.id !== undefined){
+              axios.get('/event/image/' + item.id)
+                .then((response) => {
+                    dispatch(setEventImage(response.data))
+                    dispatch(eventImageEndLoading())
+                })
+                .catch((err) => {
+                    dispatch(setEventImageFailure())
+                    dispatch(eventImageEndLoading())
+                })
+            }
+          })
       })
       .catch((err) => {
           dispatch(setEventListFailure())
