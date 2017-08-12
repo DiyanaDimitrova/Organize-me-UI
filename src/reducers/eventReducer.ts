@@ -199,9 +199,10 @@ export function getEventImageArrayActionReducer(state: EventState, action: Actio
           image:  _action.image,
           id: _action.id
         }
-        let didi = Object.assign([state.images], image)
+        // let didi = Object.assign([state.images], image)
         // console.log('ACTION' + JSON.stringify(image))
         // newState.images = Object.assign([state.images], image)
+        console.log('IMAGE' + image)
         newState.images = [...state.images || [], image]
         // console.log('STATE' + JSON.stringify(newState.images.length))
 

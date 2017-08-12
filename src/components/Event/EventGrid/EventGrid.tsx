@@ -52,11 +52,13 @@ class EventGrid extends React.Component<EventGridProps, EventGridState> {
     this.props.setDisplayedItem(itemId)
     browserHistory.push('/eventDetails/' + itemId)
   }
-  
+
   getImage = (itemId) => {
+    console.log('ITEM' + itemId)
     let src
     if(this.props.images !== null && this.props.images.length > 0){
       src = this.props.images.find(image => {
+        console.log('IMAGE' + image.id)
         if(image.id === itemId){
           return image
         }
