@@ -1,0 +1,4 @@
+.userChip {
+  display: flex;
+  flex-wrap: wrap;
+}

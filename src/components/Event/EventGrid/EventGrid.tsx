@@ -54,11 +54,9 @@ class EventGrid extends React.Component<EventGridProps, EventGridState> {
   }
 
   getImage = (itemId) => {
-    console.log('ITEM' + itemId)
     let src
     if(this.props.images !== null && this.props.images.length > 0){
       src = this.props.images.find(image => {
-        console.log('IMAGE' + image.id)
         if(image.id === itemId){
           return image
         }
@@ -86,7 +84,7 @@ class EventGrid extends React.Component<EventGridProps, EventGridState> {
                     titleStyle={{color: '#512DA8'}}
                     // subtitleStyle={{color: '#512DA8'}}
                     title={tile.title}
-                    subtitle={tile.place}
+                    subtitle={tile.city + ' ' + tile.place + ' ' + dateFormat(tile.time, 'dS mmmm, yyyy')} 
                     actionIcon={<IconButton onTouchTap={(event) => {this.viewItem(event, tile._id)}}>
                     <Info color="#D1C4E9"/></IconButton>}>
                     {tile._id !== undefined && <img src={this.getImage(tile._id)} />}

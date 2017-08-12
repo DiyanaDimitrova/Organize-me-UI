@@ -3,18 +3,17 @@ import { AppState } from '../../../store/AppStore'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
-import * as actions from '../../../actions/loginActions'
-import IconButton from 'material-ui/IconButton'
-import IconMenu from 'material-ui/IconMenu'
-import MenuItem from 'material-ui/MenuItem'
+import {IconButton, Chip, Avatar, IconMenu, MenuItem} from 'material-ui'
+import * as Colors from 'material-ui/styles/colors'
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
 import SignOutIcon from 'material-ui/svg-icons/action/highlight-off'
 import Help from 'material-ui/svg-icons/action/help'
 import About from 'material-ui/svg-icons/content/font-download'
-import * as Colors from 'material-ui/styles/colors'
+import * as actions from '../../../actions/loginActions'
+const classes = require('./LoggedMenu.css')
 
 interface StateProps {
-
+  username: String
 }
 
 interface DispatchProps {
@@ -44,7 +43,15 @@ class LoggedMenu extends React.Component<LoggedMenuProps, LoggedMenuState> {
     console.log(this.props)
     return (
         <IconMenu {...this.props}
-          iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
+          iconButtonElement={
+              <div id='userChip' className={classes.userChip}>
+                <Chip style={{ margin: 4 }} backgroundColor={Colors.deepPurple100}>
+                  <Avatar size={32} color={Colors.deepPurple500} backgroundColor={Colors.deepPurple50}>
+                    {this.props.username.charAt(0)}
+                  </Avatar>
+                  {this.props.username}
+                </Chip>
+              </div>}
           anchorOrigin={{horizontal: 'left', vertical: 'top'}}
           targetOrigin={{horizontal: 'left', vertical: 'top'}}>
           <MenuItem leftIcon={<About color={Colors.deepPurple700}/>} primaryText="About" />
@@ -55,7 +62,7 @@ class LoggedMenu extends React.Component<LoggedMenuProps, LoggedMenuState> {
     }
 }
 const mapStateToProps = (state: any) => ({
-
+  username: state.login.user ? state.login.user.username : null
 })
 
 const mapDispatchToProps = (dispatch) => {
