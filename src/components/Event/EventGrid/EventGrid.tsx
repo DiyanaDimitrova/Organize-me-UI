@@ -1,10 +1,9 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
-import {GridList, GridTile, Paper, AutoComplete, RaisedButton} from 'material-ui'
-import IconButton from 'material-ui/IconButton'
-import Subheader from 'material-ui/Subheader'
+import {GridList, GridTile, Paper, AutoComplete, RaisedButton, IconButton, Subheader} from 'material-ui'
 import Info from 'material-ui/svg-icons/action/info-outline'
+import * as Colors from 'material-ui/styles/colors'
 import * as dateFormat from 'dateformat'
 import * as actions from '../../../actions/eventActions'
 import * as categoryActions from '../../../actions/categoryActions'
@@ -86,7 +85,6 @@ class EventGrid extends React.Component<EventGridProps, EventGridState> {
       let categoryArray = Object.keys(this.props.categoriesList).map(key => this.props.categoriesList[key])
       category = categoryArray.find(item => item.title === categoryText)
     }
-    console.log('ST' + JSON.stringify(category))
     this.setState({
       categoryText: category._id
     })
@@ -105,7 +103,6 @@ class EventGrid extends React.Component<EventGridProps, EventGridState> {
       categoryText: null,
       cityText: null
     })
-    console.log('OOOOOOOOOOOOO')
   }
   render() {
     const categoryConfig = {
@@ -139,6 +136,12 @@ class EventGrid extends React.Component<EventGridProps, EventGridState> {
           <div id='eventGridDiv' className={classes.eventGridDiv}>
             <Paper id='eventGridPaper' className={classes.eventGridPaper} zDepth={2}>
             <AutoComplete
+               textFieldStyle={{color: '#512DA8'}}
+               menuStyle={{color: '#512DA8'}}
+               listStyle={{color: '#512DA8'}}
+               errorStyle={{color: '#512DA8'}}
+               style={{width: 325}}
+               fullWidth={true}
                floatingLabelText="Category"
                filter={AutoComplete.noFilter}
                onUpdateInput={this.selectCategory}
@@ -147,6 +150,12 @@ class EventGrid extends React.Component<EventGridProps, EventGridState> {
                dataSourceConfig={categoryConfig}
              />
              <AutoComplete
+                textFieldStyle={{color: Colors.deepPurple700}}
+                menuStyle={{color: Colors.deepPurple700}}
+                listStyle={{color: Colors.deepPurple700}}
+                errorStyle={{color: Colors.deepPurple700}}
+                style={{width: 325}}
+                fullWidth={true}
                 floatingLabelText="City"
                 filter={AutoComplete.noFilter}
                 onUpdateInput={this.selectCity}
