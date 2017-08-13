@@ -1,6 +1,6 @@
 import axios from 'axios'
 // import { browserHistory } from 'react-router'
-import { CreateEventRequest, UpdateEventRequest, DeleteEventRequest, EventDetailsRequest, AttendEventRequest } from '../main/eventMain'
+import { CreateEventRequest, UpdateEventRequest, DeleteEventRequest, EventDetailsRequest, AttendEventRequest, FilterEventListRequest } from '../main/eventMain'
 import { Action } from 'redux'
 export const NEW_EVENT_SUCCESS = '@@Event/NEW_EVENT_SUCCESS'
 export const NEW_EVENT_FAIL = '@@Event/NEW_EVENT_FAIL'
@@ -201,9 +201,21 @@ export function performUpdateEventAction(request: UpdateEventRequest, dispatch: 
           dispatch(updateEventFailAction(err.response.data.response))
       })
 }
-export function loadEventList(dispatch: any): void {
+export function loadEventList(request: FilterEventListRequest, dispatch: any): void {
+    let params = '/event/all'
+    if (request !== null) {
+      if (request.categoryId !== null && request.city !== null) {
+        params = params + '?categoryId=' + request.categoryId + '&city='+ request.city
+      } else if (request.categoryId !== null && request.city === null) {
+        params = params + '?categoryId=' + request.categoryId
+      } else if (request.categoryId === null && request.city !== null) {
+        params = params + '?city='+ request.city
+      }
+    } else {
+      params = params
+    }
     dispatch(eventListBeginLoading())
-    axios.get('/event/all')
+    axios.get(params)
       .then((response) => {
           dispatch(setEventList(response.data.events))
           dispatch(eventListEndLoading())

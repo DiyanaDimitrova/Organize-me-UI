@@ -12,7 +12,7 @@ import * as Colors from 'material-ui/styles/colors'
 import * as dateFormat from 'dateformat'
 import { } from '../../../main/eventMain'
 import { Event } from '../../Event/Event/Event'
-import { UpdateEventRequest, DeleteEventRequest } from '../../../main/eventMain'
+import { UpdateEventRequest, DeleteEventRequest, FilterEventListRequest} from '../../../main/eventMain'
 import Header from '../../../components/Header/Header'
 const classes = require('./EventList.css')
 
@@ -24,7 +24,7 @@ interface StateProps {
 }
 
 interface DispatchProps {
-  loadEventList: () => void,
+  loadEventList: (request: FilterEventListRequest) => void,
   performDeleteEventAction: (deleteEventRequest: DeleteEventRequest) => void,
   setDisplayedItem: (displayedItem: String) => void
 }
@@ -49,7 +49,7 @@ class EventList extends React.Component<EventListProps, EventListState> {
     user: ''
   }
   componentWillMount() {
-    this.props.loadEventList()
+    this.props.loadEventList(null)
   }
   shouldComponentUpdate(nextProps, nextState) {
     return this.props !== nextProps
@@ -148,8 +148,8 @@ const mapStateToProps = (state: any) => ({
 
 const mapDispatchToProps = (dispatch) => {
     return {
-      loadEventList: (): void => {
-          actions.loadEventList(dispatch)
+      loadEventList: (request: FilterEventListRequest): void => {
+          actions.loadEventList(request, dispatch)
       },
       performDeleteEventAction: (deleteEventRequest: DeleteEventRequest): void => {
           actions.performDeleteEventAction(deleteEventRequest, dispatch)

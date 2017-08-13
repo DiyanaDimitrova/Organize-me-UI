@@ -1,15 +1,16 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
-import {GridList, GridTile, Paper} from 'material-ui'
+import {GridList, GridTile, Paper, AutoComplete, RaisedButton} from 'material-ui'
 import IconButton from 'material-ui/IconButton'
 import Subheader from 'material-ui/Subheader'
 import Info from 'material-ui/svg-icons/action/info-outline'
 import * as dateFormat from 'dateformat'
 import * as actions from '../../../actions/eventActions'
+import * as categoryActions from '../../../actions/categoryActions'
 import { } from '../../../main/eventMain'
 import { Event } from '../../Event/Event/Event'
-import { EventDetailsRequest } from '../../../main/eventMain'
+import { FilterEventListRequest } from '../../../main/eventMain'
 import Header from '../../../components/Header/Header'
 const classes = require('./EventGrid.css')
 
@@ -17,12 +18,16 @@ interface StateProps {
   eventListLoading: Boolean,
   success: Boolean,
   eventList: Array<any>,
-  images: Array<any>
+  images: Array<any>,
+  categoriesListLoading: Boolean,
+  categoriesListSuccess: Boolean,
+  categoriesList: Array<any>
 }
 
 interface DispatchProps {
-  loadEventList: () => void,
-  setDisplayedItem: (displayedItem: String) => void
+  loadEventList: (request: FilterEventListRequest) => void,
+  setDisplayedItem: (displayedItem: String) => void,
+  loadCategoriesList: () => void
 }
 
 interface EventGridProps extends StateProps, DispatchProps {
@@ -30,22 +35,32 @@ interface EventGridProps extends StateProps, DispatchProps {
 }
 
 interface EventGridState{
-  images: Array<any>
+  images: Array<any>,
+  categoryText: any,
+  cityText: any
 }
 
 class EventGrid extends React.Component<EventGridProps, EventGridState> {
   constructor(props) {
     super(props)
+    this.state = {
+      images: null,
+      categoryText: null,
+      cityText: null
+    }
   }
 
   public static defaultProps: StateProps = {
     eventListLoading: false,
     success: true,
     eventList: [],
-    images: []
+    images: [],
+    categoriesListLoading: false,
+    categoriesListSuccess: true,
+    categoriesList: [],
   }
   componentWillMount() {
-    this.props.loadEventList()
+    this.props.loadEventList(null)
   }
 
   viewItem = (e, itemId) => {
@@ -65,8 +80,56 @@ class EventGrid extends React.Component<EventGridProps, EventGridState> {
     return src ? src.image : null
   }
   // <Subheader style={{color: '#512DA8', textAlign: 'center', fontSize: '12'}}>All events</Subheader>
-
+  selectCategory = (categoryText) => {
+    let category = null
+    if (this.props.categoriesList !== null && this.props.categoriesList !== undefined){
+      let categoryArray = Object.keys(this.props.categoriesList).map(key => this.props.categoriesList[key])
+      category = categoryArray.find(item => item.title === categoryText)
+    }
+    console.log('ST' + JSON.stringify(category))
+    this.setState({
+      categoryText: category._id
+    })
+  }
+  selectCity = (cityText) => {
+    this.setState({
+      cityText: cityText
+    })
+  }
+  filterEvents = () => {
+    let filterEventList = {} as FilterEventListRequest
+    filterEventList.categoryId = this.state.categoryText
+    filterEventList.city = this.state.cityText
+    this.props.loadEventList(filterEventList)
+    this.setState({
+      categoryText: null,
+      cityText: null
+    })
+    console.log('OOOOOOOOOOOOO')
+  }
   render() {
+    const categoryConfig = {
+      text: 'title',
+      value: '_id'
+    }
+    let categoryArray
+    if(this.props.categoriesList !== undefined && this.props.categoriesList !== null){
+      categoryArray = Object.keys(this.props.categoriesList).map(key => this.props.categoriesList[key])
+    }
+    const cityArray = [
+      {city: 'Sofia', id: 1},
+      {city: 'Plovdiv', id: 2},
+      {city: 'Varna', id: 3},
+      {city: 'Burgas', id: 4},
+      {city: 'Stara Zagora', id: 5},
+      {city: 'Ruse', id: 6}
+
+    ];
+    const cityConfig = {
+      text: 'city',
+      value: 'id',
+    };
+
     return (
       <div>
         <div>
@@ -75,6 +138,23 @@ class EventGrid extends React.Component<EventGridProps, EventGridState> {
         {this.props.eventListLoading === false && this.props.success === true &&
           <div id='eventGridDiv' className={classes.eventGridDiv}>
             <Paper id='eventGridPaper' className={classes.eventGridPaper} zDepth={2}>
+            <AutoComplete
+               floatingLabelText="Category"
+               filter={AutoComplete.noFilter}
+               onUpdateInput={this.selectCategory}
+               openOnFocus={true}
+               dataSource={categoryArray}
+               dataSourceConfig={categoryConfig}
+             />
+             <AutoComplete
+                floatingLabelText="City"
+                filter={AutoComplete.noFilter}
+                onUpdateInput={this.selectCity}
+                openOnFocus={true}
+                dataSource={cityArray}
+                dataSourceConfig={cityConfig}
+              />
+              <RaisedButton label="Submit" fullWidth={true} backgroundColor="#512DA8" labelColor="#EDE7F6" onClick={this.filterEvents}/>
               <GridList
                 cellHeight={250}
               >
@@ -84,7 +164,7 @@ class EventGrid extends React.Component<EventGridProps, EventGridState> {
                     titleStyle={{color: '#512DA8'}}
                     // subtitleStyle={{color: '#512DA8'}}
                     title={tile.title}
-                    subtitle={tile.city + ' ' + tile.place + ' ' + dateFormat(tile.time, 'dS mmmm, yyyy')} 
+                    subtitle={tile.city + ' ' + tile.place + ' ' + dateFormat(tile.time, 'dS mmmm, yyyy')}
                     actionIcon={<IconButton onTouchTap={(event) => {this.viewItem(event, tile._id)}}>
                     <Info color="#D1C4E9"/></IconButton>}>
                     {tile._id !== undefined && <img src={this.getImage(tile._id)} />}
@@ -103,16 +183,22 @@ const mapStateToProps = (state: any) => ({
     eventListLoading: state.event.eventListLoading,
     success: state.event.success,
     eventList: state.event.eventList,
-    images: state.event.images
+    images: state.event.images,
+    categoriesListLoading: state.category.categoriesListLoading,
+    categoriesListSuccess: state.category.success,
+    categoriesList: state.category.categoriesList,
 })
 
 const mapDispatchToProps = (dispatch) => {
     return {
-      loadEventList: (): void => {
-          actions.loadEventList(dispatch)
+      loadEventList: (request: FilterEventListRequest): void => {
+          actions.loadEventList(request, dispatch)
       },
       setDisplayedItem: (displayedItem: String): void => {
           actions.setDisplayedItem(displayedItem, dispatch)
+      },
+      loadCategoriesList: (): void => {
+          categoryActions.loadCategoriesList(dispatch)
       }
     }
 }

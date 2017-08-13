@@ -40,7 +40,6 @@ class LoggedMenu extends React.Component<LoggedMenuProps, LoggedMenuState> {
     browserHistory.push('/')
   }
   render() {
-    console.log(this.props)
     return (
         <IconMenu {...this.props}
           iconButtonElement={
@@ -52,7 +51,7 @@ class LoggedMenu extends React.Component<LoggedMenuProps, LoggedMenuState> {
                   {this.props.username}
                 </Chip>
               </div>}
-          anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+          anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
           targetOrigin={{horizontal: 'left', vertical: 'top'}}>
           <MenuItem leftIcon={<About color={Colors.deepPurple700}/>} primaryText="About" />
           <MenuItem leftIcon={<Help color={Colors.deepPurple700}/>} primaryText="Help" />

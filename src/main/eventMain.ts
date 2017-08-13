@@ -47,6 +47,10 @@ export interface AttendEventRequest {
     username: String,
     type: String
 }
+export interface FilterEventListRequest {
+    categoryId: String,
+    city: String
+}
 
 export interface EventState {
     newEventMessage: String,

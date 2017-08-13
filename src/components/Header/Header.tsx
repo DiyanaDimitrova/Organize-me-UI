@@ -78,7 +78,6 @@ class Header extends React.Component<HeaderProps, HeaderState> {
         <div id='mainDiv' className={classes.mainDiv}>
             <div id='navigationDiv' className={classes.navigationDiv}>
               <Drawer open={true}>
-
                 <MenuItem onTouchTap={this.newCategoryClick} leftIcon={<Note color={Colors.deepPurple700}/>}>Create Category</MenuItem>
                 <MenuItem onTouchTap={this.allCategoryClick} leftIcon={<Toc color={Colors.deepPurple700}/>}>All Categories</MenuItem>
                 <MenuItem onTouchTap={this.newEventClick} leftIcon={<Event color={Colors.deepPurple700}/>}>Create Event</MenuItem>
