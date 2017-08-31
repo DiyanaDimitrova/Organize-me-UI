@@ -2,18 +2,12 @@
     display: flex;
     flex-wrap: wrap;
 }
-
 .chip {
     margin: 4;
-}
-.eventDetailsDiv {
-  padding-left: 256px;
 }
 .eventDetailsPaper {
   height: auto;
   width: 50%;
-  margin: 10px 200px 10px 200px;
+  margin: 3% auto;
   text-align: left;
-  display: inline-block;
-  position: absolute;
 }

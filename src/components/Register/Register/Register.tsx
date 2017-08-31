@@ -120,7 +120,7 @@ class Register extends React.Component<RegisterProps, RegisterState> {
             <Header />
           </div>
           <div id='registerDiv' className={classes.registerDiv}>
-            <Paper id='registerPaper' className={classes.registerPaper} style={classes.registerPaper} zDepth={2}>
+            <Paper id='registerPaper' className={classes.registerPaper} zDepth={2}>
               <div id='titleText' className={classes.titleText}>
                 <h2>Don't you have account? Register</h2>
               </div>

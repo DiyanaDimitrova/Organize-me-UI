@@ -1,12 +1,7 @@
-.eventListDiv {
-  padding-left: 256px;
-}
 .eventListPaper{
   height: auto;
   width: 50%;
-  margin: 100px 200px 100px 200px;
+  margin: 10% auto;
   padding: 10px 10px 10px 10px;
   text-align: left;
-  display: inline-block;
-  position: absolute;
 }

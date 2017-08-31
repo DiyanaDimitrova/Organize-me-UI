@@ -1,12 +1,7 @@
-.adminDiv{
-  padding-left: 256px;
-}
 .adminManagementPaper {
   height: auto;
   width: 50%;
-  margin: 10px 200px 10px 200px;
+  margin: 3% auto;
   padding: 10px 10px 10px 10px;
   text-align: center;
-  display: inline-block;
-  position: absolute;
 }

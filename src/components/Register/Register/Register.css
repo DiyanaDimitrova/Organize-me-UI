@@ -1,17 +1,12 @@
-.registerDiv {
-  padding-left: 256px;
-}
 .titleText{
   color: #512DA8;
 }
 .registerPaper {
   height: auto;
   width: 50%;
-  margin: 10px 200px 10px 200px;
+  margin: 3% auto;
   padding: 10px 10px 10px 10px;
   text-align: center;
-  display: inline-block;
-  position: absolute;
 }
 .registerBtn{
   margin: 10px 0px 10px 00px;

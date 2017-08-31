@@ -4,6 +4,11 @@ import LoginForm from '../LoginForm/LoginForm'
 import { AppState } from '../../../store/AppStore'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
+import { browserHistory } from 'react-router'
+import * as Colors from 'material-ui/styles/colors'
+import LogIn from 'material-ui/svg-icons/social/person'
+import Register from 'material-ui/svg-icons/social/person-add'
+const classes = require('./Login.css')
 
 interface StateProps {
 }
@@ -16,27 +21,24 @@ export interface LoginProps extends StateProps, DispatchProps {
 }
 
 interface LoginState{
-  showResults: boolean
 }
 class Login extends React.Component<LoginProps, LoginState> {
   constructor(props) {
        super(props)
-       this.state = {
-         showResults: false
-       }
      }
+  showLoginForm = () => {
+    browserHistory.push('/login')
+  }
   showRegisterForm = () => {
-    this.setState({ showResults: true });
+    browserHistory.push('/register')
   }
   render() {
     return (
       <div>
-        <div>
-            <FlatButton {...this.props} label="Login" onClick={this.showRegisterForm}/>
+        <div id='loginBtns' className={classes.loginBtns} >
+            <FlatButton {...this.props} secondary={true} icon={<LogIn color={Colors.deepPurple100}/>} label="Login" onClick={this.showLoginForm}/>
+            <FlatButton {...this.props} secondary={true} icon={<Register color={Colors.deepPurple100}/>} label="Register" onClick={this.showRegisterForm}/>
         </div>
-          <div>
-              { this.state.showResults ? <LoginForm /> : null }
-          </div>
       </div>
     )
   }

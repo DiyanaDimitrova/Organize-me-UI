@@ -82,7 +82,7 @@ class LoginForm extends React.Component<LoginFormProps, LoginFormState> {
                 <Header />
           </div>
           <div id='loginDiv' className={classes.loginDiv} >
-            <Paper id='loginPaper' className={classes.loginPaper} style={classes.loginPaper} zDepth={2}>
+            <Paper id='loginPaper' className={classes.loginPaper} zDepth={2}>
                 <div id='titleText' className={classes.titleText}>
                 <h2>Do you have account? Log in</h2>
                 </div>
