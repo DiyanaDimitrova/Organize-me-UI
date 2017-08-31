@@ -13,14 +13,14 @@ import EventDetails from '../../components/Event/EventDetails/EventDetails'
 import Code from '../../components/Code/Code/Code'
 import ScanCode from '../../components/Code/ScanCode/ScanCode'
 import AdminManagement from '../../components/User/AdminManagement/AdminManagement'
-
 import App from '../App/App'
+const classes = require('./AppContainer.css')
 
 export class AppContainer extends React.Component<any, AppState> {
 
   render() {
     return (
-      <div>
+      <div id='appContainerDiv' className={classes.appContainerDiv}>
         <Router ref='routeRef' history={browserHistory} >
           <Route path='/' component={App} />
           <Route path='/register' component={Register}/>

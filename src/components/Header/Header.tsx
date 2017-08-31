@@ -19,6 +19,10 @@ import Login from '../Login/Login/Login'
 const classes = require('./Header.css')
 
 
+import {Tabs, Tab} from 'material-ui/Tabs';
+import FontIcon from 'material-ui/FontIcon';
+import MapsPersonPin from 'material-ui/svg-icons/maps/person-pin';
+
 interface StateProps {
   logged: Boolean
 }
@@ -72,20 +76,21 @@ class Header extends React.Component<HeaderProps, HeaderState> {
   viewUsersClick = () => {
     browserHistory.push('/allUsers')
   }
+
+  // <Drawer open={false}>
+  //   <MenuItem onTouchTap={this.newCategoryClick} leftIcon={<Note color={Colors.deepPurple700}/>}>Create Category</MenuItem>
+  //   <MenuItem onTouchTap={this.allCategoryClick} leftIcon={<Toc color={Colors.deepPurple700}/>}>All Categories</MenuItem>
+  //   <MenuItem onTouchTap={this.newEventClick} leftIcon={<Event color={Colors.deepPurple700}/>}>Create Event</MenuItem>
+  //   <MenuItem onTouchTap={this.allEventClick} leftIcon={<EventNote color={Colors.deepPurple700}/>}>All Events</MenuItem>
+  //   <MenuItem onTouchTap={this.eventGridClick} leftIcon={<Photo color={Colors.deepPurple700}/>}>Events Grid</MenuItem>
+  //   <MenuItem onTouchTap={this.scanCodeClick} leftIcon={<Nfc color={Colors.deepPurple700}/>}>Scan Code</MenuItem>
+  //   <MenuItem onTouchTap={this.viewUsersClick} leftIcon={<Group color={Colors.deepPurple700}/>}>View Users</MenuItem>
+  // </Drawer>
   render() {
     return (
       <MuiThemeProvider muiTheme={theme}>
         <div id='mainDiv' className={classes.mainDiv}>
             <div id='navigationDiv' className={classes.navigationDiv}>
-              <Drawer open={true}>
-                <MenuItem onTouchTap={this.newCategoryClick} leftIcon={<Note color={Colors.deepPurple700}/>}>Create Category</MenuItem>
-                <MenuItem onTouchTap={this.allCategoryClick} leftIcon={<Toc color={Colors.deepPurple700}/>}>All Categories</MenuItem>
-                <MenuItem onTouchTap={this.newEventClick} leftIcon={<Event color={Colors.deepPurple700}/>}>Create Event</MenuItem>
-                <MenuItem onTouchTap={this.allEventClick} leftIcon={<EventNote color={Colors.deepPurple700}/>}>All Events</MenuItem>
-                <MenuItem onTouchTap={this.eventGridClick} leftIcon={<Photo color={Colors.deepPurple700}/>}>Events Grid</MenuItem>
-                <MenuItem onTouchTap={this.scanCodeClick} leftIcon={<Nfc color={Colors.deepPurple700}/>}>Scan Code</MenuItem>
-                <MenuItem onTouchTap={this.viewUsersClick} leftIcon={<Group color={Colors.deepPurple700}/>}>View Users</MenuItem>
-              </Drawer>
             </div>
             <div id='contentDiv' className={classes.contentDiv}>
               <AppBar
@@ -93,8 +98,45 @@ class Header extends React.Component<HeaderProps, HeaderState> {
                 // onLeftIconButtonTouchTap={this.menuClick}
                 showMenuIconButton={false}
                 zDepth={2}
-                iconElementRight={this.props.logged ? <LoggedMenu /> : <Login />}
-              />
+                iconElementRight={this.props.logged ? <LoggedMenu /> : <Login />}>
+              </AppBar>
+              <Tabs>
+                <Tab
+                  onActive={this.newCategoryClick}
+                  icon={<Note color={Colors.deepPurple700}/>}
+                  label="Create Category"
+                />
+                <Tab
+                  onActive={this.allCategoryClick}
+                  icon={<Toc color={Colors.deepPurple700}/>}
+                  label="All Categories"
+                />
+                <Tab
+                  onActive={this.newEventClick}
+                  icon={<Event color={Colors.deepPurple700}/>}
+                  label="Create Event"
+                />
+                <Tab
+                  onActive={this.allEventClick}
+                  icon={<EventNote color={Colors.deepPurple700}/>}
+                  label="All Events"
+                />
+                <Tab
+                  onActive={this.eventGridClick}
+                  icon={<Photo color={Colors.deepPurple700}/>}
+                  label="Events Grid"
+                />
+                <Tab
+                  onActive={this.scanCodeClick}
+                  icon={<Nfc color={Colors.deepPurple700}/>}
+                  label="Scan Code"
+                />
+                <Tab
+                  onActive={this.viewUsersClick}
+                  icon={<Group color={Colors.deepPurple700}/>}
+                  label="View Users"
+                />
+              </Tabs>
             </div>
         </div>
       </MuiThemeProvider>

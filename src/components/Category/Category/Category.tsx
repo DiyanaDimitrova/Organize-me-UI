@@ -100,7 +100,7 @@ export class Category extends React.Component<CategoryProps, CategoryState> {
     }
 
     return (
-      <div>
+      <div id='testDiv' className={classes.testDiv}>
           <div>
             <Header />
           </div>
