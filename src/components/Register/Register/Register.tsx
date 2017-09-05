@@ -102,7 +102,6 @@ class Register extends React.Component<RegisterProps, RegisterState> {
       }
   registerUser = (event)  => {
         event.preventDefault()
-        console.log('LOG' + JSON.stringify(this.state))
         let signupRequest = {} as SignupRequest
         signupRequest.username = this.state.username
         signupRequest.password = this.state.password

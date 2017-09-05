@@ -25,6 +25,7 @@ import MapsPersonPin from 'material-ui/svg-icons/maps/person-pin';
 
 interface StateProps {
   logged: Boolean
+  roles: Array<String>
 }
 
 interface DispatchProps {
@@ -87,6 +88,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
   //   <MenuItem onTouchTap={this.viewUsersClick} leftIcon={<Group color={Colors.deepPurple700}/>}>View Users</MenuItem>
   // </Drawer>
   render() {
+    console.log(this.props)
     return (
       <MuiThemeProvider muiTheme={theme}>
         <div id='mainDiv' className={classes.mainDiv}>
@@ -102,41 +104,48 @@ class Header extends React.Component<HeaderProps, HeaderState> {
               </AppBar>
               {this.props.logged === true &&
                 <Tabs>
-                  <Tab
-                    onActive={this.newCategoryClick}
-                    icon={<Note color={Colors.deepPurple700}/>}
-                    label="Create Category"
-                  />
-                  <Tab
-                    onActive={this.allCategoryClick}
-                    icon={<Toc color={Colors.deepPurple700}/>}
-                    label="All Categories"
-                  />
-                  <Tab
-                    onActive={this.newEventClick}
-                    icon={<Event color={Colors.deepPurple700}/>}
-                    label="Create Event"
-                  />
-                  <Tab
-                    onActive={this.allEventClick}
-                    icon={<EventNote color={Colors.deepPurple700}/>}
-                    label="All Events"
-                  />
+                  {this.props.roles !== null && this.props.roles.includes('Admin') &&
+                    <Tab
+                      onActive={this.newCategoryClick}
+                      icon={<Note color={Colors.deepPurple700}/>}
+                      label="Create Category"
+                    />
+                  }
+                  {this.props.roles !== null && this.props.roles.includes('Admin') &&
+                    <Tab
+                      onActive={this.allCategoryClick}
+                      icon={<Toc color={Colors.deepPurple700}/>}
+                      label="All Categories"
+                    />}
+                  {this.props.roles !== null && this.props.roles.includes('Admin') &&
+                    <Tab
+                      onActive={this.newEventClick}
+                      icon={<Event color={Colors.deepPurple700}/>}
+                      label="Create Event"
+                    />}
+                  {this.props.roles !== null && this.props.roles.includes('Admin') &&
+                    <Tab
+                      onActive={this.allEventClick}
+                      icon={<EventNote color={Colors.deepPurple700}/>}
+                      label="All Events"
+                    />}
                   <Tab
                     onActive={this.eventGridClick}
                     icon={<Photo color={Colors.deepPurple700}/>}
                     label="Events Grid"
                   />
-                  <Tab
-                    onActive={this.scanCodeClick}
-                    icon={<Nfc color={Colors.deepPurple700}/>}
-                    label="Scan Code"
-                  />
-                  <Tab
-                    onActive={this.viewUsersClick}
-                    icon={<Group color={Colors.deepPurple700}/>}
-                    label="View Users"
-                  />
+                  {this.props.roles !== null && this.props.roles.includes('Admin') &&
+                    <Tab
+                      onActive={this.scanCodeClick}
+                      icon={<Nfc color={Colors.deepPurple700}/>}
+                      label="Scan Code"
+                    />}
+                  {this.props.roles !== null && this.props.roles.includes('Admin') &&
+                    <Tab
+                      onActive={this.viewUsersClick}
+                      icon={<Group color={Colors.deepPurple700}/>}
+                      label="View Users"
+                    />}
                 </Tabs>}
             </div>
         </div>
@@ -146,7 +155,8 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 }
 
 const mapStateToProps: (state: AppState) => StateProps = (state) => ({
-    logged: state.login.login
+    logged: state.login.login,
+    roles: state.login.user ? state.login.user.roles : null
 })
 
 const mapDispatchToProps: (dispatch: Dispatch<any>) => DispatchProps = (dispatch) => {

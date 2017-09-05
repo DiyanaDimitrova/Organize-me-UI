@@ -17,6 +17,7 @@ export interface User {
     firstName: String
     lastName: String
     username: String
+    roles: Array<String>
 }
 
 export interface Payload {
@@ -99,7 +100,8 @@ export function performLoginAction(request: LoginRequest, dispatch: any): void {
           let user = {
              firstName: response.data.user.firstName,
              lastName: response.data.user.lastName,
-             username: response.data.user.username
+             username: response.data.user.username,
+             roles: response.data.user.roles
            } as User
              dispatch(loginSuccessAction(response.data.messages, user))
              dispatch(endLoadingLogin())
