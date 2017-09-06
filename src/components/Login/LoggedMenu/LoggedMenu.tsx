@@ -42,11 +42,9 @@ class LoggedMenu extends React.Component<LoggedMenuProps, LoggedMenuState> {
     browserHistory.push('/')
   }
   helpClick = () => {
-    this.props.performSignoutAction()
     browserHistory.push('/help')
   }
   aboutClick = () => {
-    this.props.performSignoutAction()
     browserHistory.push('/about')
   }
 
