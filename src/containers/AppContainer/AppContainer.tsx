@@ -4,6 +4,7 @@ import { AppState } from '../../store/AppStore'
 import { connect } from 'react-redux'
 import Register from '../../components/Register/Register/Register'
 import LoginForm from '../../components/Login/LoginForm/LoginForm'
+import ResetPassword from '../../components/Login/ResetPassword/ResetPassword'
 import Category from '../../components/Category/Category/Category'
 import CategoryList from '../../components/Category/CategoryList/CategoryList'
 import Event from '../../components/Event/Event/Event'
@@ -29,6 +30,7 @@ export class AppContainer extends React.Component<any, AppState> {
           <Route path='/about' component={About}/>
           <Route path='/register' component={Register}/>
           <Route path='/login' component={LoginForm}/>
+          <Route path='/resetPassword' component={ResetPassword}/>
           <Route path='/newCategory' component={Category}/>
           <Route path='/editCategory/:id' component={Category}/>
           <Route path='/allCategories' component={CategoryList}/>

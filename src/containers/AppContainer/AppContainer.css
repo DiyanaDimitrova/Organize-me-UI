@@ -1,6 +1,6 @@
 /*@font-face {
     font-family: OstrichSansBold;
-    src: url('../../media/fonts/ostrich-sans-bold.woff') format('woff');
+    src: local(OstrichSansBold), url('../../media/fonts/ostrich-sans-bold.woff') format('woff');
 }*/
 /*@font-face {
     font-family: OstrichSansRegular;
