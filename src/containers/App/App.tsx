@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { AppState } from '../../store/AppStore'
 import Header from '../../components/Header/Header'
+import Home from '../../components/Home/Home'
 import { withRouter } from 'react-router'
 import * as style from './style.css'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
@@ -22,6 +23,7 @@ class App extends React.Component<Props, State>{
         <MuiThemeProvider muiTheme={theme}>
           <div>
             <Header />
+            <Home />
           </div>
         </MuiThemeProvider>
       </div>

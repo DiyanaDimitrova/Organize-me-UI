@@ -1,0 +1,28 @@
+
+div {
+    font-family: myFirstFont;
+}
+.homeImage {
+  position: relative;
+  width: 100%;
+  height: auto;
+  opacity: 0.8;
+}
+.homeText{
+  position: absolute;
+  color: #311B92;
+  top: 100px;
+  width: 95%;
+  padding: 20px 20px;
+  font-family: OstrichSansRegular;
+}
+.eventLeftDiv, .eventRightDiv{
+  float: left;
+  width: 50%;
+  top: 100px;
+}
+.eventBtn {
+  width: 200px;
+  left: 40%;
+  top: 100px;
+}

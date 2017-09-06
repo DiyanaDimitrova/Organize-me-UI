@@ -102,50 +102,38 @@ class Header extends React.Component<HeaderProps, HeaderState> {
                 zDepth={2}
                 iconElementRight={this.props.logged ? <LoggedMenu /> : <Login />}>
               </AppBar>
-              {this.props.logged === true &&
+              {this.props.logged === true && this.props.roles !== null && this.props.roles.includes('Admin') &&
                 <Tabs>
-                  {this.props.roles !== null && this.props.roles.includes('Admin') &&
                     <Tab
                       onActive={this.newCategoryClick}
                       icon={<Note color={Colors.deepPurple700}/>}
                       label="Create Category"
                     />
-                  }
-                  {this.props.roles !== null && this.props.roles.includes('Admin') &&
                     <Tab
                       onActive={this.allCategoryClick}
                       icon={<Toc color={Colors.deepPurple700}/>}
                       label="All Categories"
-                    />}
-                  {this.props.roles !== null && this.props.roles.includes('Admin') &&
+                    />
                     <Tab
                       onActive={this.newEventClick}
                       icon={<Event color={Colors.deepPurple700}/>}
                       label="Create Event"
-                    />}
-                  {this.props.roles !== null && this.props.roles.includes('Admin') &&
+                    />
                     <Tab
                       onActive={this.allEventClick}
                       icon={<EventNote color={Colors.deepPurple700}/>}
                       label="All Events"
-                    />}
-                  <Tab
-                    onActive={this.eventGridClick}
-                    icon={<Photo color={Colors.deepPurple700}/>}
-                    label="Events Grid"
-                  />
-                  {this.props.roles !== null && this.props.roles.includes('Admin') &&
+                    />
                     <Tab
                       onActive={this.scanCodeClick}
                       icon={<Nfc color={Colors.deepPurple700}/>}
                       label="Scan Code"
-                    />}
-                  {this.props.roles !== null && this.props.roles.includes('Admin') &&
+                    />
                     <Tab
                       onActive={this.viewUsersClick}
                       icon={<Group color={Colors.deepPurple700}/>}
                       label="View Users"
-                    />}
+                    />
                 </Tabs>}
             </div>
         </div>
