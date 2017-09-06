@@ -25,23 +25,39 @@ export interface LoggedMenuProps extends StateProps, DispatchProps {
 }
 
 interface LoggedMenuState{
-  opened: Boolean
+  opened: Boolean,
+  valueSingle: String
 }
 
 class LoggedMenu extends React.Component<LoggedMenuProps, LoggedMenuState> {
   constructor(props) {
     super(props)
     this.state = {
-      opened: true
+      opened: true,
+      valueSingle: '3'
     }
   }
   signoutClick = () => {
     this.props.performSignoutAction()
     browserHistory.push('/')
   }
+  helpClick = () => {
+    this.props.performSignoutAction()
+    browserHistory.push('/help')
+  }
+  aboutClick = () => {
+    this.props.performSignoutAction()
+    browserHistory.push('/about')
+  }
+
+  handleChangeSingle = (event, value) => {
+   this.setState({
+     valueSingle: value
+   })
+  }
   render() {
     return (
-        <IconMenu {...this.props}
+        <IconMenu
           iconButtonElement={
               <div id='userChip' className={classes.userChip}>
                 <Chip style={{ margin: 4 }} backgroundColor={Colors.deepPurple100}>
@@ -53,9 +69,9 @@ class LoggedMenu extends React.Component<LoggedMenuProps, LoggedMenuState> {
               </div>}
           anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
           targetOrigin={{horizontal: 'left', vertical: 'top'}}>
-          <MenuItem leftIcon={<About color={Colors.deepPurple700}/>} primaryText="About" />
-          <MenuItem leftIcon={<Help color={Colors.deepPurple700}/>} primaryText="Help" />
-          <MenuItem onTouchTap={this.signoutClick} leftIcon={<SignOutIcon color={Colors.deepPurple700}/>}>Sign out</MenuItem>
+          <MenuItem value='1' onClick={this.aboutClick} leftIcon={<About color={Colors.deepPurple700}/>} primaryText="About Us" />
+          <MenuItem value='2' onClick={this.helpClick} leftIcon={<Help color={Colors.deepPurple700}/>} primaryText="Help" />
+          <MenuItem value='3' onClick={this.signoutClick} leftIcon={<SignOutIcon color={Colors.deepPurple700}/>}primaryText="Sign Out" />
         </IconMenu>
       )
     }

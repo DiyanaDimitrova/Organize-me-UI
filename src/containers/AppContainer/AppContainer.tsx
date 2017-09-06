@@ -13,6 +13,8 @@ import EventDetails from '../../components/Event/EventDetails/EventDetails'
 import Code from '../../components/Code/Code/Code'
 import ScanCode from '../../components/Code/ScanCode/ScanCode'
 import AdminManagement from '../../components/User/AdminManagement/AdminManagement'
+import Help from '../../components/Help/Help'
+import About from '../../components/About/About'
 import App from '../App/App'
 const classes = require('./AppContainer.css')
 
@@ -23,6 +25,8 @@ export class AppContainer extends React.Component<any, AppState> {
       <div id='appContainerDiv' className={classes.appContainerDiv}>
         <Router ref='routeRef' history={browserHistory} >
           <Route path='/' component={App} />
+          <Route path='/help' component={Help}/>
+          <Route path='/about' component={About}/>
           <Route path='/register' component={Register}/>
           <Route path='/login' component={LoginForm}/>
           <Route path='/newCategory' component={Category}/>
