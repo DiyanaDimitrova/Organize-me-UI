@@ -44,7 +44,9 @@ const reducers = {
     [a.SIGNOUT_SUCCESS]: r.signoutSuccessReducer,
     [a.SIGNOUT_FAIL]: r.signoutFailReducer,
     [a.BEGIN_LOADING_LOGIN]: r.beginLoadingLoginReducer,
-    [a.END_LOADING_LOGIN]: r.endLoadingLoginReducer
+    [a.END_LOADING_LOGIN]: r.endLoadingLoginReducer,
+    [a.RESET_PASSWORD_SUCCESS]: r.resetPasswordSuccessReducer,
+    [a.RESET_PASSWORD_FAIL]: r.resetPasswordFailReducer
 }
 
 export function loginReducer(state: LoginState = initialState, action: Action): LoginState {

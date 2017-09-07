@@ -117,3 +117,26 @@ export function endLoadingLoginReducer(state: LoginState, action: Action): Login
         return state
     }
 }
+export function resetPasswordSuccessReducer(state: LoginState, action: actions.ResetPasswordAction): LoginState {
+    if (action.type === actions.RESET_PASSWORD_SUCCESS) {
+      let newState = Object.assign({}, state)
+      newState.login = false
+      newState.error =  false
+      newState.messages = action.messages
+      return newState
+    } else {
+        return state
+    }
+}
+
+export function resetPasswordFailReducer(state: LoginState, action: actions.ResetPasswordAction): LoginState {
+    if (action.type === actions.RESET_PASSWORD_FAIL) {
+        let newState = Object.assign({}, state)
+        newState.login = false
+        newState.error =  true
+        newState.messages = action.messages
+        return newState
+    } else {
+        return state
+    }
+}

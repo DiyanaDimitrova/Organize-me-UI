@@ -12,6 +12,8 @@ export const SIGNUP_SUCCESS = '@@Login/SIGNUP_SUCCESS'
 export const SIGNUP_FAIL = '@@Login/SIGNUP_FAIL'
 export const BEGIN_LOADING_LOGIN = '@@Login/BEGIN_LOADING_LOGIN'
 export const END_LOADING_LOGIN = '@@Login/END_LOADING_LOGIN'
+export const RESET_PASSWORD_SUCCESS = '@@Login/RESET_PASSWORD_SUCCESS'
+export const RESET_PASSWORD_FAIL = '@@Login/RESET_PASSWORD_FAIL'
 
 export interface User {
     firstName: String
@@ -27,6 +29,10 @@ export interface Payload {
 
 export interface LoginAction extends Action {
     payload: Payload
+}
+
+export interface ResetPasswordAction extends Action {
+    messages: Array<any>
 }
 
 export interface SignupAction extends Action {
@@ -157,4 +163,28 @@ export function performSignoutAction(dispatch: any): void {
             }]
             dispatch(signupFailAction(messages))
         })
+}
+
+export function resetPasswordSuccess(messages: Array<any>): ResetPasswordAction {
+    return {
+        type: RESET_PASSWORD_SUCCESS,
+        messages: messages
+    } as ResetPasswordAction
+}
+
+export function resetPasswordFail(messages: Array<any>): ResetPasswordAction {
+    return {
+        type: RESET_PASSWORD_FAIL,
+        messages: messages
+    } as ResetPasswordAction
+}
+
+export function performResetPasswordAction(request: LoginRequest, dispatch: any): void {
+    axios.post('/users/resetPassword', request)
+      .then((response) => {
+         dispatch(resetPasswordSuccess(response.data.messages))
+      })
+      .catch((err) => {
+        dispatch(resetPasswordFail(err.response.data.message))
+      })
 }
