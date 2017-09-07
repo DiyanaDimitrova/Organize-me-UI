@@ -2,7 +2,7 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import * as actions from '../../../actions/eventActions'
-import { List, ListItem, IconMenu, MenuItem, IconButton,Paper } from 'material-ui'
+import { List, ListItem, IconMenu, MenuItem, IconButton, Paper, Dialog, FlatButton } from 'material-ui'
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
 import Edit from 'material-ui/svg-icons/editor/mode-edit'
 import Delete from 'material-ui/svg-icons/action/delete'
@@ -34,12 +34,17 @@ interface EventListProps extends StateProps, DispatchProps {
 }
 
 interface EventListState{
+  openDialog: Boolean
+  id: String
 }
 
 class EventList extends React.Component<EventListProps, EventListState> {
   constructor(props) {
     super(props)
-
+    this.state = {
+      openDialog: false,
+      id: null
+    }
   }
 
   public static defaultProps: StateProps = {
@@ -52,18 +57,16 @@ class EventList extends React.Component<EventListProps, EventListState> {
     this.props.loadEventList(null)
   }
   shouldComponentUpdate(nextProps, nextState) {
-    return this.props !== nextProps
+    return this.props !== nextProps || this.state !== nextState
   }
-  deleteItem = (e, itemId) => {
-    e.preventDefault()
+  deleteItem = (itemId) => {
     let deleteEvent = {} as DeleteEventRequest
     deleteEvent.id = itemId
     deleteEvent.user = this.props.user
     this.props.performDeleteEventAction(deleteEvent)
     browserHistory.push('/')
   }
-  updateItem = (e, item) => {
-    e.preventDefault()
+  updateItem = (item) => {
     // let updateEvent = {} as UpdateEventRequest
     // updateEvent.id = item._id
     // updateEvent.title = item.title
@@ -76,11 +79,11 @@ class EventList extends React.Component<EventListProps, EventListState> {
     // this.props.setCurrentItem(updateEvent)
     browserHistory.push('/editEvent/' + item._id)
   }
-  viewItem = (e, itemId) => {
+  viewItem = (itemId) => {
     this.props.setDisplayedItem(itemId)
     browserHistory.push('/eventDetails/' + itemId)
   }
-  sendCodeItem = (e, item) => {
+  sendCodeItem = (item) => {
     browserHistory.push('/newCode/' + item._id)
   }
   iconButtonElement = () => {
@@ -93,26 +96,47 @@ class EventList extends React.Component<EventListProps, EventListState> {
   rightIconMenu = (item) => {
     return (
       <IconMenu iconButtonElement={this.iconButtonElement()} menuStyle={{backgroundColor: Colors.deepPurple50}}>
-        <MenuItem onTouchTap={(event) => {
-          this.updateItem(event, item)
+        <MenuItem onTouchTap={() => {
+          this.updateItem(item)
         }} leftIcon={<Edit color={Colors.deepPurple700}/>} style={{color: Colors.deepPurple700}}>Edit</MenuItem>
-        <MenuItem onTouchTap={(event) => {
-          this.deleteItem(event, item._id)
+        <MenuItem onTouchTap={() => {
+          this.handleOpen(item._id)
         }} leftIcon={<Delete color={Colors.deepPurple700}/>} style={{color: Colors.deepPurple700}}>Delete</MenuItem>
-        <MenuItem onTouchTap={(event) => {
-          this.viewItem(event, item._id)
+        <MenuItem onTouchTap={() => {
+          this.viewItem(item._id)
         }} leftIcon={<View color={Colors.deepPurple700}/>} style={{color: Colors.deepPurple700}}>View</MenuItem>
-        <MenuItem onTouchTap={(event) => {
-          this.sendCodeItem(event, item)
+        <MenuItem onTouchTap={() => {
+          this.sendCodeItem(item)
         }} leftIcon={<Send color={Colors.deepPurple700}/>} style={{color: Colors.deepPurple700}}>Send Code</MenuItem>
       </IconMenu>
     )
+  }
+  handleClose = () => {
+    this.setState({ openDialog: false, id: null })
+  }
+  handleOpen = (itemId) => {
+    this.setState({ openDialog: true, id: itemId })
+  }
+  handleDelete = () => {
+    this.setState({ openDialog: false })
+    this.deleteItem(this.state.id)
   }
   render() {
     let eventArray
     if(this.props.eventList !== undefined && this.props.eventList !== null){
       eventArray = Object.keys(this.props.eventList).map(key => this.props.eventList[key])
     }
+    const actions = [
+         <FlatButton
+           label="Cancel"
+           onClick={this.handleClose}
+         />,
+         <FlatButton
+           label="Submit"
+           keyboardFocused={true}
+           onClick={this.handleDelete}
+         />
+       ]
     return (
       <div id='eventDiv' className={classes.eventDiv}>
          <div>
@@ -132,6 +156,14 @@ class EventList extends React.Component<EventListProps, EventListState> {
                  )
                })}
               </List>
+              <Dialog
+                title="Do you want to delete the event?"
+                actions={actions}
+                modal={false}
+                open={this.state.openDialog}
+                onRequestClose={this.handleClose}
+              >
+              </Dialog>
           </Paper>
         </div>
       </div>
