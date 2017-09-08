@@ -109,6 +109,9 @@ export class AdminManagement extends React.Component<AdminManagementProps, Admin
         </div>
         <div id='adminDiv' className={classes.adminDiv}>
           <Paper id='adminManagementPaper' className={classes.adminManagementPaper} zDepth={2}>
+          <div id='titleText' className={classes.titleText}>
+            <h2>All Users</h2>
+          </div>
           {this.props.success === true && this.props.userListLoading === false &&
             <Table
               height={this.state.height}

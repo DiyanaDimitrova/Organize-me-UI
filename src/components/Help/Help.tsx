@@ -32,7 +32,9 @@ class Help extends React.Component<HelpProps, HelpState> {
           </div>
           <div id='helpDiv' className={classes.helpDiv}>
               <Paper id='helpPaper' className={classes.helpPaper} zDepth={2}>
-                  <h1>Customer questions</h1>
+                  <div id='titleText' className={classes.titleText}>
+                    <h1>Customer questions</h1>
+                  </div>
                   <p>1. Is it possible to have a free trial for my institution?
                   Institutional customers may request free trials online, or by contacting us.
                   <br />2. Can individuals register for a free trial or subscribe to Very Short Introductions?
@@ -41,7 +43,9 @@ class Help extends React.Component<HelpProps, HelpState> {
                   Very Short Introductions is available by annual subscription to libraries and institutions. Find out how to subscribe, or contact us.
                   <br />4. How will I renew my subscription when it expires?
                   You will be contacted by OUP representatives when your subscription is about to expire.</p>
-                  <h1>Librarian Support questions</h1>
+                  <div id='titleText' className={classes.titleText}>
+                    <h1>Librarian Support questions</h1>
+                  </div>
                   <p>1. Do you have any materials I can use to promote my trial/subscription to users?
                   Yes. OUP offers a variety of free tools to help librarians promote their trial/subscription, including free training and promotional materials. Find out more on our Resources for Librarians page.
                   <br />2. Can I see usage statistics for my institution?

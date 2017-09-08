@@ -144,6 +144,9 @@ class EventList extends React.Component<EventListProps, EventListState> {
           </div>
         <div id='eventListDiv' className={classes.eventListDiv}>
           <Paper id='eventListPaper' className={classes.eventListPaper} zDepth={2}>
+             <div id='titleText' className={classes.titleText}>
+               <h2>All Events</h2>
+             </div>
              <List>
                {eventArray.map((item, index) => {
                  return (

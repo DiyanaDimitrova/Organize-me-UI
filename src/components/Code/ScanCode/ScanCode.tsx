@@ -54,6 +54,9 @@ export class ScanCode extends React.Component<ScanCodeProps, ScanCodeState> {
           </div>
           <div id='scanCodeDiv' className={classes.scanCodeDiv}>
             <Paper id='scanCodePaper' className={classes.scanCodePaper} zDepth={2}>
+              <div id='titleText' className={classes.titleText}>
+                <h2>Scan Tickets</h2>
+              </div>
               <QrReader
                 id='scanCodeReader'
                 delay={this.state.delay}

@@ -121,6 +121,9 @@ class CategoryList extends React.Component<CategoryListProps, CategoryListState>
           </div>
           <div id='categoryListDiv' className={classes.categoryListDiv}>
           <Paper id='categoryListPaper' className={classes.categoryListPaper} zDepth={2}>
+             <div id='titleText' className={classes.titleText}>
+                <h2>All Categories</h2>
+             </div>
              <List>
               {categoryArray.map((item, index) => {
                 return (

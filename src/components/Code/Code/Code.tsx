@@ -104,6 +104,9 @@ export class Code extends React.Component<CodeProps, CodeState> {
           </div>
         <div id='codeDiv' className={classes.codeDiv}>
           <Paper id='codePaper' className={classes.codePaper} zDepth={2}>
+            <div id='titleText' className={classes.titleText}>
+              <h2>Send Tickets</h2>
+            </div>
             {this.props.success === true && this.props.listInvitedLoading === false &&
               <Table
                 height={this.state.height}
