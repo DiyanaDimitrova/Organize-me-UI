@@ -1,0 +1,23 @@
+.userAccountPaper{
+  height: auto;
+  width: 50%;
+  margin: 10% auto;
+  padding: 10px 10px 10px 10px;
+  text-align: left;
+}
+.titleText{
+  color: #512DA8;
+  text-align: center;
+}
+.firstNameLabel, .lastNameLabel, .emailLabel, .usernameLabel{
+  float: left;
+  width: 50%;
+  color: #512DA8;
+}
+.firstNameValue, .lastNameValue, .emailValue, .usernameValue{
+  /*padding: 10px 10px 10px 10px;*/
+  text-align: right;
+}
+/*hr {
+  border-color: #512DA8;
+}*/

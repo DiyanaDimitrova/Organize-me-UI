@@ -7,18 +7,27 @@ export interface MakeAdminRequest {
     usersToMakeAdmin: Array<any>,
     type: String
 }
+export interface UserAccountRequest {
+    username: String
+}
 export interface UserState {
   userListLoading: Boolean,
   success: Boolean,
   userList: Array<any>,
-  makeAdminMessage: String
+  makeAdminMessage: String,
+  userAccountLoading: Boolean,
+  userAccountSuccess: Boolean,
+  userAccount: any
 }
 
 export const initialState: UserState = {
   userListLoading: false,
   success: false,
   userList: null,
-  makeAdminMessage: null
+  makeAdminMessage: null,
+  userAccountLoading: false,
+  userAccountSuccess: false,
+  userAccount: null
 }
 
 const reducers = {
@@ -27,7 +36,12 @@ const reducers = {
   [a.USER_LIST_BEGIN_LOADING]: r.userListBeginLoadingReducer,
   [a.USER_LIST_END_LOADING]: r.userListEndLoadingReducer,
   [a.MAKE_ADMIN_SUCCESS]: r.makeAdminSuccessReducer,
-  [a.MAKE_ADMIN_FAIL]: r.makeAdminFailReducer
+  [a.MAKE_ADMIN_FAIL]: r.makeAdminFailReducer,
+  [a.USER_ACCOUNT_BEGIN_LOADING]: r.userAccountBeginLoadingReducer,
+  [a.USER_ACCOUNT_END_LOADING]: r.userAccountEndLoadingReducer,
+  [a.USER_ACCOUNT_FAILURE]: r.userAccountFailureReducer,
+  [a.USER_ACCOUNT_SUCCESS]: r.userAccountSuccessReducer
+
 }
 
 export function userReducer(state: UserState = initialState, action: Action): UserState {

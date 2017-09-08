@@ -61,3 +61,44 @@ export function makeAdminFailReducer(state: UserState, action: actions.MakeAdmin
         return state
     }
 }
+
+export function userAccountBeginLoadingReducer(state: UserState, action: Action): UserState {
+    if (action.type === actions.USER_ACCOUNT_BEGIN_LOADING) {
+        let newState = Object.assign({}, state)
+        newState.userAccountLoading = true
+        return newState
+    } else {
+        return state
+    }
+}
+
+export function userAccountEndLoadingReducer(state: UserState, action: Action): UserState {
+    if (action.type === actions.USER_ACCOUNT_END_LOADING) {
+        let newState = Object.assign({}, state)
+        newState.userAccountLoading = false
+        return newState
+    } else {
+        return state
+    }
+}
+export function userAccountSuccessReducer(state: UserState, action: Action): UserState {
+    if (action.type === actions.USER_ACCOUNT_SUCCESS) {
+        let _action = action as actions.GetUserAccountAction
+        let newState = Object.assign({}, state)
+        newState.userAccount = Object.assign([], _action.userAccount)
+        newState.userAccountSuccess = true
+        return newState
+    } else {
+        return state
+    }
+}
+export function userAccountFailureReducer(state: UserState, action: Action): UserState {
+    if (action.type === actions.USER_ACCOUNT_FAILURE) {
+        let newState = Object.assign({}, state)
+        newState.userAccount = null
+        newState.userAccountSuccess = false
+        return newState
+    } else {
+        return state
+    }
+}

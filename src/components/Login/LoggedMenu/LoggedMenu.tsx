@@ -25,17 +25,11 @@ export interface LoggedMenuProps extends StateProps, DispatchProps {
 }
 
 interface LoggedMenuState{
-  opened: Boolean,
-  valueSingle: String
 }
 
 class LoggedMenu extends React.Component<LoggedMenuProps, LoggedMenuState> {
   constructor(props) {
     super(props)
-    this.state = {
-      opened: true,
-      valueSingle: '3'
-    }
   }
   signoutClick = () => {
     this.props.performSignoutAction()
@@ -46,6 +40,9 @@ class LoggedMenu extends React.Component<LoggedMenuProps, LoggedMenuState> {
   }
   aboutClick = () => {
     browserHistory.push('/about')
+  }
+  myAccountClick = () => {
+    browserHistory.push('/user/' + this.props.username)
   }
 
   handleChangeSingle = (event, value) => {
@@ -67,9 +64,10 @@ class LoggedMenu extends React.Component<LoggedMenuProps, LoggedMenuState> {
               </div>}
           anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
           targetOrigin={{horizontal: 'left', vertical: 'top'}}>
-          <MenuItem value='1' onClick={this.aboutClick} leftIcon={<About color={Colors.deepPurple700}/>} primaryText="About Us" />
-          <MenuItem value='2' onClick={this.helpClick} leftIcon={<Help color={Colors.deepPurple700}/>} primaryText="Help" />
-          <MenuItem value='3' onClick={this.signoutClick} leftIcon={<SignOutIcon color={Colors.deepPurple700}/>}primaryText="Sign Out" />
+          <MenuItem onClick={this.myAccountClick} leftIcon={<SignOutIcon color={Colors.deepPurple700}/>}primaryText="My Account" />
+          <MenuItem onClick={this.aboutClick} leftIcon={<About color={Colors.deepPurple700}/>} primaryText="About Us" />
+          <MenuItem onClick={this.helpClick} leftIcon={<Help color={Colors.deepPurple700}/>} primaryText="Help" />
+          <MenuItem onClick={this.signoutClick} leftIcon={<SignOutIcon color={Colors.deepPurple700}/>}primaryText="Sign Out" />
         </IconMenu>
       )
     }
