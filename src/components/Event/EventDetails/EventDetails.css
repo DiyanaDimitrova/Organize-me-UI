@@ -2,8 +2,12 @@
     display: flex;
     flex-wrap: wrap;
 }
+.statusLabel {
+  padding: 5px 5px;
+  font-size: large;
+}
 .chip {
-    margin: 4;
+    margin: 4px;
 }
 .eventDetailsPaper {
   height: auto;
@@ -14,4 +18,8 @@
 .eventDetailsWrapper {
   background-color: #D1C4E9;
   display: flow-root;
+}
+.detailsTextDiv, .placeTextDiv, .timeTextDiv {
+  padding: 5px 5px;
+  font-size: large;
 }

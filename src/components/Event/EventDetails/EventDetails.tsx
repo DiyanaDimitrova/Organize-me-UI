@@ -3,6 +3,11 @@ import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText, Paper, RaisedButton, Chip, Avatar, Divider} from 'material-ui'
 import MapsPlace from 'material-ui/svg-icons/maps/place'
+import Time from 'material-ui/svg-icons/action/alarm'
+import Description from 'material-ui/svg-icons/action/description'
+import Happy from 'material-ui/svg-icons/social/mood'
+import Sad from 'material-ui/svg-icons/social/mood-bad'
+import Neutral from 'material-ui/svg-icons/social/sentiment-neutral'
 import * as Colors from 'material-ui/styles/colors'
 import * as dateFormat from 'dateformat'
 import * as actions from '../../../actions/eventActions'
@@ -85,6 +90,7 @@ export class EventDetails extends React.Component<EventDetailsProps, EventDetail
     this.props.loadEventImageAction(eventDetails)
     this.props.loadEventDetailsAction(eventDetails)
   }
+
   goingToEvent = () => {
     let attendEvent = {} as AttendEventRequest
     attendEvent.id = this.props.displayedItem
@@ -108,21 +114,6 @@ export class EventDetails extends React.Component<EventDetailsProps, EventDetail
     this.props.performAttendEventAction(attendEvent)
   }
 
-  // handleInvitedPeople = (actionType: String) => {
-  //   let group = this.props.itemToView.details.invitedPeople.filter(item => {
-  //     if(item.type === actionType){
-  //       return item
-  //     }
-  //   })
-  //   if(actionType === 'going'){
-  //     this.setState({goingUsers: group})
-  //   } else if(actionType === 'interested') {
-  //     this.setState({interestedUsers: group})
-  //   } else if(actionType === 'notGoing'){
-  //     this.setState({notGoingUsers: group})
-  //   }
-  // }
-
 render() {
     let imagePreviewUrl = this.props.image
     let $imagePreview = null
@@ -145,55 +136,65 @@ render() {
             {this.props.details !== undefined && this.props.details !== null ? <Card>
                 <CardHeader titleColor="#512DA8" subtitleColor="#D1C4E9"
                   title={this.props.details.title}
+                  titleStyle={{fontSize: 'x-large'}}
                   subtitle={dateFormat(this.props.details.time, 'HH:MM')+ ' ' + dateFormat(this.props.details.time, 'dS mmmm, yyyy')}
+                  subtitleStyle={{fontSize: 'large'}}
                 />
                 <CardMedia
-                  overlay={<CardTitle titleColor="#512DA8" subtitleColor="#D1C4E9" title={this.props.details.title} subtitle={dateFormat(this.props.details.time, 'HH:MM')+ ' ' + dateFormat(this.props.details.time, 'dS mmmm, yyyy')} />}
+                  // overlay={<CardTitle titleColor="#512DA8" subtitleColor="#D1C4E9" title={this.props.details.title} subtitle={dateFormat(this.props.details.time, 'HH:MM')+ ' ' + dateFormat(this.props.details.time, 'dS mmmm, yyyy')} />}
                 >
                   <div><img src={imagePreviewUrl} height="50%" width="100%"/></div>
                 </CardMedia>
-                <CardTitle titleColor="#512DA8" subtitleColor="#D1C4E9" title={this.props.details.title} subtitle={dateFormat(this.props.details.time, 'HH:MM')+ ' ' + dateFormat(this.props.details.time, 'dS mmmm, yyyy')} />
+                <CardTitle titleColor="#512DA8" subtitleColor="#D1C4E9" title={this.props.details.title} />
                 <CardText>
-                  <div><MapsPlace />{this.props.details.place} </div>
+                  <div id='timeTextDiv' className={classes.timeTextDiv}><Time color={Colors.deepPurple700} hoverColor={Colors.deepPurple100} />{dateFormat(this.props.details.time, 'HH:MM')+ ' ' + dateFormat(this.props.details.time, 'dS mmmm, yyyy')}</div>
                   <Divider/>
-                  <div>{this.props.details.details}</div>
+                  <div id='placeTextDiv' className={classes.placeTextDiv}><MapsPlace color={Colors.deepPurple700} hoverColor={Colors.deepPurple100} />{this.props.details.place} </div>
                   <Divider/>
-                  <div id='wrapper' className={classes.wrapper}>Going: {this.props.details.invitedPeople.map((item, index) => {
+                  <div id='detailsTextDiv' className={classes.detailsTextDiv}><Description color={Colors.deepPurple700} hoverColor={Colors.deepPurple100} />{this.props.details.details}</div>
+                  <Divider/>
+                  <div id='statusLabel' className={classes.statusLabel}>Going: </div>
+                  <div id='wrapper' className={classes.wrapper}>
+                  {this.props.details.invitedPeople.map((item, index) => {
                     if(item.type === 'going'){
                       return <Chip id='chip' className={classes.chip} key={index}>
                       <Avatar size={32} color={Colors.deepPurple50} backgroundColor={Colors.deepPurple700}>{item.username.charAt(0)}</Avatar>
                         {item.username}
                       </Chip>
                     }
-                  })}</div>
-                  <div id='wrapper' className={classes.wrapper}>Interested: {this.props.details.invitedPeople.map((item, index) => {
+                  })}
+                  </div>
+                  <div id='statusLabel' className={classes.statusLabel}>Interested: </div>
+                  <div id='wrapper' className={classes.wrapper}>
+                  {this.props.details.invitedPeople.map((item, index) => {
                     if(item.type === 'interested'){
                       return <Chip id='chip' className={classes.chip} key={index}>
                       <Avatar size={32} color={Colors.deepPurple50} backgroundColor={Colors.deepPurple500}>{item.username.charAt(0)}</Avatar>
                         {item.username}
                       </Chip>
                     }
-                  })}</div>
-                  <div id='wrapper' className={classes.wrapper}>Not interested: {this.props.details.invitedPeople.map((item, index) => {
+                  })}
+                  </div>
+                  <div id='statusLabel' className={classes.statusLabel}>Not interested: </div>
+                  <div id='wrapper' className={classes.wrapper}>
+                   {this.props.details.invitedPeople.map((item, index) => {
                     if(item.type === 'notGoing'){
                       return <Chip id='chip' className={classes.chip} key={index}>
                       <Avatar size={32} color={Colors.deepPurple700} backgroundColor={Colors.deepPurple100}>{item.username.charAt(0)}</Avatar>
                         {item.username}
                       </Chip>
                     }
-                  })}</div>
+                  })}
+                  </div>
                 </CardText>
                 <CardActions>
                     <RaisedButton fullWidth={true} label="Going" backgroundColor="#512DA8" labelColor="#EDE7F6" disabled={this.props.details.invitedPeople.some((element, index, array) => {
-                        console.log(element.username === this.props.username)
                         return element.username === this.props.username && element.type === 'going'
                       })} onClick={this.goingToEvent}/>
                     <RaisedButton fullWidth={true} label="Interested" backgroundColor="#673AB7" labelColor="#EDE7F6" disabled={this.props.details.invitedPeople.some((element, index, array) => {
-                        console.log(element.username === this.props.username)
                         return element.username === this.props.username && element.type === 'interested'
                       })} onClick={this.interestedInEvent}/>
                     <RaisedButton fullWidth={true} label="Not Interested" backgroundColor="#D1C4E9" labelColor="#512DA8" disabled={this.props.details.invitedPeople.some((element, index, array) => {
-                        console.log(element.username === this.props.username)
                         return element.username === this.props.username && element.type === 'notGoing'
                       })} onClick={this.notInterestedInEvent}/>
                 </CardActions>
