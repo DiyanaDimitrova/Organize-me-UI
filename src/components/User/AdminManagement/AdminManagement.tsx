@@ -128,7 +128,6 @@ export class AdminManagement extends React.Component<AdminManagementProps, Admin
               >
                 <TableRow>
                   <TableHeaderColumn colSpan="5" tooltip="Invited to the event" style={{textAlign: 'center'}}>
-                    All Users
                   </TableHeaderColumn>
                 </TableRow>
                 <TableRow>
@@ -158,18 +157,6 @@ export class AdminManagement extends React.Component<AdminManagementProps, Admin
               <TableFooter
                 adjustForCheckbox={this.state.showCheckboxes}
               >
-                <TableRow>
-                  <TableRowColumn>Username</TableRowColumn>
-                  <TableRowColumn>First Name</TableRowColumn>
-                  <TableRowColumn>Last Name</TableRowColumn>
-                  <TableRowColumn>E-mail</TableRowColumn>
-                  <TableRowColumn>Roles</TableRowColumn>
-                </TableRow>
-                <TableRow>
-                  <TableRowColumn colSpan="5" style={{textAlign: 'center'}}>
-                    All Users
-                  </TableRowColumn>
-                </TableRow>
               </TableFooter>
             </Table>
           }

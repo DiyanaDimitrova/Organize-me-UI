@@ -124,7 +124,6 @@ export class Code extends React.Component<CodeProps, CodeState> {
                 >
                   <TableRow>
                     <TableHeaderColumn colSpan="3" tooltip="Invited to the event" style={{textAlign: 'center'}}>
-                      Invited to the event
                     </TableHeaderColumn>
                   </TableRow>
                   <TableRow id='row' className={classes.row}>
@@ -151,16 +150,6 @@ export class Code extends React.Component<CodeProps, CodeState> {
                 <TableFooter
                   adjustForCheckbox={this.state.showCheckboxes}
                 >
-                  <TableRow>
-                    <TableRowColumn>ID</TableRowColumn>
-                    <TableRowColumn>Username</TableRowColumn>
-                    <TableRowColumn>Status</TableRowColumn>
-                  </TableRow>
-                  <TableRow>
-                    <TableRowColumn colSpan="3" style={{textAlign: 'center'}}>
-                      Invited to the event
-                    </TableRowColumn>
-                  </TableRow>
                 </TableFooter>
               </Table>
             }
