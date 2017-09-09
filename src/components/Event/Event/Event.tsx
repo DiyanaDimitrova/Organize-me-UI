@@ -260,16 +260,19 @@ export class Event extends React.Component<EventProps, EventState> {
                     fullWidth={true} hintText="Title" floatingLabelText="Title" floatingLabelFixed={true} type="text" value={this.state.title} onChange={this.titleEntered}/>
                   </div>
                   <div>
+                    <MuiThemeProvider muiTheme={theme}>
                       <DatePicker
-                      style={{headerColor: Colors.deepPurple700}}
                       errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
                       floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
-                      fullWidth={true} dialogContainerStyle={{color: '#512DA8'}} hintText="Pick Date" floatingLabelText="Pick Date" value={Moment(this.state.dateValue).toDate()} onChange={this.handleChangeDatePicker}/>
+                      fullWidth={true} hintText="Pick Date" floatingLabelText="Pick Date" value={Moment(this.state.dateValue).toDate()} onChange={this.handleChangeDatePicker}/>
+                    </MuiThemeProvider>
                   </div>
                   <div>
+                    <MuiThemeProvider muiTheme={theme}>
                       <TimePicker errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
                       floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
                       fullWidth={true} format="24hr" hintText="Pick Time" floatingLabelText="Pick Time" value={Moment(this.state.hourValue).toDate()} onChange={this.handleChangeTimePicker}/>
+                    </MuiThemeProvider>
                   </div>
                   <div>
                     <TextField errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
