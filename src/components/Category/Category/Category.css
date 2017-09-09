@@ -12,3 +12,6 @@
   background-color: #D1C4E9;
   display: flow-root;
 }
+.cancelCategoryBtn, .submitCategoryBtn {
+  margin: 5px 0;
+}

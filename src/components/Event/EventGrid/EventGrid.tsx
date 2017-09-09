@@ -136,11 +136,14 @@ class EventGrid extends React.Component<EventGridProps, EventGridState> {
           <div id='eventGridDiv' className={classes.eventGridDiv}>
             <Paper id='eventGridPaper' className={classes.eventGridPaper} zDepth={2}>
             <AutoComplete
-               textFieldStyle={{color: '#512DA8'}}
-               menuStyle={{color: '#512DA8'}}
-               listStyle={{color: '#512DA8'}}
-               errorStyle={{color: '#512DA8'}}
-               style={{width: 325}}
+               textFieldStyle={{color: Colors.deepPurple700}}
+               errorStyle={{color: Colors.deepPurple700}}
+               hintStyle={{color: Colors.deepPurple700}}
+               floatingLabelStyle={{color: Colors.deepPurple700}}
+               floatingLabelFocusStyle={{color: Colors.deepPurple700}}
+               underlineStyle={{borderColor: Colors.deepPurple700}}
+               underlineFocusStyle={{borderColor: Colors.deepPurple700}}
+               style={{width: 315, marginRight: 10}}
                fullWidth={true}
                floatingLabelText="Category"
                filter={AutoComplete.noFilter}
@@ -151,10 +154,13 @@ class EventGrid extends React.Component<EventGridProps, EventGridState> {
              />
              <AutoComplete
                 textFieldStyle={{color: Colors.deepPurple700}}
-                menuStyle={{color: Colors.deepPurple700}}
-                listStyle={{color: Colors.deepPurple700}}
                 errorStyle={{color: Colors.deepPurple700}}
-                style={{width: 325}}
+                hintStyle={{color: Colors.deepPurple700}}
+                floatingLabelStyle={{color: Colors.deepPurple700}}
+                floatingLabelFocusStyle={{color: Colors.deepPurple700}}
+                underlineStyle={{borderColor: Colors.deepPurple700}}
+                underlineFocusStyle={{borderColor: Colors.deepPurple700}}
+                style={{width: 315, marginRight: 5, color: Colors.deepPurple700}}
                 fullWidth={true}
                 floatingLabelText="City"
                 filter={AutoComplete.noFilter}
@@ -163,7 +169,7 @@ class EventGrid extends React.Component<EventGridProps, EventGridState> {
                 dataSource={cityArray}
                 dataSourceConfig={cityConfig}
               />
-              <RaisedButton label="Submit" fullWidth={true} backgroundColor="#512DA8" labelColor="#EDE7F6" onClick={this.filterEvents}/>
+              <RaisedButton id='eventFilterBtn' className={classes.eventFilterBtn} label="Submit" fullWidth={true} backgroundColor="#512DA8" labelColor="#EDE7F6" onClick={this.filterEvents}/>
               <GridList
                 cellHeight={250}
               >

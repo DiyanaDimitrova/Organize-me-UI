@@ -13,3 +13,6 @@
   background-color: #D1C4E9;
   display: flow-root;
 }
+.cancelEventBtn, .submitEventBtn, .imageEventBtn {
+  margin: 5px 0;
+}

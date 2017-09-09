@@ -1,13 +1,3 @@
-/*.root{
-  display: 'flex';
-  flexWrap: 'wrap';
-  justifyContent: 'space-around';
-}*/
-/*.gridList {
-  width: 100;
-  height: 600;
-  overflowY: 'auto';
-}*/
 .eventGridPaper{
   height: auto;
   width: 50%;
@@ -18,4 +8,7 @@
 .eventGridWrapper {
   background-color: #D1C4E9;
   display: flow-root;
+}
+.eventFilterBtn {
+  margin: 5px 0;
 }

@@ -301,13 +301,13 @@ export class Event extends React.Component<EventProps, EventState> {
                      </DropDownMenu>
                   </div>
                   <div>
-                      <RaisedButton fullWidth={true} containerElement="label" label="Choose an Image" labelPosition="before" backgroundColor="#512DA8" labelColor="#EDE7F6">
+                      <RaisedButton id='imageEventBtn' className={classes.imageEventBtn} fullWidth={true} containerElement="label" label="Choose an Image" labelPosition="before" backgroundColor="#512DA8" labelColor="#EDE7F6">
                           <input type="file" style={{ display: 'none' }} onChange={this.handleFile} />
                       </RaisedButton>
                   </div>
                   <div>
-                    <RaisedButton label="Cancel" fullWidth={true} backgroundColor="#D1C4E9" labelColor="#512DA8" onClick={this.cancelEvent}/>
-                    <RaisedButton label="Submit" fullWidth={true} backgroundColor="#512DA8" labelColor="#EDE7F6" onClick={this.saveEvent}/>
+                    <RaisedButton id='cancelEventBtn' className={classes.cancelEventBtn} label="Cancel" fullWidth={true} backgroundColor="#D1C4E9" labelColor="#512DA8" onClick={this.cancelEvent}/>
+                    <RaisedButton id='submitEventBtn' className={classes.submitEventBtn} label="Submit" fullWidth={true} backgroundColor="#512DA8" labelColor="#EDE7F6" onClick={this.saveEvent}/>
                   </div>
               </form>
             </Paper>

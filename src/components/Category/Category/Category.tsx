@@ -116,8 +116,8 @@ export class Category extends React.Component<CategoryProps, CategoryState> {
                 value={this.state.title} onChange={this.titleEntered}/>
               </div>
               <div>
-                <RaisedButton label="Cancel" fullWidth={true} backgroundColor="#D1C4E9" labelColor="#512DA8"	onClick={this.cancelCategory}/>
-                <RaisedButton label="Submit" fullWidth={true} backgroundColor="#512DA8" labelColor="#EDE7F6" onClick={this.saveCategory}/>
+                <RaisedButton id='cancelCategoryBtn' className={classes.cancelCategoryBtn} label="Cancel" fullWidth={true} backgroundColor="#D1C4E9" labelColor="#512DA8"	onClick={this.cancelCategory}/>
+                <RaisedButton id='submitCategoryBtn' className={classes.submitCategoryBtn} label="Submit" fullWidth={true} backgroundColor="#512DA8" labelColor="#EDE7F6" onClick={this.saveCategory}/>
               </div>
             </Paper>
           </div>

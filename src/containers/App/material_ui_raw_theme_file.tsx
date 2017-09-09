@@ -8,7 +8,7 @@ const rawBaseTheme = {
   palette: {
     primary1Color: Colors.deepPurple500,
     primary2Color: Colors.deepPurple700,
-    primary3Color: Colors.deepPurple100,
+    primary3Color: Colors.white,
     accent1Color: Colors.deepPurpleA100,
     accent2Color: Colors.deepPurpleA200,
     accent3Color: Colors.deepPurpleA400,
