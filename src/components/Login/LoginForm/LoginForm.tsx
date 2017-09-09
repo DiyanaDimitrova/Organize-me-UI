@@ -104,7 +104,7 @@ class LoginForm extends React.Component<LoginFormProps, LoginFormState> {
                   <RaisedButton label="Login" fullWidth={true} backgroundColor="#512DA8" labelColor="#EDE7F6" onClick={this.loginUser}/>
                 </div>
                 <div id='resetPasswordBtn' className={classes.resetPasswordBtn}>
-                  <FlatButton label="Forget password?" fullWidth={true} onClick={this.resetPassword}/>
+                  <FlatButton label="Forget password?" fullWidth={true} labelStyle={{color: "#512DA8"}} onClick={this.resetPassword}/>
                 </div>
               </Paper>
           </div>
