@@ -32,8 +32,13 @@ class Home extends React.Component<HomeProps, HomeState> {
           <img id='homeImage' className={classes.homeImage} src={'../../media/images/background.jpg'}/>
           <div id='homeText' className={classes.homeText}>
             <div id='eventLeftDiv' className={classes.eventLeftDiv}>
-              <h2 id='eventText' className={classes.eventText} >Want to see your favourite band? <br />Or you are interested in conferences?
-              <br />Want to attend teathre performance?</h2>
+              <h2 id='eventText' className={classes.eventText}>
+                <ul>
+                  <li>Want to see your favourite band? </li>
+                  <li>Or you are interested in conferences? </li>
+                  <li>Want to attend teathre performance?</li>
+                </ul>
+              </h2>
               <h1 id='organizeMeText' className={classes.organizeMeText} >ORGANIZE ME</h1>
               <h2 id='eventText' className={classes.eventText} >give you the opportunity to see them all!</h2>
             </div>

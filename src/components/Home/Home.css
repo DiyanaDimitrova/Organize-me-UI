@@ -13,7 +13,6 @@ div {
   top: 150px;
   width: 95%;
   padding: 20px 20px;
-  font-family: OstrichSansRegular;
 }
 .eventLeftDiv, .eventRightDiv{
   float: left;
@@ -27,7 +26,11 @@ div {
 }
 .organizeMeText {
   color: #EDE7F6;
+  font-family: 'Raleway', sans-serif;
+  font-size: xx-large;
 }
 .eventText {
   color: #311B92;
+  font-family: 'Raleway', sans-serif;
+  font-size: xx-large;
 }
