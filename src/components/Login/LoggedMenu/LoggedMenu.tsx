@@ -54,6 +54,7 @@ class LoggedMenu extends React.Component<LoggedMenuProps, LoggedMenuState> {
   render() {
     return (
         <IconMenu
+          menuStyle={{backgroundColor: Colors.deepPurple50}}
           iconButtonElement={
               <div id='userChip' className={classes.userChip}>
                 <Chip style={{ margin: 4 }} backgroundColor={Colors.deepPurple100}>
