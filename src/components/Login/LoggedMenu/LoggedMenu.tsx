@@ -7,6 +7,7 @@ import {IconButton, Chip, Avatar, IconMenu, MenuItem} from 'material-ui'
 import * as Colors from 'material-ui/styles/colors'
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
 import SignOutIcon from 'material-ui/svg-icons/action/highlight-off'
+import MyAccount from 'material-ui/svg-icons/action/account-circle'
 import Help from 'material-ui/svg-icons/action/help'
 import About from 'material-ui/svg-icons/content/font-download'
 import * as actions from '../../../actions/loginActions'
@@ -64,7 +65,7 @@ class LoggedMenu extends React.Component<LoggedMenuProps, LoggedMenuState> {
               </div>}
           anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
           targetOrigin={{horizontal: 'left', vertical: 'top'}}>
-          <MenuItem onClick={this.myAccountClick} leftIcon={<SignOutIcon color={Colors.deepPurple700}/>}primaryText="My Account" />
+          <MenuItem onClick={this.myAccountClick} leftIcon={<MyAccount color={Colors.deepPurple700}/>}primaryText="My Account" />
           <MenuItem onClick={this.aboutClick} leftIcon={<About color={Colors.deepPurple700}/>} primaryText="About Us" />
           <MenuItem onClick={this.helpClick} leftIcon={<Help color={Colors.deepPurple700}/>} primaryText="Help" />
           <MenuItem onClick={this.signoutClick} leftIcon={<SignOutIcon color={Colors.deepPurple700}/>}primaryText="Sign Out" />
