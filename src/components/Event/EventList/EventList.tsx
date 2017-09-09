@@ -138,7 +138,7 @@ class EventList extends React.Component<EventListProps, EventListState> {
          />
        ]
     return (
-      <div id='eventDiv' className={classes.eventDiv}>
+      <div id='eventListWrapper' className={classes.eventListWrapper}>
          <div>
             <Header />
           </div>

@@ -26,7 +26,7 @@ class About extends React.Component<AboutProps, AboutState> {
 
   render() {
     return (
-      <div>
+      <div id='aboutWrapper' className={classes.aboutWrapper}>
           <div>
             <Header />
           </div>

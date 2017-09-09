@@ -11,3 +11,7 @@
   margin: 3% auto;
   text-align: left;
 }
+.eventDetailsWrapper {
+  background-color: #D1C4E9;
+  display: flow-root;
+}

@@ -81,7 +81,7 @@ class LoginForm extends React.Component<LoginFormProps, LoginFormState> {
   }
   render() {
     return (
-      <div>
+      <div id='loginFormWrapper' className={classes.loginFormWrapper}>
           <div>
                 <Header />
           </div>

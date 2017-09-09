@@ -98,7 +98,7 @@ export class Code extends React.Component<CodeProps, CodeState> {
 
   render() {
     return (
-      <div id='registerDiv' width="100%">
+      <div id='codeWrapper' className={classes.codeWrapper}>
         <div>
             <Header />
           </div>

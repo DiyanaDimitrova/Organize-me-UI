@@ -41,7 +41,7 @@ export class UserAccount extends React.Component<UserAccountProps, UserAccountSt
   }
 render() {
     return (
-      <div>
+      <div id='userAccountWrapper' className={classes.userAccountWrapper}>
         <div>
             <Header />
         </div>

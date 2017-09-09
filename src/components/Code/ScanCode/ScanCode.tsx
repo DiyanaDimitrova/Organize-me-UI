@@ -48,7 +48,7 @@ export class ScanCode extends React.Component<ScanCodeProps, ScanCodeState> {
       width: 650
     }
     return (
-        <div>
+      <div id='scanCodeWrapper' className={classes.scanCodeWrapper}>
           <div>
             <Header />
           </div>

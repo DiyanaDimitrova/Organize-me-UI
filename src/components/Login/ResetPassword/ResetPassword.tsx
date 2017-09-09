@@ -72,7 +72,7 @@ class ResetPassword extends React.Component<ResetPasswordProps, ResetPasswordSta
   }
   render() {
     return (
-      <div>
+      <div id='resetPasswordWrapper' className={classes.resetPasswordWrapper}>
           <div>
                 <Header />
           </div>

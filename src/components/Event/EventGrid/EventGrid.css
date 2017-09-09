@@ -15,3 +15,7 @@
   padding: 10px 10px 10px 10px;
   text-align: left;
 }
+.eventGridWrapper {
+  background-color: #D1C4E9;
+  display: flow-root;
+}

@@ -10,6 +10,10 @@ import * as categoryActions from '../../../actions/categoryActions'
 import { CreateEventRequest, UpdateEventRequest } from '../../../main/eventMain'
 import Header from '../../../components/Header/Header'
 const classes = require('./Event.css')
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import theme from '../../../containers/App/material_ui_raw_theme_file'
+
 const styles = {
   errorStyle: {
     color: Colors.deepPurple700,
@@ -240,7 +244,7 @@ export class Event extends React.Component<EventProps, EventState> {
       name = 'Add new event'
     }
     return (
-      <div id='registerDiv' className={classes.registerDiv} width="100%">
+      <div id='eventWrapper' className={classes.eventWrapper}>
           <div>
             <Header />
           </div>
@@ -256,7 +260,9 @@ export class Event extends React.Component<EventProps, EventState> {
                     fullWidth={true} hintText="Title" floatingLabelText="Title" floatingLabelFixed={true} type="text" value={this.state.title} onChange={this.titleEntered}/>
                   </div>
                   <div>
-                      <DatePicker errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
+                      <DatePicker
+                      style={{headerColor: Colors.deepPurple700}}
+                      errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
                       floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
                       fullWidth={true} dialogContainerStyle={{color: '#512DA8'}} hintText="Pick Date" floatingLabelText="Pick Date" value={Moment(this.state.dateValue).toDate()} onChange={this.handleChangeDatePicker}/>
                   </div>

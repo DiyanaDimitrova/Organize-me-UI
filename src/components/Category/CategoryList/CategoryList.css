@@ -9,3 +9,7 @@
   color: #512DA8;
   text-align: center;
 }
+.categoryListWrapper {
+  background-color: #D1C4E9;
+  display: flow-root;
+}

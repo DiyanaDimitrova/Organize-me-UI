@@ -18,6 +18,7 @@
   /*padding: 10px 10px 10px 10px;*/
   text-align: right;
 }
-/*hr {
-  border-color: #512DA8;
-}*/
+.userAccountWrapper {
+  background-color: #D1C4E9;
+  display: flow-root;
+}

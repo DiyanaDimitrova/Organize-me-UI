@@ -115,7 +115,7 @@ class CategoryList extends React.Component<CategoryListProps, CategoryListState>
          />
        ]
     return (
-      <div>
+      <div id='categoryListWrapper' className={classes.categoryListWrapper}>
           <div>
             <Header />
           </div>

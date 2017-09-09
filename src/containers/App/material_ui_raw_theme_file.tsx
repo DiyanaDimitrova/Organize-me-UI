@@ -14,11 +14,11 @@ const rawBaseTheme = {
     accent3Color: Colors.deepPurpleA400,
     textColor: Colors.deepPurple700,
     alternateTextColor: Colors.deepPurple100,
-    canvasColor: Colors.deepPurple100,
+    canvasColor: Colors.deepPurple50,
     borderColor: Colors.deepPurple700,
     disabledColor: fade(Colors.deepPurple700, 0.3),
     pickerHeaderColor: Colors.deepPurple700,
-    clockCircleColor: Colors.deepPurple700,
+    clockCircleColor: Colors.deepPurple100,
     shadowColor: Colors.deepPurple700
   }
 }

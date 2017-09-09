@@ -26,7 +26,7 @@ class Help extends React.Component<HelpProps, HelpState> {
 
   render() {
     return (
-      <div>
+      <div id='helpWrapper' className={classes.helpWrapper}>
           <div>
             <Header />
           </div>

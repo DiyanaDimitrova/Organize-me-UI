@@ -128,7 +128,7 @@ class EventGrid extends React.Component<EventGridProps, EventGridState> {
     };
 
     return (
-      <div>
+      <div id='eventGridWrapper' className={classes.eventGridWrapper}>
         <div>
             <Header />
         </div>

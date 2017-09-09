@@ -114,7 +114,7 @@ class Register extends React.Component<RegisterProps, RegisterState> {
   }
   render() {
     return (
-      <div>
+      <div id='registerWrapper' className={classes.registerWrapper}>
           <div>
             <Header />
           </div>

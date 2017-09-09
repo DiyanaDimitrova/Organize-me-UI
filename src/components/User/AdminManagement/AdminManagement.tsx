@@ -103,7 +103,7 @@ export class AdminManagement extends React.Component<AdminManagementProps, Admin
 
   render() {
     return (
-      <div id='registerDiv' width="100%">
+      <div id='adminManagementWrapper' className={classes.adminManagementWrapper}>
         <div>
             <Header />
         </div>

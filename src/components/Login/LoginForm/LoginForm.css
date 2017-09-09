@@ -4,10 +4,14 @@
 .loginPaper {
   height: auto;
   width: 50%;
-  margin: 8% auto;
+  margin: 9% auto;
   padding: 10px 10px 10px 10px;
   text-align: center;
 }
 .loginBtn{
   margin: 10px 0px 10px 0px;
+}
+.loginFormWrapper {
+  background-color: #D1C4E9;
+  display: flow-root;
 }

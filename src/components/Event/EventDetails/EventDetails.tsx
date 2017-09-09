@@ -136,7 +136,7 @@ render() {
     //   }) : false
     // console.log('Disabled' + disableButtons)
     return (
-      <div>
+      <div id='eventDetailsWrapper' className={classes.eventDetailsWrapper}>
         <div>
             <Header />
         </div>
