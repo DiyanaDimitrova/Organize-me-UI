@@ -32,7 +32,6 @@
     "axios": "^0.15.0",
     "awesome-typescript-loader": "^3.0.0-beta.18",
     "css-loader": "^0.26.1",
-    "extract-text-webpack-plugin": "^2.0.0-beta.5",
     "express": "^4.14.0",
     "file-loader": "^0.10.0",
     "html-loader": "^0.4.4",
@@ -76,6 +75,7 @@
     "webpack-dev-middleware": "^1.10.0",
     "webpack-dev-server": "^2.2.0",
     "webpack-hot-middleware": "^2.16.1",
-    "html-webpack-plugin": "^2.28.0"
+    "html-webpack-plugin": "^2.28.0",
+    "extract-text-webpack-plugin": "^2.0.0-beta.5"
   }
 }
