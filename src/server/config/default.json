@@ -7,5 +7,13 @@
     "server": {
         "env": "default",
         "server_port": 3333
+    },
+    "organizeMeDev" : {
+        "env": "development",
+        "server": "http://localhost:3001"
+    },
+    "organizeMeProd" : {
+        "env": "production",
+        "server": "https://organize-me-be.herokuapp.com"
     }
 }
