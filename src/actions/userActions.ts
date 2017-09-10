@@ -94,7 +94,6 @@ export function loadUserAccount(request: UserAccountRequest, dispatch: any): voi
     dispatch(userAccountBeginLoading())
     axios.get('/users/' + request.username)
       .then((response) => {
-          console.log(response.data.user)
           dispatch(setUserAccount(response.data.user))
           dispatch(userAccountEndLoading())
       })

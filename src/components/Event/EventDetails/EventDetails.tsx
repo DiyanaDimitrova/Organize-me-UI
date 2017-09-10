@@ -137,7 +137,7 @@ render() {
                 <CardHeader titleColor="#512DA8" subtitleColor="#D1C4E9"
                   title={this.props.details.title}
                   titleStyle={{fontSize: 'x-large'}}
-                  subtitle={dateFormat(this.props.details.time, 'HH:MM')+ ' ' + dateFormat(this.props.details.time, 'dS mmmm, yyyy')}
+                  subtitle={dateFormat(this.props.details.time, 'HH:MM')+ ' ' + dateFormat(this.props.details.date, 'dS mmmm, yyyy')}
                   subtitleStyle={{fontSize: 'large'}}
                 />
                 <CardMedia
@@ -147,7 +147,7 @@ render() {
                 </CardMedia>
                 <CardTitle titleColor="#512DA8" subtitleColor="#D1C4E9" title={this.props.details.title} />
                 <CardText>
-                  <div id='timeTextDiv' className={classes.timeTextDiv}><Time color={Colors.deepPurple700} hoverColor={Colors.deepPurple100} />{dateFormat(this.props.details.time, 'HH:MM')+ ' ' + dateFormat(this.props.details.time, 'dS mmmm, yyyy')}</div>
+                  <div id='timeTextDiv' className={classes.timeTextDiv}><Time color={Colors.deepPurple700} hoverColor={Colors.deepPurple100} />{dateFormat(this.props.details.time, 'HH:MM')+ ' ' + dateFormat(this.props.details.date, 'dS mmmm, yyyy')}</div>
                   <Divider/>
                   <div id='placeTextDiv' className={classes.placeTextDiv}><MapsPlace color={Colors.deepPurple700} hoverColor={Colors.deepPurple100} />{this.props.details.place} </div>
                   <Divider/>
