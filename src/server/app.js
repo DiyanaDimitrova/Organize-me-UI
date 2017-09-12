@@ -19,9 +19,9 @@ const config = Object.assign({}, JSON.parse(fs.readFileSync('src/server/config/d
 
 registerWebpackMiddleware()
 registerStaticFiles()
-
-app.listen(process.env.PORT || config.server.server_port, () => {
-  console.log('Server is listening on port ' + process.env.PORT || config.server.server_port)
+let port = process.env.PORT || config.server.server_port
+app.listen(port, () => {
+  console.log('Server is listening on port ' + port)
 })
 
 registerWebpackMiddleware: () => {
