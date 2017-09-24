@@ -18,9 +18,9 @@ import UserAccount from '../../components/User/UserAccount/UserAccount'
 import Help from '../../components/Help/Help'
 import About from '../../components/About/About'
 import App from '../App/App'
-const classes = require('./AppContainer.css')
+const classes = require('./AppRouter.css')
 
-export class AppContainer extends React.Component<any, AppState> {
+export class AppRouter extends React.Component<any, AppState> {
 
   render() {
     return (
@@ -50,4 +50,4 @@ export class AppContainer extends React.Component<any, AppState> {
   }
 }
 
-export default connect()(AppContainer)
+export default connect()(AppRouter)

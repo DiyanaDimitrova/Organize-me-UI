@@ -5,14 +5,14 @@ import { RaisedButton, TextField, Paper, DatePicker, TimePicker, FlatButton, Dro
 import * as Colors from 'material-ui/styles/colors'
 import * as dateFormat from 'dateformat'
 import * as Moment from 'moment'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import theme from '../../App/material_ui_raw_theme_file'
 import * as actions from '../../../actions/eventActions'
 import * as categoryActions from '../../../actions/categoryActions'
 import { CreateEventRequest, UpdateEventRequest } from '../../../main/eventMain'
 import Header from '../../../components/Header/Header'
 const classes = require('./Event.css')
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import theme from '../../../containers/App/material_ui_raw_theme_file'
 
 const styles = {
   errorStyle: {

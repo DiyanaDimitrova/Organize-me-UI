@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import AppContainer from './containers/AppContainer/AppContainer'
+import AppRouter from './components/AppRouter/AppRouter'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import * as injectTapEventPlugin from 'react-tap-event-plugin'
 import axios from 'axios'
@@ -17,12 +17,11 @@ var instance = axios.create({
 axios.defaults.timeout = 6000
 axios.defaults.baseURL = process.env.NODE_ENV === 'development' ? config.organizeMeDev.server : config.organizeMeProd.server //'http://localhost:3001'
 axios.defaults.headers.post['Content-Type'] = 'application/json';
-
 ReactDOM.render(
     <ReduxProvider store={appStore}>
-            <MuiThemeProvider>
-                <AppContainer />
-            </MuiThemeProvider>
+       <MuiThemeProvider>
+         <AppRouter />
+       </MuiThemeProvider>
     </ReduxProvider>,
     document.getElementById('root')
 )

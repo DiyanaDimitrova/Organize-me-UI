@@ -8,23 +8,11 @@ const app = express()
 
 const fs = require('fs')
 
-let envConfig = {}
-try {
-  envConfig = JSON.parse(fs.readFileSync('src/server/config/default.json', 'utf8'))
-} catch (e) {
-  envConfig = {}
-}
+let envConfig = require('./config/default.json')
 
-const config = Object.assign({}, JSON.parse(fs.readFileSync('src/server/config/default.json', 'utf8')), envConfig)
+let port = process.env.$PORT || envConfig.server.server_port
 
-registerWebpackMiddleware()
-registerStaticFiles()
-let port = process.env.$PORT || config.server.server_port
-app.listen(port, () => {
-  console.log('Server is listening on port ' + port)
-})
-
-registerWebpackMiddleware: () => {
+registerWebpackMiddleware = function(){
   let webpackMiddlewareConfig = {
     publicPath: '/',
     stats: {
@@ -54,7 +42,13 @@ registerWebpackMiddleware: () => {
   })
 }
 
-registerStaticFiles: () => {
+registerStaticFiles = function(){
   let staticPath = path.join(__dirname, '../')
   app.use(express.static(staticPath))
 }
+
+registerWebpackMiddleware()
+registerStaticFiles()
+app.listen(port, () => {
+  console.log('Server is listening on port ' + port)
+})

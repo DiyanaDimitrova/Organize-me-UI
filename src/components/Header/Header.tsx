@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router'
 import { AppState } from '../../store/AppStore'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
-import {AppBar, Drawer, Paper, MenuItem, IconButton } from 'material-ui'
+import {AppBar, Drawer, Paper, MenuItem, IconButton, Tabs, Tab } from 'material-ui'
 import Event from 'material-ui/svg-icons/action/event'
 import Note from 'material-ui/svg-icons/action/note-add'
 import Toc from 'material-ui/svg-icons/action/toc'
@@ -14,15 +14,10 @@ import Group from 'material-ui/svg-icons/social/group'
 import Home from 'material-ui/svg-icons/action/home'
 import * as Colors from 'material-ui/styles/colors'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import theme from '../../containers/App/material_ui_raw_theme_file'
+import theme from '../App/material_ui_raw_theme_file'
 import LoggedMenu from '../Login/LoggedMenu/LoggedMenu'
 import Login from '../Login/Login/Login'
 const classes = require('./Header.css')
-
-
-import {Tabs, Tab} from 'material-ui/Tabs';
-import FontIcon from 'material-ui/FontIcon';
-import MapsPersonPin from 'material-ui/svg-icons/maps/person-pin';
 
 interface StateProps {
   logged: Boolean
