@@ -264,14 +264,14 @@ export class Event extends React.Component<EventProps, EventState> {
                       <DatePicker
                       errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
                       floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
-                      fullWidth={true} hintText="Pick Date" floatingLabelText="Pick Date" value={Moment(this.state.dateValue).toDate()} onChange={this.handleChangeDatePicker}/>
+                      fullWidth={true} hintText="Date" floatingLabelText="Date" value={Moment(this.state.dateValue).toDate()} onChange={this.handleChangeDatePicker}/>
                     </MuiThemeProvider>
                   </div>
                   <div>
                     <MuiThemeProvider muiTheme={theme}>
                       <TimePicker errorStyle={styles.errorStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}  underlineStyle={styles.underlineStyle}
                       floatingLabelStyle={styles.floatingLabelStyle}  hintStyle={styles.errorStyle} underlineFocusStyle={styles.underlineStyle}  textareaStyle={styles.errorStyle}
-                      fullWidth={true} format="24hr" hintText="Pick Time" floatingLabelText="Pick Time" value={Moment(this.state.hourValue).toDate()} onChange={this.handleChangeTimePicker}/>
+                      fullWidth={true} format="24hr" hintText="Time" floatingLabelText="Time" value={Moment(this.state.hourValue).toDate()} onChange={this.handleChangeTimePicker}/>
                     </MuiThemeProvider>
                   </div>
                   <div>

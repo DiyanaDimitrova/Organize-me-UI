@@ -59,7 +59,7 @@ class CategoryList extends React.Component<CategoryListProps, CategoryListState>
     deleteCategory.id = itemId
     deleteCategory.user = this.props.user
     this.props.performDeleteCategoryAction(deleteCategory)
-    browserHistory.push('/')
+    browserHistory.push('/allCategories')
   }
   updateItem = (item) => {
     // e.preventDefault()

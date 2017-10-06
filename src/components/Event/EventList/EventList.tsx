@@ -107,7 +107,7 @@ class EventList extends React.Component<EventListProps, EventListState> {
         }} leftIcon={<View color={Colors.deepPurple700}/>} style={{color: Colors.deepPurple700}}>View</MenuItem>
         <MenuItem onTouchTap={() => {
           this.sendCodeItem(item)
-        }} leftIcon={<Send color={Colors.deepPurple700}/>} style={{color: Colors.deepPurple700}}>Send Code</MenuItem>
+        }} leftIcon={<Send color={Colors.deepPurple700}/>} style={{color: Colors.deepPurple700}}>Send Ticket</MenuItem>
       </IconMenu>
     )
   }

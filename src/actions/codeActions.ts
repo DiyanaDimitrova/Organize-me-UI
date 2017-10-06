@@ -62,12 +62,13 @@ export function sendCodeFailAction(message: String): SendCodeAction {
     } as SendCodeAction
 }
 export function performSendCodeAction(request: SendCodeRequest, dispatch: any): void {
+    console.log(JSON.stringify(request))
     axios.post('/code/send', request)
       .then((response) => {
           dispatch(sendCodeSuccessAction(response.data.message))
       })
       .catch((err) => {
-          dispatch(sendCodeFailAction(err.response.data.message))
+          dispatch(sendCodeFailAction(err.response.message))
       })
 }
 

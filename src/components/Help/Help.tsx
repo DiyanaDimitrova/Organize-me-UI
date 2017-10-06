@@ -33,32 +33,24 @@ class Help extends React.Component<HelpProps, HelpState> {
           <div id='helpDiv' className={classes.helpDiv}>
               <Paper id='helpPaper' className={classes.helpPaper} zDepth={2}>
                   <div id='titleText' className={classes.titleText}>
-                    <h1>Customer questions</h1>
+                    <h1>Frequent questions and answers</h1>
                   </div>
-                  <p>1. Is it possible to have a free trial for my institution?
-                  Institutional customers may request free trials online, or by contacting us.
-                  <br />2. Can individuals register for a free trial or subscribe to Very Short Introductions?
-                  We do not currently sell individual subscriptions to Very Short Introductions and free trials are not available to individuals.
-                  <br />3. How do I subscribe to Very Short Introductions?
-                  Very Short Introductions is available by annual subscription to libraries and institutions. Find out how to subscribe, or contact us.
-                  <br />4. How will I renew my subscription when it expires?
-                  You will be contacted by OUP representatives when your subscription is about to expire.</p>
+                  <p>1. Ma quande lingues coalesce, li grammatica del resultant lingue es plu simplic e regulari quam ti del coalescent lingues. Li nov lingua franca va esser plu simplic e regulari quam li existent Europan lingues.
+                  <br />2. It va esser tam simplic quam Occidental: in fact, it va esser Occidental. A un Angleso it va semblar un simplificat Angles, quam un skeptic Cambridge amico dit me que Occidental es.
+                  <br />3. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+                  <br />4. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Epsum factorial non deposit quid pro quo hic escorol.
+                  <br />5. Souvlaki ignitus carborundum e pluribus unum.
+                  <br />6. Ma quande lingues coalesce, li grammatica del resultant lingue es plu simplic e regulari quam ti del coalescent lingues. Li nov lingua franca va esser plu simplic e regulari quam li existent Europan lingues.
+                  <br />7. It va esser tam simplic quam Occidental: in fact, it va esser Occidental. A un Angleso it va semblar un simplificat Angles, quam un skeptic Cambridge amico dit me que Occidental es.
+                  <br />8. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+                  <br />9. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Epsum factorial non deposit quid pro quo hic escorol.
+                  <br />10. Souvlaki ignitus carborundum e pluribus unum.
+                  <br />11. Defacto lingo est igpay atinlay. Marquee selectus non provisio incongruous feline nolo contendre.
+                  <br />12. Quote meon an estimate et non interruptus stadium.
+                  </p>
                   <div id='titleText' className={classes.titleText}>
-                    <h1>Librarian Support questions</h1>
+                    <h1></h1>
                   </div>
-                  <p>1. Do you have any materials I can use to promote my trial/subscription to users?
-                  Yes. OUP offers a variety of free tools to help librarians promote their trial/subscription, including free training and promotional materials. Find out more on our Resources for Librarians page.
-                  <br />2. Can I see usage statistics for my institution?
-                  Yes, you can run COUNTER-compliant usage reports for your institution, see Subscriber Services for details.
-                  <br />3. What COUNTER reports do you provide?
-                  The Very Short Introductions reports conform to the Code of Practice for Books and Reference Works, Release 1. OUP deliver the following reports:
-                  BR2: Number of Successful Section Requests by Month and Title
-                  BR4: Turnaways by Month and Service
-                  BR6: Total Searches and Sessions by Month and Service
-                  <br />4. How often are COUNTER statistics made available?
-                  COUNTER statistics are made available approximately 2 weeks after the end of the month. If you require usage statistics during a month please contact us.
-                  <br />5. Can I add my library's logo to the website?
-                  Yes, you can. To set up a logo please contact us.</p>
               </Paper>
           </div>
       </div>

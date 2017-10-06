@@ -155,7 +155,7 @@ export class Code extends React.Component<CodeProps, CodeState> {
             }
               <div>
                 <RaisedButton label="Cancel" fullWidth={true} backgroundColor="#D1C4E9" labelColor="#512DA8" onClick={this.cancelEvent}/>
-                <RaisedButton label="Send Code" fullWidth={true} backgroundColor="#512DA8" labelColor="#EDE7F6" onClick={this.sendCodeEvent}/>
+                <RaisedButton label="Send Ticket" fullWidth={true} backgroundColor="#512DA8" labelColor="#EDE7F6" onClick={this.sendCodeEvent}/>
               </div>
           </Paper>
         </div>
