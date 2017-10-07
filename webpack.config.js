@@ -109,7 +109,7 @@ module.exports = {
     stats: {
       warnings: false
     },
-    port: process.env.$PORT || envConfig.server.server_port,
+    port: process.env.PORT || envConfig.server.server_port,
   },
   node: {
     // workaround for webpack-dev-server issue
