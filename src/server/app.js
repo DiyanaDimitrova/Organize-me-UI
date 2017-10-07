@@ -3,9 +3,7 @@ const webpack = require('webpack')
 const path = require('path')
 const webpackConfig = require('../../webpack.config')
 const webpackMiddleware = require('webpack-dev-middleware')
-
 const app = express()
-
 const fs = require('fs')
 
 let envConfig = require('./config/default.json')
