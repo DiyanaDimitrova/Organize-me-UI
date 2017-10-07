@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
-import { RaisedButton, FlatButton, TextField, Paper } from 'material-ui'
+import { RaisedButton, FlatButton, TextField, Paper, Snackbar } from 'material-ui'
 import * as Colors from 'material-ui/styles/colors'
 import * as actions from '../../../actions/loginActions'
 import { LoginRequest } from '../../../main/loginMain'
@@ -49,7 +49,7 @@ class LoginForm extends React.Component<LoginFormProps, LoginFormState> {
     super(props)
     this.state = {
       username: '',
-      password: '',
+      password: ''
     }
     this.usernameEntered = this.usernameEntered.bind(this)
     this.passwordEntered = this.passwordEntered.bind(this)

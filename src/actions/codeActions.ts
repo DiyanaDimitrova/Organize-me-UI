@@ -65,6 +65,7 @@ export function performSendCodeAction(request: SendCodeRequest, dispatch: any): 
     console.log(JSON.stringify(request))
     axios.post('/code/send', request)
       .then((response) => {
+        console.log('RES' + JSON.stringify(response))
           dispatch(sendCodeSuccessAction(response.data.message))
       })
       .catch((err) => {

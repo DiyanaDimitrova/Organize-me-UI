@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router'
 import { AppState } from '../../store/AppStore'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
-import {AppBar, Drawer, Paper, MenuItem, IconButton, Tabs, Tab } from 'material-ui'
+import {AppBar, Drawer, Paper, MenuItem, IconButton, Tabs, Tab, Snackbar } from 'material-ui'
 import Event from 'material-ui/svg-icons/action/event'
 import Note from 'material-ui/svg-icons/action/note-add'
 import Toc from 'material-ui/svg-icons/action/toc'
@@ -44,14 +44,6 @@ class Header extends React.Component<HeaderProps, HeaderState> {
       openMenu: false
     }
   }
-
-  handleChange = (event, logged) => {
-    // this.setState({logged: logged});
-  }
-
-  // menuClick = () => {
-  //     this.setState({openMenu: !this.state.openMenu})
-  // }
   newCategoryClick = () => {
     browserHistory.push('/newCategory')
   }

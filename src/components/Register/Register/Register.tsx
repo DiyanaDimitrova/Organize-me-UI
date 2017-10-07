@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
-import { RaisedButton, TextField, Paper } from 'material-ui'
+import { RaisedButton, TextField, Paper, Snackbar } from 'material-ui'
 import * as Colors from 'material-ui/styles/colors'
 import * as actions from '../../../actions/loginActions'
 import { SignupRequest } from '../../../main/loginMain'
@@ -23,6 +23,7 @@ const styles = {
 const classes = require('./Register.css')
 
 interface StateProps {
+  signup: Boolean
 }
 
 interface DispatchProps {
@@ -42,10 +43,6 @@ interface RegisterState{
   email: String
 }
 
-/**
- * This example is taking advantage of the composability of the `AppBar`
- * to render different components depending on the application state.
- */
 class Register extends React.Component<RegisterProps, RegisterState> {
   constructor(props) {
     super(props)
@@ -67,37 +64,31 @@ class Register extends React.Component<RegisterProps, RegisterState> {
   usernameEntered(event) {
         if (event.target.value) {
             this.setState({ username: event.target.value })
-            // this.props.setFirstInput(event.target.value)
         }
     }
   passwordEntered(event) {
           if (event.target.value) {
               this.setState({ password: event.target.value })
-              // this.props.setFirstInput(event.target.value)
           }
       }
   confirmPasswordEntered(event) {
           if (event.target.value) {
               this.setState({ confirmPassword: event.target.value })
-              // this.props.setFirstInput(event.target.value)
           }
       }
   firstNameEntered(event) {
           if (event.target.value) {
               this.setState({ firstName: event.target.value })
-              // this.props.setFirstInput(event.target.value)
           }
       }
   lastNameEntered(event) {
           if (event.target.value) {
               this.setState({ lastName: event.target.value })
-              // this.props.setFirstInput(event.target.value)
           }
       }
   emailEntered(event) {
           if (event.target.value) {
               this.setState({ email: event.target.value })
-              // this.props.setFirstInput(event.target.value)
           }
       }
   registerUser = (event)  => {
@@ -110,7 +101,7 @@ class Register extends React.Component<RegisterProps, RegisterState> {
         signupRequest.lastName = this.state.lastName
         signupRequest.email = this.state.email
         this.props.performSignupAction(signupRequest)
-        browserHistory.push('/')
+        // browserHistory.push('/')
   }
   render() {
     return (
@@ -157,6 +148,11 @@ class Register extends React.Component<RegisterProps, RegisterState> {
                 <RaisedButton label="Register" fullWidth={true} backgroundColor="#512DA8" labelColor="#EDE7F6" onClick={this.registerUser}/>
               </div>
             </Paper>
+            <Snackbar
+             open={this.props.signup}
+             message="Successfully created account"
+             autoHideDuration={4000}
+           />
           </div>
       </div>
     )
@@ -164,7 +160,7 @@ class Register extends React.Component<RegisterProps, RegisterState> {
 }
 
 const mapStateToProps = (state: any) => ({
-
+  signup: state.login.signup
 })
 
 const mapDispatchToProps = (dispatch) => {

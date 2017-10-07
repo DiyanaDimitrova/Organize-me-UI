@@ -133,11 +133,7 @@ export function performSignupAction(request: SignupRequest, dispatch: any): void
     dispatch(dismissAction())
     axios.post('/users/create', request)
         .then((response) => {
-            if (response.data.success) {
-                dispatch(signupSuccessAction(response.data.messages))
-            } else {
-                dispatch(signupFailAction(response.data.messages))
-            }
+          dispatch(signupSuccessAction(response.data.messages))
         })
         .catch((err) => {
             let messages = [{

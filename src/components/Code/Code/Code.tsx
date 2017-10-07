@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
-import { RaisedButton, TextField, FlatButton, Paper } from 'material-ui'
+import { RaisedButton, TextField, FlatButton, Paper, Snackbar } from 'material-ui'
 import { Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
 import * as Colors from 'material-ui/styles/colors'
 import * as actions from '../../../actions/codeActions'
@@ -36,7 +36,8 @@ export interface CodeState{
   deselectOnClickaway: Boolean,
   showCheckboxes: Boolean,
   height: String,
-  mailList: Array<any>
+  mailList: Array<any>,
+  isCodeSend: Boolean
 }
 
 export class Code extends React.Component<CodeProps, CodeState> {
@@ -53,7 +54,8 @@ export class Code extends React.Component<CodeProps, CodeState> {
        deselectOnClickaway: false,
        showCheckboxes: true,
        height: '300px',
-       mailList: []
+       mailList: [],
+       isCodeSend: false
      }
   }
 
@@ -67,7 +69,7 @@ export class Code extends React.Component<CodeProps, CodeState> {
     this.props.loadListInvited(this.props.params.id)
   }
   shouldComponentUpdate(nextProps, nextState) {
-    return this.props !== nextProps
+    return this.props !== nextProps || this.state !== nextState
   }
   sendCodeEvent = (event)  => {
     event.preventDefault()
@@ -75,6 +77,7 @@ export class Code extends React.Component<CodeProps, CodeState> {
     sendCodeRequest.usersToSendCode = this.state.mailList
     sendCodeRequest.eventId = this.props.params.id
     this.props.performSendCodeAction(sendCodeRequest)
+    this.setState({isCodeSend: true})
   }
   cancelEvent = (event)  => {
     event.preventDefault()
@@ -97,6 +100,7 @@ export class Code extends React.Component<CodeProps, CodeState> {
   }
 
   render() {
+    console.log('STATE' + JSON.stringify(this.state.isCodeSend))
     return (
       <div id='codeWrapper' className={classes.codeWrapper}>
         <div>
@@ -158,6 +162,11 @@ export class Code extends React.Component<CodeProps, CodeState> {
                 <RaisedButton label="Send Ticket" fullWidth={true} backgroundColor="#512DA8" labelColor="#EDE7F6" onClick={this.sendCodeEvent}/>
               </div>
           </Paper>
+          <Snackbar
+           open={this.state.isCodeSend}
+           message="Tickets are send"
+           autoHideDuration={4000}
+         />
         </div>
       </div>
     )
