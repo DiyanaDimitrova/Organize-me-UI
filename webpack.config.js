@@ -1,5 +1,6 @@
 var webpack = require('webpack')
 var path = require('path')
+var envConfig = require('./src/server/config/default.json')
 
 // variables
 var isProduction = process.argv.indexOf('-p') >= 0
@@ -12,6 +13,9 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   context: sourcePath,
+  devServer: {
+        port: 9090//process.env.$PORT || envConfig.server.server_port
+  },
   entry: {
     main: './index.tsx',
     // app: './src/server/app',
