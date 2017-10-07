@@ -1,13 +1,14 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import * as QrReader from 'react-qr-reader'
-import { Paper } from 'material-ui'
+import { Paper, Snackbar } from 'material-ui'
 import * as actions from '../../../actions/codeActions'
 import { ScanCodeRequest } from '../../../main/codeMain'
 import Header from '../../../components/Header/Header'
 const classes = require('./ScanCode.css')
 
 interface StateProps {
+  scanCodeMessage: String
 }
 
 interface DispatchProps {
@@ -19,7 +20,7 @@ export interface ScanCodeProps extends StateProps, DispatchProps{
 
 export interface ScanCodeState{
   delay: Number,
-  result: String,
+  result: Boolean,
 }
 
 export class ScanCode extends React.Component<ScanCodeProps, ScanCodeState> {
@@ -27,13 +28,13 @@ export class ScanCode extends React.Component<ScanCodeProps, ScanCodeState> {
     super(props)
     this.state = {
       delay: 1000,
-      result: 'No result',
+      result: false,
     }
     this.handleScan = this.handleScan.bind(this)
   }
   handleScan(data){
     if(data !== null){
-      this.setState({result: data})
+      this.setState({result: true})
       let scanCodeRequest = {} as ScanCodeRequest
       scanCodeRequest.scanedCode = data
       this.props.performScanCodeAction(scanCodeRequest)
@@ -45,7 +46,7 @@ export class ScanCode extends React.Component<ScanCodeProps, ScanCodeState> {
   render() {
     const previewStyle = {
       height: 300,
-      width: 650
+      width: 720
     }
     return (
       <div id='scanCodeWrapper' className={classes.scanCodeWrapper}>
@@ -64,7 +65,11 @@ export class ScanCode extends React.Component<ScanCodeProps, ScanCodeState> {
                 onError={this.handleError}
                 onScan={this.handleScan}
                 ></QrReader>
-              <p>{this.state.result}</p>
+              <Snackbar
+                 open={this.state.result}
+                 message={this.props.scanCodeMessage}
+                 autoHideDuration={7000}
+               />
             </Paper>
           </div>
         </div>
@@ -73,6 +78,7 @@ export class ScanCode extends React.Component<ScanCodeProps, ScanCodeState> {
 }
 
 const mapStateToProps = (state: any) => ({
+  scanCodeMessage: state.code.scanCodeMessage
 })
 
 const mapDispatchToProps = (dispatch) => {
