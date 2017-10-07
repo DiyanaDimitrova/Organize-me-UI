@@ -12,7 +12,7 @@ const config = require('./server/config/default.json')
 injectTapEventPlugin()
 // setup global axios defaults
 var instance = axios.create({
-  baseURL: 'http://localhost:3001'//process.env.NODE_ENV === 'development' ? config.organizeMeDev.server : config.organizeMeProd.server //'http://localhost:3001'
+  baseURL: process.env.NODE_ENV === 'development' ? config.organizeMeDev.server : config.organizeMeProd.server //'http://localhost:3001'
 })
 axios.defaults.timeout = 6000
 axios.defaults.baseURL = process.env.NODE_ENV === 'development' ? config.organizeMeDev.server : config.organizeMeProd.server //'http://localhost:3001'
