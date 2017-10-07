@@ -21,15 +21,10 @@ registerWebpackMiddleware = function(){
       colors: true
     }
   }
-    //
-    //  Assets are created inside memory
-    //  path has no meaning
-    //
   webpackConfig.output.path = '/'
   let webpackCompiler = webpack(webpackConfig)
   app.use(webpackMiddleware(webpackCompiler, webpackMiddlewareConfig))
 
-  // return Always Index.html, for paths which are in /* pattern
   app.use(function (req, res, next) {
     webpackCompiler.outputFileSystem.readFile('index.html', function (err, result) {
       if (err) {

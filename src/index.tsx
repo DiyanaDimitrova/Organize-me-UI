@@ -15,12 +15,13 @@ var instance = axios.create({
   baseURL: 'http://localhost:3001'//process.env.NODE_ENV === 'development' ? config.organizeMeDev.server : config.organizeMeProd.server //'http://localhost:3001'
 })
 axios.defaults.timeout = 6000
-axios.defaults.baseURL = 'http://localhost:3001' // process.env.NODE_ENV === 'development' ? config.organizeMeDev.server : config.organizeMeProd.server //'http://localhost:3001'
+axios.defaults.baseURL = process.env.NODE_ENV === 'development' ? config.organizeMeDev.server : config.organizeMeProd.server //'http://localhost:3001'
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 ReactDOM.render(
     <ReduxProvider store={appStore}>
        <MuiThemeProvider>
-         <AppRouter />
+         <AppRouter>
+         </AppRouter>
        </MuiThemeProvider>
     </ReduxProvider>,
     document.getElementById('root')
