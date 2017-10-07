@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
-import { RaisedButton, TextField, FlatButton, Paper } from 'material-ui'
+import { RaisedButton, TextField, FlatButton, Paper, Snackbar } from 'material-ui'
 import { Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
 import * as actions from '../../../actions/userActions'
 import { MakeAdminRequest } from '../../../main/userMain'
@@ -33,7 +33,8 @@ export interface AdminManagementState{
   deselectOnClickaway: Boolean,
   showCheckboxes: Boolean,
   height: String,
-  adminList: Array<any>
+  adminList: Array<any>,
+  isRoleChanged: Boolean
 }
 
 export class AdminManagement extends React.Component<AdminManagementProps, AdminManagementState> {
@@ -50,7 +51,8 @@ export class AdminManagement extends React.Component<AdminManagementProps, Admin
        deselectOnClickaway: false,
        showCheckboxes: true,
        height: '300px',
-       adminList: []
+       adminList: [],
+       isRoleChanged: false
      }
   }
 
@@ -66,7 +68,8 @@ export class AdminManagement extends React.Component<AdminManagementProps, Admin
     makeAdminRequest.usersToMakeAdmin = this.state.adminList
     makeAdminRequest.type = 'Admin'
     this.props.performMakeAdminAction(makeAdminRequest)
-    browserHistory.push('/')
+    this.setState({isRoleChanged: true})
+    // browserHistory.push('/')
   }
   makeNormalEvent = (event) => {
     event.preventDefault()
@@ -74,7 +77,8 @@ export class AdminManagement extends React.Component<AdminManagementProps, Admin
     makeAdminRequest.usersToMakeAdmin = this.state.adminList
     makeAdminRequest.type = 'Normal'
     this.props.performMakeAdminAction(makeAdminRequest)
-    browserHistory.push('/')
+    this.setState({isRoleChanged: true})
+    // browserHistory.push('/')
   }
   cancelEvent = (event)  => {
     event.preventDefault()
@@ -166,6 +170,11 @@ export class AdminManagement extends React.Component<AdminManagementProps, Admin
               <RaisedButton fullWidth={true} label="Make Admin" backgroundColor="#512DA8" labelColor="#EDE7F6" onClick={this.makeAdminEvent}/>
             </div>
           </Paper>
+          <Snackbar
+             open={this.state.isRoleChanged}
+             message="Role of the users were changed"
+             autoHideDuration={4000}
+           />
         </div>
       </div>
     )
