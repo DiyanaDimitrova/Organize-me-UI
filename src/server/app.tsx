@@ -11,7 +11,7 @@ const fs = require('fs')
 let envConfig = require('./config/default.json')
 
 let port = process.env.$PORT || envConfig.server.server_port
-
+console.log('APP ' + port)
 registerWebpackMiddleware = function(){
   let webpackMiddlewareConfig = {
     publicPath: '/',
