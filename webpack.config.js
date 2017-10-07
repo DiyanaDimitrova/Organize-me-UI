@@ -13,9 +13,6 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   context: sourcePath,
-  devServer: {
-        port: 9090//process.env.$PORT || envConfig.server.server_port
-  },
   entry: {
     main: './index.tsx',
     // app: './src/server/app',
@@ -112,6 +109,7 @@ module.exports = {
     stats: {
       warnings: false
     },
+    port: 9090,//process.env.$PORT || envConfig.server.server_port
   },
   node: {
     // workaround for webpack-dev-server issue
