@@ -15,7 +15,7 @@ module.exports = {
   context: sourcePath,
   entry: {
     main: './index.tsx',
-    // app: './src/server/app',
+    // app: './src/server/app.js',
     vendor: [
       'react',
       'react-dom',

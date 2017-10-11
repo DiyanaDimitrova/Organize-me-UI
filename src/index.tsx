@@ -18,8 +18,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
 ReactDOM.render(
     <ReduxProvider store={appStore}>
        <MuiThemeProvider>
-         <AppRouter>
-         </AppRouter>
+         <AppRouter />
        </MuiThemeProvider>
     </ReduxProvider>,
     document.getElementById('root')
