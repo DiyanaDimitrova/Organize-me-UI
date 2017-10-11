@@ -29,20 +29,20 @@ export const GET_EVENT_IMAGE_ARRAY_FAILURE = '@@Event/GET_EVENT_IMAGE_ARRAY_FAIL
 export const GET_EVENT_IMAGE_ARRAY = '@@Event/GET_EVENT_IMAGE_ARRAY'
 
 export interface EventAction extends Action {
-    eventMessage: string
+    eventMessage: String
 }
 
-export function createEventSuccessAction(message: String): EventAction {
+export function createEventSuccessAction(eventMessage: String): EventAction {
     return {
         type: NEW_EVENT_SUCCESS,
-        eventMessage: message
+        eventMessage: eventMessage
     } as EventAction
 }
 
-export function createEventFailAction(message: String): EventAction {
+export function createEventFailAction(eventMessage: String): EventAction {
     return {
         type: NEW_EVENT_FAIL,
-        eventMessage: message
+        eventMessage: eventMessage
     } as EventAction
 }
 
@@ -75,31 +75,31 @@ export interface CurrentItemAction extends Action {
 export interface DisplayedItemAction extends Action {
     displayedItem: String
 }
-export function deleteEventSuccessAction(message: String): EventAction {
+export function deleteEventSuccessAction(eventMessage: String): EventAction {
     return {
         type: DELETE_EVENT_SUCCESS,
-        eventMessage: message
+        eventMessage: eventMessage
     } as EventAction
 }
 
-export function deleteEventFailAction(message: String): EventAction {
+export function deleteEventFailAction(eventMessage: String): EventAction {
     return {
         type: DELETE_EVENT_FAIL,
-        eventMessage: message
+        eventMessage: eventMessage
     } as EventAction
 }
 
-export function updateEventSuccessAction(message: String): EventAction {
+export function updateEventSuccessAction(eventMessage: String): EventAction {
     return {
         type: UPDATE_EVENT_SUCCESS,
-        eventMessage: message
+        eventMessage: eventMessage
     } as EventAction
 }
 
-export function updateEventFailAction(message: String): EventAction {
+export function updateEventFailAction(eventMessage: String): EventAction {
     return {
         type: UPDATE_EVENT_FAIL,
-        eventMessage: message
+        eventMessage: eventMessage
     } as EventAction
 }
 
@@ -163,7 +163,7 @@ export function setEventListFailure(): Action {
 export function setEventList(eventList: any): GetAllEventsAction {
     return {
         type: GET_EVENT_LIST,
-        eventList: Object.assign([], eventList),
+        eventList: (<any>Object).assign([], eventList),
     } as GetAllEventsAction
 }
 
@@ -171,7 +171,7 @@ export function performDeleteEventAction(request: DeleteEventRequest, dispatch: 
     let reqBody = {
       user: request.user
     }
-    axios.delete('/event/delete/' + request.id, reqBody)
+    axios.delete('/event/delete/' + request.id)
       .then((response) => {
           dispatch(deleteEventSuccessAction(response.data.response))
       })
@@ -286,7 +286,7 @@ export function setEventDetailsFailure(): Action {
 export function setEventDetails(details: any): GetEventDetailsAction {
     return {
         type: GET_EVENT_DETAILS,
-        details: Object.assign([], details)
+        details: (<any>Object).assign([], details)
     } as GetEventDetailsAction
 }
 export function loadEventDetailsAction(request: EventDetailsRequest, dispatch: any): void {
@@ -302,17 +302,17 @@ export function loadEventDetailsAction(request: EventDetailsRequest, dispatch: a
       })
 }
 
-export function attendEventSuccessAction(message: String): EventAction {
+export function attendEventSuccessAction(eventMessage: String): EventAction {
     return {
         type: ATTEND_EVENT_SUCCESS,
-        eventMessage: message
+        eventMessage: eventMessage
     } as EventAction
 }
 
-export function attendEventFailAction(message: String): EventAction {
+export function attendEventFailAction(eventMessage: String): EventAction {
     return {
         type: ATTEND_EVENT_FAIL,
-        eventMessage: message
+        eventMessage: eventMessage
     } as EventAction
 }
 

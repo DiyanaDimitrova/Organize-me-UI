@@ -4,7 +4,7 @@ import * as actions from '../actions/codeActions'
 
 export function listInvitedBeginLoadingReducer(state: CodeState, action: Action): CodeState {
     if (action.type === actions.LIST_INVITED_BEGIN_LOADING) {
-        let newState = Object.assign({}, state)
+        let newState = (<any>Object).assign({}, state)
         newState.listInvitedLoading = true
         return newState
     } else {
@@ -14,7 +14,7 @@ export function listInvitedBeginLoadingReducer(state: CodeState, action: Action)
 
 export function listInvitedEndLoadingReducer(state: CodeState, action: Action): CodeState {
     if (action.type === actions.LIST_INVITED_END_LOADING) {
-        let newState = Object.assign({}, state)
+        let newState = (<any>Object).assign({}, state)
         newState.listInvitedLoading = false
         return newState
     } else {
@@ -24,8 +24,8 @@ export function listInvitedEndLoadingReducer(state: CodeState, action: Action): 
 export function listInvitedSuccessReducer(state: CodeState, action: Action): CodeState {
     if (action.type === actions.LIST_INVITED_SUCCESS) {
         let _action = action as actions.GetAllInvitedAction
-        let newState = Object.assign({}, state)
-        newState.invitedPeopleList = Object.assign([], _action.invitedPeopleList)
+        let newState = (<any>Object).assign({}, state)
+        newState.invitedPeopleList = (<any>Object).assign([], _action.invitedPeopleList)
         newState.success = true
         return newState
     } else {
@@ -34,7 +34,7 @@ export function listInvitedSuccessReducer(state: CodeState, action: Action): Cod
 }
 export function listInvitedFailReducer(state: CodeState, action: Action): CodeState {
     if (action.type === actions.LIST_INVITED_FAIL) {
-        let newState = Object.assign({}, state)
+        let newState = (<any>Object).assign({}, state)
         newState.invitedPeopleList = null
         newState.success = false
         return newState
@@ -43,40 +43,44 @@ export function listInvitedFailReducer(state: CodeState, action: Action): CodeSt
     }
 }
 
-export function sendCodeSuccessReducer(state: CodeState, action: actions.SendCodeAction): CodeState {
+export function sendCodeSuccessReducer(state: CodeState, action: Action): CodeState {
     if (action.type === actions.SEND_CODE_SUCCESS) {
-        let newState = Object.assign({}, state)
-        newState.sendCodeToUsersMessage = action.sendCodeMessage
+        let _action = action as actions.SendCodeAction
+        let newState = (<any>Object).assign({}, state)
+        newState.sendCodeToUsersMessage = _action.sendCodeMessage
         return newState
     } else {
         return state
     }
 }
 
-export function sendCodeFailReducer(state: CodeState, action: actions.SendCodeAction): CodeState {
+export function sendCodeFailReducer(state: CodeState, action: Action): CodeState {
     if (action.type === actions.SEND_CODE_FAIL) {
-        let newState = Object.assign({}, state)
-        newState.sendCodeToUsersMessage = action.sendCodeMessage
+        let _action = action as actions.SendCodeAction
+        let newState = (<any>Object).assign({}, state)
+        newState.sendCodeToUsersMessage = _action.sendCodeMessage
         return newState
       } else {
         return state
     }
 }
 
-export function scanCodeSuccessReducer(state: CodeState, action: actions.ScanCodeAction): CodeState {
+export function scanCodeSuccessReducer(state: CodeState, action: Action): CodeState {
     if (action.type === actions.SCAN_CODE_SUCCESS) {
-        let newState = Object.assign({}, state)
-        newState.scanCodeMessage = action.scanCodeMessage
+        let _action = action as actions.ScanCodeAction
+        let newState = (<any>Object).assign({}, state)
+        newState.scanCodeMessage = _action.scanCodeMessage
         return newState
     } else {
         return state
     }
 }
 
-export function scanCodeFailReducer(state: CodeState, action: actions.ScanCodeAction): CodeState {
+export function scanCodeFailReducer(state: CodeState, action: Action): CodeState {
     if (action.type === actions.SCAN_CODE_FAIL) {
-        let newState = Object.assign({}, state)
-        newState.scanCodeMessage = action.scanCodeMessage
+        let _action = action as actions.ScanCodeAction
+        let newState = (<any>Object).assign({}, state)
+        newState.scanCodeMessage = _action.scanCodeMessage
         return newState
       } else {
         return state

@@ -31,7 +31,7 @@ export function setUserListFailure(): Action {
 export function setUserList(userList: any): GetUserListAction {
     return {
         type: USER_LIST_SUCCESS,
-        userList: Object.assign([], userList)
+        userList: (<any>Object).assign([], userList)
     } as GetUserListAction
 }
 export function loadUserList(dispatch: any): void {
@@ -87,7 +87,7 @@ export function setUserAccountFailure(): Action {
 export function setUserAccount(userAccount: any): GetUserAccountAction {
     return {
         type: USER_ACCOUNT_SUCCESS,
-        userAccount: Object.assign({}, userAccount)
+        userAccount: (<any>Object).assign({}, userAccount)
     } as GetUserAccountAction
 }
 export function loadUserAccount(request: UserAccountRequest, dispatch: any): void {

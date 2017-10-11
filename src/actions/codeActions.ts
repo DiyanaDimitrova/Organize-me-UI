@@ -32,7 +32,7 @@ export function setListInvitedFailure(): Action {
 export function setListInvited(invitedPeopleList: any): GetAllInvitedAction {
     return {
         type: LIST_INVITED_SUCCESS,
-        invitedPeopleList: Object.assign([], invitedPeopleList)
+        invitedPeopleList: (<any>Object).assign([], invitedPeopleList)
     } as GetAllInvitedAction
 }
 export function loadListInvited(id: String, dispatch: any): void {

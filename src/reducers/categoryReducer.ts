@@ -2,50 +2,55 @@ import { CategoryState } from '../main/categoryMain'
 import { Action } from 'redux'
 import * as actions from '../actions/categoryActions'
 
-export function newCategorySuccessReducer(state: CategoryState, action: actions.CategoryAction): CategoryState {
+export function newCategorySuccessReducer(state: CategoryState, action: Action): CategoryState {
     if (action.type === actions.NEW_CATEGORY_SUCCESS) {
-        let newState = Object.assign({}, state)
-        newState.newCategoryMessage = action.categoryMessage
+        let _action = action as actions.CategoryAction
+        let newState = (<any>Object).assign({}, state)
+        newState.newCategoryMessage = _action.categoryMessage
         return newState
     } else {
         return state
     }
 }
 
-export function newCategoryFailReducer(state: CategoryState, action: actions.CategoryAction): CategoryState {
+export function newCategoryFailReducer(state: CategoryState, action: Action): CategoryState {
     if (action.type === actions.NEW_CATEGORY_FAIL) {
-        let newState = Object.assign({}, state)
-        newState.newCategoryMessage = action.categoryMessage
+        let _action = action as actions.CategoryAction
+        let newState = (<any>Object).assign({}, state)
+        newState.newCategoryMessage = _action.categoryMessage
         return newState
       } else {
         return state
     }
 }
 
-export function deleteCategorySuccessReducer(state: CategoryState, action: actions.CategoryAction): CategoryState {
+export function deleteCategorySuccessReducer(state: CategoryState, action: Action): CategoryState {
     if (action.type === actions.DELETE_CATEGORY_SUCCESS) {
-        let newState = Object.assign({}, state)
-        newState.deleteCategoryMessage = action.categoryMessage
+        let _action = action as actions.CategoryAction
+        let newState = (<any>Object).assign({}, state)
+        newState.deleteCategoryMessage = _action.categoryMessage
         return newState
     } else {
         return state
     }
 }
 
-export function deleteCategoryFailReducer(state: CategoryState, action: actions.CategoryAction): CategoryState {
+export function deleteCategoryFailReducer(state: CategoryState, action: Action): CategoryState {
     if (action.type === actions.DELETE_CATEGORY_FAIL) {
-        let newState = Object.assign({}, state)
-        newState.deleteCategoryMessage = action.categoryMessage
+        let _action = action as actions.CategoryAction
+        let newState = (<any>Object).assign({}, state)
+        newState.deleteCategoryMessage = _action.categoryMessage
         return newState
       } else {
         return state
     }
 }
 
-export function updateCategorySuccessReducer(state: CategoryState, action: actions.CategoryAction): CategoryState {
+export function updateCategorySuccessReducer(state: CategoryState, action: Action): CategoryState {
     if (action.type === actions.UPDATE_CATEGORY_SUCCESS) {
-        let newState = Object.assign({}, state)
-        newState.updateCategoryMessage = action.categoryMessage
+        let _action = action as actions.CategoryAction
+        let newState = (<any>Object).assign({}, state)
+        newState.updateCategoryMessage = _action.categoryMessage
         newState.currentItem = null
         newState.itemToBeEdited = false
         return newState
@@ -54,10 +59,11 @@ export function updateCategorySuccessReducer(state: CategoryState, action: actio
     }
 }
 
-export function updateCategoryFailReducer(state: CategoryState, action: actions.CategoryAction): CategoryState {
+export function updateCategoryFailReducer(state: CategoryState, action: Action): CategoryState {
     if (action.type === actions.UPDATE_CATEGORY_FAIL) {
-        let newState = Object.assign({}, state)
-        newState.updateCategoryMessage = action.categoryMessage
+        let _action = action as actions.CategoryAction
+        let newState = (<any>Object).assign({}, state)
+        newState.updateCategoryMessage = _action.categoryMessage
         newState.currentItem = null
         newState.itemToBeEdited = false
         return newState
@@ -68,7 +74,7 @@ export function updateCategoryFailReducer(state: CategoryState, action: actions.
 
 export function categoriesListBeginLoadingActionReducer(state: CategoryState, action: Action): CategoryState {
     if (action.type === actions.CATEGORIES_LIST_BEGIN_LOADING) {
-        let newState = Object.assign({}, state)
+        let newState = (<any>Object).assign({}, state)
         newState.categoriesListLoading = true
         return newState
     } else {
@@ -78,7 +84,7 @@ export function categoriesListBeginLoadingActionReducer(state: CategoryState, ac
 
 export function categoriesListEndLoadingActionReducer(state: CategoryState, action: Action): CategoryState {
     if (action.type === actions.CATEGORIES_LIST_END_LOADING) {
-        let newState = Object.assign({}, state)
+        let newState = (<any>Object).assign({}, state)
         newState.categoriesListLoading = false
         return newState
     } else {
@@ -88,8 +94,8 @@ export function categoriesListEndLoadingActionReducer(state: CategoryState, acti
 export function setCategoriesListActionReducer(state: CategoryState, action: Action): CategoryState {
     if (action.type === actions.GET_CATEGORIES_LIST) {
         let _action = action as actions.GetAllCategoriesAction
-        let newState = Object.assign({}, state)
-        newState.categoriesList = Object.assign({}, _action.categoriesList)
+        let newState = (<any>Object).assign({}, state)
+        newState.categoriesList = (<any>Object).assign({}, _action.categoriesList)
         newState.success = true
         return newState
     } else {
@@ -98,7 +104,7 @@ export function setCategoriesListActionReducer(state: CategoryState, action: Act
 }
 export function setCategoriesListFailureActionReducer(state: CategoryState, action: Action): CategoryState {
     if (action.type === actions.GET_CATEGORIES_LIST_FAILURE) {
-        let newState = Object.assign({}, state)
+        let newState = (<any>Object).assign({}, state)
         newState.success = false
         return newState
     } else {
@@ -109,8 +115,8 @@ export function setCategoriesListFailureActionReducer(state: CategoryState, acti
 export function setCurrentItemReducer(state: CategoryState, action: Action): CategoryState {
     if (action.type === actions.SET_CURRENT_ITEM) {
         let _action = action as actions.CurrentItemAction
-        let newState = Object.assign({}, state)
-        newState.currentItem = Object.assign({}, _action.currentItem)
+        let newState = (<any>Object).assign({}, state)
+        newState.currentItem = (<any>Object).assign({}, _action.currentItem)
         newState.itemToBeEdited = true
         return newState
     } else {
@@ -120,8 +126,8 @@ export function setCurrentItemReducer(state: CategoryState, action: Action): Cat
 export function setCurrentItemFailReducer(state: CategoryState, action: Action): CategoryState {
     if (action.type === actions.SET_CURRENT_ITEM_FAIL) {
         let _action = action as actions.CurrentItemAction
-        let newState = Object.assign({}, state)
-        newState.currentItem = Object.assign({}, _action.currentItem)
+        let newState = (<any>Object).assign({}, state)
+        newState.currentItem = (<any>Object).assign({}, _action.currentItem)
         newState.itemToBeEdited = false
         return newState
     } else {

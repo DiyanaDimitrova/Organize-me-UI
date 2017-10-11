@@ -4,7 +4,7 @@ import * as a from '../actions/codeActions'
 import { LOGIN_SUCCESS } from '../actions/loginActions'
 
 export interface SendCodeRequest {
-    usersToSendCode: Array<any>,
+    usersToSendCode: Array<any>
     eventId: String
 }
 
@@ -36,7 +36,7 @@ const reducers = {
     [a.SEND_CODE_SUCCESS]: r.sendCodeSuccessReducer,
     [a.SEND_CODE_FAIL]: r.sendCodeFailReducer,
     [a.SCAN_CODE_SUCCESS]: r.scanCodeSuccessReducer,
-    [a.SCAN_CODE_FAIL]: r.scanCodeFailReducer,
+    [a.SCAN_CODE_FAIL]: r.scanCodeFailReducer
   }
 
 export function codeReducer(state: CodeState = initialState, action: Action): CodeState {

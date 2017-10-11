@@ -4,16 +4,16 @@ import * as a from '../actions/loginActions'
 import { LOGIN_SUCCESS } from '../actions/loginActions'
 
 export interface LoginRequest {
-    username: String,
+    username: String
     password: String
 }
 
 export interface SignupRequest {
-    username: String,
-    password: String,
-    confirmPassword: String,
-    firstName: String,
-    lastName: String,
+    username: String
+    password: String
+    confirmPassword: String
+    firstName: String
+    lastName: String
     email: String
 }
 

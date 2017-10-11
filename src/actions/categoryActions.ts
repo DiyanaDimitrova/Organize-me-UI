@@ -15,7 +15,7 @@ export const UPDATE_CATEGORY_FAIL = '@@Category/UPDATE_CATEGORY_FAIL'
 export const SET_CURRENT_ITEM = '@@Category/SET_CURRENT_ITEM'
 export const SET_CURRENT_ITEM_FAIL = '@@Category/SET_CURRENT_ITEM_FAIL'
 export interface CategoryAction extends Action {
-    categoryMessage: string
+    categoryMessage: String
 }
 
 export interface GetAllCategoriesAction extends Action {
@@ -26,45 +26,45 @@ export interface CurrentItemAction extends Action {
     currentItem: Object
 }
 
-export function createCategorySuccessAction(message: String): CategoryAction {
+export function createCategorySuccessAction(categoryMessage: String): CategoryAction {
     return {
         type: NEW_CATEGORY_SUCCESS,
-        categoryMessage: message
+        categoryMessage: categoryMessage
     } as CategoryAction
 }
 
-export function createCategoryFailAction(message: String): CategoryAction {
+export function createCategoryFailAction(categoryMessage: String): CategoryAction {
     return {
         type: NEW_CATEGORY_FAIL,
-        categoryMessage: message
+        categoryMessage: categoryMessage
     } as CategoryAction
 }
 
-export function deleteCategorySuccessAction(message: String): CategoryAction {
+export function deleteCategorySuccessAction(categoryMessage: String): CategoryAction {
     return {
         type: DELETE_CATEGORY_SUCCESS,
-        categoryMessage: message
+        categoryMessage: categoryMessage
     } as CategoryAction
 }
 
-export function deleteCategoryFailAction(message: String): CategoryAction {
+export function deleteCategoryFailAction(categoryMessage: String): CategoryAction {
     return {
         type: DELETE_CATEGORY_FAIL,
-        categoryMessage: message
+        categoryMessage: categoryMessage
     } as CategoryAction
 }
 
-export function updateCategorySuccessAction(message: String): CategoryAction {
+export function updateCategorySuccessAction(categoryMessage: String): CategoryAction {
     return {
         type: UPDATE_CATEGORY_SUCCESS,
-        categoryMessage: message
+        categoryMessage: categoryMessage
     } as CategoryAction
 }
 
-export function updateCategoryFailAction(message: String): CategoryAction {
+export function updateCategoryFailAction(categoryMessage: String): CategoryAction {
     return {
         type: UPDATE_CATEGORY_FAIL,
-        categoryMessage: message
+        categoryMessage: categoryMessage
     } as CategoryAction
 }
 
@@ -103,7 +103,7 @@ export function setCategoriesListFailure(): Action {
 export function setCategoriesList(categoryList: any): GetAllCategoriesAction {
     return {
         type: GET_CATEGORIES_LIST,
-        categoriesList: Object.assign([], categoryList),
+        categoriesList: (<any>Object).assign([], categoryList)
     } as GetAllCategoriesAction
 }
 export function performCreateCategoryAction(request: CreateCategoryRequest, dispatch: any): void {
@@ -120,7 +120,7 @@ export function performDeleteCategoryAction(request: DeleteCategoryRequest, disp
     let reqBody = {
       user: request.user
     }
-    axios.delete('/category/delete/' + request.id, reqBody)
+    axios.delete('/category/delete/' + request.id)
       .then((response) => {
           dispatch(deleteCategorySuccessAction(response.data.response))
       })

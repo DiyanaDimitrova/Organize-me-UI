@@ -4,22 +4,22 @@ import * as a from '../actions/eventActions'
 import { LOGIN_SUCCESS } from '../actions/loginActions'
 
 export interface CreateEventRequest {
-    title: String,
-    place: String,
-    city: String,
-    hourValue: Object,
-    dateValue: Object,
-    file: any,
-    imagePreviewUrl: any,
-    type: any,
-    capacity: Number,
-    details: String,
-    categoryId: String,
+    title: String
+    place: String
+    city: String
+    hourValue: Object
+    dateValue: Object
+    file: any
+    imagePreviewUrl: any
+    type: any
+    capacity: Number
+    details: String
+    categoryId: String
     user: String
 }
 
 export interface DeleteEventRequest {
-    id: String,
+    id: String
     user: String
 }
 export interface EventDetailsRequest {
@@ -28,27 +28,27 @@ export interface EventDetailsRequest {
 
 export interface UpdateEventRequest {
     _id: String
-    title: String,
-    place: String,
-    city: String,
-    hourValue: Object,
-    dateValue: Object,
-    file: any,
-    imagePreviewUrl: any,
-    type: any,
-    capacity: Number,
-    details: String,
-    categoryId: String,
+    title: String
+    place: String
+    city: String
+    hourValue: Object
+    dateValue: Object
+    file: any
+    imagePreviewUrl: any
+    type: any
+    capacity: Number
+    details: String
+    categoryId: String
     user: String
 }
 
 export interface AttendEventRequest {
-    id: String,
-    username: String,
+    id: String
+    username: String
     type: String
 }
 export interface FilterEventListRequest {
-    categoryId: String,
+    categoryId: String
     city: String
 }
 

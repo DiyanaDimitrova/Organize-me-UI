@@ -4,7 +4,7 @@ import * as a from '../actions/userActions'
 import { LOGIN_SUCCESS } from '../actions/loginActions'
 
 export interface MakeAdminRequest {
-    usersToMakeAdmin: Array<any>,
+    usersToMakeAdmin: Array<any>
     type: String
 }
 export interface UserAccountRequest {
@@ -41,7 +41,6 @@ const reducers = {
   [a.USER_ACCOUNT_END_LOADING]: r.userAccountEndLoadingReducer,
   [a.USER_ACCOUNT_FAILURE]: r.userAccountFailureReducer,
   [a.USER_ACCOUNT_SUCCESS]: r.userAccountSuccessReducer
-
 }
 
 export function userReducer(state: UserState = initialState, action: Action): UserState {
