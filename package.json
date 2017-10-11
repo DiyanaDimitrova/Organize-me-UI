@@ -6,8 +6,7 @@
   "main": "src/server/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tmp": "webpack-dev-server -d --history-api-fallback --hot --inline --progress --colors --open",
-    "postinstall": "npm run tmp",
+    "start": "webpack-dev-server -d --history-api-fallback --hot --inline --progress --colors --open",
     "build": "webpack -p --progress --colors"
   },
   "license": "MIT",
