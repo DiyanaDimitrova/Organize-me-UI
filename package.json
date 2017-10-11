@@ -2,12 +2,12 @@
   "name": "organize-me-ui",
   "version": "1.0.0",
   "private": true,
-  "description": "Front end for Organize me",
+  "description": "Front end of Organize me",
   "main": "src/server/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server -d --history-api-fallback --hot --inline --progress --colors --open",
-    "postinstall": "npm run start",
+    "tmp": "webpack-dev-server -d --history-api-fallback --hot --inline --progress --colors --open",
+    "postinstall": "npm run tmp",
     "build": "webpack -p --progress --colors"
   },
   "license": "MIT",
