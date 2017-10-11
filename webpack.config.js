@@ -115,6 +115,7 @@ module.exports = {
       warnings: false
     },
     port: process.env.PORT || envConfig.server.server_port,
+    disableHostCheck: true
   },
   node: {
     // workaround for webpack-dev-server issue
