@@ -6,7 +6,7 @@
   "main": "src/server/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --port $PORT --host 0.0.0.0"
+    "start": "webpack-dev-server --port $PORT --host 0.0.0.0",
     "tmp": "webpack-dev-server -d --history-api-fallback --hot --inline --progress --colors --open",
     "build": "webpack -p --progress --colors"
   },
