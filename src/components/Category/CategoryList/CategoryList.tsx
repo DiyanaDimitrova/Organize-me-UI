@@ -40,6 +40,7 @@ class CategoryList extends React.Component<CategoryListProps, CategoryListState>
       openDialog: false,
       id: null
     }
+    this.props.loadCategoriesList()
   }
 
   public static defaultProps: StateProps = {
@@ -59,14 +60,8 @@ class CategoryList extends React.Component<CategoryListProps, CategoryListState>
     deleteCategory.id = itemId
     deleteCategory.user = this.props.user
     this.props.performDeleteCategoryAction(deleteCategory)
-    browserHistory.push('/allCategories')
   }
   updateItem = (item) => {
-    // e.preventDefault()
-    // let updateCategory = {} as UpdateCategoryRequest
-    // updateCategory.id = item._id
-    // updateCategory.title = item.title
-    // this.props.setCurrentItem(updateCategory)
     browserHistory.push('/editCategory/' + item._id)
   }
   iconButtonElement = () => {
@@ -95,8 +90,8 @@ class CategoryList extends React.Component<CategoryListProps, CategoryListState>
     this.setState({ openDialog: true, id: itemId })
   }
   handleDelete = () => {
-    this.setState({ openDialog: false })
     this.deleteItem(this.state.id)
+    this.setState({ openDialog: false })
   }
   render() {
     let categoryArray

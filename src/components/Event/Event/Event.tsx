@@ -187,7 +187,7 @@ export class Event extends React.Component<EventProps, EventState> {
       createEvent.user = this.props.user
       this.props.performCreateEventAction(createEvent)
     }
-    browserHistory.push('/')
+    browserHistory.push('/allEvents')
   }
   cancelEvent = (event)  => {
     event.preventDefault()

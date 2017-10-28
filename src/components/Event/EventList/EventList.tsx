@@ -45,6 +45,7 @@ class EventList extends React.Component<EventListProps, EventListState> {
       openDialog: false,
       id: null
     }
+    this.props.loadEventList(null)
   }
 
   public static defaultProps: StateProps = {
